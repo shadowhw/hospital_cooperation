@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hl.hos.mapper.Doctor_infoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hl.hos.pojo.Doctor_info">
+        <id column="id" property="id" />
+        <result column="hos_id" property="hos_id" />
+        <result column="doctor_name" property="doctor_name" />
+        <result column="doctor_addr" property="doctor_addr" />
+        <result column="doctor_tel" property="doctor_tel" />
+        <result column="doctor_pwd" property="doctor_pwd" />
+        <result column="create_time" property="create_time" />
+        <result column="stat" property="stat" />
+        <result column="comment_text" property="comment_text" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, hos_id, doctor_name, doctor_addr, doctor_tel, doctor_pwd, create_time, stat, comment_text
+    </sql>
+
+</mapper>

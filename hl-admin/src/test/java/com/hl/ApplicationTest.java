@@ -1,20 +1,22 @@
 package com.hl;
 
+
+import com.hl.utils.CodeGenerator;
 import org.junit.Test;
 public class ApplicationTest
 {
 
 
     @Test
-    void contextLoads()
+    public void contextLoads()
     {
 
     }
 
     //代码生成器
     @Test
-    void codeGenerator(){
-        //CodeGenerator.codeGenerator("fcsd","fcsd");
+    public void codeGenerator(){
+        //CodeGenerator.codeGenerator("hos","t_role");
     }
 
 
