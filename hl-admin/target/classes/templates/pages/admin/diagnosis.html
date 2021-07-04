@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="../../lib/layui/css/layui.css">
-    <link rel="stylesheet" href="../../css/oksub.css">
-    <link rel="stylesheet" href="../../myicon/iconfont.css" type="text/css">
+    <link rel="stylesheet" href="/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/oksub.css">
+    <link rel="stylesheet" href="/myicon/iconfont.css" type="text/css">
     <meta charset="UTF-8"/>
     <title>诊断申请列表</title>
 </head>
@@ -111,24 +111,24 @@
 
 
 
-<script src="../../lib/layui/layui.js"></script>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/application.js"></script>
-<script src="../../js/model.js"></script>
+<script src="/lib/layui/layui.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/application.js"></script>
+<script src="/js/model.js"></script>
 <script>
     var selectType = "0"; //按钮状态
     layui.use(["table", 'form', 'okLayer', 'layer'], function () {
-        let $ = layui.jquery;
-        let table = layui.table;
-        let form = layui.form;
-        let okLayer = layui.okLayer;
-        let layer = layui.layer;
+        var $ = layui.jquery;
+        var table = layui.table;
+        var form = layui.form;
+        var okLayer = layui.okLayer;
+        var layer = layui.layer;
 
         var thisValue = -1;//查询类别
         //分派信息绑定
-        let articleTable = table.render({
+        var articleTable = table.render({
             elem: "#tableId",
-            url: "../../data/diagnosis.json",
+            url: "/data/diagnosis.json",
             where: {
                 // 'procTatus': thisValue//当前的状态
             },
@@ -142,7 +142,8 @@
                     "data": res.data //解析数据列表
                 };
             },
-            cols: [[
+            cols: [
+                [
                 {field: 'id', title: '角色ID', width: 150, fixed: 'left', unresize: true, sort: true, hide:true}
                 , {field: 'username', title: '姓名', width: 150}
                 , {field: 'location', title: '所在地区', width: 250}
@@ -159,7 +160,8 @@
                         }
                     }
                 }
-            ]],
+                ]
+            ],
             page: {
                 layout: ['prev', 'page', 'next', 'skip', 'count'],
                 groups: 3,
@@ -172,7 +174,7 @@
             var data = obj.data;
             var state = data.procTatus;
 
-            var url = "./waitingForDistribution.html"
+            var url = "/pages/admin/waitingForDistribution"
             show(url);
             obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
         });
@@ -202,7 +204,7 @@
         $("#selectForm").on('click', selectForm);
         function selectForm() {
             okLayer.open("查询条件", "selectForm.html", "35%", "60%", function (layero) {
-                let iframeWin = window[layero.find("iframe")[0]["name"]];
+                var iframeWin = window[layero.find("iframe")[0]["name"]];
             }, function () {
                 //获取搜索页面传过来的搜索条件
                 var caseId = window.document.caseId;
