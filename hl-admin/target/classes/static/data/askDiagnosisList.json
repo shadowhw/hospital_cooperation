@@ -1,0 +1,88 @@
+{
+  "code": 0,
+  "msg": "成功",
+  "count": 16,
+"data":[
+  {
+    "askprocessId": "110000",
+    "diagnosisId": "1111",
+    "name": "周三",
+    "hospital": "云中医院",
+    "department": "外科门诊",
+    "askForTime": "2017"
+  },
+  {
+    "askprocessId": "110000",
+    "diagnosisId": "1111",
+    "name": "周三",
+    "hospital": "云中医院",
+    "department": "外科门诊",
+    "askForTime": "2017"
+  },
+  {
+    "askprocessId": "110000",
+    "diagnosisId": "1111",
+    "name": "周三",
+    "hospital": "云中医院",
+    "department": "外科门诊",
+    "askForTime": "2017"
+  },
+  {
+    "askprocessId": "110000",
+    "diagnosisId": "1111",
+    "name": "周三",
+    "hospital": "云中医院",
+    "department": "外科门诊",
+    "askForTime": "2017"
+  },
+  {
+    "askprocessId": "110000",
+    "diagnosisId": "1111",
+    "name": "周三",
+    "hospital": "云中医院",
+    "department": "外科门诊",
+    "askForTime": "2017"
+  },
+  {
+    "askprocessId": "110000",
+    "diagnosisId": "1111",
+    "name": "周三",
+    "hospital": "云中医院",
+    "department": "外科门诊",
+    "askForTime": "2017"
+  },
+  {
+    "askprocessId": "110000",
+    "diagnosisId": "1111",
+    "name": "周三",
+    "hospital": "云中医院",
+    "department": "外科门诊",
+    "askForTime": "2017"
+  },
+  {
+    "askprocessId": "110000",
+    "diagnosisId": "1111",
+    "name": "周三",
+    "hospital": "云中医院",
+    "department": "外科门诊",
+    "askForTime": "2017"
+  },
+  {
+    "askprocessId": "110000",
+    "diagnosisId": "1111",
+    "name": "周三",
+    "hospital": "云中医院",
+    "department": "外科门诊",
+    "askForTime": "2017"
+  },
+  {
+    "askprocessId": "110000",
+    "diagnosisId": "1111",
+    "name": "周三",
+    "hospital": "云中医院",
+    "department": "外科门诊",
+    "askForTime": "2017"
+  }
+
+]
+}

@@ -1,0 +1,31 @@
+{
+  "code": 0,
+  "count": 3,
+  "msg": "",
+  "data": [
+    {
+      "id": "110000",
+      "username": "北京市",
+      "location": "110000",
+      "department": "北京市",
+      "description": "110000",
+      "ispass": "通过"
+    },
+    {
+      "id": "110000",
+      "username": "北京市",
+      "location": "110000",
+      "department": "北京市",
+      "description": "110000",
+      "ispass": "不通过"
+    },
+    {
+      "id": "110000",
+      "username": "北京市",
+      "location": "110000",
+      "department": "北京市",
+      "description": "110000",
+      "ispass": "通过"
+    }
+  ]
+}
