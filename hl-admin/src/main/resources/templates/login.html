@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>协作平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="协作平台">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="./css/oksub.css">
+    <link rel="stylesheet" href="./lib/layui/css/layui.css">
+</head>
+<body>
+<div class="page-fill" id="login" style="margin-top: 30%">
+    <form class="layui-form">
+        <div class="login_face" style="height: 110px;width: 125px">
+            <img style="height: 100%;width: 100%;" src="./images/login.jpg">
+        </div>
+        <div class="layui-form-item input-item">
+            <label for="userId">用户账号</label>
+            <input type="text" lay-verify="required" name="userId" autocomplete="off" id="userId" class="layui-input">
+        </div>
+        <div class="layui-form-item input-item">
+            <label for="password">密码</label>
+            <input type="password" lay-verify="required|password" name="password" autocomplete="off" id="password"
+                   class="layui-input">
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn layui-block" lay-filter="login" lay-submit="">登录</button>
+        </div>
+        <a href="./pages/user/register.html" style="float: right">注册</a>
+    </form>
+</div>
+<!--js逻辑-->
+<script src="./lib/layui/layui.js"></script>
+<script src="./js/jquery.min.js"></script>
+
+<script>
+    if (window != top) {
+        top.location.href = location.href;
+    }
+
+    // 获取MainUri
+    const mainUri = function () {
+        let pathName = document.location.pathname;
+        let index = pathName.substr(1).indexOf("/");
+        let result = pathName.substr(0, index + 1);
+        return result;
+    }();
+
+    layui.use(["form", "okGVerify", "okUtils", "okLayer", "okCookie", "okMd5", 'layer'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let okGVerify = layui.okGVerify;
+        let okUtils = layui.okUtils;
+        let okLayer = layui.okLayer;
+        let okMd5 = layui.okMd5;
+        var layer = layui.layer
+
+        //次方法需要放在layui中才能使用
+        function showloading(t) {
+            if (t) {//如果是true则显示loading
+                loading = layer.load(1, {
+                    shade: [0.7, '#393D49'] //0.1透明度的白色背景
+                });
+            } else {//如果是false则关闭loading
+                layer.closeAll('loading');
+            }
+        }
+
+        /**
+         * 表单提交
+         */
+        form.on("submit(login)", function (data) {
+            window.location="adminIndex.html"
+            return false;
+        });
+
+        /**
+         * 表单input组件单击时
+         */
+        $("#login .input-item .layui-input").click(function (e) {
+            e.stopPropagation();
+            $(this).addClass("layui-input-focus").find(".layui-input").focus();
+        });
+
+        /**
+         * 表单input组件获取焦点时
+         */
+        $("#login .layui-form-item .layui-input").focus(function () {
+            $(this).parent().addClass("layui-input-focus");
+        });
+
+        /**
+         * 表单input组件失去焦点时
+         */
+        $("#login .layui-form-item .layui-input").blur(function () {
+            $(this).parent().removeClass("layui-input-focus");
+            if ($(this).val() != "") {
+                $(this).parent().addClass("layui-input-active");
+            } else {
+                $(this).parent().removeClass("layui-input-active");
+            }
+        })
+    });
+</script>
+</body>
+</html>

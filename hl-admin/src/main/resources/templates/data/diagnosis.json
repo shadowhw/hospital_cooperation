@@ -1,0 +1,30 @@
+{
+  "code": 0,
+  "count": 3,
+  "msg": "",
+  "data": [
+    {
+      "id": "110000",
+      "location": "北京市",
+      "username": "110000",
+      "description": "110000",
+      "status": "未分配"
+    },
+    {
+      "id": "110000",
+      "location": "北京市",
+      "username": "110000",
+      "description": "110000",
+      "status": "已处理"
+    },
+    {
+      "id": "110000",
+      "location": "北京市",
+      "username": "110000",
+      "department": "北京市",
+      "description": "110000",
+      "ispass": "北京市",
+      "status": "已分配"
+    }
+  ]
+}

@@ -35,6 +35,8 @@ public class Disgnose_info implements Serializable {
 
     private String patient_tall;
 
+    private String patient_weight;
+
     private String diagnose_result;
 
     private String department;
@@ -44,6 +46,4 @@ public class Disgnose_info implements Serializable {
     private Integer stat;
 
     private String comment_text;
-
-
 }

@@ -19,10 +19,6 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
@@ -95,6 +91,7 @@
                     <include>**/*.yml</include>
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
+                    <include>**/*.html</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>

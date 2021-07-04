@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>柱状图</title>
+    <link rel="stylesheet" href="../../../lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../../../css/oksub.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<div class="layui-row">
+    <form class="layui-form" style="margin-top:15px;margin-bottom: 25px" action="">
+        <div class="layui-inline">
+            <label class="layui-form-label">时间</label>
+            <div class="layui-input-block">
+                <select name="dateType" id="dateType" lay-verify="dateType">
+                    <option value='2'>最近四个月</option>
+                    <option value='4'>最近一年</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">医院</label>
+            <div class="layui-input-block">
+                <div id="selhospital" style="width: 205px"></div>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <div class="layui-inline" style="margin-right: 8px">
+                <button class="layui-btn" id="search">
+                    <i class="layui-icon layui-icon-search" style="font-size: 14px">搜索</i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="main" style="width: 100%;height:400px;margin-top: 50px;"></div>
+
+<script src="../../../lib/echarts/echarts.min.js"></script>
+<script src="../../../lib/layui/layui.js"></script>
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/application.js"></script>
+<script src="../../../js/selectMore.js"></script>
+<script type="text/javascript">
+    layui.use(['layedit', 'upload', 'element', 'form', 'okLayer'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let okLayer = layui.okLayer;
+
+        //部门多选下拉框
+        var selhospital = xmSelect.render({
+            el: '#selhospital',
+            toolbar: {show: true},
+            data: [{'value': "医院1", name: "医院1"}, {'value': "医院2", name: "医院2"}]
+        });
+
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+
+        var list = [{
+            "allCount": "10",
+            "endCount": "5",
+            "noEndCount": "5"
+        }, {"allCount": "5", "endCount": "5", "noEndCount": "0"},
+            {"allCount": "9", "endCount": "2", "noEndCount": "7"},
+            {"allCount": "13", "endCount": "10", "noEndCount": "3"}];
+        var allCount = [];
+        var endCount = [];
+        var noEndCount = [];
+        for (var i = 0; i < list.length; i++) {
+            allCount.push(list[i]['allCount']);
+            endCount.push(list[i]['endCount']);
+            noEndCount.push(list[i]['noEndCount']);
+        }
+        chart(allCount, endCount, noEndCount)
+
+        //渲染柱状图
+        function chart(allCount, endCount, noEndCount) {
+            myChart.setOption({
+                backgroundColor: '#ffffff',
+                title: {
+                    text: '各医院协作数据',
+                    subtext: '模拟数据',
+                    x: 'center'
+                },
+                legend: {
+                    // orient 设置布局方式，默认水平布局，可选值：'horizontal'（水平） ¦ 'vertical'（垂直）
+                    orient: 'horizontal',
+                    // x 设置水平安放位置，默认全图居中，可选值：'center' ¦ 'left' ¦ 'right' ¦ {number}（x坐标，单位px）
+                    x: 'left',
+                    // y 设置垂直安放位置，默认全图顶端，可选值：'top' ¦ 'bottom' ¦ 'center' ¦ {number}（y坐标，单位px）
+                    y: 'top',
+                    data: ['总数', '完成', '未完成']
+                },
+
+                //  图表距边框的距离,可选值：'百分比'¦ {number}（单位px）
+                grid: {
+                    top: '16%',   // 等价于 y: '16%'
+                    left: '3%',
+                    right: '8%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+
+                // 提示框
+                tooltip: {
+                    trigger: 'axis'
+                },
+
+                //工具框，可以选择
+                toolbox: {
+                    feature: {
+                        saveAsImage: {} //下载工具
+                    }
+                },
+
+                xAxis: {
+                    name: '月份',
+                    type: 'category',
+                    axisLine: {
+                        lineStyle: {
+                            // 设置x轴颜色
+                            color: '#912CEE'
+                        }
+                    },
+                    // 设置X轴数据旋转倾斜
+                    axisLabel: {
+                        rotate: 30, // 旋转角度
+                        interval: 0  //设置X轴数据间隔几个显示一个，为0表示都显示
+                    },
+                    // boundaryGap值为false的时候，折线第一个点在y轴上
+                    boundaryGap: false,
+                    data: ['3月', '4月', '5月', '6月']
+                },
+
+                yAxis: {
+                    name: '统计',
+                    type: 'value',
+                    min: 0, // 设置y轴刻度的最小值
+                    max: 15,  // 设置y轴刻度的最大值
+                    splitNumber: 9,  // 设置y轴刻度间隔个数
+                    axisLine: {
+                        lineStyle: {
+                            // 设置y轴颜色
+                            color: '#87CEFA'
+                        }
+                    },
+                },
+
+                series: [
+                    {
+                        name: '总数',
+                        data: allCount,
+                        type: 'line',
+                        // 设置小圆点消失
+                        // 注意：设置symbol: 'none'以后，拐点不存在了，设置拐点上显示数值无效
+                        symbol: 'none',
+                        // 设置折线弧度，取值：0-1之间
+                        smooth: 0.5,
+                    },
+
+                    {
+                        name: '完成',
+                        data: endCount,
+                        type: 'line',
+                        // 设置折线上圆点大小
+                        symbolSize: 8,
+                        itemStyle: {
+                            normal: {
+                                // 拐点上显示数值
+                                label: {
+                                    show: true
+                                },
+                                borderColor: 'red',  // 拐点边框颜色
+                                lineStyle: {
+                                    width: 5,  // 设置线宽
+                                    type: 'dotted'  //'dotted'虚线 'solid'实线
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        name: '未完成',
+                        data: noEndCount,
+                        type: 'line',
+                        // 设置折线上圆点大小
+                        symbolSize: 10,
+                        // 设置拐点为实心圆
+                        symbol: 'circle',
+                        itemStyle: {
+                            normal: {
+                                // 拐点上显示数值
+                                label: {
+                                    show: true
+                                },
+                                lineStyle: {
+                                    // 使用rgba设置折线透明度为0，可以视觉上隐藏折线
+                                    color: 'rgba(t72,61,139,255)'
+                                }
+                            }
+                        }
+                    }
+                ],
+                color: ['#00EE00', '#FF9F7F', '#FFD700']
+            });
+            window.addEventListener("resize", function () {
+                myChart.resize();
+            });
+        }
+    })
+</script>
+</body>
+</html>
