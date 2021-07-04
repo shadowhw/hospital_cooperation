@@ -9,6 +9,6 @@ public class AdminIndexController
     @GetMapping("/admin")
     public String adminIndex()
     {
-        return "login";
+        return "adminIndex";
     }
 }
