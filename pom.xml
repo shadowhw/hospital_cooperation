@@ -63,6 +63,7 @@
                 <artifactId>spring-boot-devtools</artifactId>
                 <scope>runtime</scope>
                 <optional>true</optional>
+                <version>2.3.4.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
