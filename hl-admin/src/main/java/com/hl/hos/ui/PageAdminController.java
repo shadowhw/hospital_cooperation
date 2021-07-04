@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/pages")
 public class PageAdminController
 {
-    @GetMapping("/admin/chart1")
+    @GetMapping("/admin/chart/chart1")
     public String chart1()
     {
         return "pages/admin/chart/chart1";
     }
-    @GetMapping("/admin/chart2")
+    @GetMapping("/admin/chart/chart2")
     public String chart2()
     {
         return "pages/admin/chart/chart2";
     }
-    @GetMapping("/admin/chart3")
+    @GetMapping("/admin/chart/chart3")
     public String chart3()
     {
         return "pages/admin/chart/chart3";
