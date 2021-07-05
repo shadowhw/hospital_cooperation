@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -17,29 +20,40 @@ public class LoginController {
 
 
     @PostMapping("/userLogin")
-    public String userLogin(@RequestParam("doctorName")String doctorName ,
-                            @RequestParam("doctorPwd")String doctorPwd){
+    public String userLogin(@RequestParam("doctorName")String hos_name ,
+                            @RequestParam("doctorPwd")String doctorPwd ,
+                            HttpSession session ){
 
         Doctor_info doctorInfo = new Doctor_info();
-        doctorInfo.setDoctor_name(doctorName);
         doctorInfo.setDoctor_pwd(doctorPwd);
-        Doctor_info loginUser = doctorService.getOne(new QueryWrapper<Doctor_info>().gt("doctor_name",doctorName).gt("doctor_pwd",doctorInfo.getDoctor_pwd()));
+        //
+        Doctor_info loginUser = doctorService.getOne(new QueryWrapper<Doctor_info>().gt("doctor_pwd",doctorInfo.getDoctor_pwd()));
 
-        String addr = "";
+        if(loginUser == null){
+            session.setAttribute("error","账号或者密码错误");
+            return "redirect:/login";
+        }
 
-        if(loginUser!=null){
-            Integer stat = loginUser.getStat();//获取状态码
-            if(stat == 0){ //管理员
+        Integer pass = loginUser.getPass();
+        if(pass==0){ //账号没激活
+            session.setAttribute("error","账号没有激活");
+            return "redirect:/login";
+        }
 
-            }else if(stat == 1){ //上传医师
-
-            }else{ //协作医师
-
-            }
+        String addr = "/login";
+        Integer stat = loginUser.getStat();//获取状态码
+        session.setAttribute("doctor_info",doctorInfo);
+        if(stat == 0){ //管理员
+            addr = "adminIndex";
+        }else if(stat == 1){ //上传医师
+            addr = "assistIndex";
+        }else{ //协作医师
+            addr = "otherIndex";
         }
 
 
+        if(addr.equals("/login")) session.setAttribute("error","账号或者密码错误");
 
-        return "";
+        return "redirect:/"+addr;
     }
 }
