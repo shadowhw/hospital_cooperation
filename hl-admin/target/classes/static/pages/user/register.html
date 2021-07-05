@@ -26,54 +26,43 @@
                     </div>
                 </div>
                 <div class="layui-form-item" id="area-picker">
-                    <div class="layui-form-label">网点地址</div>
-                    <div class="layui-input-inline" style="width: 200px;">
+                    <div class="layui-form-label">医院地址</div>
+                    <div class="layui-input-inline" style="width: 85px;">
                         <select name="province" class="province-selector" data-value="广东省" lay-filter="province-1">
                             <option value="">请选择省</option>
                         </select>
                     </div>
-                    <div class="layui-input-inline" style="width: 200px;">
+                    <div class="layui-input-inline" style="width: 85px;">
                         <select name="city" class="city-selector" data-value="深圳市" lay-filter="city-1">
                             <option value="">请选择市</option>
                         </select>
                     </div>
-                    <div class="layui-input-inline" style="width: 200px;">
+                    <div class="layui-input-inline" style="width: 85px;">
                         <select name="county" class="county-selector" data-value="龙岗区" lay-filter="county-1">
                             <option value="">请选择区</option>
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 30px">
-                    <label class="layui-form-label">所在地址&#12288;</label>
+                    <label class="layui-form-label">联系人&#12288;</label>
                     <div class="layui-input-block">
                         <input style="float: left;" type="text"
-                               class="layui-input" placeholder="请输入所在地址" lay-verify="required" autocomplete="off">
-                    </div>
-                </div>
-                <div class="layui-form-item" style="margin-top: 30px">
-                    <label class="layui-form-label">所在医院</label>
-                    <div class="layui-input-block">
-                        <div class="layui-form-item layui-form-text" style="display: inline" id="select">
-                            <select name="director" id="director" lay-filter="" lay-verify="required">
-                                <option value='1'>医院1</option>
-                                <option value='2'>医院2</option>
-                            </select>
-                        </div>
+                               class="layui-input" name="doctor_name" maxlength="8" placeholder="请输入联系人姓名" lay-verify="required" autocomplete="off">
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 30px">
                     <label class="layui-form-label">电话号码&#12288;</label>
                     <div class="layui-input-block">
                         <input style="float: left;" type="text"
-                               class="layui-input" placeholder="请输入电话号码" lay-verify="phone" autocomplete="off">
+                               class="layui-input" name="doctor_tel" placeholder="请输入电话号码" lay-verify="phone" autocomplete="off">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button type="button" lay-submit="" lay-filter="" class="layui-btn layui-btn-normal"
+                        <button type="button" lay-submit lay-filter="register" class="layui-btn layui-btn-normal"
                                 style="width:400px;margin-top:30px; float: right">注&#12288;册
                         </button>
-                        <div style="width:400px;margin-top:30px; float: right"><div style="float: right">已有账号: <a style="color: #0c199c" href="../../../templates/login.html">登录</a></div></div>
+                        <div style="width:400px;margin-top:30px; float: right"><div style="float: right">已有账号: <a style="color: #0c199c" href="/login">登录</a></div></div>
                     </div>
                 </div>
             </div>
@@ -84,19 +73,17 @@
 <script src="/lib/layui/layui.js"></script>
 <script src="/js/jquery.min.js"></script>
 
-<!--地址联动-->
 <script>
-    //配置插件目录
-    layui.config({
-        base: '/lib/layui/lay/modules'
-        , version: '1.0'
-    });
-    //一般直接写在一个js文件中
-    layui.use(['layer', 'form', 'layarea'], function () {
-        var layer = layui.layer
-            , form = layui.form
-            , layarea = layui.layarea;
+    if (window != top) {
+        top.location.href = location.href;
+    };
 
+    layui.use(["form", 'layer','layarea'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        var layarea = layui.layarea;
+
+        form.render();
         layarea.render({
             elem: '#area-picker',
             change: function (res) {
@@ -104,19 +91,6 @@
                 console.log(res);
             }
         });
-    });
-</script>
-
-<script>
-    if (window != top) {
-        top.location.href = location.href;
-    };
-
-    layui.use(["form", 'layer'], function () {
-        let form = layui.form;
-        let $ = layui.jquery;
-
-        form.render();
 
         /**
          * 表单input组件单击时
@@ -144,6 +118,43 @@
                 $(this).parent().removeClass("layui-input-active");
             }
         })
+
+        form.on('submit(register)',function (data) {
+            var data_info = data.field;
+            //医院信息
+            var hos_name = data_info.hos_name;
+            var hos_addr = data_info.province+data_info.city+data_info.county;
+
+            //医生信息
+            var doctor_name = data_info.doctor_name;
+            var doctor_addr = hos_addr;
+            var doctor_tel = data_info.doctor_tel;
+
+            $.ajax({
+                url:'/register_doctor',
+                type:'post',
+                data:{
+                    'hos_name':hos_name,'hos_addr':hos_addr,
+                    'doctor_name':doctor_name,'doctor_addr':doctor_addr,
+                    'doctor_tel':doctor_tel
+                },
+                beforeSend:function () {
+                    this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
+                },
+                success:function(data){
+                    if(data.code == '201'){
+                        layer.msg(data.data.msg,{icon: 5});//失败的表情
+                    }else{
+                        layer.msg("注册成功", {
+                            icon: 6,//成功的表情
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            window.location.href="/login";
+                        });
+                    }
+                },
+            });
+        });
     });
 </script>
 </body>

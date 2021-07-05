@@ -1,4 +1,4 @@
-package com.hl.utils;
+package com.hl.hos.utils;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
