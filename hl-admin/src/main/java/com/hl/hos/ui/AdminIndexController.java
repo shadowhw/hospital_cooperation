@@ -38,7 +38,7 @@ public class AdminIndexController
 
     /**
      * 登录页面
-     * @return
+     * @retur
      */
     @GetMapping(path = {"/login","/"})
     public String login()
