@@ -40,7 +40,7 @@ public class AdminIndexController
      * 登录页面
      * @return
      */
-    @GetMapping("/login")
+    @GetMapping(path = {"/login","/"})
     public String login()
     {
         return "login";

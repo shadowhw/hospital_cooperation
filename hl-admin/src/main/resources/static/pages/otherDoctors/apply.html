@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+    <title>申请详情页</title>
+</head>
+
+<style>
+    .tdAdapt {
+        font-size: 16.0pt;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
+    .textarea {
+        margin-right: 3px;
+    }
+
+    .divarea {
+        margin-bottom: 5px;
+    }
+    .tub{
+        font-size: 16px;
+        margin-right:7px;
+    }
+
+</style>
+
+<body>
+<div class="ok-body" style="background: #F8F8F8">
+    <div class="layui-row ">
+        <div class="layui-col-md9" style="background-color:#f8f8f8;">
+            <div class="layui-row">
+                <hr class="layui-bg-gray">
+                <fieldset class="layui-elem-field">
+                    <legend>分配信息 <span class="layui-badge layui-bg-orange">待处理</span></legend>
+                    <div class="layui-field-box " style="margin-left: 20px;">
+                        <div class="layui-row">
+                            <div class="layui-col-md9">
+                                <div class="divarea">
+                                    <i class="tub layui-icon layui-icon-username" style="color: #1E9FFF;"></i>
+                                    <sapn class="textarea">申请者信息 : <span id="handleUser">张三</span></sapn>
+                                </div>
+                                <div class="divarea">
+                                    <i class="tub layui-icon layui-icon-home" style="color: #FF5722;"></i>
+                                    <sapn class="textarea">申请者单位 : <span id="procDepartment">XX医院</span></sapn>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="layui-bg-gray">
+                    <div>
+                        <div style="background: #d2d2d2">
+                            <div style="width: 80%;height: 100%;margin: 0 auto;">
+                                <div class="layui-collapse" lay-filter="submintData">
+                                    <div class="layui-colla-item">
+                                        <div class="layui-colla-content layui-show" style="background-color:#fdfdfd;">
+                                            <div style="background-color:#fdfdfd;">
+                                                <iframe scrolling="no" frameborder="0"
+                                                        src="../commonData/submitData.html" width="100%"
+                                                        height="700px" id="submintData"
+                                                        onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh>700?fdh:700);"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="background-color:#fdfdfd;margin-top: 10px;padding-top: 20px;">
+                                    <iframe scrolling="no" frameborder="0" src="../commonData/processData.html" width="100%"
+                                            height="700px" id="processData"
+                                            onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh>700?fdh:700)"></iframe>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="layui-col-md3" style="background-color:#f8f8f8;">
+            <div class="layui-row">
+                <hr class="layui-bg-gray"/>
+                <fieldset class="layui-elem-field">
+                    <legend>审核结果</legend>
+                    <div style="background-color: #f8f8f8;height: auto;margin:15px 20px 0 30px">
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <i class="tub layui-icon layui-icon-username" style="color: #1E9FFF;"></i>
+                                <label>审核人 : </label>
+                                <span>张三</span>
+                            </div>
+                            <div class="layui-form-item">
+                                <i class="tub layui-icon layui-icon-log" style="color: #FF5722;"></i>
+                                <label>审核时间 : </label>
+                                <span>2021-6-27</span>
+                            </div>
+                            <div class="layui-form-item">
+                                <i class="tub layui-icon layui-icon-diamond" style="color: #ff1e31;"></i>
+                                <label>审核结果(附件): </label>
+                                <span><a href="#" style="color: #0c199c">审核结果.pdf</a></span>
+                            </div>
+                        </form>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+</body>
+
+<script src="../../lib/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+<script src="../../js/application.js"></script>
+<script>
+    let processDataHeight=0
+    layui.use(['layedit', 'upload','element'], function () {
+        var layedit = layui.layedit;
+        var upload = layui.upload;
+        var element = layui.element;
+
+    });
+
+    function caseReturnData(returnData) {
+
+    }
+
+    function processReturnData(returnData) {
+        $("#processData").height(returnData.height)
+        processDataHeight = returnData.height
+    }
+</script>
+
+</html>

@@ -5,98 +5,61 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea8a103d-7939-4e7c-a241-1887354ffcbd" name="默认更改列表" comment="何夜息-第一次上传项目">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/AdminIndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/AdminIndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/static/data/indexJson/adminCenter.json" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/data/indexJson/adminCenter.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/adminIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/adminIndex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/assistIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/assistIndex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/otherIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/otherIndex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/chart/chart1.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/chart/chart1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/chart/chart2.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/chart/chart2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/chart/chart3.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/chart/chart3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/waitingForDistribution.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/waitingForDistribution.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/apply.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/apply.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/askDiagnosisList.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/askDiagnosisList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/selectForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/selectForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/processData.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/processData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/submitData.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/submitData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/uploadData.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/uploadData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/apply.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/apply.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/askDiagnosisList.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/askDiagnosisList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/chart/chart.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/chart/chart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/diagnosisImport.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/diagnosisImport.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/selectForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/selectForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/user/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/user/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/user/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/user/user_pwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/user/user_pwd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/config/WebMvcConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/AttachedController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/AttachedController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Disgnose_infoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Disgnose_infoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Doctor_infoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Doctor_infoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Doctor_with_disgnoseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Doctor_with_disgnoseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Hos_infoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Hos_infoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/ProcessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/ProcessController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/RoleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/AttachedMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/AttachedMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Disgnose_infoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Disgnose_infoMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Doctor_infoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Doctor_infoMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Doctor_with_disgnoseMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Doctor_with_disgnoseMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Hos_infoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Hos_infoMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/ProcessMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/ProcessMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/RoleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/RoleMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Attached.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Attached.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Disgnose_info.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Disgnose_info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Doctor_info.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Doctor_info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Doctor_with_disgnose.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Doctor_with_disgnose.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Hos_info.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Hos_info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Process.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Process.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Result.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/AttachedService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/AttachedService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Disgnose_infoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Disgnose_infoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Doctor_infoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Doctor_infoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Doctor_with_disgnoseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Doctor_with_disgnoseService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Hos_infoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Hos_infoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/ProcessService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/ProcessService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/RoleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/AttachedServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/AttachedServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Disgnose_infoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Disgnose_infoServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Doctor_infoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Doctor_infoServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Doctor_with_disgnoseServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Doctor_with_disgnoseServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Hos_infoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Hos_infoServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/ProcessServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/ProcessServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/RoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/RoleServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/chart/chart1.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/chart/chart1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/chart/chart2.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/chart/chart2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/chart/chart3.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/chart/chart3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/diagnosis.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/diagnosis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/waitingForDistribution.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/waitingForDistribution.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/apply.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/apply.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/askDiagnosisList.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/askDiagnosisList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/selectForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/selectForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/processData.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/commonData/processData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/submitData.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/commonData/submitData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/uploadData.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/commonData/uploadData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/apply.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/otherDoctors/apply.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/askDiagnosisList.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/otherDoctors/askDiagnosisList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/chart/chart.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/otherDoctors/chart/chart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/diagnosisImport.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/otherDoctors/diagnosisImport.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/otherDoctors/selectForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/otherDoctors/selectForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/user/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/user/user_pwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/user_pwd.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/AdminIndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/AdminIndexController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageAdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageAssistDoctorsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageAssistDoctorsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageCommonDataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageCommonDataController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageOtherDoctorsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageOtherDoctorsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/static/data/indexJson/adminCenter.json" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/static/data/indexJson/adminCenter.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/adminIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/adminIndex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/assistIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/assistIndex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/otherIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/otherIndex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/chart/chart1.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/chart/chart1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/chart/chart2.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/chart/chart2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/chart/chart3.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/chart/chart3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/waitingForDistribution.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/waitingForDistribution.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/assistDoctors/apply.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/assistDoctors/apply.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/assistDoctors/askDiagnosisList.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/assistDoctors/askDiagnosisList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/assistDoctors/selectForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/assistDoctors/selectForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/commonData/processData.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/commonData/processData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/commonData/submitData.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/commonData/submitData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/commonData/uploadData.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/commonData/uploadData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/apply.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/apply.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/askDiagnosisList.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/askDiagnosisList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/chart/chart.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/chart/chart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/diagnosisImport.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/diagnosisImport.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/selectForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/selectForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/user/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/user/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/user/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/user/user_pwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/user/user_pwd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/test-classes/com/hl/ApplicationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/test-classes/com/hl/ApplicationTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-common/target/classes/com/hl/utils/CodeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-common/target/classes/com/hl/utils/CodeGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/chart/chart1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/chart/chart2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/chart/chart3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/diagnosis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/homepage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/admin/waitingForDistribution.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/assistDoctors/apply.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/assistDoctors/askDiagnosisList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/assistDoctors/selectForm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/commonData/processData.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/commonData/submitData.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/commonData/uploadData.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/apply.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/askDiagnosisList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/chart/chart.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/diagnosisImport.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/otherDoctors/selectForm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/user/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/user/user.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/pages/user/user_pwd.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -448,6 +411,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/hl-admin/src/main/resources/templates" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="模块" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -455,12 +419,13 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/hl-admin/src/main/resources/templates" />
       <recent name="E:\source\java\hospital_cooperation\hl-admin\src\main\resources\templates" />
       <recent name="E:\source\java\hospital_cooperation\hl-admin\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/hl-admin/src/main/resources/templates" />
       <recent name="$PROJECT_DIR$/hl-admin/src/main/resources/static" />
+      <recent name="$PROJECT_DIR$/hl-admin/src/main/resources/templates" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.hl.hos.ui" />
@@ -469,17 +434,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Application">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ApplicationTest.codeGenerator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hl-admin" />
       <extension name="coverage">
@@ -531,7 +485,7 @@
       <workItem from="1625110690192" duration="13695000" />
       <workItem from="1625404121375" duration="356000" />
       <workItem from="1625404743027" duration="5620000" />
-      <workItem from="1625445331704" duration="2248000" />
+      <workItem from="1625445331704" duration="5324000" />
     </task>
     <servers />
   </component>
@@ -621,17 +575,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="何夜息-第一次上传项目" />
     <option name="LAST_COMMIT_MESSAGE" value="何夜息-第一次上传项目" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/LoginController.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/hl-common/pom.xml">

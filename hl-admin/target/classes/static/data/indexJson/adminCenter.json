@@ -1,7 +1,7 @@
 [
   {
     "title": "首页",
-    "href": "/pages/admin/homepage",
+    "href": "/pages/admin/homepage.html",
     "fontFamily": "ok-icon",
     "icon": "&#xe654;",
     "spread": true,
@@ -9,13 +9,13 @@
   },
   {
     "title": "注册申请管理",
-    "href": "/pages/admin/register",
+    "href": "/pages/admin/register.html",
     "icon": "&#xe6b2;",
     "spread": false
   },
   {
     "title": "诊断申请管理",
-    "href": "/pages/admin/diagnosis",
+    "href": "/pages/admin/diagnosis.html",
     "icon": "&#xe629;",
     "spread": false
   },
@@ -27,21 +27,21 @@
     "children": [
       {
         "title": "统计1",
-        "href": "/pages/admin/chart/chart1",
+        "href": "/pages/admin/chart/chart1.html",
         "fontFamily": "ok-icon",
         "icon": "&#xe721;",
         "spread": false
       },
       {
         "title": "统计2",
-        "href": "/pages/admin/chart/chart2",
+        "href": "/pages/admin/chart/chart2.html",
         "fontFamily": "ok-icon",
         "icon": "&#xe721;",
         "spread": false
       },
       {
         "title": "统计3",
-        "href": "/pages/admin/chart/chart3",
+        "href": "/pages/admin/chart/chart3.html",
         "fontFamily": "ok-icon",
         "icon": "&#xe721;",
         "spread": false
