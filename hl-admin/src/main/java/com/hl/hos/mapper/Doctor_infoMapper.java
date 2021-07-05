@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2021-07-02
  */
 public interface Doctor_infoMapper extends BaseMapper<Doctor_info> {
-
+    Doctor_info selectDoctorByPwdWithName(Doctor_info doctor_info);
 }

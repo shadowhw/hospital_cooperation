@@ -12,5 +12,4 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-07-02
  */
 public interface Doctor_infoService extends IService<Doctor_info> {
-
 }

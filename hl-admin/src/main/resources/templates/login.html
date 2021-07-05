@@ -17,22 +17,17 @@
         </div>
         <div class="layui-form-item input-item">
             <label for="userId">用户账号</label>
-            <input type="text" lay-verify="required" name="userId" autocomplete="off" id="userId" class="layui-input">
+            <input type="text" lay-verify="required" name="doctorName" placeholder="请输入所在单位的名称" autocomplete="off" id="userId" class="layui-input">
         </div>
         <div class="layui-form-item input-item">
             <label for="password">密码</label>
-            <input type="password" lay-verify="required|password" name="password" autocomplete="off" id="password"
+            <input type="password" lay-verify="required|password" name="doctorPwd" placeholder="请输入您的密码" autocomplete="off" id="password"
                    class="layui-input">
-        </div>
-        <div class="layui-form-item input-item">
-            <input type="radio" name="roleId" class="layui-input-block" value="0" th:text="管理员">
-            <input type="radio" name="roleId" class="layui-input-block" value="1">上传者
-            <input type="radio" name="roleId" class="layui-input-block" value="2">协作者
         </div>
         <div class="layui-form-item">
             <button class="layui-btn layui-block" lay-filter="login" lay-submit="">登录</button>
         </div>
-        <a href="./ pages/user/register.html" style="float: right">注册</a>
+        <a href="./pages/user/register.html" style="float: right">注册</a>
     </form>
 </div>
 <!--js逻辑-->
