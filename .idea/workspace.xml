@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea8a103d-7939-4e7c-a241-1887354ffcbd" name="默认更改列表" comment="何夜息-第一次上传项目">
-      <change afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/lib/layui/lay/modules/layarea.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Attached_result.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Attached_result.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/user/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/test-classes/com/hl/ApplicationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/test-classes/com/hl/ApplicationTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="ea8a103d-7939-4e7c-a241-1887354ffcbd" name="默认更改列表" comment="何夜息-第一次上传项目" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/hl-admin/target/" />
     <ignored path="$PROJECT_DIR$/hl-common/target/" />
@@ -653,11 +646,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28112000" />
+    <option name="totallyTimeSpent" value="28368000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24463807" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -670,7 +662,7 @@
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49798927" visible="true" weight="0.24504249" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798927" weight="0.24504249" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39886847" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -678,7 +670,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49932975" weight="0.3796034" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49932975" visible="true" weight="0.3796034" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50067025" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49932975" weight="0.28470254" />
       <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32956153" />
