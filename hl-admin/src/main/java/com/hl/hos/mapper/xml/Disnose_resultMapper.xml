@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hl.hos.mapper.Disnose_resultMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hl.hos.pojo.Disnose_result">
+        <id column="id" property="id" />
+        <result column="doctor_id" property="doctor_id" />
+        <result column="disgnose_info_id" property="disgnose_info_id" />
+        <result column="diagnose_result" property="diagnose_result" />
+        <result column="create_time" property="create_time" />
+        <result column="stat" property="stat" />
+        <result column="comment_text" property="comment_text" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, doctor_id, disgnose_info_id, diagnose_result, create_time, stat, comment_text
+    </sql>
+
+</mapper>

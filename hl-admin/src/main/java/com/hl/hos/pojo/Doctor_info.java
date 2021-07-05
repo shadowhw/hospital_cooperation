@@ -43,5 +43,7 @@ public class Doctor_info implements Serializable {
 
     private String comment_text;
 
+    private Integer pass;
+
 
 }

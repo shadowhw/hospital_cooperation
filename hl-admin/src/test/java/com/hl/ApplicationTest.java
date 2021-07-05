@@ -1,7 +1,6 @@
 package com.hl;
 
 
-import com.hl.utils.CodeGenerator;
 import org.junit.Test;
 public class ApplicationTest
 {
@@ -16,7 +15,7 @@ public class ApplicationTest
     //代码生成器
     @Test
     public void codeGenerator(){
-        //CodeGenerator.codeGenerator("hos","t_role");
+        //CodeGenerator.codeGenerator("hos","t_disnose_result");
     }
 
 
