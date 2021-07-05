@@ -51,7 +51,7 @@ public class RegisterController
         doctor_info.setPass(0);
         doctor_info.setHos_id(hos_info.getId());
         doctor_info.setStat(2);//上传者
-        doctor_info.setDoctor_pwd(MD5Util.getMd5("123456"));
+        doctor_info.setDoctor_pwd(MD5Util.getMd5(doctor_info.getDoctor_tel()));//默认密码就是电话号码
         doctor_infoService.save(doctor_info);
 
         result.setMsg("成功");

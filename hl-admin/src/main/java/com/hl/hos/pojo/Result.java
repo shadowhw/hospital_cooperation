@@ -13,4 +13,5 @@ public class Result
     private String msg;
     private Integer code;
     private Object data;
+    private Integer count;
 }
