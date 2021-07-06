@@ -1814,6 +1814,8 @@
       <list>
         <item itemvalue="Spring Boot.Application" />
         <item itemvalue="JUnit.ApplicationTest.codeGenerator" />
+        <item itemvalue="Spring Boot.Application" />
+        <item itemvalue="JUnit.ApplicationTest.codeGenerator" />
       </list>
     </recent_temporary>
   </component>
