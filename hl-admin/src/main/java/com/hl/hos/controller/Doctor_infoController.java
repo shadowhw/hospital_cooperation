@@ -44,6 +44,7 @@ public class Doctor_infoController {
     @GetMapping("/get_doctor_list")
     public Result get_doctor_list(String page,String limit)
     {
+        List<Doctor_info> list = doctor_infoService.list();
         List<DoctorHos> doctorLists = new ArrayList<>();
         Page<Doctor_info> page1 = new Page<>(Integer.parseInt(page),Integer.parseInt(limit));
         IPage<Doctor_info> iPage = doctor_infoService.page(page1);
@@ -57,12 +58,33 @@ public class Doctor_infoController {
             doctorHos.setHos_info(hos_infoService.getById(doctorInfo.getHos_id()));
             doctorLists.add(doctorHos);
         }
-        result.setCount(iPage.getRecords().size());
+        result.setCount(list.size());//数量应该是所有数据的大小
         result.setData(doctorLists);
         result.setCode(200);
         return result;
     }
 
-
+    /**
+     * 更新医生信息
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/update_doctor_info")
+    public Result update_doctor_info(Doctor_info doctor_info)
+    {
+        if(doctor_infoService.updateById(doctor_info))
+        {
+            result.setCount(1);
+            result.setData(null);
+            result.setCode(200);
+            result.setMsg("修改成功!");
+        }else {
+            result.setCount(1);
+            result.setData(null);
+            result.setCode(201);
+            result.setMsg("修改失败!");
+        }
+        return result;
+    }
 }
 
