@@ -97,14 +97,19 @@ public class FileUploadController {
                                    String patient_tall,
                                    String patient_weight,
                                    String department,
-                                   String bz){
+                                   String bz,
+                                   String patient_BMI){
         Disgnose_info disgnose_info = new Disgnose_info();
         Result result = new Result();
         disgnose_info.setPatient_name(patient_name);
         disgnose_info.setPatient_tall(patient_tall);
-        disgnose_info.setPatient_birth(Timestamp.valueOf(patient_birth+" 00:00:00")); //兼容timestamp
+        if(patient_birth!=null && patient_birth !=""){
+            disgnose_info.setPatient_birth(Timestamp.valueOf(patient_birth+" 00:00:00")); //兼容timestamp
+        }
+
         disgnose_info.setPatient_weight(patient_weight);
         disgnose_info.setDepartment(department);
+        disgnose_info.setPatient_BMI(patient_BMI);
         disgnose_info.setComment_text(bz);
         disgnose_info.setDoctor_id(doctor_info.getId());
         disgnose_info.setStat(0); //只是临时保存，不需要提交
@@ -157,7 +162,8 @@ public class FileUploadController {
                            String patient_tall,
                            String patient_weight,
                            String department,
-                           String bz){
+                           String bz,
+                           String patient_BMI){
 
         Disgnose_info disgnose_info = new Disgnose_info();
         Result result = new Result();
@@ -166,6 +172,7 @@ public class FileUploadController {
         disgnose_info.setPatient_birth(Timestamp.valueOf(patient_birth+" 00:00:00")); //兼容timestamp
         disgnose_info.setPatient_weight(patient_weight);
         disgnose_info.setDepartment(department);
+        disgnose_info.setPatient_BMI(patient_BMI);
         disgnose_info.setComment_text(bz);
         disgnose_info.setDoctor_id(doctor_info.getId());
         disgnose_info.setStat(1); //查看是否有临时的
@@ -229,6 +236,7 @@ public class FileUploadController {
                                           String department,
                                           String bz,
                                           String disgnose_code,
+                                          String patient_BMI,
                                           HttpSession session){
         //更新诊断信息
         Disgnose_info disgnoseInfoByCode = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("disgnose_code", disgnose_code));
@@ -243,6 +251,7 @@ public class FileUploadController {
             disgnoseInfoByCode.setPatient_tall(patient_tall);
             disgnoseInfoByCode.setPatient_weight(patient_weight);
             disgnoseInfoByCode.setDepartment(department);
+            disgnoseInfoByCode.setPatient_BMI(department);
             disgnoseInfoByCode.setComment_text(bz);
             disgnoseInfoByCode.setStat(1);//设置为初始值
             disgnoseInfoService.updateById(disgnoseInfoByCode); //更新表

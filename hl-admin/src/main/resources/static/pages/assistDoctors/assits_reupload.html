@@ -116,13 +116,19 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">患者身高</label>
                             <div class="layui-input-block">
-                                <input type="number" onkeyup="this.value=this.value.replace(/\D/g,'')" name="patient_tall" required lay-verify="required" placeholder="请输入身高,单位cm" class="layui-input">
+                                <input type="number" onkeyup="this.value=this.value.replace(/\D/g,'')"  onblur="bmi_led()" name="patient_tall" required lay-verify="required" placeholder="请输入身高,单位cm" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">患者体重</label>
                             <div class="layui-input-block">
-                                <input type="number" onkeyup="this.value=this.value.replace(/\D/g,'')" name="patient_weight" required lay-verify="required" placeholder="请输入体重,单位kg" class="layui-input">
+                                <input type="number" onkeyup="this.value=this.value.replace(/\D/g,'')" onblur="bmi_led()" name="patient_weight" required lay-verify="required" placeholder="请输入体重,单位kg" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">BMI</label>
+                            <div class="layui-input-block">
+                                <input type="number" readonly="true" style="background:#CCCCCC"  name="patient_BMI" required lay-verify="required" placeholder="自动计算、无需输入" class="layui-input" required lay-verify="required">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -191,6 +197,22 @@
 <script src="../../lib/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
 <script>
+
+    //计算BMI
+    function bmi_led(){
+        let tall = $("input[name='patient_tall']").val();
+        let weight = $("input[name='patient_weight']").val();
+
+        if(tall!==""&& weight!==""){
+            tall /=100;
+            let BMI = weight/(tall*tall)
+            let steBmi = BMI+"";
+            BMI = BMI.toFixed(1)
+            //计算BMI值，填充到指定
+            $("input[name='patient_BMI']").val(BMI)
+        }
+    }
+
     var urlId= "";
     layui.use(['layer'], function(){
 
@@ -281,7 +303,10 @@
             async:true,
             success:function(obj){
                 let dis = obj.data;
-                let br= dis.patient_birth.substr(0,10)
+                let br;
+                if(dis.patient_birth !=null){
+                     br= dis.patient_birth.substr(0,10)
+                }
                 // br = br.replaceAll("-","/")
                 console.log(br)
                 disId = dis.id;
@@ -293,11 +318,12 @@
                 //转换为数字
                 let tall = parseInt(dis.patient_tall);
                 let weight= parseInt(dis.patient_weight);
-
+                let bmi = parseInt(dis.patient_BMI);
                 $("input[name='patient_tall']").val(tall)
                 $("input[name='patient_weight']").val(weight)
                 $("input[name='department']").val(dis.department)
                 $("input[name='bz']").val(dis.comment_text)
+                $("input[name='patient_BMI']").val(bmi)
             }
         })
 
@@ -308,6 +334,7 @@
            let patient_tall =   $("input[name='patient_tall']").val()
            let patient_weight =  $("input[name='patient_weight']").val()
            let department =       $("input[name='department']").val()
+            let patient_bmi = $("input[name='patient_BMI']").val();
            //临时保存
             $.ajax({
                 url:"/saveTempDisgnose_info?id="+disId,
@@ -319,7 +346,8 @@
                     patient_birth,
                     patient_tall,
                     patient_weight,
-                    department
+                    department,
+                    patient_bmi
                 },
                 success:function (obj) {
                     if(obj["msg"]=="success"){

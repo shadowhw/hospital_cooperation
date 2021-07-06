@@ -61,6 +61,8 @@
                     <br>
                     <sapn class="textarea">患者体重 : <span id="patient_weight"></span></sapn>
                     <br>
+                    <sapn class="textarea">患者BMI : <span id="patient_BMI"></span></sapn>
+                    <br>
                 </div>
             </div>
         </div>
@@ -422,6 +424,7 @@
                         dia.hos_nme = datas[i].hos_info.hos_name;
                         dia.create_time = date;
                         dia.comment_text = datas[i].disgnose_info.comment_text;
+                        dia.patient_BMI = datas[i].disgnose_info.patient_BMI;
                         dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
                         dia.stat = datas[i].disgnose_info.stat;
                         if(dia.stat == "3"||dia.stat == "5"){
@@ -434,12 +437,14 @@
                         $("#f_patient_weight").val(dia.patient_weight)
                         $("#f_patient_name").val(dia.patient_name)
 
+
                         $("#hos_nme").text(dia.hos_nme)
                         $("#patient_name").text(dia.patient_name)
                         $("#patient_birth").text(dia.patient_birth)
                         $("#patient_tall").text(dia.patient_tall)
                         $("#patient_weight").text(dia.patient_weight)
                         $("#diagnose_result").text(dia.diagnose_result)
+                        $("#patient_BMI").text(dia.patient_BMI)
                         $("#doctor_name").text(dia.doctor_name)
                         $("#create_time").text(dia.create_time)
                         $("#disgnose_code").text(dia.disgnose_code)

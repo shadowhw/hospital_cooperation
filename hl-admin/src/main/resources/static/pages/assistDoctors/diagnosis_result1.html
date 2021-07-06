@@ -49,6 +49,8 @@
                     <br>
                     <sapn class="textarea">患者体重 : <span id="patient_weight"></span></sapn>
                     <br>
+                    <sapn class="textarea">患者BMI : <span id="patient_bmi"></span></sapn>
+                    <br>
                 </div>
             </div>
             <div class="layui-card">
@@ -722,6 +724,8 @@
                         dia.diagnose_result = datas[i].disgnose_info.diagnose_result;
                         dia.hos_nme = datas[i].hos_info.hos_name;
                         dia.create_time = date;
+                        console.log(datas[i].disgnose_info)
+                         dia.patient_BMI = datas[i].disgnose_info.patient_BMI;
                         dia.comment_text = datas[i].disgnose_info.comment_text;
                         dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
                         dia.stat = datas[i].disgnose_info.stat;
@@ -735,6 +739,7 @@
                         $("#doctor_name").text(dia.doctor_name)
                         $("#create_time").text(dia.create_time)
                         $("#disgnose_code").text(dia.disgnose_code)
+                        $("#patient_bmi").text(dia.patient_BMI)
 
 
                     }

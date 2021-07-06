@@ -45,6 +45,8 @@ public class Disgnose_info extends Model<Disgnose_info> implements Serializable 
 
     private String department;
 
+    private String patient_BMI;
+
     private Timestamp create_time;
 
     private Integer stat;
