@@ -77,10 +77,6 @@
       <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/otherIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/otherIndex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hl-admin/target/test-classes/com/hl/ApplicationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/test-classes/com/hl/ApplicationTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-common/target/classes/META-INF/hl-common.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-common/target/classes/com/hl/utils/CodeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-common/target/classes/com/hl/utils/CodeGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -438,17 +434,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Application">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ApplicationTest.codeGenerator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hl-admin" />
       <extension name="coverage">
@@ -505,8 +490,17 @@
       <workItem from="1625454859903" duration="841000" />
       <workItem from="1625569178314" duration="2122000" />
       <workItem from="1625578716104" duration="273000" />
-      <workItem from="1625579298377" duration="326000" />
+      <workItem from="1625579298377" duration="453000" />
+      <workItem from="1625579760408" duration="92000" />
     </task>
+    <task id="LOCAL-00001" summary="修改选择文件不弹窗">
+      <created>1625579653275</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1625579653275</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -632,7 +626,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="何夜息-第一次上传项目" />
-    <option name="LAST_COMMIT_MESSAGE" value="何夜息-第一次上传项目" />
+    <MESSAGE value="修改选择文件不弹窗" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改选择文件不弹窗" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
