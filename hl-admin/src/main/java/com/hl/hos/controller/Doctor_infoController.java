@@ -45,8 +45,8 @@ public class Doctor_infoController {
     public Result get_doctor_list(String page,String limit)
     {
         List<Doctor_info> list = doctor_infoService.list();
-        List<DoctorHos> doctorLists = new ArrayList<>();
-        Page<Doctor_info> page1 = new Page<>(Integer.parseInt(page),Integer.parseInt(limit));
+        List<DoctorHos> doctorLists = new ArrayList<DoctorHos>();
+        Page<Doctor_info> page1 = new Page<Doctor_info>(Integer.parseInt(page),Integer.parseInt(limit));
         IPage<Doctor_info> iPage = doctor_infoService.page(page1);
 
         for (int i = 0; i < iPage.getRecords().size(); i++)
