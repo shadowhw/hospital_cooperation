@@ -1,10 +1,18 @@
 [
   {
-    "title": "诊断申请",
+    "title": "上传资料",
     "href": "pages/assistDoctors/askDiagnosisList.html",
     "fontFamily": "ok-icon",
     "icon": "&#xe654;",
     "spread": true,
     "isCheck": true
+  },
+  {
+    "title": "下载报告",
+    "href": "pages/assistDoctors/askDiagnosisList.html",
+    "fontFamily": "ok-icon",
+    "icon": "&#xe654;",
+    "spread": false
+
   }
 ]
