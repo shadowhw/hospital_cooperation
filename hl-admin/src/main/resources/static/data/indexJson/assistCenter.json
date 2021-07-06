@@ -1,7 +1,7 @@
 [
   {
     "title": "上传资料",
-    "href": "pages/assistDoctors/askDiagnosisList.html",
+    "href": "pages/assistDoctors/disagnosisImport.html",
     "fontFamily": "ok-icon",
     "icon": "&#xe654;",
     "spread": true,
