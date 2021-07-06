@@ -32,7 +32,7 @@ public class LoginController {
         //查询有误单位
         Hos_info hosInfo = hosService.getOne(new QueryWrapper<Hos_info>().eq("hos_name",hos_name));
         if(hosInfo == null){
-            session.setAttribute("error","账号或者密码错误");
+            session.setAttribute("error","请检查您的单位名称");
             return "redirect:/login";
         }
         //根据hosId查询医生
@@ -42,7 +42,7 @@ public class LoginController {
             return "redirect:/login";
         }
         //验证密码
-        if(doctorInfo.getDoctor_pwd() != doctorPwd){
+        if(!doctorInfo.getDoctor_pwd() .equals(doctorPwd)){
             session.setAttribute("error","账号或者密码错误");
             return "redirect:/login";
         }
@@ -58,9 +58,9 @@ public class LoginController {
         Integer stat = doctorInfo.getStat();//获取状态码
         session.setAttribute("doctor_info",doctorInfo);
         if(stat == 0){ //管理员
-            addr = "adminIndex";
+            addr = "admin";
         }else if(stat == 1){ //上传医师
-            addr = "assistIndex";
+            addr = "assist_index";
         }else{ //协作医师
             addr = "otherIndex";
         }
