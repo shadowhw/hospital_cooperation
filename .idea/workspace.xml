@@ -6,13 +6,82 @@
   <component name="ChangeListManager">
     <list default="true" id="ea8a103d-7939-4e7c-a241-1887354ffcbd" name="默认更改列表" comment="何夜息-第一次上传项目">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/askDiagnosisList.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/askDiagnosisList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/META-INF/hl-admin.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/backPogo/DoctorHos.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/backPogo/DoctorHos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/config/MybatisPlusConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/config/MybatisPlusConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/config/WebMvcConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/AttachedController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/AttachedController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Attached_resultController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Attached_resultController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Disgnose_infoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Disgnose_infoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Disnose_resultController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Disnose_resultController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Doctor_infoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Doctor_infoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Doctor_with_disgnoseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Doctor_with_disgnoseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Hos_infoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Hos_infoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/ProcessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/ProcessController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/RegisterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/RoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/AttachedMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/AttachedMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Attached_resultMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Attached_resultMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Disgnose_infoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Disgnose_infoMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Disnose_resultMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Disnose_resultMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Doctor_infoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Doctor_infoMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Doctor_with_disgnoseMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Doctor_with_disgnoseMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Hos_infoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/Hos_infoMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/ProcessMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/ProcessMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/RoleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/mapper/RoleMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Attached.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Attached.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Attached_result.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Attached_result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Disgnose_info.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Disgnose_info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Disnose_result.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Disnose_result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Doctor_info.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Doctor_info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Doctor_with_disgnose.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Doctor_with_disgnose.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Hos_info.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Hos_info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Process.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Process.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/AttachedService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/AttachedService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Attached_resultService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Attached_resultService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Disgnose_infoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Disgnose_infoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Disnose_resultService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Disnose_resultService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Doctor_infoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Doctor_infoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Doctor_with_disgnoseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Doctor_with_disgnoseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Hos_infoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/Hos_infoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/ProcessService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/ProcessService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/RoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/AttachedServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/AttachedServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Attached_resultServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Attached_resultServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Disgnose_infoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Disgnose_infoServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Disnose_resultServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Disnose_resultServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Doctor_infoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Doctor_infoServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Doctor_with_disgnoseServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Doctor_with_disgnoseServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Hos_infoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/Hos_infoServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/ProcessServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/ProcessServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/RoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/service/impl/RoleServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/AdminIndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/AdminIndexController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageAdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageAssistDoctorsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageAssistDoctorsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageCommonDataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageCommonDataController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageOtherDoctorsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageOtherDoctorsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/ui/PageUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/utils/DateUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/utils/DateUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/utils/MD5Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/utils/MD5Util.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/static/data/indexJson/assistCenter.json" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/static/data/indexJson/assistCenter.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/static/js/indexJs/assistCenter.js" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/static/js/indexJs/assistCenter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/assistDoctors/askDiagnosisList.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/assistDoctors/askDiagnosisList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/adminIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/adminIndex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/assistIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/assistIndex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/otherIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/otherIndex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/test-classes/com/hl/ApplicationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/test-classes/com/hl/ApplicationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-common/target/classes/META-INF/hl-common.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-common/target/classes/com/hl/utils/CodeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-common/target/classes/com/hl/utils/CodeGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/target/" />
-    <ignored path="$PROJECT_DIR$/hl-admin/target/" />
-    <ignored path="$PROJECT_DIR$/hl-common/target/" />
-    <ignored path="$PROJECT_DIR$/out/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,113 +89,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-            </state>
-          </provider>
-          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Result.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9099">
-              <caret line="337" column="12" selection-start-line="337" selection-start-column="12" selection-end-line="337" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/PageAssistDoctorsController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/AdminIndexController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="38" column="7" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/askDiagnosisList.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/js/application.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1318#1329#0" expanded="true" />
-                <element signature="e#1366#1379#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/backPogo/DoctorHos.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-common/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-            </state>
-          </provider>
-          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -227,7 +189,6 @@
     </option>
     <option name="importingSettings">
       <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
         <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
@@ -476,19 +437,18 @@
       <recent name="E:\source\java\hospital_cooperation\hl-admin\src\main\resources" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Spring Boot.Application">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ApplicationTest.codeGenerator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hl-admin" />
       <extension name="coverage">
@@ -525,7 +485,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -545,6 +505,7 @@
       <workItem from="1625454859903" duration="841000" />
       <workItem from="1625569178314" duration="2122000" />
       <workItem from="1625578716104" duration="273000" />
+      <workItem from="1625579298377" duration="326000" />
     </task>
     <servers />
   </component>
@@ -629,9 +590,30 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="RECENT_FILTERS">
       <map>
         <entry key="Branch">
@@ -646,6 +628,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="何夜息-第一次上传项目" />
@@ -953,7 +936,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/com/baomidou/mybatis-plus-extension/3.4.0/mybatis-plus-extension-3.4.0.jar!/com/baomidou/mybatisplus/extension/service/IService.class">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-extension/3.4.0/mybatis-plus-extension-3.4.0.jar!/com/baomidou/mybatisplus/extension/service/IService.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
@@ -989,7 +972,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-web/5.2.9.RELEASE/spring-web-5.2.9.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.2.9.RELEASE/spring-web-5.2.9.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
           <caret line="107" selection-start-line="107" selection-end-line="107" />
