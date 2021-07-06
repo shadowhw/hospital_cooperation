@@ -7,9 +7,6 @@
     <list default="true" id="ea8a103d-7939-4e7c-a241-1887354ffcbd" name="默认更改列表" comment="何夜息-第一次上传项目">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Doctor_infoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/Doctor_infoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/admin/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/admin/register.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/hl-admin/target/" />
@@ -27,12 +24,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hl-admin/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
@@ -45,8 +36,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Result.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="15" column="25" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="25" />
+            <state relative-caret-position="432">
+              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,15 +45,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-70">
-              <caret line="239" column="37" lean-forward="true" selection-start-line="239" selection-start-column="37" selection-end-line="239" selection-end-column="37" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="9099">
+              <caret line="337" column="12" selection-start-line="337" selection-start-column="12" selection-end-line="337" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/PageAssistDoctorsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/AdminIndexController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="756">
+              <caret line="38" column="7" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/askDiagnosisList.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -76,11 +90,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-73">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="135">
+              <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1318#1329#0" expanded="true" />
+                <element signature="e#1366#1379#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,8 +107,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/backPogo/DoctorHos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+            <state relative-caret-position="297">
+              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -188,8 +207,8 @@
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Result.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/config/MybatisPlusConfig.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/js/hyx.js" />
-        <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register.html" />
+        <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java" />
       </list>
     </option>
   </component>
@@ -250,7 +269,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -320,6 +339,18 @@
               <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="hl" type="462c0819:PsiDirectoryNode" />
+              <item name="hos" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
+              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -330,27 +361,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
@@ -421,7 +431,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -534,6 +544,7 @@
       <workItem from="1625453985996" duration="418000" />
       <workItem from="1625454859903" duration="841000" />
       <workItem from="1625569178314" duration="2122000" />
+      <workItem from="1625578716104" duration="273000" />
     </task>
     <servers />
   </component>
@@ -570,13 +581,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50814000" />
+    <option name="totallyTimeSpent" value="51261000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24798928" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26072386" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -599,7 +610,7 @@
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50067025" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49932975" weight="0.14730878" />
       <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32956153" />
-      <window_info active="true" anchor="bottom" id="调试" order="14" visible="true" weight="0.30169973" />
+      <window_info anchor="bottom" id="调试" order="14" weight="0.30169973" />
       <window_info anchor="bottom" id="Application Servers" order="15" weight="0.32956153" />
       <window_info anchor="bottom" id="Spring" order="16" weight="0.3286119" />
       <window_info anchor="bottom" id="Java Enterprise" order="17" />
@@ -619,6 +630,22 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="何夜息-第一次上传项目" />
@@ -674,15 +701,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/PageCommonDataController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/processData.html" />
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/submitData.html" />
     <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/commonData/uploadData.html" />
     <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/chart/chart1.html" />
     <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/chart/chart3.html" />
@@ -918,32 +936,6 @@
       <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-        </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Result.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-common/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-        </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/config/MybatisPlusConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
@@ -997,20 +989,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/backPogo/DoctorHos.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-web/5.2.9.RELEASE/spring-web-5.2.9.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        <state relative-caret-position="156">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-web/5.2.9.RELEASE/spring-web-5.2.9.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
+        <state relative-caret-position="9099">
+          <caret line="337" column="12" selection-start-line="337" selection-start-column="12" selection-end-line="337" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/PageAssistDoctorsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/AdminIndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="38" column="7" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/askDiagnosisList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1021,20 +1049,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java">
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/backPogo/DoctorHos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-73">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        <state relative-caret-position="297">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register.html">
+    <entry file="file://$PROJECT_DIR$/hl-common/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-70">
-          <caret line="239" column="37" lean-forward="true" selection-start-line="239" selection-start-column="37" selection-end-line="239" selection-end-column="37" />
+        <state relative-caret-position="243">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1318#1329#0" expanded="true" />
+            <element signature="e#1366#1379#0" expanded="true" />
           </folding>
         </state>
       </provider>
