@@ -1,0 +1,34 @@
+<changelist name="Uncommitted_changes_before_Update_at_2021_7_6,_8_22_下午_[默认更改列表]" date="1625574174244" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_7_6,_8_22_下午_[默认更改列表]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2021/7/6, 8:22 下午 [默认更改列表]" />
+  <binary>
+    <option name="BEFORE_PATH" value="hl-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="hl-admin/target/classes/com/hl/hos/mapper/Doctor_infoMapper.class" />
+    <option name="AFTER_PATH" value="hl-admin/target/classes/com/hl/hos/mapper/Doctor_infoMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_7_6,_8_22_下午_[默认更改列表]/Doctor_infoMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="hl-admin/target/classes/com/hl/hos/pojo/Doctor_info.class" />
+    <option name="AFTER_PATH" value="hl-admin/target/classes/com/hl/hos/pojo/Doctor_info.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_7_6,_8_22_下午_[默认更改列表]/Doctor_info.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="hl-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="hl-admin/target/classes/com/hl/hos/service/impl/Doctor_infoServiceImpl.class" />
+    <option name="AFTER_PATH" value="hl-admin/target/classes/com/hl/hos/service/impl/Doctor_infoServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_7_6,_8_22_下午_[默认更改列表]/Doctor_infoServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="hl-admin/target/classes/com/hl/hos/controller/LoginController.class" />
+    <option name="AFTER_PATH" value="hl-admin/target/classes/com/hl/hos/controller/LoginController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_7_6,_8_22_下午_[默认更改列表]/LoginController.class" />
+  </binary>
+</changelist>
