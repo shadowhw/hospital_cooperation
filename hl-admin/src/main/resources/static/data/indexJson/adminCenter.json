@@ -1,17 +1,18 @@
 [
   {
-    "title": "首页",
-    "href": "/pages/admin/homepage.html",
-    "fontFamily": "ok-icon",
-    "icon": "&#xe654;",
+    "title": "注册申请管理",
+    "href": "/pages/admin/register.html",
+    "icon": "&#xe6b2;",
     "spread": true,
-    "isCheck": true
+    "isCheck": false
   },
   {
     "title": "注册申请管理",
     "href": "/pages/admin/register.html",
+    "fontFamily": "ok-icon",
     "icon": "&#xe6b2;",
-    "spread": false
+    "spread": false,
+    "isCheck": true
   },
   {
     "title": "诊断申请管理",
