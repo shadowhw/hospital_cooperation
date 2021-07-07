@@ -4,42 +4,70 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.hl.hos.mapper.Doctor_infoMapper;
 import com.hl.hos.pojo.Doctor_info;
+import com.hl.hos.pojo.Hos_info;
 import com.hl.hos.service.Doctor_infoService;
+import com.hl.hos.service.Hos_infoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
     @Autowired
     private Doctor_infoService doctorService;
 
+    @Autowired
+    private Hos_infoService hosService;
+
 
     @PostMapping("/userLogin")
-    public String userLogin(@RequestParam("doctorName")String doctorName ,
-                            @RequestParam("doctorPwd")String doctorPwd){
+    public String userLogin(@RequestParam("doctorName")String hos_name ,
+                            @RequestParam("doctorPwd")String doctorPwd ,
+                            HttpSession session ){
 
-        Doctor_info doctorInfo = new Doctor_info();
-        doctorInfo.setDoctor_name(doctorName);
-        doctorInfo.setDoctor_pwd(doctorPwd);
-        Doctor_info loginUser = doctorService.getOne(new QueryWrapper<Doctor_info>().gt("doctor_name",doctorName).gt("doctor_pwd",doctorInfo.getDoctor_pwd()));
-
-        String addr = "";
-
-        if(loginUser!=null){
-            Integer stat = loginUser.getStat();//获取状态码
-            if(stat == 0){ //管理员
-
-            }else if(stat == 1){ //上传医师
-
-            }else{ //协作医师
-
-            }
+        //查询有误单位
+        Hos_info hosInfo = hosService.getOne(new QueryWrapper<Hos_info>().eq("hos_name",hos_name));
+        if(hosInfo == null){
+            session.setAttribute("error","请检查您的单位名称");
+            return "redirect:/login";
+        }
+        //根据hosId查询医生
+        Doctor_info doctorInfo = doctorService.getOne(new QueryWrapper<Doctor_info>().eq("hos_id", hosInfo.getId()));
+        if(doctorInfo == null){
+            session.setAttribute("error","账号或者密码错误");
+            return "redirect:/login";
+        }
+        //验证密码
+        if(!doctorInfo.getDoctor_pwd() .equals(doctorPwd)){
+            session.setAttribute("error","账号或者密码错误");
+            return "redirect:/login";
         }
 
 
+        Integer pass = doctorInfo.getPass();
+        if(pass==0){ //账号没激活
+            session.setAttribute("error","账号没有激活");
+            return "redirect:/login";
+        }
 
-        return "";
+        String addr = "/login";
+        Integer stat = doctorInfo.getStat();//获取状态码
+        session.setAttribute("doctor_info",doctorInfo);
+        if(stat == 0){ //管理员
+            addr = "admin";
+        }else if(stat == 1){ //上传医师
+            addr = "assist_index";
+        }else{ //协作医师
+            addr = "otherIndex";
+        }
+
+
+        if(addr.equals("/login")) session.setAttribute("error","账号或者密码错误");
+
+        return "redirect:/"+addr;
     }
 }
