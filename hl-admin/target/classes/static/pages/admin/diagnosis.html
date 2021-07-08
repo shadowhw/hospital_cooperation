@@ -75,12 +75,6 @@
                 </button>
                 <button type="button"
                         class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"
-                        selectType="1" value="0">
-                    <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>
-                    未分配
-                </button>
-                <button type="button"
-                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"
                         selectType="1" value="1">
                     <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>
                     已分配
@@ -114,6 +108,7 @@
 <script src="/lib/layui/layui.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/application.js"></script>
+<script src="/js/hyx.js"></script>
 <script src="/js/model.js"></script>
 <script>
     var selectType = "0"; //按钮状态
@@ -128,18 +123,42 @@
         //分派信息绑定
         var articleTable = table.render({
             elem: "#tableId",
-            url: "/data/diagnosis.json",
+            url: "/hos/diagnosis_info/get_diagnosis_list",
             where: {
                 // 'procTatus': thisValue//当前的状态
             },
             parseData: function (res) { //res 即为原始返回的数据
-                var datas = res.data;
+                let datas = res.data;
+
+                let rs = [];
+                for(let i=0;i<datas.length;i++)
+                {
+                    let dia = {};
+                    //格式化时间
+                    let date = new Date(datas[i].disgnose_info.create_time).Format("yyyy-MM-dd HH:mm:ss");
+                    //出生日期
+                    let birth = new Date(datas[i].disgnose_info.patient_birth).Format("yyyy-MM-dd");
+
+                    dia.id = datas[i].disgnose_info.id;
+                    dia.doctor_name = datas[i].doctor_info.doctor_name;
+                    dia.patient_name = datas[i].disgnose_info.patient_name;
+                    dia.patient_birth = birth;
+                    dia.patient_tall = datas[i].disgnose_info.patient_tall;
+                    dia.patient_weight = datas[i].disgnose_info.patient_weight;
+                    dia.diagnose_result = datas[i].disgnose_info.diagnose_result;
+                    dia.hos_nme = datas[i].hos_info.hos_name;
+                    dia.create_time = date;
+                    dia.comment_text = datas[i].disgnose_info.comment_text;
+                    dia.stat = datas[i].disgnose_info.stat;
+
+                    rs.push(dia);
+                }
 
                 return {
-                    "code": res.code, //解析接口状态
+                    "code": 0, //解析接口状态
                     "msg": res.msg, //解析提示文本
                     "count": res.count, //解析数据长度
-                    "data": res.data //解析数据列表
+                    "data": rs //解析数据列表
                 };
             },
             cols: [
@@ -156,11 +175,11 @@
                 , {field: 'hos_nme', title: '单位名称', width: 250}//单位名称通过医生信息查询
                 , {field: 'create_time', title: '申请时间', width: 200}
                 ,{
-                    field: "status", title: "状态", width: 100, templet: function (d) {
-                        if (d.status == "未分配") {
-                            return "<div style='color:#d92d29;font-weight: bold;font-size:15px'>" + d.status + "</div>"
-                        }else if (d.status == "已分配") {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + d.status + "</div>"
+                    field: "stat", title: "状态", width: 100, templet: function (d) {
+                        if (d.stat == 0) {
+                            return "<div style='color:#d92d29;font-weight: bold;font-size:15px'>" + "未处理" + "</div>"
+                        }else if (d.stat == 1) {
+                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已处理" + "</div>"
                         } else{
                             return "<div style='color:#478f43;font-weight: bold;font-size:15px'>" + d.status + "</div>"
                         }
@@ -179,10 +198,22 @@
         //根据所选择的状态按钮，跳转案件状态详细页面
         table.on('row(tableId)', function (obj) {
             var data = obj.data;
+
+            layer.open({
+                type: 2,
+                title: '分配任务',
+                shadeClose: false,
+                //shade: [0.3],
+                btn: [ '关闭'],//关闭按钮
+                maxmin: false, //开启最大化最小化按钮
+                area: ['100%', '100%'],
+                scrollbar: true, //屏蔽滚动条
+                content: '/pages/admin/waitingForDistribution.html?type=add'
+            });
             var state = data.procTatus;
 
-            var url = "/pages/admin/waitingForDistribution"
-            show(url);
+            var url = "/pages/admin/waitingForDistribution.html"
+            //show(url);
             obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
         });
         //跳转详细页面设置

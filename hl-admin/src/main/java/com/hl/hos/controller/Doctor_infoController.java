@@ -46,6 +46,7 @@ public class Doctor_infoController {
     {
         List<Doctor_info> list = doctor_infoService.list();
         List<DoctorHos> doctorLists = new ArrayList<DoctorHos>();
+
         Page<Doctor_info> page1 = new Page<Doctor_info>(Integer.parseInt(page),Integer.parseInt(limit));
         IPage<Doctor_info> iPage = doctor_infoService.page(page1);
 

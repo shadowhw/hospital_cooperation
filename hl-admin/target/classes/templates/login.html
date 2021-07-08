@@ -15,7 +15,9 @@
         <div class="login_face" style="height: 110px;width: 125px">
             <img style="height: 100%;width: 100%;" src="./images/login.jpg">
         </div>
+        <span th:text="${session.error}" style="color: red"></span>
         <div class="layui-form-item input-item">
+
             <label for="userId">用户账号</label>
             <input type="text" lay-verify="required" name="doctorName" placeholder="请输入所在单位的名称" autocomplete="off" id="userId" class="layui-input">
         </div>
