@@ -45,5 +45,7 @@ public class Doctor_info implements Serializable {
 
     private Integer pass;
 
+    private String email;
+
 
 }
