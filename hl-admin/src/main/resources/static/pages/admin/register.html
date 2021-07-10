@@ -146,6 +146,9 @@
                     doc.doctor_name = datas[i].doctor_info.doctor_name;
                     doc.doctor_tel = datas[i].doctor_info.doctor_tel;
                     doc.hos_name = datas[i].hos_info.hos_name;
+                    doc.hos_addr = datas[i].hos_info.hos_addr;
+                    doc.doctor_zuoji = datas[i].doctor_info.doctor_zuoji;
+                    doc.email = datas[i].doctor_info.email;
                     doc.create_time = date;
                     doc.comment_text = datas[i].doctor_info.comment_text;
                     if(datas[i].doctor_info.pass==0)
@@ -165,10 +168,13 @@
                 [
                    //序列号
                   {field:'nums',type:"numbers",title:"编号"}
-                , {field: 'doctor_id', title: '角色ID', width: 150, fixed: 'left', unresize: true, sort: true, hide:true}
-                , {field: 'doctor_name', title: '姓名', width: 100}
-                , {field: 'doctor_tel', title: '联系电话', width: 120}
                 , {field: 'hos_name', title: '单位名称', width: 250}
+                , {field: 'doctor_id', title: '角色ID', width: 150, fixed: 'left', unresize: true, sort: true, hide:true}
+                , {field: 'hos_addr', title: '医院地址', width: 200}
+                , {field: 'doctor_name', title: '联系人', width: 100}
+                , {field: 'doctor_tel', title: '联系电话', width: 120}
+                , {field: 'doctor_zuoji', title: '座机号码', width: 120}
+                , {field: 'email', title: '联系邮箱', width: 150}
                 , {field: 'create_time', title: '申请时间', width: 200}
                 , {
                     field: "pass", title: "审核状态", width: 90, templet: function (d) {
@@ -255,6 +261,30 @@
                     layer.close(index);
                 })
             }
+        });
+
+        //点击查看详情页面
+        table.on('row(tableId)', function (obj) {
+            var data = obj.data;
+
+            var url = newUrl("/pages/admin/registerDetail.html",data);
+            console.log(url)
+            layer.open({
+                type: 2,
+                title: '查看详情',
+                shadeClose: false,
+                //shade: [0.3],
+                btn: [ '关闭'],//关闭按钮
+                maxmin: false, //开启最大化最小化按钮
+                area: ['100%', '100%'],
+                scrollbar: true, //屏蔽滚动条
+                content: url+"&email2="+data.email+"&create_time2="+data.create_time
+            });
+            var state = data.procTatus;
+
+            var url = "/pages/admin/waitingForDistribution.html"
+            //show(url);
+            obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
         });
 
         //回到全部页面

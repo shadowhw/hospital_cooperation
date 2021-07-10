@@ -15,3 +15,37 @@ Date.prototype.Format = function (fmt) {
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
+
+/**
+ * 把json对象拆成url参数格式的方法
+ * @data 需要处理的json对象
+ */
+function getParam(data){
+    let url = '';
+    for(var k in data){
+        let value = data[k] !==undefined ? data[k] : '';
+        url += `&${k}=${encodeURIComponent(value)}`
+    }
+    return url ? url.substring(1) : ''
+}
+//最终获取带参数的url方法
+function newUrl(url, data){
+    //看原始url地址中开头是否带?，然后拼接处理好的参数
+    return url += (url.indexOf('?') < 0 ? '?' : '') + getParam(data)
+}
+
+//获取参数方法:解码
+function GetQueryString(name)
+{
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  decodeURI(r[2]); return null;
+}
+//不带解码
+function GetQueryString2(name)
+{
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  r[2];
+    return null;
+}

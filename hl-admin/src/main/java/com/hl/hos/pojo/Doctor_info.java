@@ -47,5 +47,7 @@ public class Doctor_info implements Serializable {
 
     private String email;
 
+    private String doctor_zuoji;//座机号码
+
 
 }

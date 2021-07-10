@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册信息详情</title>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css">
+</head>
+
+
+
+<body>
+
+<div class="layui-collapse">
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">注册申请详情</h2>
+        <div class="layui-colla-content layui-show">
+            <blockquote class="layui-elem-quote" style="font-size: 0.5rem">
+                <h1 id="hos_name">单位名称:&nbsp;&nbsp;&nbsp;${type}</h1>
+            </blockquote>
+            <blockquote class="layui-elem-quote" style="font-size: 0.5rem">
+                <h1 id="hos_addr">医院地址:&nbsp;&nbsp;&nbsp;</h1>
+            </blockquote>
+            <blockquote class="layui-elem-quote" style="font-size: 0.5rem">
+                <h1 id="doctor_name">联系人:&nbsp;&nbsp;&nbsp;</h1>
+            </blockquote>
+            <blockquote class="layui-elem-quote" style="font-size: 0.5rem">
+                <h1 id="doctor_tel">联系电话:&nbsp;&nbsp;&nbsp;</h1>
+            </blockquote>
+            <blockquote class="layui-elem-quote" style="font-size: 0.5rem">
+                <h1 id="doctor_zuoji">座机号码:&nbsp;&nbsp;&nbsp;</h1>
+            </blockquote>
+            <blockquote class="layui-elem-quote" style="font-size: 0.5rem">
+                <h1 id="email">联系邮箱:&nbsp;&nbsp;&nbsp;</h1>
+            </blockquote>
+            <blockquote class="layui-elem-quote" style="font-size: 0.5rem">
+                <h1 id="create_time">申请时间:&nbsp;&nbsp;&nbsp;</h1>
+            </blockquote>
+            <blockquote class="layui-elem-quote" style="font-size: 0.5rem">
+                <h1 id="pass">审核状态:&nbsp;&nbsp;&nbsp;</h1>
+            </blockquote>
+            <blockquote class="layui-elem-quote" style="font-size: 0.5rem">
+                <h1 id="comment_text">备注:&nbsp;&nbsp;&nbsp;</h1>
+            </blockquote>
+
+        </div>
+    </div>
+
+
+</div>
+</body>
+
+<script src="/lib/layui/layui.js"></script>
+<script src="/js/jquery-3.3.1.js"></script>
+<script src="/js/hyx.js"></script>
+<script>
+    layui.use(['layer'], function() {
+        var layer = layui.layer;
+
+        $("#hos_name").text("单位名称:\t\t"+GetQueryString("hos_name"));//设置元素的文本值
+        $("#hos_addr").text("医院地址:\t\t"+GetQueryString("hos_addr"));//设置元素的文本值
+        $("#doctor_name").text("联系人:\t\t"+GetQueryString("doctor_name"));//设置元素的文本值
+        $("#doctor_tel").text("联系电话:\t\t"+GetQueryString("doctor_tel"));//设置元素的文本值
+        $("#doctor_zuoji").text("座机号码:\t\t"+GetQueryString("doctor_zuoji"));//设置元素的文本值
+        $("#email").text("联系邮箱:\t\t"+GetQueryString2("email2"));//设置元素的文本值
+        $("#create_time").text("申请时间:\t\t"+decodeURI(GetQueryString2("create_time2")));//设置元素的文本值
+        $("#pass").text("审核状态:\t\t"+GetQueryString("pass"));//设置元素的文本值
+        $("#comment_text").text("备注:\t\t"+GetQueryString("comment_text"));//设置元素的文本值
+
+    });
+
+</script>
+
+</html>
