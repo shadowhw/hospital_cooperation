@@ -7,6 +7,7 @@ import com.hl.hos.pojo.Doctor_info;
 import com.hl.hos.pojo.Hos_info;
 import com.hl.hos.service.Doctor_infoService;
 import com.hl.hos.service.Hos_infoService;
+import com.hl.hos.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +43,8 @@ public class LoginController {
             return "redirect:/login";
         }
         //验证密码
-        if(!doctorInfo.getDoctor_pwd() .equals(doctorPwd)){
+        String md5 = MD5Util.getMd5(doctorPwd);
+        if(!md5.equals(doctorInfo.getDoctor_pwd())){
             session.setAttribute("error","账号或者密码错误");
             return "redirect:/login";
         }
