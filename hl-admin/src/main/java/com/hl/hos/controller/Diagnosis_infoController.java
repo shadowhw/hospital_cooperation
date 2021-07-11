@@ -1,6 +1,7 @@
 package com.hl.hos.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hl.hos.backPogo.DiagnosisDoctorHos;
@@ -74,26 +75,37 @@ public class Diagnosis_infoController
     }
 
     /**
-     * 更新医生信息
+     * 根据诊断编号查询数据
      * @return
      */
     @ResponseBody
-    @GetMapping("/update_doctor_info")
-    public Result update_doctor_info(Doctor_info doctor_info)
+    @GetMapping("/get_diagnosis_by_id")
+    public Result get_diagnosis_by_id(Long id)
     {
-        if(doctor_infoService.updateById(doctor_info))
+        List<Disgnose_info> list = disgnose_infoService.list(new QueryWrapper<Disgnose_info>()
+                .eq("id",id)
+        );
+        List<DiagnosisDoctorHos> resList = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++)
         {
-            result.setCount(1);
-            result.setData(null);
-            result.setCode(200);
-            result.setMsg("修改成功!");
-        }else {
-            result.setCount(1);
-            result.setData(null);
-            result.setCode(201);
-            result.setMsg("修改失败!");
+            DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();
+            Disgnose_info disgnose_info = list.get(i);
+
+            diagnosisDoctorHos.setDisgnose_info(disgnose_info);//绑定诊断信息
+            Doctor_info doctorInfo = doctor_infoService.getById(disgnose_info.getDoctor_id());
+            diagnosisDoctorHos.setDoctor_info(doctorInfo);//绑定医生
+            Long hos_id = doctor_infoService.getById(disgnose_info.getDoctor_id()).getHos_id();
+            diagnosisDoctorHos.setHos_info(hos_infoService.getById(hos_id));//绑定医院信息
+            doctorInfo.setDoctor_pwd(null);
+            resList.add(diagnosisDoctorHos);
         }
+        result.setCount(list.size());//数量应该是所有数据的大小
+        result.setData(resList);
+        result.setCode(200);
         return result;
     }
+
+
 }
 

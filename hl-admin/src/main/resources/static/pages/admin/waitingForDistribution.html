@@ -41,12 +41,36 @@
                         <div class="layui-row">
                             <div class="layui-col-md9">
                                 <div class="divarea">
-                                    <i class="tub layui-icon layui-icon-username" style="color: #1E9FFF;"></i>
-                                    <sapn class="textarea">申请者信息 : <span id="handleUser">张三</span></sapn>
+                                    <i class="tub layui-icon layui-icon-home" style="color: #FF5722;"></i>
+                                    <sapn class="textarea">申请者单位 : <span id="hos_nme"></span></sapn>
                                 </div>
                                 <div class="divarea">
                                     <i class="tub layui-icon layui-icon-home" style="color: #FF5722;"></i>
-                                    <sapn class="textarea">申请者单位 : <span id="procDepartment">XX医院</span></sapn>
+                                    <sapn class="textarea">申请人 : <span id="doctor_name"></span></sapn>
+                                </div>
+                                <div class="divarea">
+                                    <i class="tub layui-icon layui-icon-home" style="color: #FF5722;"></i>
+                                    <sapn class="textarea">患者姓名 : <span id="patient_name"></span></sapn>
+                                </div>
+                                <div class="divarea">
+                                    <i class="tub layui-icon layui-icon-home" style="color: #FF5722;"></i>
+                                    <sapn class="textarea">患者出生日期 : <span id="patient_birth"></span></sapn>
+                                </div>
+                                <div class="divarea">
+                                    <i class="tub layui-icon layui-icon-home" style="color: #FF5722;"></i>
+                                    <sapn class="textarea">患者身高 : <span id="patient_tall"></span></sapn>
+                                </div>
+                                <div class="divarea">
+                                    <i class="tub layui-icon layui-icon-home" style="color: #FF5722;"></i>
+                                    <sapn class="textarea">患者体重 : <span id="patient_weight"></span></sapn>
+                                </div>
+                                <div class="divarea">
+                                    <i class="tub layui-icon layui-icon-home" style="color: #FF5722;"></i>
+                                    <sapn class="textarea">诊断 : <span id="diagnose_result"></span></sapn>
+                                </div>
+                                <div class="divarea">
+                                    <i class="tub layui-icon layui-icon-home" style="color: #FF5722;"></i>
+                                    <sapn class="textarea">申请时间 : <span id="create_time"></span></sapn>
                                 </div>
                             </div>
                         </div>
@@ -55,21 +79,21 @@
                     <div>
                         <div style="background: #d2d2d2">
                             <div style="width: 80%;height: 100%;margin: 0 auto;">
-                                <div class="layui-collapse" lay-filter="waitingData">
-                                    <div class="layui-colla-item">
-                                        <div class="layui-colla-content layui-show" style="background-color:#fdfdfd;">
-                                            <div style="background-color:#fdfdfd;">
-                                                <iframe scrolling="no" frameborder="0"
-                                                        src="../commonData/submitData.html" width="100%"
-                                                        height="700px" id="waitingData"
-                                                        onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh>700?fdh:700);"></iframe>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+<!--                                <div class="layui-collapse" lay-filter="waitingData">-->
+<!--                                    <div class="layui-colla-item">-->
+<!--                                        <div class="layui-colla-content layui-show" style="background-color:#fdfdfd;">-->
+<!--                                            <div style="background-color:#fdfdfd;">-->
+<!--                                                <iframe scrolling="no" frameborder="0"-->
+<!--                                                        src="../commonData/submitData.html" width="100%"-->
+<!--                                                        height="700px" id="waitingData"-->
+<!--                                                        onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh>700?fdh:700);"></iframe>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <!--流程显示页面-->
                                 <div style="background-color:#fdfdfd;margin-top: 10px;padding-top: 20px;">
-                                    <iframe scrolling="no" frameborder="0" src="/pages/commonData/processData.html?code=123" width="100%"
+                                    <iframe scrolling="no" frameborder="0" width="100%"
                                             height="700px" id="processData"
                                             onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh>700?fdh:700)"></iframe>
 
@@ -124,6 +148,63 @@
 <script src="../../lib/layui/layui.js"></script>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/application.js"></script>
+<script src="/js/hyx.js"></script>
+
+<script>
+    $(document).ready(function(){
+        //获取诊断编号
+        var disgnose_id = GetQueryString("disgnose_id");
+
+        //甚至诊断iframe的src
+        $("#processData").attr("src","/pages/commonData/processData.html?disgnose_id="+disgnose_id);
+
+        //设置分配信息
+        $.ajax({
+            url:'/hos/diagnosis_info/get_diagnosis_by_id',
+            type:'get',
+            data:{
+                'id':disgnose_id
+            },
+            success:function(data){
+                if(data.code == '201'){
+                    alert(data.data.msg);//失败的表情
+                }else{
+                    let datas = data.data;
+                    let rs = [];
+                    for(let i=0;i<datas.length;i++)
+                    {
+                        let dia = {};
+                        //格式化时间
+                        let date = new Date(datas[i].disgnose_info.create_time).Format("yyyy-MM-dd HH:mm:ss");
+                        //出生日期
+                        let birth = new Date(datas[i].disgnose_info.patient_birth).Format("yyyy-MM-dd");
+
+                        dia.doctor_name = datas[i].doctor_info.doctor_name;
+                        dia.patient_name = datas[i].disgnose_info.patient_name;
+                        dia.patient_birth = birth;
+                        dia.patient_tall = datas[i].disgnose_info.patient_tall;
+                        dia.patient_weight = datas[i].disgnose_info.patient_weight;
+                        dia.diagnose_result = datas[i].disgnose_info.diagnose_result;
+                        dia.hos_nme = datas[i].hos_info.hos_name;
+                        dia.create_time = date;
+                        dia.comment_text = datas[i].disgnose_info.comment_text;
+                        dia.stat = datas[i].disgnose_info.stat;
+
+                        $("#hos_nme").text(dia.hos_nme)
+                        $("#patient_name").text(dia.patient_name)
+                        $("#patient_birth").text(dia.patient_birth)
+                        $("#patient_tall").text(dia.patient_tall)
+                        $("#patient_weight").text(dia.patient_weight)
+                        $("#diagnose_result").text(dia.diagnose_result)
+                        $("#doctor_name").text(dia.doctor_name)
+                        $("#create_time").text(dia.create_time)
+                    }
+
+                }
+            },
+        });
+    });
+</script>
 
 <script>
     let processDataHeight = 0
