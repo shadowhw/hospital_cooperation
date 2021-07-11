@@ -7,7 +7,7 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="../../css/oksub.css">
     <script src="../../lib/layui/layui.js"></script>
-    <title>申请诊断</title>
+    <title>上传诊断</title>
 </head>
 <style>
     .list-con {
@@ -73,29 +73,29 @@
 <div class="layui-row">
     <form class="layui-form ok-form">
         <div class="layui-form-item" style="margin-left: 30px">
-            <div id="changeType">
-                <button type="button"
-                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"
-                        selectType="1" value="0">
-                    <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>
-                    已分配
-                </button>
-                <button type="button"
-                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"
-                        selectType="1" value="1">
-                    <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>
-                    未分配
-                </button>
-                <button type="button"
-                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"
-                            selectType="2" value="2">
-                    <i class="iconfont icon-chulizhong" style="font-size: 18px;padding-right:5px;"></i>
-                    已处理
-                </button>
-                <div id="selectForm" style="float: right; margin-right:50px;"
-                     class="layui-btn layui-btn-normal layui-btn-radius">
-                    <i class="layui-icon layui-icon-search"></i>
-                </div>
+<!--            <div id="changeType">-->
+<!--                <button type="button"-->
+<!--                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"-->
+<!--                        selectType="1" value="0">-->
+<!--                    <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>-->
+<!--                    已分配-->
+<!--                </button>-->
+<!--                <button type="button"-->
+<!--                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"-->
+<!--                        selectType="1" value="1">-->
+<!--                    <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>-->
+<!--                    未分配-->
+<!--                </button>-->
+<!--                <button type="button"-->
+<!--                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"-->
+<!--                            selectType="2" value="2">-->
+<!--                    <i class="iconfont icon-chulizhong" style="font-size: 18px;padding-right:5px;"></i>-->
+<!--                    已处理-->
+<!--                </button>-->
+<!--                <div id="selectForm" style="float: right; margin-right:50px;"-->
+<!--                     class="layui-btn layui-btn-normal layui-btn-radius">-->
+<!--                    <i class="layui-icon layui-icon-search"></i>-->
+<!--                </div>-->
                 <div id="selectEmpty" style="float: right; margin-right:10px;"
                      class="layui-btn layui-btn-normal layui-btn-radius">
                     刷新
@@ -179,7 +179,6 @@
     </form>
 </div>
 
-
     <script src="../../lib/layui/layui.js" charset="utf-8"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
     <script>
@@ -208,7 +207,7 @@
             var uploadListIns = upload.render({
                 elem: '#testList'
                 ,elemList: $('#demoList') //列表元素对象
-                ,url: 'https://httpbin.org/post'
+                ,url: 'http://localhost:8088/fileUpload'
                 ,accept: 'file'
                 ,multiple: true
                 ,number: 3
