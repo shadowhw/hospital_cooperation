@@ -57,6 +57,7 @@ public class Disgnose_infoController {
         disgnose_info.setDiagnose_result(patientResult);
 
 
+
         String path = request.getServletContext().getRealPath("/upload");
 
         return "" ;
