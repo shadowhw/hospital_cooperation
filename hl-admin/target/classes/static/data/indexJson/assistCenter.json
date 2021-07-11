@@ -1,7 +1,7 @@
 [
   {
     "title": "上传资料",
-    "href": "pages/assistDoctors/disagnosisImport.html",
+    "href": "pages/assistDoctors/askDiagnosisList.html",
     "fontFamily": "ok-icon",
     "icon": "&#xe654;",
     "spread": true,
@@ -9,7 +9,7 @@
   },
   {
     "title": "下载报告",
-    "href": "pages/assistDoctors/askDiagnosisList.html",
+    "href": "",
     "fontFamily": "ok-icon",
     "icon": "&#xe654;",
     "spread": false

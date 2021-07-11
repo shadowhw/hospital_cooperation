@@ -208,11 +208,11 @@
                 maxmin: false, //开启最大化最小化按钮
                 area: ['100%', '100%'],
                 scrollbar: true, //屏蔽滚动条
-                content: '/pages/admin/waitingForDistribution.html?type=add'
+                content: '/pages/admin/waitingForDistribution.html?disgnose_id='+data.id
             });
             var state = data.procTatus;
 
-            var url = "/pages/admin/waitingForDistribution.html"
+            //var url = "/pages/admin/waitingForDistribution.html"
             //show(url);
             obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
         });
