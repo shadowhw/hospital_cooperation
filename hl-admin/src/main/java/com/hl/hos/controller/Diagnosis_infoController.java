@@ -48,7 +48,7 @@ public class Diagnosis_infoController
     public Result get_diagnosis_list(String page,String limit)
     {
         List<Disgnose_info> list = disgnose_infoService.list();
-        List<DiagnosisDoctorHos> resList = new ArrayList<>();
+        List<DiagnosisDoctorHos> resList = new ArrayList<DiagnosisDoctorHos>();
 
         Page<Disgnose_info> page1 = new Page<Disgnose_info>(Integer.parseInt(page),Integer.parseInt(limit));
         IPage<Disgnose_info> iPage = disgnose_infoService.page(page1);

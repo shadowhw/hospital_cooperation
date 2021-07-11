@@ -61,9 +61,9 @@ public class LoginController {
         session.setAttribute("doctor_info",doctorInfo);
         if(stat == 0){ //管理员
             addr = "admin";
-        }else if(stat == 1){ //上传医师
+        }else if(stat == 1){ //协作医师
             addr = "assist_index";
-        }else{ //协作医师
+        }else{ //上传者医师
             addr = "otherIndex";
         }
 
