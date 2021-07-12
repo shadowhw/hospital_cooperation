@@ -46,4 +46,6 @@ public class Disgnose_info implements Serializable {
     private Integer stat;
 
     private String comment_text;
+
+    private String disgnose_code;//诊断编号：年月日+三位数从1开始编
 }

@@ -15,7 +15,19 @@
     "isCheck": true
   },
   {
-    "title": "诊断申请管理",
+    "title": "诊断任务管理",
+    "href": "/pages/admin/diagnosis.html",
+    "icon": "&#xe629;",
+    "spread": false
+  },
+  {
+    "title": "普通医师管理",
+    "href": "/pages/admin/diagnosis.html",
+    "icon": "&#xe629;",
+    "spread": false
+  },
+  {
+    "title": "协作医师管理",
     "href": "/pages/admin/diagnosis.html",
     "icon": "&#xe629;",
     "spread": false
