@@ -1,8 +1,9 @@
 ##----------idea----------
 *.iml
-.idea/
+.idea/**
 .idea
 *.ipr
 *.iws
 .gitignore
 **/target/
+/.idea/**
