@@ -8,16 +8,32 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="./css/oksub.css">
     <link rel="stylesheet" href="./lib/layui/css/layui.css">
+
+    <style type="text/css">
+        body{
+            background-image: url(/images/login_bg.jpeg);
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center 0;
+            background-size: cover;
+        }
+        .tit{
+            text-align: center;
+            margin-top: 2rem;
+            filter:Alpha(opacity=50);/* 只支持IE6、7、8、9 */
+            position:static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+            *zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+        }
+    </style>
 </head>
 <body>
 <div class="page-fill" id="login" style="margin-top: 30%">
-    <form class="layui-form" action="userLogin" method="post" >
-        <div class="login_face" style="height: 110px;width: 125px">
-            <img style="height: 100%;width: 100%;" src="./images/login.jpg">
-        </div>
-        <span th:text="${session.error}" style="color: red"></span>
-        <div class="layui-form-item input-item">
 
+    <form class="layui-form" action="userLogin" method="post" style="height: 300px">
+        <h2 class="tit">阜外医院协作平台</h2>
+
+        <span th:text="${session.error}" style="color: red"></span>
+        <div class="layui-form-item input-item" style="margin-top: 50px">
             <label for="userId">用户账号</label>
             <input type="text" lay-verify="required" name="doctorName" placeholder="请输入所在单位的名称" autocomplete="off" id="userId" class="layui-input">
         </div>

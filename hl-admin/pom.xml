@@ -107,6 +107,7 @@
                     <include>**/*.js</include>
                     <include>**/*.json</include>
                     <include>**/*.jpg</include>
+                    <include>**/*.jpeg</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>

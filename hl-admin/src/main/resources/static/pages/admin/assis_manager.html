@@ -62,7 +62,7 @@
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;margin-left: 30px">
-        <button type="button" class="layui-btn layui-btn-radius layui-btn-normal">
+        <button type="button" id="btn_add" class="layui-btn layui-btn-radius layui-btn-normal">
             <i class="layui-icon">&#xe654;分配账号</i>
         </button>
     </fieldset>
@@ -77,6 +77,25 @@
 <script src="/js/application.js"></script>
 <script src="/js/hyx.js"></script>
 <script src="/js/model.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#btn_add").click(function () {
+            layui.use(['form', 'okLayer', 'layer'],function () {
+                let layer = layui.layer;
+                layer.open({
+                    type: 2,
+                    title: '添加协助医师',
+                    shadeClose: true,
+                    shade: [0.3],
+                    //btn: [ '关闭'],//关闭按钮
+                    maxmin: false, //开启最大化最小化按钮
+                    area: ['80%', '100%'],
+                    content: ['/pages/admin/add_assis.html','yes']
+                });
+            })
+        });
+    });
+</script>
 <script>
     var selectType = "0"; //按钮状态
     layui.use(["table", 'form', 'okLayer', 'layer'], function () {
