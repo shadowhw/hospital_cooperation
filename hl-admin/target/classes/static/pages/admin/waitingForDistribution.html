@@ -148,6 +148,8 @@
                                     <div class="layui-input-block">
                                         <input type="radio" name="shenqing" value="申请退回" title="回退申请">
                                         <input type="radio" name="shenqing" value="分配申请" title="分配诊断任务" checked>
+                                        <input type="radio" name="shenqing" value="驳回诊断报告" title="驳回诊断报告">
+                                        <input type="radio" name="shenqing" value="反馈诊断报告" title="反馈诊断报告">
                                     </div>
                                 </div>
                             </div>
@@ -185,39 +187,6 @@
                                 </div>
                                 <div class="layui-form-item">
                                     <button type="button" class="layui-btn" lay-submit lay-filter="add" id="submit">确认</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="layui-col-md12">
-                    <div class="layui-card">
-                        <div class="layui-card-header">诊断处理</div>
-                        <div class="layui-card-body">
-                            <div class="layui-form">
-                                <div class="layui-form-item" pane="">
-                                    <label class="layui-form-label">操作</label>
-                                    <div class="layui-input-block">
-                                        <input type="radio" name="baogao" value="回退诊断报告" title="回退诊断报告">
-                                        <input type="radio" name="baogao" value="返回诊断报告" title="返回诊断报告" checked>
-                                        <input type="radio" name="baogao" value="重新分配诊断任务" title="重新分配诊断任务">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="layui-form">
-                                <div class="layui-form-item">
-                                    <div class="layui-form-item layui-form-text" style="margin: 10px">
-                                        操作备注
-                                    </div>
-                                    <div>
-                                        <textarea name="checkOpinion" required lay-verify="required" placeholder="输入处理备注"
-                                                  class="layui-textarea"></textarea>
-                                    </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <button type="button" class="layui-btn" lay-submit lay-filter="add" >确认</button>
                                 </div>
                             </div>
                         </div>

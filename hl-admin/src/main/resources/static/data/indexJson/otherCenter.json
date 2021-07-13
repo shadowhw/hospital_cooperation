@@ -1,17 +1,10 @@
 [
   {
-    "title": "诊断申请",
+    "title": "诊断任务管理",
     "href": "pages/otherDoctors/askDiagnosisList.html",
     "fontFamily": "ok-icon",
     "icon": "&#xe654;",
     "spread": true,
     "isCheck": true
-  },
-  {
-    "title": "数据统计",
-    "href": "pages/otherDoctors/chart/chart.html",
-    "fontFamily": "ok-icon",
-    "icon": "&#xe721;",
-    "spread": false
   }
 ]

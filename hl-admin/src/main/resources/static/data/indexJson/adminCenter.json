@@ -1,10 +1,10 @@
 [
   {
     "title": "首页",
-    "href": "/pages/admin/register.html",
+    "href": "/pages/admin/assis_manager.html",
     "icon": "&#xe6b2;",
-    "spread": true,
-    "isCheck": false
+    "spread": false,
+    "isCheck": true
   },
   {
     "title": "注册申请管理",
@@ -12,7 +12,7 @@
     "fontFamily": "ok-icon",
     "icon": "&#xe6b2;",
     "spread": false,
-    "isCheck": true
+    "isCheck": false
   },
   {
     "title": "诊断任务管理",
@@ -22,20 +22,20 @@
   },
   {
     "title": "普通医师管理",
-    "href": "/pages/admin/diagnosis.html",
-    "icon": "&#xe629;",
+    "href": "/pages/admin/assis_manager.html",
+    "icon": "&#xe66f;",
     "spread": false
   },
   {
     "title": "协作医师管理",
-    "href": "/pages/admin/diagnosis.html",
-    "icon": "&#xe629;",
+    "href": "/pages/admin/assis_manager.html",
+    "icon": "&#xe612;",
     "spread": false
   },
   {
     "title": "数据统计管理",
     "href": "",
-    "icon": "&#xe66f;",
+    "icon": "&#xe62a;",
     "spread": false,
     "children": [
       {

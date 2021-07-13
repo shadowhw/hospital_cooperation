@@ -21,9 +21,8 @@ layui.use(["element", "layer", "okUtils", "okTab", "okLayer", "jQContextMenu"], 
    */
   okTab.render(function () {
     /**tab栏的鼠标右键事件**/
-    $("body .ok-tab").contextMenu({
+    $("body.ok-tab").contextMenu({
       width: 'auto',
-      itemHeight: 30,
       menu: [
         {
           text: "定位所在页",
