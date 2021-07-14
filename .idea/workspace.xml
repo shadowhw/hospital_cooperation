@@ -5,16 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78dab43c-66fb-460e-9e5a-a48ec3e4971e" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/add_assis.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/layarea.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/reset_pwd.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Doctor_info.java" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Doctor_info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/static/data/indexJson/adminCenter.json" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/data/indexJson/adminCenter.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/assis_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/assis_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/diagnosis.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/diagnosis.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/admin/diagnosis.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/admin/diagnosis.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hl-common/target/classes/com/hl/utils/CodeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-common/target/classes/com/hl/utils/CodeGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/waitingForDistribution.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/waitingForDistribution.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/RegisterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Doctor_info.class" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/pojo/Doctor_info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/static/data/indexJson/adminCenter.json" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/static/data/indexJson/adminCenter.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/admin/waitingForDistribution.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/admin/waitingForDistribution.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/hl-admin/target/classes/static/pages/user/register.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/hl-admin/target/" />
@@ -34,17 +38,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="103" column="7" selection-start-line="103" selection-start-column="7" selection-end-line="103" selection-end-column="7" />
+            <state relative-caret-position="270">
+              <caret line="107" column="42" lean-forward="true" selection-start-line="107" selection-start-column="42" selection-end-line="107" selection-end-column="42" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/assis_manager.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
+            <state relative-caret-position="89">
+              <caret line="173" column="26" lean-forward="true" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
               <folding>
                 <element signature="n#style#0;n#fieldset#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -52,11 +60,76 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="129">
+              <caret line="157" column="16" selection-start-line="157" selection-start-column="16" selection-end-line="158" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/reset_pwd.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1809">
+              <caret line="62" column="39" lean-forward="true" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/data/indexJson/adminCenter.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="171" column="33" selection-start-line="171" selection-start-column="33" selection-end-line="171" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#5;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/waitingForDistribution.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="260" column="17" selection-start-line="260" selection-start-column="17" selection-end-line="260" selection-end-column="17" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#fieldset#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/diagnosis.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2025">
+              <caret line="126" column="20" selection-start-line="126" selection-start-column="20" selection-end-line="126" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+            <state relative-caret-position="81">
+              <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="18" selection-end-column="9" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -68,53 +141,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/pom.xml">
+        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/RegisterController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="106" column="43" selection-start-line="106" selection-start-column="43" selection-end-line="106" selection-end-column="43" />
-            </state>
-          </provider>
-          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/add_assis.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="75" column="60" selection-start-line="75" selection-start-column="60" selection-end-line="75" selection-end-column="60" />
+            <state relative-caret-position="953">
+              <caret line="61" selection-start-line="61" selection-end-line="61" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#6;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/apply.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-621">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/otherDoctors/askDiagnosisList.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6">
-              <caret line="133" column="27" selection-start-line="133" selection-start-column="27" selection-end-line="133" selection-end-column="27" />
-              <folding>
-                <element signature="n#style#0;n#fieldset#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#button#2;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#button#3;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -136,9 +168,10 @@
       <find>[</find>
       <find>console.log</find>
       <find>审核过程</find>
-      <find>tabMenu</find>
       <find>homepage</find>
       <find>doctor_name</find>
+      <find>tabMenu</find>
+      <find>/hos/doctor_info</find>
     </findStrings>
     <dirStrings>
       <dir>E:\source\java\hospital_cooperation\hl-admin\src\main\java\com\hl\hos\ui</dir>
@@ -156,8 +189,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/PageAssistDoctorsController.java" />
-        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/askDiagnosisList.html" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/selectForm.html" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/assistDoctors/apply.html" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/PageOtherController.java" />
@@ -171,7 +202,6 @@
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/ui/PageAdminController.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/diagnosis.html" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/templates/pages/admin/register.html" />
-        <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Doctor_info.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Attached_result.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Disnose_result.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/test/java/com/hl/ApplicationTest.java" />
@@ -179,8 +209,6 @@
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/utils/DateUtil.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/utils/MD5Util.java" />
-        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/register.html" />
-        <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/RegisterController.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/homepage.html" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/backPogo/DoctorList.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/backPogo/DoctorHos.java" />
@@ -195,18 +223,23 @@
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Diagnosis_infoController.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Disgnose_info.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/commonData/processData.html" />
-        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/data/indexJson/adminCenter.json" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/js/indexJs/adminCenter.js" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/templates/adminIndex.html" />
-        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/waitingForDistribution.html" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/data/indexJson/otherCenter.json" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/otherDoctors/askDiagnosisList.html" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/templates/otherIndex.html" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/diagnosis.html" />
-        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/assis_manager.html" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/add_assis.html" />
         <option value="$PROJECT_DIR$/hl-admin/pom.xml" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/templates/login.html" />
+        <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Doctor_info.java" />
+        <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/RegisterController.java" />
+        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/register.html" />
+        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/waitingForDistribution.html" />
+        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/data/indexJson/adminCenter.json" />
+        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/reset_pwd.html" />
+        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register2.html" />
+        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/assis_manager.html" />
       </list>
     </option>
   </component>
@@ -274,7 +307,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -411,7 +443,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
@@ -421,18 +453,8 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="indexJs" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="indexJson" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
@@ -518,40 +540,11 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -578,8 +571,11 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/hl-admin/src/main/resources/static" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\source\java\hospital_cooperation\hl-admin\src\main\resources\static\pages\admin" />
+      <recent name="E:\source\java\hospital_cooperation\hl-admin\src\main\resources\static\pages\otherDoctors" />
+      <recent name="E:\source\java\hospital_cooperation\hl-admin\src\main\resources\static\pages\user" />
+      <recent name="E:\source\java\hospital_cooperation\hl-admin\src\main\resources\static\lib\layui\lay\modules" />
       <recent name="$PROJECT_DIR$/hl-admin/src/main/resources/templates" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -588,11 +584,8 @@
       <recent name="com.hl.hos.ui" />
       <recent name="com.hl" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\source\java\hospital_cooperation\hl-admin\src\main\resources\static\pages\admin" />
-      <recent name="E:\source\java\hospital_cooperation\hl-admin\src\main\resources\static\pages\otherDoctors" />
-      <recent name="E:\source\java\hospital_cooperation\hl-admin\src\main\resources\static\pages\user" />
-      <recent name="E:\source\java\hospital_cooperation\hl-admin\src\main\resources\static\lib\layui\lay\modules" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/hl-admin/src/main/resources/static" />
       <recent name="$PROJECT_DIR$/hl-admin/src/main/resources/templates" />
     </key>
   </component>
@@ -665,7 +658,8 @@
       <workItem from="1625454859903" duration="841000" />
       <workItem from="1625569178314" duration="2122000" />
       <workItem from="1625983955938" duration="24039000" />
-      <workItem from="1626166990789" duration="12220000" />
+      <workItem from="1626166990789" duration="13669000" />
+      <workItem from="1626242399692" duration="7932000" />
     </task>
     <servers />
   </component>
@@ -702,13 +696,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94660000" />
+    <option name="totallyTimeSpent" value="104041000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2627346" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2660858" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -731,7 +724,7 @@
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50067025" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49932975" weight="0.2776204" />
       <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32956153" />
-      <window_info anchor="bottom" id="调试" order="14" weight="0.30169973" />
+      <window_info anchor="bottom" id="调试" order="14" weight="0.39093485" />
       <window_info anchor="bottom" id="Application Servers" order="15" weight="0.32956153" />
       <window_info anchor="bottom" id="Spring" order="16" weight="0.3286119" />
       <window_info anchor="bottom" id="Java Enterprise" order="17" />
@@ -784,6 +777,16 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
+        <expression-string>doctor_info.getDoctor_tel()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>MD5Util.getMd5(doctor_info.getDoctor_tel())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>iPage.getRecords().get(0)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -813,110 +816,9 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>list</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>hos_info</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.m2/repository/com/baomidou/mybatis-plus-extension/3.4.0/mybatis-plus-extension-3.4.0.jar!/com/baomidou/mybatisplus/extension/service/IService.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
-          <folding>
-            <element signature="e#2664#2665#0" expanded="true" />
-            <element signature="e#2745#2746#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="155" column="15" lean-forward="true" selection-start-line="132" selection-start-column="12" selection-end-line="155" selection-end-column="15" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#4;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jrt://C:/Program Files/Java/jdk-12.0.1!/jdk.javadoc/jdk/javadoc/internal/doclets/formats/html/resources/jquery/jquery-migrate-3.0.1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="219" selection-start-line="219" selection-end-line="219" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/backPogo/DoctorHos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-web/5.2.9.RELEASE/spring-web-5.2.9.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Doctor_info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="914">
-          <caret line="49" column="31" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/css/okadmin.theme.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1269">
-          <caret line="47" column="13" lean-forward="true" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/js/indexJs/assistCenter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/RegisterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Attached_resultController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
@@ -990,13 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="65" column="5" selection-start-line="38" selection-start-column="4" selection-end-line="65" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1081,13 +976,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/data/indexJson/adminCenter.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/selectForm.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1620" />
@@ -1159,73 +1047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/waitingForDistribution.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1124">
-          <caret line="149" column="67" lean-forward="true" selection-start-line="149" selection-start-column="67" selection-end-line="149" selection-end-column="67" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#fieldset#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/otherDoctors/askDiagnosisList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6">
-          <caret line="133" column="27" selection-start-line="133" selection-start-column="27" selection-end-line="133" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#fieldset#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#button#2;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#button#3;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/apply.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-621">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/diagnosis.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4148">
-          <caret line="118" column="19" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="19" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="103" column="7" selection-start-line="103" selection-start-column="7" selection-end-line="103" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/add_assis.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="75" column="60" selection-start-line="75" selection-start-column="60" selection-end-line="75" selection-end-column="60" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#6;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/layarea.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1233,39 +1054,189 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/assis_manager.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#fieldset#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hl-admin/target/classes/static/images/login.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/images/login_bg.jpeg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/hl-admin/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
+        <state relative-caret-position="2862">
           <caret line="106" column="43" selection-start-line="106" selection-start-column="43" selection-end-line="106" selection-end-column="43" />
         </state>
       </provider>
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/images/login_bg.jpeg">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/add_assis.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2025">
+          <caret line="75" column="60" selection-start-line="75" selection-start-column="60" selection-end-line="75" selection-end-column="60" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/assistDoctors/apply.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/otherDoctors/askDiagnosisList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3591">
+          <caret line="133" column="27" selection-start-line="133" selection-start-column="27" selection-end-line="133" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#fieldset#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#button#2;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#button#3;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/js/indexJs/assistCenter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="233" column="21" lean-forward="true" selection-start-line="233" selection-start-column="21" selection-end-line="233" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/utils/MD5Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Doctor_info.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/target/classes/com/hl/hos/controller/RegisterController.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1458" />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+        <state relative-caret-position="81">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="18" selection-end-column="9" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Doctor_infoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1572">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/RegisterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="953">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="171" column="33" selection-start-line="171" selection-start-column="33" selection-end-line="171" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/waitingForDistribution.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="260" column="17" selection-start-line="260" selection-start-column="17" selection-end-line="260" selection-end-column="17" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#fieldset#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/diagnosis.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2025">
+          <caret line="126" column="20" selection-start-line="126" selection-start-column="20" selection-end-line="126" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/data/indexJson/adminCenter.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/user/user_pwd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-162" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/reset_pwd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1809">
+          <caret line="62" column="39" lean-forward="true" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="107" column="42" lean-forward="true" selection-start-line="107" selection-start-column="42" selection-end-line="107" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/register2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="157" column="16" selection-start-line="157" selection-start-column="16" selection-end-line="158" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/assis_manager.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="173" column="26" lean-forward="true" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#fieldset#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

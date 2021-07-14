@@ -6,14 +6,26 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="/css/oksub.css">
     <link rel="stylesheet" href="/lib/layui/css/layui.css">
+    <style>
+        body{
+            background-image: url(/images/login_bg.jpeg);
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center 0;
+            background-size: cover;
+        }
+        #main{
+            background-color: #fbfff0;
+        }
+    </style>
 </head>
 <body>
 
 <div class="page-fill" style="margin-top: 10%">
     <div style="width: 100%;height: 100%;">
-        <form class="layui-form" action=""  style="width: 550px;height: 500px;margin: 50px auto;box-shadow: #e3e3e3 10px 10px 30px 5px;padding-top: 80px">
+        <form class="layui-form" action="" id="main"  style="width: 550px;height: 500px;margin: 50px auto;box-shadow: #e3e3e3 10px 10px 30px 5px;padding-top: 80px">
             <div style="margin: 0 auto;width: 450px;height: 60px;text-align: center">
-                <h2 style="color: #121a65">注册</h2>
+                <h2 style="color: #121a65">普通医师账号注册</h2>
             </div>
             <div style="margin: 0 auto;width: 400px;height: 270px;">
                 <div class="layui-form-item" style="margin-top: 30px">
@@ -55,7 +67,7 @@
                     <label class="layui-form-label">电话号码&#12288;</label>
                     <div class="layui-input-block">
                         <input style="float: left;" type="text"
-                               class="layui-input" name="doctor_zuoji" placeholder="请输入电话号码" lay-verify="phone" autocomplete="off">
+                               class="layui-input" name="doctor_tel" placeholder="请输入电话号码" lay-verify="phone" autocomplete="off">
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 30px">
@@ -146,6 +158,9 @@
             var doctor_name = data_info.doctor_name;
             var doctor_addr = hos_addr;
             var doctor_tel = data_info.doctor_tel;
+            var doctor_zuoji = data_info.doctor_zuoji;
+            var email = data_info.email;
+
 
             $.ajax({
                 url:'/register_doctor',
@@ -153,14 +168,15 @@
                 data:{
                     'hos_name':hos_name,'hos_addr':hos_addr,
                     'doctor_name':doctor_name,'doctor_addr':doctor_addr,
-                    'doctor_tel':doctor_tel
+                    'doctor_tel':doctor_tel,'doctor_zuoji':doctor_zuoji,
+                    'email':email
                 },
                 beforeSend:function () {
                     this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
                 },
                 success:function(data){
                     if(data.code == '201'){
-                        layer.msg(data.data.msg,{icon: 5});//失败的表情
+                        layer.msg(data.msg,{icon: 5});//失败的表情
                     }else{
                         layer.msg("注册成功", {
                             icon: 6,//成功的表情

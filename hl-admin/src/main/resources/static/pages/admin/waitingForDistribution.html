@@ -36,6 +36,8 @@
             <div class="layui-card">
                 <div class="layui-card-header">诊断信息</div>
                 <div class="layui-card-body">
+                    <sapn class="textarea">诊断编码 : <span id="disgnose_code"></span></sapn>
+                    <br>
                     <sapn class="textarea">申请单位 : <span id="hos_nme"></span></sapn>
                     <br>
                     <sapn class="textarea">申请医生 : <span id="doctor_name"></span></sapn>
@@ -242,6 +244,7 @@
                         dia.hos_nme = datas[i].hos_info.hos_name;
                         dia.create_time = date;
                         dia.comment_text = datas[i].disgnose_info.comment_text;
+                        dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
                         dia.stat = datas[i].disgnose_info.stat;
 
                         $("#hos_nme").text(dia.hos_nme)
@@ -252,6 +255,7 @@
                         $("#diagnose_result").text(dia.diagnose_result)
                         $("#doctor_name").text(dia.doctor_name)
                         $("#create_time").text(dia.create_time)
+                        $("#disgnose_code").text(dia.disgnose_code)
                     }
 
                 }
