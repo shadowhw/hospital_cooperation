@@ -163,19 +163,19 @@
             },
             cols: [
                 [
-                  //序列号
-                  {field:'nums',type:"numbers",title:"序号"}
-                ,  {field:'nums',type:"numbers",title:"病例编码",width:150}
-                , {field: 'hos_nme', title: '单位名称', width: 250}//单位名称通过医生信息查询
-                , {field: 'doctor_name', title: '申请人', width: 100}
-                , {field: 'id', title: '诊断编号', width: 150, fixed: 'left', unresize: true, sort: true, hide:true}
-                , {field: 'patient_name', title: '患者姓名', width: 100}
-                , {field: 'patient_birth', title: '患者出生日期', width: 150}
-                , {field: 'patient_tall', title: '患者身高', width: 100}
-                , {field: 'patient_weight', title: '患者体重', width: 100}
-                , {field: 'diagnose_result', title: '诊断', width: 250}
-                , {field: 'create_time', title: '申请时间', width: 200}
-                ,{
+                    //序列号
+                    {field:'nums',type:"numbers",title:"序号"}
+                    ,  {field:'nums',type:"numbers",title:"病例编码",width:150}
+                    , {field: 'hos_nme', title: '单位名称', width: 250}//单位名称通过医生信息查询
+                    , {field: 'doctor_name', title: '申请人', width: 100}
+                    , {field: 'id', title: '诊断编号', width: 150, fixed: 'left', unresize: true, sort: true, hide:true}
+                    , {field: 'patient_name', title: '患者姓名', width: 100}
+                    , {field: 'patient_birth', title: '患者出生日期', width: 150}
+                    , {field: 'patient_tall', title: '患者身高', width: 100}
+                    , {field: 'patient_weight', title: '患者体重', width: 100}
+                    , {field: 'diagnose_result', title: '诊断', width: 250}
+                    , {field: 'create_time', title: '申请时间', width: 200}
+                    ,{
                     field: "stat", title: "状态", width: 100, templet: function (d) {
                         if (d.stat == 0) {
                             return "<div style='color:#d92d29;font-weight: bold;font-size:15px'>" + "未处理" + "</div>"
@@ -186,7 +186,7 @@
                         }
                     }
                 }
-                , {field: 'comment_text', title: '备注',width:100}
+                    , {field: 'comment_text', title: '备注',width:100}
                 ]
             ],
             page: {

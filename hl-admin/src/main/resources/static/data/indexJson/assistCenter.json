@@ -1,15 +1,15 @@
 [
   {
-    "title": "上传资料",
-    "href": "/pages/assistDoctors/askDiagnosisList.html",
+    "title": "诊断申请管理",
+    "href": "/pages/assistDoctors/askdiagnosisList.html",
     "fontFamily": "ok-icon",
     "icon": "&#xe654;",
     "spread": true,
     "isCheck": true
   },
   {
-    "title": "下载报告",
-    "href": "",
+    "title": "诊断任务管理",
+    "href": "/pages/assistDoctors/assist_disnosis.html",
     "fontFamily": "ok-icon",
     "icon": "&#xe654;",
     "spread": false

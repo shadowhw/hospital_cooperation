@@ -85,7 +85,7 @@ public class Diagnosis_infoController
         List<Disgnose_info> list = disgnose_infoService.list(new QueryWrapper<Disgnose_info>()
                 .eq("id",id)
         );
-        List<DiagnosisDoctorHos> resList = new ArrayList<>();
+        List<DiagnosisDoctorHos> resList = new ArrayList<DiagnosisDoctorHos>();
 
         for (int i = 0; i < list.size(); i++)
         {

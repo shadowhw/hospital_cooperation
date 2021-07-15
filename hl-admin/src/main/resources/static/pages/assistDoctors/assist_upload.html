@@ -107,6 +107,30 @@
 <!--<div class="list-con">-->
 <!--    <table class="layui-hide" id="tableId" lay-filter="tableId"></table>-->
 <!--</div>-->
+<fieldset class="layui-elem-field layui-field-title" >
+    <legend>附件上传</legend>
+</fieldset>
+<div class="layui-upload">
+    <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+    <div class="layui-upload-list" style="max-width: 1000px;">
+        <table class="layui-table">
+            <colgroup>
+                <col>
+                <col width="150">
+                <col width="260">
+                <col width="150">
+            </colgroup>
+            <thead>
+            <tr><th>文件名</th>
+                <th>大小</th>
+                <th>操作</th>
+            </tr></thead>
+            <tbody id="demoList"></tbody>
+        </table>
+    </div>
+    <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+</div>
+
 <fieldset class="layui-elem-field layui-field-title" style="">
     <legend>诊断申请</legend>
 </fieldset>
@@ -145,40 +169,20 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">诊断结果</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" name="diagnose_result" class="layui-textarea"></textarea>
+                <select  name="diagnose_result" class="layui-select">
+                    <option disabled selected>--结果选择--</option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                <button type="submit" class="layui-btn layui-btn-primary">保存</button>
             </div>
         </div>
 
     </form>
-    <fieldset class="layui-elem-field layui-field-title" >
-        <legend>附件上传</legend>
-    </fieldset>
-    <div class="layui-upload">
-        <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
-        <div class="layui-upload-list" style="max-width: 1000px;">
-            <table class="layui-table">
-                <colgroup>
-                    <col>
-                    <col width="150">
-                    <col width="260">
-                    <col width="150">
-                </colgroup>
-                <thead>
-                <tr><th>文件名</th>
-                    <th>大小</th>
-                    <th>操作</th>
-                </tr></thead>
-                <tbody id="demoList"></tbody>
-            </table>
-        </div>
-        <button type="button" class="layui-btn" id="testListAction">开始上传</button>
-    </div>
+
 
 
 </div>
@@ -208,7 +212,7 @@
 
 
                 //演示多文件列表
-            var uploadListIns = upload.render({
+            var uploadListIns = assist_upload.render({
                 elem: '#testList'
                 ,elemList: $('#demoList') //列表元素对象
                 ,url: 'http://localhost:8088/fileUpload'
@@ -257,7 +261,7 @@
                     delete this.files[index]; //删除文件队列已经上传成功的文件
                     return;
                     //}
-                    this.error(index, upload);
+                    this.error(index, assist_upload);
                 }
                 ,allDone: function(obj){ //多文件上传完毕后的状态回调
                     console.log(obj)
