@@ -75,18 +75,18 @@
                     <div>
                         <div style="background: #d2d2d2">
                             <div style="width: 80%;height: 100%;margin: 0 auto;">
-<!--                                <div class="layui-collapse" lay-filter="waitingData">-->
-<!--                                    <div class="layui-colla-item">-->
-<!--                                        <div class="layui-colla-content layui-show" style="background-color:#fdfdfd;">-->
-<!--                                            <div style="background-color:#fdfdfd;">-->
-<!--                                                <iframe scrolling="no" frameborder="0"-->
-<!--                                                        src="../commonData/submitData.html" width="100%"-->
-<!--                                                        height="700px" id="waitingData"-->
-<!--                                                        onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh>700?fdh:700);"></iframe>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <!--                                <div class="layui-collapse" lay-filter="waitingData">-->
+                                <!--                                    <div class="layui-colla-item">-->
+                                <!--                                        <div class="layui-colla-content layui-show" style="background-color:#fdfdfd;">-->
+                                <!--                                            <div style="background-color:#fdfdfd;">-->
+                                <!--                                                <iframe scrolling="no" frameborder="0"-->
+                                <!--                                                        src="../commonData/submitData.html" width="100%"-->
+                                <!--                                                        height="700px" id="waitingData"-->
+                                <!--                                                        onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh>700?fdh:700);"></iframe>-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
                                 <div class="layui-col-md12">
                                     <div class="layui-card">
                                         <div class="layui-card-header">诊断附件</div>
@@ -105,15 +105,15 @@
                                                             <th>大小</th>
                                                         </tr></thead>
                                                         <tbody id="demoList">
-                                                            <tr><td>附件1.xml</td>
-                                                                <td>20MB</td>
-                                                            </tr>
-                                                            <tr><td>附件2.jpg</td>
-                                                                <td>5MB</td>
-                                                            </tr>
-                                                            <tr><td>附件3.mp4</td>
-                                                                <td>890MB</td>
-                                                            </tr>
+                                                        <tr><td>附件1.xml</td>
+                                                            <td>20MB</td>
+                                                        </tr>
+                                                        <tr><td>附件2.jpg</td>
+                                                            <td>5MB</td>
+                                                        </tr>
+                                                        <tr><td>附件3.mp4</td>
+                                                            <td>890MB</td>
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -138,7 +138,7 @@
         </div>
         <div class="layui-col-md3" style="background-color:#f8f8f8;">
             <fieldset class="layui-elem-field">
-                <legend style="font-size: 20px">分发任务</legend>
+                <legend style="font-size: 20px">诊断结果处理</legend>
 
                 <div class="layui-col-md12">
                     <div class="layui-card">
@@ -147,49 +147,57 @@
                             <div class="layui-form">
                                 <div class="layui-form-item" pane="">
                                     <label class="layui-form-label">操作</label>
-                                    <div class="layui-input-block">
-                                        <input type="radio" name="shenqing" value="申请退回" title="回退申请">
-                                        <input type="radio" name="shenqing" value="分配申请" title="分配诊断任务" checked>
-                                        <input type="radio" name="shenqing" value="驳回诊断报告" title="驳回诊断报告">
-                                        <input type="radio" name="shenqing" value="反馈诊断报告" title="反馈诊断报告">
-                                    </div>
                                 </div>
                             </div>
 
-                            <div class="layui-form">
-                                <div class="layui-form-item" style="margin-top: 20px">
-                                    <div style="margin: 10px">医院</div>
-                                    <div class="layui-form-item layui-form-text" style="display: inline">
-                                        <select name="director" lay-filter="director" lay-verify="required">
-                                            <option value='1'>人民医院1</option>
-                                            <option value='2'>人民医院2</option>
-                                            <option value='3'>人民医院3</option>
-                                        </select>
-                                    </div>
+                            <fieldset class="layui-elem-field layui-field-title" >
+                                <legend>附件上传</legend>
+                            </fieldset>
+                            <div class="layui-upload">
+                                <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+                                <div class="layui-upload-list" style="max-width: 1000px;">
+                                    <table class="layui-table">
+                                        <colgroup>
+                                            <col>
+                                            <col width="150">
+                                            <col width="260">
+                                            <col width="150">
+                                        </colgroup>
+                                        <thead>
+                                        <tr><th>文件名</th>
+                                            <th>大小</th>
+                                            <th>操作</th>
+                                        </tr></thead>
+                                        <tbody id=""></tbody>
+                                    </table>
                                 </div>
-                                <div id="checkUser" class="layui-form-item" style="margin-top: 20px">
-                                    <div style="margin: 10px">医生</div>
-                                    <div class="layui-form-item layui-form-text" style="display: inline" id="select">
-                                        <select name="director" id="director" lay-filter="director" lay-verify="required">
-                                            <option value='1'>医生1</option>
-                                            <option value='2'>医生2</option>
-                                            <option value='3'>医生3</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+                            </div>
 
-                                <div class="layui-form-item">
-                                    <div class="layui-form-item layui-form-text" style="margin: 10px">
-                                        操作备注
+                            <fieldset class="layui-elem-field layui-field-title" style="">
+                                <legend>诊断申请</legend>
+                            </fieldset>
+                            <div class="ok-body">
+                                <form class="layui-form layui-form-pane" action="">
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">诊断结果</label>
+                                        <div class="layui-input-block">
+                                            <select  name="diagnose_result" class="layui-select">
+                                                <option disabled selected>--结果选择--</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <textarea name="checkOpinion" required lay-verify="required" placeholder="输入处理备注"
-                                                  class="layui-textarea"></textarea>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                                            <button type="submit" class="layui-btn layui-btn-primary">保存</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <button type="button" class="layui-btn" lay-submit lay-filter="add" id="submit">确认</button>
-                                </div>
+
+                                </form>
+
+
+
                             </div>
                         </div>
                     </div>
