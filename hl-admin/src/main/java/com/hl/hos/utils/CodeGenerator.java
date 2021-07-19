@@ -1,4 +1,4 @@
-package com.hl.utils;
+package com.hl.hos.utils;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
