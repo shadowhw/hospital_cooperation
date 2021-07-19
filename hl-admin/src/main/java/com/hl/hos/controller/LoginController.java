@@ -10,6 +10,7 @@ import com.hl.hos.service.Hos_infoService;
 import com.hl.hos.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -71,5 +72,10 @@ public class LoginController {
         if(addr.equals("/login")) session.setAttribute("error","账号或者密码错误");
 
         return "redirect:/"+addr;
+    }
+
+    @GetMapping("/assist")
+    public String getess(){
+        return "assistIndex";
     }
 }
