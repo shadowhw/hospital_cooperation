@@ -149,7 +149,7 @@
                 [
                     //序列号
                       {field:'nums',type:"numbers",title:"编号"}
-                    , {field: 'hos_name', title: '单位名称', width: 250}
+                    , {field: 'hos_name', title: '单位名称', width: 250,edit:"text"}
                     , {field: 'hos_addr', title: '医院地址', width: 200}
                     , {field: 'create_time', title: '创建时间', width: 200}
                     // , {field: "pass", title: "账号状态", width: 90, templet: function (d) {
@@ -233,6 +233,13 @@
                     content: "/pages/admin/reset_pwd.html?doctor_id="+data.doctor_id
                 });
             }
+        });
+
+        //单元格编辑
+        table.on('edit(tableId)', function(obj){ //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
+            console.log(obj.value); //得到修改后的值
+            console.log(obj.field); //当前编辑的字段名
+            console.log(obj.data); //所在行的所有相关数据
         });
 
         //点击查看详情页面
