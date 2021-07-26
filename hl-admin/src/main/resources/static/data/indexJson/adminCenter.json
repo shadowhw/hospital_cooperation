@@ -50,20 +50,6 @@
         "fontFamily": "ok-icon",
         "icon": "&#xe721;",
         "spread": false
-      },
-      {
-        "title": "统计2",
-        "href": "/pages/admin/chart/chart2.html",
-        "fontFamily": "ok-icon",
-        "icon": "&#xe721;",
-        "spread": false
-      },
-      {
-        "title": "统计3",
-        "href": "/pages/admin/chart/chart3.html",
-        "fontFamily": "ok-icon",
-        "icon": "&#xe721;",
-        "spread": false
       }
     ]
   }

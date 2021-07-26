@@ -20,6 +20,7 @@
 
 #navBar .layui-nav-itemed .layui-nav-child,
 #navBar .layui-nav-child dd {
+    background: #FFF;
     overflow: hidden;
 }
 
@@ -111,7 +112,7 @@
 
 .layui-side-menu, .layadmin-pagetabs .layui-tab-title li:after, .layadmin-pagetabs .layui-tab-title li.layui-this:after, .layui-layer-admin .layui-layer-title, .layadmin-side-shrink .layui-side-menu .layui-nav > .layui-nav-item > .layui-nav-child {
     /*background: #20222A !important;*/
-    background: #001529 !important;
+    background: #FFF !important;
 }
 
 .layui-tab-brief > .layui-tab-title .layui-this {
@@ -298,7 +299,7 @@
     /*padding-left: 25px;*/
     padding-left: 45px;
     padding-right: 30px;
-    color: #FFF;
+    color: black;
     /*color: #f2f2f2;*/
 }
 
@@ -308,7 +309,7 @@
 }
 
 .ok-left.layui-side-menu .layui-nav-item a:hover {
-    background-color: #4E5465;
+    background-color: #288DEF;
 }
 
 .ok-left.layui-side-menu .layui-this a:hover {
