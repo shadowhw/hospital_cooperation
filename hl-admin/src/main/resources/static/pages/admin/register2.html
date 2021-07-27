@@ -166,8 +166,11 @@
             },
         });
 
+        let locked = 0;
+
         //toolbar操作
         table.on('tool(tableId)',function (obj) {
+            locked = 1;//上锁
             var data = obj.data;
             var info = "";
             var stat = 0;//状态
@@ -231,6 +234,12 @@
 
         //点击查看详情页面
         table.on('row(tableId)', function (obj) {
+            //解锁后返回
+            if(locked==1)
+            {
+                locked = 0;
+                return;
+            }
             console.log(obj)
             var data = obj.data;
 

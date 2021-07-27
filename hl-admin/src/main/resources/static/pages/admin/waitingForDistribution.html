@@ -111,27 +111,34 @@
                         <iframe scrolling="yes" frameborder="0" width="100%"
                                 height="700px" id="processData"
                                 onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh>700?fdh:700)"></iframe>
-
                     </div>
                 </div>
             </div>
         </div>
         <div class="layui-col-md4" style="background-color:#f8f8f8;">
-            <fieldset class="layui-elem-field">
-                <legend style="font-size: 20px">分发任务</legend>
-
+                <legend style="font-size: 20px">操作处理</legend>
                 <div class="layui-col-md12">
                     <div class="layui-card">
-                        <div class="layui-card-header">诊断申请</div>
                         <div class="layui-card-body">
                             <div class="layui-form">
                                 <div class="layui-form-item" pane="">
-                                    <label class="layui-form-label">操作</label>
                                     <div class="layui-input-block">
-                                        <input type="radio" name="shenqing" value="申请退回" title="回退申请">
-                                        <input type="radio" name="shenqing" value="分配申请" title="分配诊断任务" checked>
-                                        <input type="radio" name="shenqing" value="驳回诊断报告" title="驳回诊断报告">
-                                        <input type="radio" name="shenqing" value="反馈诊断报告" title="反馈诊断报告">
+                                        <div class="layui-row">
+                                            <div class="layui-col-md6">
+                                                <input type="radio" name="shenqing" value="回退申请" title="回退申请">
+                                            </div>
+                                            <div class="layui-col-md6">
+                                                <input type="radio" name="shenqing" value="分配诊断任务" title="分配诊断任务">
+                                            </div>
+                                        </div>
+                                        <div class="layui-row">
+                                            <div class="layui-col-md6">
+                                                <input type="radio" name="shenqing" value="驳回诊断报告" title="驳回诊断报告">
+                                            </div>
+                                            <div class="layui-col-md6">
+                                                <input type="radio" name="shenqing" value="反馈诊断报告" title="反馈诊断报告">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +181,7 @@
                         </div>
                     </div>
                 </div>
-            </fieldset>
+
         </div>
     </div>
 </div>
@@ -236,6 +243,30 @@
                         $("#doctor_name").text(dia.doctor_name)
                         $("#create_time").text(dia.create_time)
                         $("#disgnose_code").text(dia.disgnose_code)
+
+                        //根据诊断状态显示不同的操作菜单
+                        switch (dia.stat) {
+                            case 1:
+                            case 2:
+                                $("input:radio").eq(0).attr("disabled",false);
+                                $("input:radio").eq(1).attr("disabled",false);
+                                $("input:radio").eq(2).attr("disabled",true);
+                                $("input:radio").eq(3).attr("disabled",true);
+                                break;
+                            case 3:
+                            case 4:
+                                $("input:radio").eq(0).attr("disabled",true);
+                                $("input:radio").eq(1).attr("disabled",true);
+                                $("input:radio").eq(2).attr("disabled",false);
+                                $("input:radio").eq(3).attr("disabled",false);
+                                break;
+                            case 5:
+                                $("input:radio").eq(0).attr("disabled",true);
+                                $("input:radio").eq(1).attr("disabled",true);
+                                $("input:radio").eq(2).attr("disabled",true);
+                                $("input:radio").eq(3).attr("disabled",true);
+                                break;
+                        }
                     }
 
                 }
