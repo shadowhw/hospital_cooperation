@@ -80,27 +80,30 @@
 <div class="layui-row">
     <form class="layui-form ok-form">
         <div class="layui-form-item" style="margin-left: 30px">
-            <div id="changeType">
+            <div id="changeType" class="layui-btn-container">
                 <button type="button"
-                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"
+                        class="typeButton layui-btn layui-btn-primary layui-btn-radius"
                         selectType="1" value="0">
-                    <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>
+                    <i class="iconfont icon-quanbu" style="font-size: 18px;padding-right:5px;"></i>
                     未发起
                 </button>
+
+
+
                 <button type="button"
-                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"
+                        class="typeButton layui-btn layui-btn-primary layui-btn-radius"
                         selectType="1" value="1">
                     <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>
                     未分配
                 </button>
                 <button type="button"
-                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"
+                        class="typeButton layui-btn layui-btn-primary layui-btn-radius"
                         selectType="2" value="2">
                     <i class="iconfont icon-chulizhong" style="font-size: 18px;padding-right:5px;"></i>
                     已分配
                 </button>
                 <button type="button"
-                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"
+                        class="typeButton layui-btn layui-btn-primary layui-btn-radius"
                         selectType="2" value="2">
                     <i class="iconfont icon-chulizhong" style="font-size: 18px;padding-right:5px;"></i>
                     已处理
@@ -218,11 +221,13 @@
         $("#uploadData").on("click",function(){
             layui.use(['element','layer','okLayer'], function () {
                 let okLayer = layui.okLayer;
-                okLayer.open("文件上传", "assist_upload.html", "80%", "80%", function (layero) {
-                    let iframeWin = window[layero.find("iframe")[0]["name"]];
-                }, function () {
-
-                })
+                // okLayer.open("文件上传", "assist_upload.html", "80%", "80%", function (layero) {
+                //     let iframeWin = window[layero.find("iframe")[0]["name"]];
+                // }, function () {
+                //
+                // })
+                var url = "./assist_upload.html";
+                show(url);
             })
         })
 

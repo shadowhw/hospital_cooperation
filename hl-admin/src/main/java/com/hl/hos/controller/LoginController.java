@@ -31,35 +31,36 @@ public class LoginController {
                             @RequestParam("doctorPwd")String doctorPwd ,
                             HttpSession session ){
 
-        //查询有误单位
-        Hos_info hosInfo = hosService.getOne(new QueryWrapper<Hos_info>().eq("hos_name",hos_name));
-        if(hosInfo == null){
-            session.setAttribute("error","请检查您的单位名称");
-            return "redirect:/login";
-        }
-        //根据hosId查询医生
-        Doctor_info doctorInfo = doctorService.getOne(new QueryWrapper<Doctor_info>().eq("hos_id", hosInfo.getId()));
-        if(doctorInfo == null){
-            session.setAttribute("error","账号或者密码错误");
-            return "redirect:/login";
-        }
+//        //查询有误单位
+//        Hos_info hosInfo = hosService.getOne(new QueryWrapper<Hos_info>().eq("hos_name",hos_name));
+//        if(hosInfo == null){
+//            session.setAttribute("error","请检查您的单位名称");
+//            return "redirect:/login";
+//        }
+//        //根据hosId查询医生
+//        Doctor_info doctorInfo = doctorService.getOne(new QueryWrapper<Doctor_info>().eq("hos_id", hosInfo.getId()));
+//        if(doctorInfo == null){
+//            session.setAttribute("error","账号或者密码错误");
+//            return "redirect:/login";
+//        }
         //验证密码
-        String md5 = MD5Util.getMd5(doctorPwd);
-        if(!md5.equals(doctorInfo.getDoctor_pwd())){
+        String md5Pwd = MD5Util.getMd5(doctorPwd);//验证
+        Doctor_info doctorRes = doctorService.getOne(new QueryWrapper<Doctor_info>().eq("doctor_account", hos_name).eq("doctor_pwd", md5Pwd));
+        if(doctorRes == null){
             session.setAttribute("error","账号或者密码错误");
             return "redirect:/login";
         }
 
 
-        Integer pass = doctorInfo.getPass();
+        Integer pass = doctorRes.getPass();
         if(pass==0){ //账号没激活
             session.setAttribute("error","账号没有激活");
             return "redirect:/login";
         }
 
         String addr = "/login";
-        Integer stat = doctorInfo.getStat();//获取状态码
-        session.setAttribute("doctor_info",doctorInfo);
+        Integer stat = doctorRes.getStat();//获取状态码
+        session.setAttribute("doctor_info",doctorRes);
         if(stat == 0){ //管理员
             addr = "admin";
         }else if(stat == 1){ //协作医师
