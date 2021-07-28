@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -20,6 +21,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_disgnose_info")
+@Component
 public class Disgnose_info implements Serializable {
 
     private static final long serialVersionUID = 1L;

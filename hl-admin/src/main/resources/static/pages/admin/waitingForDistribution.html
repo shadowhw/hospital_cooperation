@@ -116,72 +116,66 @@
             </div>
         </div>
         <div class="layui-col-md4" style="background-color:#f8f8f8;">
-                <legend style="font-size: 20px">操作处理</legend>
-                <div class="layui-col-md12">
-                    <div class="layui-card">
-                        <div class="layui-card-body">
-                            <div class="layui-form">
-                                <div class="layui-form-item" pane="">
-                                    <div class="layui-input-block">
-                                        <div class="layui-row">
-                                            <div class="layui-col-md6">
-                                                <input type="radio" name="shenqing" value="回退申请" title="回退申请">
-                                            </div>
-                                            <div class="layui-col-md6">
-                                                <input type="radio" name="shenqing" value="分配诊断任务" title="分配诊断任务">
-                                            </div>
+            <legend style="font-size: 20px">操作处理</legend>
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-form">
+                            <div class="layui-form-item" pane="">
+                                <div class="layui-input-block">
+                                    <div class="layui-row">
+                                        <div class="layui-col-md6">
+                                            <input type="radio" name="shenqing" value="回退申请" title="回退申请">
                                         </div>
-                                        <div class="layui-row">
-                                            <div class="layui-col-md6">
-                                                <input type="radio" name="shenqing" value="驳回诊断报告" title="驳回诊断报告">
-                                            </div>
-                                            <div class="layui-col-md6">
-                                                <input type="radio" name="shenqing" value="反馈诊断报告" title="反馈诊断报告">
-                                            </div>
+                                        <div class="layui-col-md6">
+                                            <input type="radio" name="shenqing" value="分配诊断任务" title="分配诊断任务">
+                                        </div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md6">
+                                            <input type="radio" name="shenqing" value="驳回诊断报告" title="驳回诊断报告">
+                                        </div>
+                                        <div class="layui-col-md6">
+                                            <input type="radio" name="shenqing" value="反馈诊断报告" title="反馈诊断报告">
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="layui-form">
-                                <div class="layui-form-item" style="margin-top: 20px">
-                                    <div style="margin: 10px">医院</div>
-                                    <div class="layui-form-item layui-form-text" style="display: inline">
-                                        <select name="director" lay-filter="director" lay-verify="required">
-                                            <option value='1'>人民医院1</option>
-                                            <option value='2'>人民医院2</option>
-                                            <option value='3'>人民医院3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div id="checkUser" class="layui-form-item" style="margin-top: 20px">
-                                    <div style="margin: 10px">医生</div>
-                                    <div class="layui-form-item layui-form-text" style="display: inline" id="select">
-                                        <select name="director" id="director" lay-filter="director" lay-verify="required">
-                                            <option value='1'>医生1</option>
-                                            <option value='2'>医生2</option>
-                                            <option value='3'>医生3</option>
-                                        </select>
-                                    </div>
-                                </div>
+                        <div class="layui-form">
+                            <div id="choice_hos" class="layui-form-item" style="margin-top: 20px">
+                                <div style="margin: 10px">医院</div>
+                                    <select name="select_hos" lay-filter="select_hos" id="select_hos" lay-verify="required">
 
-                                <div class="layui-form-item">
-                                    <div class="layui-form-item layui-form-text" style="margin: 10px">
-                                        操作备注
-                                    </div>
-                                    <div>
-                                        <textarea name="checkOpinion" required lay-verify="required" placeholder="输入处理备注"
-                                                  class="layui-textarea"></textarea>
-                                    </div>
+                                    </select>
+
+                            </div>
+                            <div id="choice_doc" class="layui-form-item" style="margin-top: 20px">
+                                <div style="margin: 10px">医生</div>
+                                <div class="layui-form-item layui-form-text" style="display: inline">
+                                    <select name="select_doc" id="select_doc" lay-filter="select_doc" lay-verify="required">
+
+                                    </select>
                                 </div>
-                                <div class="layui-form-item">
-                                    <button type="button" class="layui-btn" lay-submit lay-filter="add" id="submit">确认</button>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <div class="layui-form-item layui-form-text" style="margin: 10px">
+                                    操作备注
                                 </div>
+                                <div>
+                                    <textarea name="comment_text" id="comment_text" placeholder="输入处理备注"
+                                              class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button type="button" class="layui-btn" lay-submit lay-filter="add" id="submit">确认</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
+            </div>
         </div>
     </div>
 </div>
@@ -192,6 +186,154 @@
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/application.js"></script>
 <script src="/js/hyx.js"></script>
+
+<script>
+    layui.use(['form','laydate'], function () {
+        // layui引入需要的组件
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+
+        // 二级联动 第一步 渲染父级
+        $.ajax({
+            url: '/hos/hos_info/get_hos_list_no_page',	// 后台取到所有的科室名称
+            dataType: 'json',
+            type: 'get',
+            success: function (resData) {
+
+                $.each(resData.data, function (index, value) {
+                    // 这里的 value.roomName
+                    // 前者是页面显示的值，后者是传递给后台的值。
+                    // 正常情况下，后者应该是 value.id
+                    $('#select_hos').append(new Option(value.hos_name, value.id));	// 下拉菜单里添加元素
+                });
+
+                //渲染select
+                form.render('select');
+            }
+        });
+        // 第二步 监听父级，每当父级发生变化时，渲染子级的值
+        form.on('select(select_hos)', function(data){
+
+            var hos_id = data.value; // roomName 选中的科室名称
+
+            $.ajax({
+                url: '/hos/doctor_info/get_doc_of_hos',
+                dataType: 'json',
+                type: 'get',
+                data: {hos_id:hos_id},
+                success: function (resData) {
+                    // 清空选项
+                    $('#select_doc').empty();
+                    $.each(resData.data, function (index, value) {
+                        // 这里的 value.bedNo
+                        // 前者是页面显示的值，后者是传递给后台的值。
+                        // 正常情况下，后者应该是 value.id
+                        $('#select_doc').append(new Option(value.doctor_account, value.doctor_account));// 下拉菜单里添加元素
+                    });
+                    //渲染select
+                    form.render('select');
+                }
+            });
+        });
+
+        //提交处理
+        $("#submit").click(function () {
+
+            let radio_val = $("input[name='shenqing']:checked").val();
+            let comment_text = $("#comment_text").val();
+            let diagnosis_id =  GetQueryString("disgnose_id");
+
+            //流程信息
+            let fenfa = $("#doctor_name").text();
+            let transactor = "管理员";
+            let transact_comment = comment_text;
+            let transact_type = "";
+            let transact_stat = 1;
+
+            if(radio_val==undefined)
+            {
+                layer.msg("你未选择操作项")
+                return;
+            }
+            if(radio_val=="回退申请")
+            {
+                transact_type = "回退诊断申请";
+                $.ajax({
+                    url: '/hos/diagnosis_info/update_diagnosis_info',
+                    dataType: 'json',
+                    type: 'post',
+                    data: {id:diagnosis_id,comment_text:comment_text,stat:2},
+                    success: function (resData) {
+                        if(resData.code == '201'){
+                            layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                        }else{
+                            layer.msg("成功", {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function(){
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+                //添加流程
+                $.ajax({
+                    url: '/hos/process/add_process',
+                    dataType: 'json',
+                    type: 'post',
+                    data: {disgnose_id:diagnosis_id,fenfa:fenfa,transactor:transactor,
+                        transact_type:transact_type,transact_comment:transact_comment,transact_stat:transact_stat},
+                    success: function (resData) {
+                        if(resData.code == '201'){
+                            layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                        }else{
+                            layer.msg("成功", {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function(){
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+            }else if(radio_val=="分配诊断任务")
+            {
+                transact_type = "分配诊断任务";
+                $.ajax({
+                    url: '/hos/diagnosis_info/update_diagnosis_info',
+                    dataType: 'json',
+                    type: 'post',
+                    data: {id:diagnosis_id,comment_text:comment_text,stat:2},
+                    success: function (resData) {
+                        if(resData.code == '201'){
+                            layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                        }else{
+                            layer.msg("成功", {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function(){
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+
+                layer.msg("分配诊断任务")
+            }else if(radio_val=="驳回诊断报告")
+            {
+                transact_type = "驳回诊断报告";
+                layer.msg("驳回诊断报告")
+            }else if(radio_val=="反馈诊断报告")
+            {
+                transact_type = "反馈诊断报告";
+                layer.msg("反馈诊断报告")
+            }
+        });
+
+    });
+
+</script>
 
 <script>
     $(document).ready(function(){
@@ -247,20 +389,29 @@
                         //根据诊断状态显示不同的操作菜单
                         switch (dia.stat) {
                             case 1:
-                            case 2:
                                 $("input:radio").eq(0).attr("disabled",false);
                                 $("input:radio").eq(1).attr("disabled",false);
                                 $("input:radio").eq(2).attr("disabled",true);
                                 $("input:radio").eq(3).attr("disabled",true);
                                 break;
-                            case 3:
+                            case 2://退回后不能分配
+                                $("input:radio").eq(0).attr("disabled",false);
+                                $("input:radio").eq(1).attr("disabled",true);
+                                $("input:radio").eq(2).attr("disabled",true);
+                                $("input:radio").eq(3).attr("disabled",true);
+                                break;
+                            case 3://已分配和驳回协助都不能显示分配任务
                             case 4:
+                                $("#choice_hos").hide();
+                                $("#choice_doc").hide();
                                 $("input:radio").eq(0).attr("disabled",true);
                                 $("input:radio").eq(1).attr("disabled",true);
                                 $("input:radio").eq(2).attr("disabled",false);
                                 $("input:radio").eq(3).attr("disabled",false);
                                 break;
                             case 5:
+                                $("#choice_hos").hide();
+                                $("#choice_doc").hide();
                                 $("input:radio").eq(0).attr("disabled",true);
                                 $("input:radio").eq(1).attr("disabled",true);
                                 $("input:radio").eq(2).attr("disabled",true);
@@ -268,10 +419,10 @@
                                 break;
                         }
                     }
-
                 }
             },
         });
+
     });
 </script>
 
@@ -284,8 +435,6 @@
             this.contentWindow.getParentData(data)
         })
     }
-
-
 
     layui.use(['element','form'], function () {
         var form = layui.form

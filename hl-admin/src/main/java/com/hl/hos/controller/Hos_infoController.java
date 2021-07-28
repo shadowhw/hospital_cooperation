@@ -1,6 +1,7 @@
 package com.hl.hos.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hl.hos.pojo.Hos_info;
@@ -47,6 +48,24 @@ public class Hos_infoController {
 
         result.setCount(list.size());//数量应该是所有数据的大小
         result.setData(iPage.getRecords());
+        result.setCode(200);
+        return result;
+    }
+
+    /**
+     * 不分页查询所有医院信息
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/get_hos_list_no_page")
+    public Result get_hos_list_no_page()
+    {
+        List<Hos_info> hos_list = hos_infoService.list(new QueryWrapper<Hos_info>()
+                .select("id","hos_name")
+        );
+
+        result.setCount(hos_list.size());
+        result.setData(hos_list);
         result.setCode(200);
         return result;
     }
