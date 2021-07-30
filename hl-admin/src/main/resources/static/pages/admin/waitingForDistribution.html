@@ -243,12 +243,12 @@
             let radio_val = $("input[name='shenqing']:checked").val();
             let comment_text = $("#comment_text").val();
             let diagnosis_id =  GetQueryString("disgnose_id");
+            let select_doc =  $("#select_doc").find("option:selected").text();//选择的医生
 
             //流程信息
             let fenfa = $("#doctor_name").text();
             let transactor = "管理员";
             let transact_comment = comment_text;
-            let transact_type = "";
             let transact_stat = 1;
 
             if(radio_val==undefined)
@@ -258,32 +258,62 @@
             }
             if(radio_val=="回退申请")
             {
-                transact_type = "回退诊断申请";
+                update_diagnosis(2);
+                add_process("回退诊断申请");
+            }else if(radio_val=="分配诊断任务")
+            {
                 $.ajax({
                     url: '/hos/diagnosis_info/update_diagnosis_info',
                     dataType: 'json',
                     type: 'post',
-                    data: {id:diagnosis_id,comment_text:comment_text,stat:2},
+                    data: {id:diagnosis_id,comment_text:comment_text,stat:3},
                     success: function (resData) {
                         if(resData.code == '201'){
                             layer.msg(resData.data.msg,{icon: 5});//失败的表情
                         }else{
-                            layer.msg("成功", {
-                                icon: 6,//成功的表情
-                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
-                            }, function(){
-                                window.location.reload();
+                            //添加分配信息
+                            $.ajax({
+                                url: '/hos/doctor_with_disgnose/add_assist',
+                                dataType: 'json',
+                                type: 'post',
+                                data: {disgnose_id:diagnosis_id,doctor_account:select_doc},
+                                success: function (resData2) {
+                                    if(resData2.code == '201'){
+                                        layer.msg(resData2.data.msg,{icon: 5});//失败的表情
+                                    }else{
+
+                                        layer.msg("成功", {
+                                            icon: 6,//成功的表情
+                                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                                        }, function(){
+                                            window.location.reload();
+                                        });
+                                    }
+                                }
                             });
                         }
                     }
                 });
+                add_process("管理已分配诊断任务");
+            }else if(radio_val=="驳回诊断报告")
+            {
+                update_diagnosis(4);
+                add_process("管理已驳回诊断报告");
+            }else if(radio_val=="反馈诊断报告")
+            {
+                update_diagnosis(5);
+                add_process("诊断任务已完成");
+            }
+
+            //添加流程
+            function add_process(transact_type2) {
                 //添加流程
                 $.ajax({
                     url: '/hos/process/add_process',
                     dataType: 'json',
                     type: 'post',
                     data: {disgnose_id:diagnosis_id,fenfa:fenfa,transactor:transactor,
-                        transact_type:transact_type,transact_comment:transact_comment,transact_stat:transact_stat},
+                        transact_type:transact_type2,transact_comment:transact_comment,transact_stat:transact_stat},
                     success: function (resData) {
                         if(resData.code == '201'){
                             layer.msg(resData.data.msg,{icon: 5});//失败的表情
@@ -297,14 +327,14 @@
                         }
                     }
                 });
-            }else if(radio_val=="分配诊断任务")
-            {
-                transact_type = "分配诊断任务";
+            };
+            //更新诊断表转态
+            function update_diagnosis(stat2) {
                 $.ajax({
                     url: '/hos/diagnosis_info/update_diagnosis_info',
                     dataType: 'json',
                     type: 'post',
-                    data: {id:diagnosis_id,comment_text:comment_text,stat:2},
+                    data: {id:diagnosis_id,comment_text:comment_text,stat:stat2},
                     success: function (resData) {
                         if(resData.code == '201'){
                             layer.msg(resData.data.msg,{icon: 5});//失败的表情
@@ -318,17 +348,8 @@
                         }
                     }
                 });
-
-                layer.msg("分配诊断任务")
-            }else if(radio_val=="驳回诊断报告")
-            {
-                transact_type = "驳回诊断报告";
-                layer.msg("驳回诊断报告")
-            }else if(radio_val=="反馈诊断报告")
-            {
-                transact_type = "反馈诊断报告";
-                layer.msg("反馈诊断报告")
             }
+
         });
 
     });

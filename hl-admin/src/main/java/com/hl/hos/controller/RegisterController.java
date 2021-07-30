@@ -29,6 +29,7 @@ public class RegisterController
     @ResponseBody
     public Result register_doctor(Doctor_info doctor_info, Hos_info hos_info)
     {
+        Long hos_id = 0l;
         //查询单位信息
         List<Hos_info> list = hos_infoService.list(new QueryWrapper<Hos_info>()
             .eq("hos_name",hos_info.getHos_name())
@@ -45,17 +46,22 @@ public class RegisterController
         hos_info.setStat(1);
         hos_info.setCreate_time(DateUtil.getNowSqlDateTime());
         if(list.size()==0)
+        {
             hos_infoService.save(hos_info);
+            hos_id = hos_info.getId();
+        }else {
+            hos_id = list.get(0).getId();
+        }
 
         //添加医生
         doctor_info.setCreate_time(DateUtil.getNowSqlDateTime());
         doctor_info.setPass(0);
-        doctor_info.setHos_id(list.get(0).getId());
+        doctor_info.setHos_id(hos_id);
         doctor_info.setStat(2);//上传者
         doctor_info.setDoctor_pwd(MD5Util.getMd5(doctor_info.getDoctor_tel()));//默认密码就是电话号码
         //设置医生账号：医院名加该医院数量
         List<Doctor_info> hos_doctors = doctor_infoService.list(new QueryWrapper<Doctor_info>()
-            .eq("hos_id",list.get(0).getId())
+            .eq("hos_id",hos_id)
         );
         doctor_info.setDoctor_account(hos_info.getHos_name()+(hos_doctors.size()+1));
         doctor_infoService.save(doctor_info);

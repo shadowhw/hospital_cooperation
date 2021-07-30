@@ -100,6 +100,7 @@
                 method:"get"
             },
             where: {
+                type:2//查询普通医师
                 // 'procTatus': thisValue//当前的状态
             },
             parseData: function (res) { //res 即为原始返回的数据
@@ -178,11 +179,11 @@
             switch (obj.event) {
                 case "zhuxiao":
                     info = "注销";
-                    stat = 3;
+                    stat = 5;
                     break;
                 case "tingyong":
                     info = "停用";
-                    stat = 4;
+                    stat = 6;
                     break;
             }
             if(obj.event!="chongzhimima")
@@ -240,9 +241,7 @@
                 locked = 0;
                 return;
             }
-            console.log(obj)
             var data = obj.data;
-
             var url = newUrl("/pages/admin/registerDetail.html",data);
             layer.open({
                 type: 2,

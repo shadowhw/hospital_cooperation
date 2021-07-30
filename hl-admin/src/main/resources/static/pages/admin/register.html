@@ -64,37 +64,82 @@
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
     <legend>注册申请</legend>
 </fieldset>
-<div class="layui-row">
-    <form class="layui-form ok-form">
-        <div class="layui-form-item" style="margin-left: 30px">
-            <div id="changeType">
-                <button type="button" class="typeButton layui-btn layui-btn-normal-inside layui-btn-radius"
-                        selectType="0" value="-1">
-                    <i class="iconfont icon-quanbu" style="font-size: 19px;padding-right:5px;"></i>
-                    全部
-                </button>
-                <button type="button"
-                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"
-                        selectType="1" value="0">
-                    <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>
-                    未审核
-                </button>
-                <button type="button"
-                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"
-                        selectType="1" value="1">
-                    <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>
-                    已审核
-                </button>
-                <div id="selectForm" style="float: right; margin-right:50px;"
-                     class="layui-btn layui-btn-normal layui-btn-radius">
-                    <i class="layui-icon layui-icon-search"></i>
-                </div>
-                <div id="selectEmpty" style="float: right; margin-right:10px;"
-                     class="layui-btn layui-btn-normal layui-btn-radius">
-                    刷新
+<div class="search">
+    <div class="layui-row">
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" id="doctor_name" autocomplete="off" placeholder="请输入姓名" class="layui-input">
                 </div>
             </div>
         </div>
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" id="email" autocomplete="off" placeholder="请输入邮箱" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">电话</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" id="doctor_tel" autocomplete="off" placeholder="请输入电话" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">账号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" id="doctor_account" autocomplete="off" placeholder="请输入账号" class="layui-input">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-row">
+
+    <form class="layui-form ok-form">
+        <div class="layui-form-item" style="width: 25%">
+            <label class="layui-form-label">审核状态</label>
+            <div class="layui-input-block">
+                <select name="pass" id="pass">
+                    <option value="" selected="">全部</option>
+                    <option value="0">未审核</option>
+                    <option value="1">已审核</option>
+                </select>
+            </div>
+        </div>
+        <div id="selectForm" style="float: right; margin-right:50px;"
+             class="layui-btn layui-btn-normal layui-btn-radius">
+            <i class="layui-icon layui-icon-search"></i>
+        </div>
+<!--        <div class="layui-form-item" style="margin-left: 30px">-->
+<!--            <div id="changeType">-->
+<!--                <button type="button" class="typeButton layui-btn layui-btn-normal-inside layui-btn-radius"-->
+<!--                        selectType="0" value="-1">-->
+<!--                    <i class="iconfont icon-quanbu" style="font-size: 19px;padding-right:5px;"></i>-->
+<!--                    全部-->
+<!--                </button>-->
+<!--                <button type="button"-->
+<!--                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"-->
+<!--                        selectType="1" value="0">-->
+<!--                    <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>-->
+<!--                    未审核-->
+<!--                </button>-->
+<!--                <button type="button"-->
+<!--                        class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius"-->
+<!--                        selectType="1" value="1">-->
+<!--                    <i class="iconfont icon-huaban181" style="font-size: 18px;padding-right:5px;"></i>-->
+<!--                    已审核-->
+<!--                </button>-->
+
+<!--            </div>-->
+<!--        </div>-->
     </form>
 </div>
 <!--数据表格-->
@@ -131,6 +176,7 @@
                 method:"get"
             },
             where: {
+                type:2//查询普通医师
                 // 'procTatus': thisValue//当前的状态
             },
             parseData: function (res) { //res 即为原始返回的数据
@@ -148,6 +194,7 @@
                     doc.hos_name = datas[i].hos_info.hos_name;
                     doc.hos_addr = datas[i].hos_info.hos_addr;
                     doc.doctor_zuoji = datas[i].doctor_info.doctor_zuoji;
+                    doc.doctor_account = datas[i].doctor_info.doctor_account;
                     doc.email = datas[i].doctor_info.email;
                     doc.create_time = date;
                     doc.comment_text = datas[i].doctor_info.comment_text;
@@ -173,6 +220,7 @@
                 , {field: 'hos_addr', title: '医院地址', width: 200}
                 , {field: 'doctor_name', title: '联系人', width: 100}
                 , {field: 'doctor_tel', title: '联系电话', width: 120}
+                , {field: 'doctor_account', title: '登录账号', width: 120}
                 , {field: 'doctor_zuoji', title: '座机号码', width: 120}
                 , {field: 'email', title: '联系邮箱', width: 150}
                 , {field: 'create_time', title: '申请时间', width: 200}
@@ -192,13 +240,15 @@
             page: {
                 layout: ['prev', 'page', 'next', 'skip', 'count'],
                 groups: 3,
-                limit: 4,
+                limit: 10,
                 theme: '#1E9FFF',
             },
         });
 
+        let locked = 0;
         //通过操作
         table.on('tool(tableId)',function (obj) {
+            locked = 1;//上锁
             var data = obj.data;
             //通过
             if(obj.event=="pass")
@@ -265,6 +315,12 @@
 
         //点击查看详情页面
         table.on('row(tableId)', function (obj) {
+            //解锁后返回
+            if(locked==1)
+            {
+                locked = 0;
+                return;
+            }
             var data = obj.data;
 
             var url = newUrl("/pages/admin/registerDetail.html",data);
@@ -292,6 +348,9 @@
             $(this).addClass("layui-btn-normal-inside")
             selectType = $(this).attr("selectType");
             thisValue = $(this).val();
+            alert(selectType)
+            alert(thisValue)
+
             articleTable.reload({
                 where: {
                     'procTatus': thisValue
@@ -302,70 +361,29 @@
             })
         })
 
-
-
         //搜索
-        $("#selectForm").on('click', selectForm);
-        function selectForm() {
-            okLayer.open("查询条件", "selectForm.html", "35%", "60%", function (layero) {
-                let iframeWin = window[layero.find("iframe")[0]["name"]];
-            }, function () {
-                //获取搜索页面传过来的搜索条件
-                var caseId = window.document.caseId;
-                var procLevel = window.document.procLevel;
-                var caseDescription = window.document.caseDescription;
-                var startTime = window.document.startTime;
-                var endTime = window.document.endTime;
-                var newStartDate = startTime.replace(/-/g, "/");//时间格式转换
-                var newEndDate = endTime.replace(/-/g, "/");
-                //置空搜索框
-                window.document.caseId="";
-                window.document.procLevel="";
-                window.document.caseDescription="";
-                window.document.startTime="";
-                window.document.endTime="";
-                var isChange=window.document.isChange;
-                window.document.isChange=0
-                if(isChange!=1){
-                    return
-                }
-                //重载页面
-                articleTable.reload({
-                    where: {
-                        'procTatus': thisValue,
-                        'caseId':caseId,
-                        'procLevel':procLevel,
-                        'caseDescription':caseDescription,
-                        'startTime':newStartDate,
-                        'endTime':newEndDate
-                    },
-                    page: {
-                        curr: 1
-                    }
-                })
-                return false;
-            })
-        }
-
-        //刷新页面
-        $("#selectEmpty").on('click', backAll);
-        function backAll() {
+        $("#selectForm").click(function () {
+            let doctor_name = $("#doctor_name").val();
+            let doctor_account = $("#doctor_account").val();
+            let doctor_tel = $("#doctor_tel").val();
+            let email = $("#email").val();
+            let pass = $("#pass").val();
+            //重载页面
             articleTable.reload({
+                url:"/hos/doctor_info/get_doctor_list_by_params",
                 where: {
-                    //传到服务器数据
-                    'procTatus': thisValue,
-                    'caseId':'',
-                    'procLevel':'',
-                    'caseDescription':'',
-                    'startTime':'',
-                    'endTime':''
+                    'doctor_name': doctor_name,
+                    'doctor_account':doctor_account,
+                    'doctor_tel':doctor_tel,
+                    'email':email,
+                    'pass':pass,
+                    'type':2
                 },
                 page: {
-                    curr: 1//回到第一页
+                    curr: 1
                 }
             })
-            return false;
-        }
+        });
     })
 </script>
 </html>
