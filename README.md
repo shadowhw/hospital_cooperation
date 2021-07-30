@@ -12,6 +12,7 @@
   - 4:协作医师停用
   - 5:普通医师注销
   - 6:普通医师停用
+
 - pass
   - 0:未激活
   - 1:激活 
@@ -26,3 +27,6 @@
 
 
  
+# profile(配置文件)
+- 指定文件上传路径
+![image](https://user-images.githubusercontent.com/54475097/127613709-b4cd075f-f3f6-4b4c-8189-2cacae92ab84.png)
