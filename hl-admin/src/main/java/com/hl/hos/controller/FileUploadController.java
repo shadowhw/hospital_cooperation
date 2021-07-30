@@ -19,7 +19,11 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -61,6 +65,7 @@ public class FileUploadController {
                 attached.setAttached_addr(savePath);
                 attached.setAttched_name(fileName);
                 attached.setDoctor_id(doctor_info.getId());
+                attached.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
                 attachedService.save(attached);
                 fileslist.add(attached);//加入进集合 便于绑定
 
@@ -94,6 +99,8 @@ public class FileUploadController {
         disgnose_info.setComment_text(bz);
         disgnose_info.setDoctor_id(doctor_info.getId());
         disgnose_info.setStat(1);
+        disgnose_info.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
+
         //讲诊断信息保存到数据库
         boolean save = disgnoseInfoService.save(disgnose_info);
         System.out.println(disgnose_info);
