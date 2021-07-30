@@ -14,10 +14,7 @@ import com.hl.hos.service.Disgnose_infoService;
 import com.hl.hos.service.Doctor_infoService;
 import com.hl.hos.service.Hos_infoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,6 +100,29 @@ public class Diagnosis_infoController
         result.setCount(list.size());//数量应该是所有数据的大小
         result.setData(resList);
         result.setCode(200);
+        return result;
+    }
+
+    /**
+     * 更新诊断信息
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("/update_diagnosis_info")
+    public Result update_diagnosis_info(Disgnose_info disgnose_info)
+    {
+        if(disgnose_infoService.updateById(disgnose_info))
+        {
+            result.setCount(1);
+            result.setData(null);
+            result.setCode(200);
+            result.setMsg("修改成功!");
+        }else {
+            result.setCount(1);
+            result.setData(null);
+            result.setCode(201);
+            result.setMsg("修改失败!");
+        }
         return result;
     }
 

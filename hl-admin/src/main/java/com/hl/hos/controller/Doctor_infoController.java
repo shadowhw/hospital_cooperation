@@ -1,10 +1,12 @@
 package com.hl.hos.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hl.hos.backPogo.DoctorHos;
 import com.hl.hos.pojo.Doctor_info;
+import com.hl.hos.pojo.Hos_info;
 import com.hl.hos.pojo.Result;
 import com.hl.hos.service.Doctor_infoService;
 import com.hl.hos.service.Hos_infoService;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -85,6 +88,28 @@ public class Doctor_infoController {
             result.setCode(201);
             result.setMsg("修改失败!");
         }
+        return result;
+    }
+
+    /**
+     * 根据医院查询所属医院下的所有合法医生
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/get_doc_of_hos")
+    public Result get_doc_of_hos(Long hos_id)
+    {
+
+        List<Doctor_info> doc_list = doctor_infoService.list(new QueryWrapper<Doctor_info>()
+                .select("id","doctor_name","doctor_account")
+                .eq("hos_id",hos_id)
+                .eq("pass",1)//通过的医生
+                .ne("stat",3)//状态正常的医生
+                .ne("stat",4)
+        );
+        result.setCount(doc_list.size());//数量应该是所有数据的大小
+        result.setData(doc_list);
+        result.setCode(200);
         return result;
     }
 }

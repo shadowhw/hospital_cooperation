@@ -36,6 +36,7 @@
 <script src="../../lib/layui/layui.js"></script>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/application.js"></script>
+<script src="/js/hyx.js"></script>
 
 <script>
     $(document).ready(function(){
@@ -56,7 +57,9 @@
 
                     for(let i=0;i<data.count;i++)
                     {
-                        setTimeLineStart(process[i].fenfa,process[i].transactor,process[i].fenfa_time,process[i].fenfa_comment,process[i].transact_type,process[i].transact_time,process[i].transact_comment)
+                        let date1 = new Date(process[i].fenfa_time).Format("yyyy-MM-dd HH:mm:ss");
+                        let date2 = new Date(process[i].transact_time).Format("yyyy-MM-dd HH:mm:ss");
+                        setTimeLineStart(process[i].fenfa,process[i].transactor,date1,process[i].fenfa_comment,process[i].transact_type,date2,process[i].transact_comment)
                     }
                 }
             },
@@ -74,11 +77,11 @@
             "        <hr style='border: 1px dashed #4db0fd;height: 1px;margin: 0 15px 20px 10px'>";
 
         var content = "<h3 class=\"layui-timeline-title\"><span>"+"分发人:"+fenfa+"</span>"+"</h3>"+
-            "<h3 class=\"layui-timeline-title\"><span>"+"处理人:"+transactor+"</span>"+"</h3>"+
             "<h3 class=\"layui-timeline-title\"><span>"+"分发时间:"+fenfa_time+"</span>"+"</h3>"+
-            "<h3 class=\"layui-timeline-title\"><span>"+"分发备注:"+fenfa_comment+"</span>"+"</h3>"+
-            "<h3 class=\"layui-timeline-title\"><span>"+"处理类型:"+transact_type+"</span>"+"</h3>"+
+            // "<h3 class=\"layui-timeline-title\"><span>"+"分发备注:"+fenfa_comment+"</span>"+"</h3>"+
+            "<h3 class=\"layui-timeline-title\"><span>"+"处理人:"+transactor+"</span>"+"</h3>"+
             "<h3 class=\"layui-timeline-title\"><span>"+"处理时间:"+transact_time+"</span>"+"</h3>"+
+            "<h3 class=\"layui-timeline-title\"><span>"+"处理类型:"+transact_type+"</span>"+"</h3>"+
             "<h3 class=\"layui-timeline-title\"><span>"+"处理备注:"+transact_comment+"</span>"+"</h3>";
             // "                <p>" +
             // "由"+userName+"分配给"+docUserName
