@@ -115,8 +115,7 @@ public class Doctor_infoController {
                 .select("id","doctor_name","doctor_account")
                 .eq("hos_id",hos_id)
                 .eq("pass",1)//通过的医生
-                .ne("stat",3)//状态正常的医生
-                .ne("stat",4)
+                .in("stat",0,1,2,3)//状态正常的医生
         );
         result.setCount(doc_list.size());//数量应该是所有数据的大小
         result.setData(doc_list);
