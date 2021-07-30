@@ -6,8 +6,8 @@
 ## doctor
 - stat： 
   - 0:管理员
-  - 1:上传者
-  - 2:协作医生
+  - 1:协作医生
+  - 2:上传医师
   - 3:注销
   - 4:停用
 - pass
@@ -24,3 +24,5 @@
 
 
  
+# profile(配置文件)
+- ![image](https://user-images.githubusercontent.com/54475097/127613709-b4cd075f-f3f6-4b4c-8189-2cacae92ab84.png)
