@@ -79,322 +79,246 @@
                     <div class="layui-form-item">
                         <i class="tub layui-icon layui-icon-username" style="color: #1E9FFF;"></i>
                         <label>医院 : </label>
-                        <span>xxx</span>
+                        <span id="text_hos_name"></span>
                     </div>
                     <div class="layui-form-item">
                         <i class="tub layui-icon layui-icon-log" style="color: #FF5722;"></i>
                         <label>申请人 : </label>
-                        <span>2021-6-27</span>
+                        <span id="text_doctor_name">xxx医院</span>
                     </div>
                     <div class="layui-form-item">
                         <i class="tub layui-icon layui-icon-diamond" style="color: #ff1e31;"></i>
-                        <label>申请日期(附件): </label>
-                        <span>xxx/span>
+                        <label>电话号码 : </label>
+                        <span id="text_doctor_tel">2020-12-02 16:00</span>
                     </div>
             </div>
         </fieldset>
     </div>
-    <form class="layui-form layui-form-pane" action="">
-        <div class="layui-form-item">
 
-            <div class="layui-inline">
-                <label class="layui-form-label">患者名称</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="number" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">身高</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="number" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">体重</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="number" autocomplete="off" class="layui-input">
+    <div class="ok-body">
+        <div class="layui-fluid">
+            <div class="layui-card">
+                <div class="layui-card-header">病人信息</div>
+                <div class="layui-card-body" style="padding: 15px;">
+                    <form class="layui-form" action="" lay-filter="component-form-group">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">患者名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="patient_name" required lay-verify="required" placeholder="请输入名称" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">患者生日</label>
+                            <div class="layui-input-block">
+                                <input type="date" name="patient_birth" id="date" required lay-verify="required" placeholder="请选择患者生日" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">患者身高</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="patient_tall" required lay-verify="required" placeholder="请输入身高,单位cm" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">患者体重</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="patient_weight" required lay-verify="required" placeholder="请输入体重,单位kg" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">所属科室</label>
+                            <div class="layui-input-block">
+                                <input type="text"  name="department" required lay-verify="required" placeholder="请输入所属科室" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">备注</label>
+                            <div class="layui-input-block">
+                                <textarea name="bz" placeholder="请输入内容" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+
+                        <input id="files" name="files" value="0"  class="layui-input" type="hidden">
+                        <div class="layui-upload">
+                            <p>上传附件</p>
+                            <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+                            <div class="layui-upload-list">
+                                <table class="layui-table">
+                                    <thead>
+                                    <tr><th>文件名</th>
+                                        <th>大小</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="demoList"></tbody>
+                                </table>
+                            </div>
+                            <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+                        </div>
+
+                        <div class="layui-form-item layui-layout-admin">
+                            <div class="layui-input-block">
+                                <div class="layui-footer" style="left: 0;">
+                                    <button class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="layui-form-item">
 
-            <div class="layui-inline">
-                <label class="layui-form-label">出生日期</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="number" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">病例类型</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="number" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-
-
-        </div>
-
-    </form>
-    <hr>
-    <div class="layui-upload">
-        <button type="button" class="layui-btn layui-btn-normal " id="testList">上传附件</button>
-        <div class="layui-upload-list" style="max-width: 1000px;">
-            <table class="layui-table">
-                <colgroup>
-                    <col>
-                    <col width="150">
-                    <col width="260">
-                    <col width="150">
-                </colgroup>
-                <thead>
-                <tr><th>文件名</th>
-                    <th>大小</th>
-                    <th>上传进度</th>
-                    <th>操作</th>
-                </tr></thead>
-                <tbody id="demoList"></tbody>
-            </table>
-        </div>
-        <button type="button" class="layui-btn" id="testListAction">提交</button>
-        <button type="button" class="layui-btn" id="aa">保存</button>
     </div>
-
-
 </div>
 
-    <script src="../../lib/layui/layui.js" charset="utf-8"></script>
-    <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
-    <script>
-        layui.use(['upload', 'element', 'layer'], function(){
-            var $ = layui.jquery
-                ,upload = layui.upload
-                ,element = layui.element
-                ,layer = layui.layer;
+<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#date' //指定元素
+        });
+    });
+    layui.use(['form','layer'], function(){
+        $ = layui.jquery;
+        var form = layui.form,layer = layui.layer;
 
-            layui.use(['form', 'layedit', 'laydate'], function() {
-                var form = layui.form
-                    , layer = layui.layer
-                    , layedit = layui.layedit
-                    , laydate = layui.laydate;
-                //日期
-                laydate.render({
-                    elem: '#date'
-                });
-                laydate.render({
-                    elem: '#date1'
-                });
+        //监听提交
+        form.on('submit(add)', function(data){
+            console.log(data.field.files);
+            $.ajax({
+                url:"/saveDisgnose_info",
+                type:"post",
+                async:true,//异步加载
+                data:data.field,
+                success:function (obj) {
+                    if(obj["msg"]=="success"){
+                        alert("提交成功");
+                        // 获得frame索引
+                        var index = parent.layer.getFrameIndex(window.name);
+                        //关闭当前frame
+                        parent.layer.close(index);
+                        window.parent.location.reload(); //刷新父页面
+                    }
+                    if(obj["msg"]=="error"){
+                        alert("error");
+                    }
+                }
             });
+            return false;
+        });
+    });
+    //文件上传
+    var files=[];
+    //JavaScript代码区域
+    layui.use(['element','upload'], function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
 
+        //上传
+        //多文件列表示例
+        var demoListView = $('#demoList')
+            ,uploadListIns = upload.render({
+            elem: '#testList'
+            ,url: '/fileUpload' //改成您自己的上传接口
+            ,accept: 'file'
+            // ,exts: 'txt|rar|zip|doc|docx|pdf|xls|xlsx' //允许上传的文件类型
+            ,multiple: true
+            ,auto: false
+            ,bindAction: '#testListAction'
+            ,choose: function(obj){
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function(index, file, result){
+                    var tr = $(['<tr id="upload-'+ index +'">'
+                        ,'<td>'+ file.name +'</td>'
+                        ,'<td>'+ (file.size/1024).toFixed(1) +'kb</td>'
+                        ,'<td>等待上传</td>'
+                        ,'<td>'
+                        ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        ,'</td>'
+                        ,'</tr>'].join(''));
 
-                //演示多文件列表
-            var uploadListIns = assist_upload.render({
-                elem: '#testList'
-                ,elemList: $('#demoList') //列表元素对象
-                ,url: 'http://localhost:8088/fileUpload'
-                ,accept: 'file'
-                ,multiple: true
-                ,number: 3
-                ,auto: false
-                ,bindAction: '#testListAction'
-                ,choose: function(obj){
-                    var that = this;
-                    var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
-                    //读取本地文件
-                    obj.preview(function(index, file, result){
-                        var tr = $(['<tr id="upload-'+ index +'">'
-                            ,'<td>'+ file.name +'</td>'
-                            ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
-                            ,'<td><div class="layui-progress" lay-filter="progress-demo-'+ index +'"><div class="layui-progress-bar" lay-percent=""></div></div></td>'
-                            ,'<td>'
-                            ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
-                            ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
-                            ,'</td>'
-                            ,'</tr>'].join(''));
-
-                        //单个重传
-                        tr.find('.demo-reload').on('click', function(){
-                            obj.upload(index, file);
-                        });
-
-                        //删除
-                        tr.find('.demo-delete').on('click', function(){
-                            delete files[index]; //删除对应的文件
-                            tr.remove();
-                            uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
-                        });
-
-                        that.elemList.append(tr);
-                        // element.render('progress'); //渲染新加的进度条组件
+                    //单个重传
+                    tr.find('.demo-reload').on('click', function(){
+                        obj.upload(index, file);
                     });
-                }
-                ,done: function(res, index, upload){ //成功的回调
-                    var that = this;
-                    //if(res.code == 0){ //上传成功
-                    var tr = that.elemList.find('tr#upload-'+ index)
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function(){
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+
+                    demoListView.append(tr);
+                });
+            }
+            ,done: function(res, index, upload){
+                if (res.code == 0){
+                    files.push({"fileName":res.filename,"fileUrl":res.fileUrl,"fileSize":res.fileSize});//,"fileUrl":res.fileUrl
+                    var json = JSON.stringify(files);
+                    //将上传的文件信息加入到集合中并转换成json字符串
+                    $("#fileJson").attr("value",json);
+
+                    var fileUrl = res.fileUrl;
+                    var tr = demoListView.find('tr#upload-'+ index)
                         ,tds = tr.children();
-                    tds.eq(3).html(''); //清空操作
-                    delete this.files[index]; //删除文件队列已经上传成功的文件
-                    return;
-                    //}
-                    this.error(index, assist_upload);
+                    tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                    tds.eq(3).html('<span>'+fileUrl+'</span>');
+                    tds.eq(4).html(''); //清空操作
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
                 }
-                ,allDone: function(obj){ //多文件上传完毕后的状态回调
-                    console.log(obj)
-                }
-                ,error: function(index, upload){ //错误回调
-                    var that = this;
-                    var tr = that.elemList.find('tr#upload-'+ index)
-                        ,tds = tr.children();
-                    tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
-                }
-                ,progress: function(n, elem, e, index){ //注意：index 参数为 layui 2.6.6 新增
-                    element.progress('progress-demo-'+ index, n + '%'); //执行进度条。n 即为返回的进度百分比
-                }
-            });
-        })
-    </script>
+                this.error(index, upload);
+            }
+            ,error: function(index, upload){
+                var tr = demoListView.find('tr#upload-'+ index)
+                    ,tds = tr.children();
+                tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+            }
+        });
+    });
+
+</script>
 
 </body>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/application.js"></script>
 <script>
 
+    layui.use('jquery',function(){
+        var $ = layui.jquery;
+        var width = $(window).width();
+
+        $.ajax({
+            // url: '../php/creatSceneXml.php',
+            url: '/getInfo',
+            type: 'GET'
+        })
+            .done(function (result) {
+                console.log(result)
+                $('#text_doctor_name').text(result.doctor_name)
+                $("#text_hos_name").text(result.doctor_account)
+                $("#text_doctor_tel").text(result.doctor_tel)
+
+            })
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                console.log("complete");
+            });
+
+    })
 
     var selectType = "0"; //按钮状态
-    layui.use(["table", 'form', 'okLayer', 'layer'], function () {
-        let $ = layui.jquery;
-        let table = layui.table;
-        let form = layui.form;
-        let okLayer = layui.okLayer;
-        let layer = layui.layer;
-        var thisValue = -1;//查询类别
-        //分派信息绑定
-        let articleTable = table.render({
-            elem: "#tableId",
-            url: "../../data/askDiagnosisList.json",
-            where: {
-                'procTatus': thisValue//当前的状态
-            },
-            parseData: function (res) { //res 即为原始返回的数据
-                var datas = res.data;
 
-                return {
-                    "code": res.code, //解析接口状态
-                    "msg": res.msg, //解析提示文本
-                    "count": res.count, //解析数据长度
-                    "data": res.data //解析数据列表
-                };
-            },
-            cols: [[
-                {field: "askprocessId", title: "列表编号"},
-                {field: "diagnosisId", title: "申请诊断编号"},
-                {field: "name", title: "申请人"},
-                {field: "hospital", title: "所属单位"},
-                {field: "department", title: "所属科室"},
-                {field: "askForTime", title: "申请时间"},
-            ]],
-            page: {
-                layout: ['prev', 'page', 'next', 'skip', 'count'],
-                groups: 3,
-                limit: 15,
-                theme: '#1E9FFF',
-            },
-        });
 
-        //根据所选择的状态按钮，跳转案件状态详细页面
-        table.on('row(tableId)', function (obj) {
-            var data = obj.data;
-            var state = data.procTatus;
-
-            var url = "./apply.html";
-            show(url);
-            obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
-        });
-
-        //跳转详细页面设置
-        function show(url) {
-            window.open(url, 'newwindow', 'width=' + (window.screen.availWidth - 10) + ',height=' + (window.screen.availHeight - 30) + ', top=0, left=0, toolbar=no, menubar=no, scrollbars=yes, resizable=yes,location=no, status=no')
-        }
-
-        //回到全部页面
-        $("#changeType button").on('click', function () {
-            $("#changeType button").removeClass("layui-btn-normal-inside");
-            $(this).addClass("layui-btn-normal-inside")
-            selectType = $(this).attr("selectType");
-            thisValue = $(this).val();
-            articleTable.reload({
-                where: {
-                    'procTatus': thisValue
-                },
-                page: {
-                    curr: 1
-                }
-            })
-        })
-        //搜索
-        $("#selectForm").on('click', selectForm);
-
-        function selectForm() {
-            okLayer.open("查询条件", "selectForm.html", "35%", "60%", function (layero) {
-                let iframeWin = window[layero.find("iframe")[0]["name"]];
-            }, function () {
-                //获取搜索页面传过来的搜索条件
-                var caseId = window.document.caseId;
-                var procLevel = window.document.procLevel;
-                var caseDescription = window.document.caseDescription;
-                var startTime = window.document.startTime;
-                var endTime = window.document.endTime;
-                var newStartDate = startTime.replace(/-/g, "/");//时间格式转换
-                var newEndDate = endTime.replace(/-/g, "/");
-                //置空搜索框
-                window.document.caseId = "";
-                window.document.procLevel = "";
-                window.document.caseDescription = "";
-                window.document.startTime = "";
-                window.document.endTime = "";
-                var isChange = window.document.isChange;
-                window.document.isChange = 0
-                if (isChange != 1) {
-                    return
-                }
-                //重载页面
-                articleTable.reload({
-                    where: {
-                        'procTatus': thisValue,
-                        'caseId': caseId,
-                        'procLevel': procLevel,
-                        'caseDescription': caseDescription,
-                        'startTime': newStartDate,
-                        'endTime': newEndDate
-                    },
-                    page: {
-                        curr: 1
-                    }
-                })
-                return false;
-            })
-        }
-
-        //刷新页面
-        $("#selectEmpty").on('click', backAll);
-
-        function backAll() {
-            articleTable.reload({
-                where: {
-                    //传到服务器数据
-                    'procTatus': thisValue,
-                    'caseId': '',
-                    'procLevel': '',
-                    'caseDescription': '',
-                    'startTime': '',
-                    'endTime': ''
-                },
-                page: {
-                    curr: 1//回到第一页
-                }
-            })
-            return false;
-        }
-    })
 </script>
 </html>

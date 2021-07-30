@@ -1,8 +1,6 @@
 package com.hl.hos.pojo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.sql.Timestamp;
 import java.io.Serializable;
@@ -35,6 +33,7 @@ public class Attached implements Serializable {
 
     private String attched_name;
 
+    @TableField(fill = FieldFill.INSERT)
     private Timestamp create_time;
 
     private Integer stat;

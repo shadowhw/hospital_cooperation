@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * <p>
@@ -31,6 +32,7 @@ public class Disgnose_info implements Serializable {
 
     private String patient_name;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Timestamp patient_birth;
 
     private String patient_tall;
