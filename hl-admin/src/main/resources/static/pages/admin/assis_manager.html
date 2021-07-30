@@ -119,6 +119,7 @@
                 method:"get"
             },
             where: {
+                stat:2//查询协助医师
                 // 'procTatus': thisValue//当前的状态
             },
             parseData: function (res) { //res 即为原始返回的数据
@@ -179,7 +180,7 @@
             page: {
                 layout: ['prev', 'page', 'next', 'skip', 'count'],
                 groups: 3,
-                limit: 4,
+                limit: 10,
                 theme: '#1E9FFF',
             },
         });

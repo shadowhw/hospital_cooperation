@@ -11,6 +11,7 @@ import com.hl.hos.pojo.Result;
 import com.hl.hos.service.Doctor_infoService;
 import com.hl.hos.service.Hos_infoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -40,18 +41,20 @@ public class Doctor_infoController {
     private Result result;
 
     /**
-     * 查询所有医生信息
+     * 根据页码和状态查询所有医生信息
      * @return
      */
     @ResponseBody
     @GetMapping("/get_doctor_list")
-    public Result get_doctor_list(String page,String limit)
+    public Result get_doctor_list(String page,String limit,String stat)
     {
-        List<Doctor_info> list = doctor_infoService.list();
+        QueryWrapper<Doctor_info> queryWrapper = new QueryWrapper<Doctor_info>()
+                .eq("stat",stat);//排除协助医师
+        List<Doctor_info> list = doctor_infoService.list(queryWrapper);
         List<DoctorHos> doctorLists = new ArrayList<DoctorHos>();
 
         Page<Doctor_info> page1 = new Page<Doctor_info>(Integer.parseInt(page),Integer.parseInt(limit));
-        IPage<Doctor_info> iPage = doctor_infoService.page(page1);
+        IPage<Doctor_info> iPage = doctor_infoService.page(page1,queryWrapper);
 
         for (int i = 0; i < iPage.getRecords().size(); i++)
         {
@@ -109,6 +112,50 @@ public class Doctor_infoController {
         );
         result.setCount(doc_list.size());//数量应该是所有数据的大小
         result.setData(doc_list);
+        result.setCode(200);
+        return result;
+    }
+
+    /**
+     * 组合查询所有医生信息
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/get_doctor_list_by_params")
+    public Result get_doctor_list_by_params(String doctor_name,String email,String doctor_tel,String doctor_account,String pass)
+    {
+        QueryWrapper<Doctor_info> queryWrapper = new QueryWrapper<>();
+        //判断条件值是否为空,如果不为空,拼接条件
+        if (!StringUtils.isEmpty(doctor_name.trim())){
+            queryWrapper.like("doctor_name",doctor_name);
+        }
+        if (!StringUtils.isEmpty(email.trim())){
+            queryWrapper.like("email",email);
+        }
+        if (!StringUtils.isEmpty(doctor_tel.trim())){
+            queryWrapper.like("doctor_tel",doctor_tel);
+        }
+        if (!StringUtils.isEmpty(doctor_account.trim())){
+            queryWrapper.like("doctor_account",doctor_account);
+        }
+        if (!StringUtils.isEmpty(pass.trim())){
+            queryWrapper.like("pass",pass);
+        }
+
+        List<Doctor_info> doc_list = doctor_infoService.list(queryWrapper);
+        List<DoctorHos> doctorLists = new ArrayList<DoctorHos>();
+
+        for (int i = 0; i < doc_list.size(); i++)
+        {
+            DoctorHos doctorHos = new DoctorHos();
+            Doctor_info doctorInfo = doc_list.get(i);
+            doctorInfo.setDoctor_pwd(null);
+            doctorHos.setDoctor_info(doctorInfo);
+            doctorHos.setHos_info(hos_infoService.getById(doctorInfo.getHos_id()));
+            doctorLists.add(doctorHos);
+        }
+        result.setCount(doc_list.size());//数量应该是所有数据的大小
+        result.setData(doctorLists);
         result.setCode(200);
         return result;
     }
