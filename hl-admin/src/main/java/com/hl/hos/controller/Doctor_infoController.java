@@ -10,13 +10,11 @@ import com.hl.hos.pojo.Hos_info;
 import com.hl.hos.pojo.Result;
 import com.hl.hos.service.Doctor_infoService;
 import com.hl.hos.service.Hos_infoService;
+import com.hl.hos.utils.DateUtil;
+import com.hl.hos.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,10 +44,20 @@ public class Doctor_infoController {
      */
     @ResponseBody
     @GetMapping("/get_doctor_list")
-    public Result get_doctor_list(String page,String limit,String stat)
+    public Result get_doctor_list(String page,String limit,int type)
     {
-        QueryWrapper<Doctor_info> queryWrapper = new QueryWrapper<Doctor_info>()
-                .eq("stat",stat);//排除协助医师
+        QueryWrapper<Doctor_info> queryWrapper = new QueryWrapper<>();//排除协助医师
+        //协助医师
+        if(type==1)
+        {
+            queryWrapper.in("stat",1,3,4);
+        }
+        //普通医师
+        if(type==2)
+        {
+            queryWrapper.in("stat",2,5,6);
+        }
+
         List<Doctor_info> list = doctor_infoService.list(queryWrapper);
         List<DoctorHos> doctorLists = new ArrayList<DoctorHos>();
 
@@ -122,9 +130,19 @@ public class Doctor_infoController {
      */
     @ResponseBody
     @GetMapping("/get_doctor_list_by_params")
-    public Result get_doctor_list_by_params(String doctor_name,String email,String doctor_tel,String doctor_account,String pass)
+    public Result get_doctor_list_by_params(String doctor_name,String email,String doctor_tel,String doctor_account,String pass,int type)
     {
         QueryWrapper<Doctor_info> queryWrapper = new QueryWrapper<>();
+        //协助医师
+        if(type==1)
+        {
+            queryWrapper.in("stat",1,3,4);
+        }
+        //普通医师
+        if(type==2)
+        {
+            queryWrapper.in("stat",2,5,6);
+        }
         //判断条件值是否为空,如果不为空,拼接条件
         if (!StringUtils.isEmpty(doctor_name.trim())){
             queryWrapper.like("doctor_name",doctor_name);
@@ -156,6 +174,58 @@ public class Doctor_infoController {
         }
         result.setCount(doc_list.size());//数量应该是所有数据的大小
         result.setData(doctorLists);
+        result.setCode(200);
+        return result;
+    }
+
+    /**
+     * 添加协作医师
+     * @param doctor_info
+     * @param hos_info
+     * @return
+     */
+    @PostMapping("/add_assist_doctor")
+    @ResponseBody
+    public Result add_assist_doctor(Doctor_info doctor_info, Hos_info hos_info)
+    {
+        Long hos_id = 0l;
+        //查询单位信息
+        List<Hos_info> list = hos_infoService.list(new QueryWrapper<Hos_info>()
+                .eq("hos_name",hos_info.getHos_name())
+                .eq("hos_addr",hos_info.getHos_addr())
+        );
+//        if(list.size()>=1)
+//        {
+//            result.setCode(201);
+//            result.setData(null);
+//            result.setMsg("该单位账号已存在");
+//            return result;
+//        }
+        //不存在就添加单位
+        hos_info.setStat(1);
+        hos_info.setCreate_time(DateUtil.getNowSqlDateTime());
+        if(list.size()==0)
+        {
+            hos_infoService.save(hos_info);
+            hos_id = hos_info.getId();
+        }else {
+            hos_id = list.get(0).getId();
+        }
+
+        //添加医生
+        doctor_info.setCreate_time(DateUtil.getNowSqlDateTime());
+        doctor_info.setPass(1);
+        doctor_info.setHos_id(hos_id);
+        doctor_info.setStat(1);//协作医师
+        doctor_info.setDoctor_pwd(MD5Util.getMd5(doctor_info.getDoctor_tel()));//默认密码就是电话号码
+        //设置医生账号：医院名加该医院数量
+        List<Doctor_info> hos_doctors = doctor_infoService.list(new QueryWrapper<Doctor_info>()
+                .eq("hos_id",hos_id)
+        );
+        doctor_info.setDoctor_account(hos_info.getHos_name()+(hos_doctors.size()+1));
+        doctor_infoService.save(doctor_info);
+
+        result.setMsg("成功");
         result.setCode(200);
         return result;
     }

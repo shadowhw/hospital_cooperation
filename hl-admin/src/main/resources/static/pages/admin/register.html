@@ -176,7 +176,7 @@
                 method:"get"
             },
             where: {
-                stat:1
+                type:2//查询普通医师
                 // 'procTatus': thisValue//当前的状态
             },
             parseData: function (res) { //res 即为原始返回的数据
@@ -376,7 +376,8 @@
                     'doctor_account':doctor_account,
                     'doctor_tel':doctor_tel,
                     'email':email,
-                    'pass':pass
+                    'pass':pass,
+                    'type':2
                 },
                 page: {
                     curr: 1
