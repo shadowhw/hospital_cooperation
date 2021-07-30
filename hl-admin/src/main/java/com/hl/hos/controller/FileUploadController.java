@@ -80,6 +80,16 @@ public class FileUploadController {
        return result;
     }
 
+    /**
+     * 上传提交诊断申请
+     * @param patient_name
+     * @param patient_birth
+     * @param patient_tall
+     * @param patient_weight
+     * @param department
+     * @param bz
+     * @return
+     */
     @PostMapping("/saveDisgnose_info")
     @ResponseBody
     public Result saveDisa(String patient_name,
