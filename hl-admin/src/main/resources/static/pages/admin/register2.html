@@ -202,7 +202,7 @@
                         },
                         success:function(data){
                             if(data.code == '201'){
-                                layer.msg(data.data.msg,{icon: 5});//失败的表情
+                                layer.msg(data.msg,{icon: 5});//失败的表情
                             }else{
                                 layer.msg("成功", {
                                     icon: 6,//成功的表情
@@ -276,8 +276,6 @@
                 }
             })
         })
-
-
 
         //搜索
         $("#selectForm").on('click', selectForm);

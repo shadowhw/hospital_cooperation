@@ -87,6 +87,8 @@ public class Doctor_infoController {
     @GetMapping("/update_doctor_info")
     public Result update_doctor_info(Doctor_info doctor_info)
     {
+        if(doctor_info.getDoctor_pwd()!=null)
+            doctor_info.setDoctor_pwd(MD5Util.getMd5(doctor_info.getDoctor_pwd()));
         if(doctor_infoService.updateById(doctor_info))
         {
             result.setCount(1);

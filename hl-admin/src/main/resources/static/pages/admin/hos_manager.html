@@ -62,9 +62,9 @@
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;margin-left: 30px">
-<!--        <button type="button" id="btn_add" class="layui-btn layui-btn-radius layui-btn-normal">-->
-<!--            <i class="layui-icon">&#xe654;添加医院</i>-->
-<!--        </button>-->
+        <button type="button" id="btn_add" class="layui-btn layui-btn-radius layui-btn-normal">
+            <i class="layui-icon">&#xe654;添加医院</i>
+        </button>
     </fieldset>
     <!--数据表格-->
     <div class="list-con">
@@ -84,7 +84,6 @@
 <script src="/js/model.js"></script>
 <script>
     $(document).ready(function(){
-        //添加医院
         $("#btn_add").click(function () {
             layui.use(['form', 'okLayer', 'layer'],function () {
                 let layer = layui.layer;
@@ -95,8 +94,8 @@
                     shade: [0.3],
                     //btn: [ '关闭'],//关闭按钮
                     maxmin: false, //开启最大化最小化按钮
-                    area: ['80%', '100%'],
-                    content: ['/pages/admin/add_assis.html','yes']
+                    area: ['60%', '70%'],
+                    content: ['/pages/admin/add_hos.html','yes']
                 });
             })
         });
@@ -237,9 +236,36 @@
 
         //单元格编辑
         table.on('edit(tableId)', function(obj){ //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
-            console.log(obj.value); //得到修改后的值
-            console.log(obj.field); //当前编辑的字段名
-            console.log(obj.data); //所在行的所有相关数据
+            //询问框
+            layer.confirm("您确定更改医院名称为:"+obj.value+"吗?", {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                let id = obj.data.id;
+                let hos_name = obj.data.hos_name;
+                $.ajax({
+                    url:'/hos/hos_info/update_hos_info',
+                    type:'get',
+                    data:{
+                        'id':id,'hos_name':hos_name,
+                    },
+                    success:function(data){
+                        if(data.code == '201'){
+                            layer.msg(data.msg,{icon: 5});//失败的表情
+                        }else{
+                            layer.msg("修改成功", {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function(){
+                                window.location.reload();
+                            });
+                        }
+                    },
+                });
+
+                layer.msg('修改成功'+id+hos_name, {icon: 1});
+            }, function(){
+                window.location.reload();
+            });
         });
 
         //点击查看详情页面

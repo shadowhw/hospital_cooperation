@@ -183,6 +183,64 @@ public class Diagnosis_infoController
         return result;
     }
 
+    /**
+     * 图表1的组合查询诊断信息
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/get_diagnosis_list_by_params_from_chart1")
+    public Result get_diagnosis_list_by_params_from_chart1(String disgnose_code,String patient_name,String patient_tall,String patient_weight,String diagnose_result,String create_time,String start_time,String end_time)
+    {
+        QueryWrapper<Disgnose_info> queryWrapper = new QueryWrapper<>();
+        if (!StringUtils.isEmpty(disgnose_code.trim())){
+            queryWrapper.like("disgnose_code",disgnose_code);
+        }
+        if (!StringUtils.isEmpty(patient_name.trim())){
+            queryWrapper.like("patient_name",patient_name);
+        }
+        if (!StringUtils.isEmpty(patient_tall.trim())){
+            queryWrapper.like("patient_tall",patient_tall);
+        }
+        if (!StringUtils.isEmpty(patient_weight.trim())){
+            queryWrapper.like("patient_weight",patient_weight);
+        }
+        if (!StringUtils.isEmpty(diagnose_result.trim())){
+            queryWrapper.like("diagnose_result",diagnose_result);
+        }
+        if (!StringUtils.isEmpty(create_time.trim())){
+            queryWrapper.like("create_time",create_time);
+        }
+        if (!StringUtils.isEmpty(start_time.trim())){
+            queryWrapper.ge("create_time",start_time);//大于等于开始时间
+            queryWrapper.le("create_time",end_time);//小于等于结束时间
+        }
+
+
+        List<Disgnose_info> list = disgnose_infoService.list(queryWrapper);
+
+        List<DiagnosisDoctorHos> resList = new ArrayList<DiagnosisDoctorHos>();
+
+
+        for (int i = 0; i < list.size(); i++)
+        {
+            DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();
+            Disgnose_info disgnose_info = list.get(i);
+
+            diagnosisDoctorHos.setDisgnose_info(disgnose_info);//绑定诊断信息
+            Doctor_info doctorInfo = doctor_infoService.getById(disgnose_info.getDoctor_id());
+            doctorInfo.setDoctor_pwd(null);
+            diagnosisDoctorHos.setDoctor_info(doctorInfo);//绑定医生
+            Long hos_id = doctor_infoService.getById(disgnose_info.getDoctor_id()).getHos_id();
+            diagnosisDoctorHos.setHos_info(hos_infoService.getById(hos_id));//绑定医院信息
+
+            resList.add(diagnosisDoctorHos);
+        }
+        result.setCount(list.size());//数量应该是所有数据的大小
+        result.setData(resList);
+        result.setCode(200);
+        return result;
+    }
+
 
 }
 
