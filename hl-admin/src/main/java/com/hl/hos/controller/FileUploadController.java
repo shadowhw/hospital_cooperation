@@ -22,9 +22,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class FileUploadController {
@@ -110,6 +108,7 @@ public class FileUploadController {
         disgnose_info.setDoctor_id(doctor_info.getId());
         disgnose_info.setStat(1);
         disgnose_info.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
+        disgnose_info.setDisgnose_code(new SimpleDateFormat("yyyyMMdd").format(new Date())+ UUID.randomUUID().toString().substring(5,8));
 
         //讲诊断信息保存到数据库
         boolean save = disgnoseInfoService.save(disgnose_info);
