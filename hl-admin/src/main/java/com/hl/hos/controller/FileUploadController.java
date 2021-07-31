@@ -130,6 +130,7 @@ public class FileUploadController {
         }else{
             result.setMsg("error");
         }
+        fileslist.clear(); //清除
         return result;
     }
 
