@@ -222,7 +222,7 @@ public class Disgnose_infoController {
             Hos_info hosInfo = hosInfoService.getOne(new QueryWrapper<Hos_info>().eq("id",newDoctor.getHos_id()));
             DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();//组合关系
             diagnosisDoctorHos.setHos_info(hosInfo);
-            diagnosisDoctorHos.setDoctor_info(doctor_info);
+            diagnosisDoctorHos.setDoctor_info(newDoctor);
             diagnosisDoctorHos.setDisgnose_info(disgnose_info);
             diagnosisDoctorHosList.add(diagnosisDoctorHos);
         }
