@@ -214,7 +214,7 @@ public class Disgnose_infoController {
         List<DiagnosisDoctorHos> diagnosisDoctorHosList = new ArrayList<>();
         //根据分配表查询出所有诊断申请
         for(int i = 0;i<dwdR.size();i++){
-            Long disgnose_id = dwdR.get(0).getDisgnose_id();
+            Long disgnose_id = dwdR.get(i).getDisgnose_id();
             Disgnose_info disgnose_info = disgnoseInfoService.getById(disgnose_id); //诊断申请
             //根据诊断申请查出医师
             Doctor_info newDoctor = doctorInfoService.getOne(new QueryWrapper<Doctor_info>().eq("id", disgnose_info.getId()));
