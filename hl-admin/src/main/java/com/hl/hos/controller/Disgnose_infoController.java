@@ -60,24 +60,24 @@ public class Disgnose_infoController {
         QueryWrapper<Disgnose_info> q1 = new QueryWrapper<Disgnose_info>().eq("doctor_id", doctor_info.getId());
         //根据医生查出医院以及他的诊断申请
         Page<Disgnose_info> disgnose_infoPage = disgnoseInfoService.page(new Page<Disgnose_info>(Integer.parseInt(page), Integer.parseInt(limit)), q1);
-        Page<Hos_info> hos_infoPage = hosInfoService.page(new Page<Hos_info>(Integer.parseInt(page),Integer.parseInt(limit)), new QueryWrapper<Hos_info>().eq("id",doctor_info.getHos_id()));
+        Hos_info hos_infoPage = hosInfoService.getOne( new QueryWrapper<Hos_info>().eq("id",doctor_info.getHos_id()));
 
 
         List<DiagnosisDoctorHos> diagnosisDoctorHosList = new ArrayList<>();
 
         List<Disgnose_info> disgnose_infoPageRecords = disgnose_infoPage.getRecords();
-        List<Hos_info> hos_infoPageRecords = hos_infoPage.getRecords();
+
         //添加诊断申请表
         for(int i =0;i<disgnose_infoPageRecords.size();i++){
             DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();
             diagnosisDoctorHos.setDoctor_info(doctor_info);
-            diagnosisDoctorHos.setHos_info(hos_infoPageRecords.get(0)); //添加医院
+            diagnosisDoctorHos.setHos_info(hos_infoPage); //添加医院
             diagnosisDoctorHos.setDisgnose_info(disgnose_infoPageRecords.get(i));
             diagnosisDoctorHosList.add(diagnosisDoctorHos);
         }
         Result result = new Result();
         result.setCode(200);
-        result.setCount(diagnosisDoctorHosList.size());
+        result.setCount(list.size());
         result.setData(diagnosisDoctorHosList);
         return result;
     }
@@ -141,8 +141,61 @@ public class Disgnose_infoController {
         return result;
     }
 
+    @GetMapping("/get_disgnois_list_byparams_W")
+    public Result get_disgnois_list_byparams_W(String disgnose_code,String patient_name,String patient_tall,String patient_weight,String diagnose_result,String create_time,String stat,
+                                               HttpSession seesion){
+        //拼接条件查询
+        QueryWrapper<Disgnose_info> queryWrapper = new QueryWrapper<>();
+        if (!StringUtils.isEmpty(disgnose_code.trim())){
+            queryWrapper.like("disgnose_code",disgnose_code);
+        }
+        if (!StringUtils.isEmpty(patient_name.trim())){
+            queryWrapper.like("patient_name",patient_name);
+        }
+        if (!StringUtils.isEmpty(patient_tall.trim())){
+            queryWrapper.like("patient_tall",patient_tall);
+        }
+        if (!StringUtils.isEmpty(patient_weight.trim())){
+            queryWrapper.like("patient_weight",patient_weight);
+        }
+        if (!StringUtils.isEmpty(diagnose_result.trim())){
+            queryWrapper.like("diagnose_result",diagnose_result);
+        }
+        if (!StringUtils.isEmpty(create_time.trim())){
+            queryWrapper.like("create_time",create_time);
+        }
+        if (!StringUtils.isEmpty(stat.trim())){
+            queryWrapper.like("stat",stat);
+        }
+        //查询出当前医生的诊断任务
+        Doctor_info doctor_info = (Doctor_info)seesion.getAttribute("doctor_info");
+        List<Doctor_with_disgnose> dwdL = doctorWithDisgnoseService.list(new QueryWrapper<Doctor_with_disgnose>().eq("doctor_id",doctor_info.getId()));
+
+        List<DiagnosisDoctorHos> diagnosisDoctorHosList = new ArrayList<>();
+        //根据分配表查询出所有诊断申请
+        for(int i = 0 ;i<dwdL.size();i++){
+            Long disgnose_id = dwdL.get(0).getDisgnose_id();
+            queryWrapper.eq("id",disgnose_id);
+            Disgnose_info disgnose_info = disgnoseInfoService.getOne(queryWrapper);
+            if(disgnose_info!=null){
+                Doctor_info doctor_info1 = doctorInfoService.getById(disgnose_info.getDoctor_id());
+                Hos_info hosInfo = hosInfoService.getById(doctor_info1.getHos_id());
+                DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();
+                diagnosisDoctorHos.setDisgnose_info(disgnose_info);
+                diagnosisDoctorHos.setDoctor_info(doctor_info1);
+                diagnosisDoctorHos.setHos_info(hosInfo);
+                diagnosisDoctorHosList.add(diagnosisDoctorHos);
+            }
+        }
+        Result result = new Result();
+        result.setData(diagnosisDoctorHosList);
+        result.setCount(diagnosisDoctorHosList.size());
+        result.setCode(200);
+        return result;
+    }
+
     /**
-     *
+     * 获取当前医师被分配到的任务
      */
     @GetMapping("/getManagerDiagois")
     public Result get_manager_diagnois_list(HttpSession session,

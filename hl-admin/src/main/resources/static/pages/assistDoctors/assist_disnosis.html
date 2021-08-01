@@ -100,6 +100,26 @@
         </div>
     </div>
 </div>
+<div class="search">
+    <div class="layui-row">
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">诊断结果</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" id="diagnose_result" autocomplete="off" placeholder="请输入诊断结果" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">申请时间</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" id="create_time" autocomplete="off" placeholder="请输入申请时间" class="layui-input">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="layui-row">
     <form class="layui-form ok-form">
         <div class="layui-form-item" style="width: 25%">
@@ -177,7 +197,6 @@
 
                     rs.push(dia);
                 }
-
                 return {
                     "code": 0, //解析接口状态
                     "msg": res.msg, //解析提示文本
@@ -280,7 +299,7 @@
 
             //重载页面
             articleTable.reload({
-                url:"/get_diagnosis_list_by_params_assits",
+                url:"/get_disgnois_list_byparams_W",
                 where: {
                     'disgnose_code': disgnose_code,
                     'patient_name':patient_name,
