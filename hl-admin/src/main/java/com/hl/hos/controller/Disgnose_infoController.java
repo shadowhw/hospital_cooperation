@@ -141,6 +141,18 @@ public class Disgnose_infoController {
         return result;
     }
 
+    /**
+     * 组合查询
+     * @param disgnose_code
+     * @param patient_name
+     * @param patient_tall
+     * @param patient_weight
+     * @param diagnose_result
+     * @param create_time
+     * @param stat
+     * @param seesion
+     * @return
+     */
     @GetMapping("/get_disgnois_list_byparams_W")
     public Result get_disgnois_list_byparams_W(String disgnose_code,String patient_name,String patient_tall,String patient_weight,String diagnose_result,String create_time,String stat,
                                                HttpSession seesion){
@@ -174,9 +186,10 @@ public class Disgnose_infoController {
         List<DiagnosisDoctorHos> diagnosisDoctorHosList = new ArrayList<>();
         //根据分配表查询出所有诊断申请
         for(int i = 0 ;i<dwdL.size();i++){
-            Long disgnose_id = dwdL.get(0).getDisgnose_id();
-            queryWrapper.eq("id",disgnose_id);
-            Disgnose_info disgnose_info = disgnoseInfoService.getOne(queryWrapper);
+            Long disgnose_id = dwdL.get(i).getDisgnose_id();
+            QueryWrapper<Disgnose_info> queryWrapper1 = queryWrapper.clone();
+            Disgnose_info disgnose_info = disgnoseInfoService.getOne(queryWrapper1.eq("id",disgnose_id));
+            queryWrapper1.clear();
             if(disgnose_info!=null){
                 Doctor_info doctor_info1 = doctorInfoService.getById(disgnose_info.getDoctor_id());
                 Hos_info hosInfo = hosInfoService.getById(doctor_info1.getHos_id());
@@ -217,7 +230,7 @@ public class Disgnose_infoController {
             Long disgnose_id = dwdR.get(i).getDisgnose_id();
             Disgnose_info disgnose_info = disgnoseInfoService.getById(disgnose_id); //诊断申请
             //根据诊断申请查出医师
-            Doctor_info newDoctor = doctorInfoService.getOne(new QueryWrapper<Doctor_info>().eq("id", disgnose_info.getId()));
+            Doctor_info newDoctor = doctorInfoService.getOne(new QueryWrapper<Doctor_info>().eq("id", disgnose_info.getDoctor_id()));
             //根据医师查出医院
             Hos_info hosInfo = hosInfoService.getOne(new QueryWrapper<Hos_info>().eq("id",newDoctor.getHos_id()));
             DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();//组合关系

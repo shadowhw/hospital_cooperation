@@ -74,6 +74,7 @@ public class Disnose_resultController {
                 attachedResult.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
                 attachedResult.setDoctor_id(doctor_info.getId());
                 attachedResultServices.save(attachedResult);
+
                 attachedResultList.add(attachedResult);
             }catch (Exception e){
 
@@ -104,6 +105,7 @@ public class Disnose_resultController {
             attached_result.setDisnose_result_id(disgnose_info.getId());
             attachedResultServices.updateById(attached_result);
         }
+        disgnoseInfoService.updateById(disgnose_info);
         attachedResultList.clear();
         result.setMsg("success");
         result.setCode(200);
@@ -122,13 +124,16 @@ public class Disnose_resultController {
         int max = Math.max(requestFiles.size(), resultFiles.size());
 
         for(int i = 0 ; i<max;i++){
-            AttachedWithResutAttached attachedWithResutAttached = new AttachedWithResutAttached();
-            if(!requestFiles.isEmpty()&&requestFiles.get(i)!=null){
+
+            if(!requestFiles.isEmpty()&&i<requestFiles.size()&&requestFiles.get(i)!=null){
+                AttachedWithResutAttached attachedWithResutAttached = new AttachedWithResutAttached();
                 attachedWithResutAttached.setAttached(requestFiles.get(i));
                 attachedWithResutAttached.setType("申请附件");
+                attachedWithResutAttachedList.add(attachedWithResutAttached);
             }
 
-            if(!resultFiles.isEmpty()&&resultFiles.get(i)!=null){
+            if(!resultFiles.isEmpty()&&resultFiles.size()>i&&resultFiles.get(i)!=null){
+                AttachedWithResutAttached attachedWithResutAttached = new AttachedWithResutAttached();
                 Attached_result attached_result = resultFiles.get(i);
                 Attached attached = new Attached();
                 attached.setDisgnose_id(attached_result.getDisnose_result_id());
@@ -138,10 +143,12 @@ public class Disnose_resultController {
                 attached.setAttched_name(attached_result.getAttched_name());
                 attached.setStat(attached_result.getStat());
                 attached.setCreate_time(attached_result.getCreate_time());
+
                 attachedWithResutAttached.setType("结果附件");
                 attachedWithResutAttached.setAttached(attached);
+                attachedWithResutAttachedList.add(attachedWithResutAttached);
             }
-            attachedWithResutAttachedList.add(attachedWithResutAttached);
+
         }
         Result result = new Result();
         result.setData(attachedWithResutAttachedList);
