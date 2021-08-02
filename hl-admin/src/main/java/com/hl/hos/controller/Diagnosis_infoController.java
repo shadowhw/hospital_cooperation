@@ -57,8 +57,11 @@ public class Diagnosis_infoController
             DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();
             Disgnose_info disgnose_info = iPage.getRecords().get(i);
 
-            diagnosisDoctorHos.setDisgnose_info(disgnose_info);//绑定诊断信息
+            //医生账号不能用时不显示
             Doctor_info doctorInfo = doctor_infoService.getById(disgnose_info.getDoctor_id());
+            if(doctorInfo.getStat()==5 || doctorInfo.getStat()==6)
+                continue;//不绑定信息
+            diagnosisDoctorHos.setDisgnose_info(disgnose_info);//绑定诊断信息
             doctorInfo.setDoctor_pwd(null);
             diagnosisDoctorHos.setDoctor_info(doctorInfo);//绑定医生
             Long hos_id = doctor_infoService.getById(disgnose_info.getDoctor_id()).getHos_id();
@@ -168,13 +171,15 @@ public class Diagnosis_infoController
             DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();
             Disgnose_info disgnose_info = list.get(i);
 
-            diagnosisDoctorHos.setDisgnose_info(disgnose_info);//绑定诊断信息
+
             Doctor_info doctorInfo = doctor_infoService.getById(disgnose_info.getDoctor_id());
+            if(doctorInfo.getStat()==5 || doctorInfo.getStat()==6)
+                continue;//不绑定信息
             doctorInfo.setDoctor_pwd(null);
             diagnosisDoctorHos.setDoctor_info(doctorInfo);//绑定医生
             Long hos_id = doctor_infoService.getById(disgnose_info.getDoctor_id()).getHos_id();
             diagnosisDoctorHos.setHos_info(hos_infoService.getById(hos_id));//绑定医院信息
-
+            diagnosisDoctorHos.setDisgnose_info(disgnose_info);//绑定诊断信息
             resList.add(diagnosisDoctorHos);
         }
         result.setCount(list.size());//数量应该是所有数据的大小

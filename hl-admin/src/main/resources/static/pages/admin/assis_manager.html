@@ -128,6 +128,7 @@
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-xs" lay-event="zhuxiao">注销</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="tingyong">停用</a>
+        <a class="layui-btn layui-btn-info layui-btn-xs" lay-event="qiyong">启用</a>
         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="chongzhimima">重置密码</a>
     </script>
 </body>
@@ -257,6 +258,10 @@
                 case "tingyong":
                     info = "停用";
                     stat = 4;
+                    break;
+                case "qiyong":
+                    info = "启用";
+                    stat = 1;
                     break;
             }
             if(obj.event!="chongzhimima")
