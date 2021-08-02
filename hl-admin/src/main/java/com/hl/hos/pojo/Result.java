@@ -14,4 +14,5 @@ public class Result
     private Integer code;
     private Object data;
     private Integer count;
+    private String userName;//当前用户名称
 }
