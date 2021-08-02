@@ -114,6 +114,11 @@ public class Disnose_resultController {
         return result;
     }
 
+    /**
+     * 获取结果诊断表和请求诊断表
+     * @param disgnose_id
+     * @return
+     */
     @GetMapping("/getAttchedAndResutAttched")
     public Result getAttchedAndResultAttched(String disgnose_id){
         //根据disgnoseId获取文件信息
@@ -155,7 +160,6 @@ public class Disnose_resultController {
         result.setCode(0);
         result.setCount(attachedWithResutAttachedList.size());
         return result;
-
     }
 }
 

@@ -271,12 +271,25 @@
         })
 
         //根据所选择的状态按钮，跳转案件状态详细页面
+        //根据所选择的状态按钮，跳转案件状态详细页面
         table.on('row(tableId)', function (obj) {
             var data = obj.data;
+
+            layer.open({
+                type: 2,
+                title: '分配任务',
+                shadeClose: false,
+                //shade: [0.3],
+                btn: [ '关闭'],//关闭按钮
+                maxmin: false, //开启最大化最小化按钮
+                area: ['100%', '100%'],
+                scrollbar: true, //屏蔽滚动条
+                content: '/pages/assistDoctors/diagnosis_request.html?disgnose_id='+data.id
+            });
             var state = data.procTatus;
 
-            var url = "./apply.html";
-            show(url);
+            //var url = "/pages/admin/waitingForDistribution.html"
+            //show(url);
             obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
         });
 

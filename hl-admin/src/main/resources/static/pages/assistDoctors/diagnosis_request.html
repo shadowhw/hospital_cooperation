@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" >
 
 <head>
     <meta charset="UTF-8">
@@ -79,8 +79,11 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
+
+
 <div class="ok-body" style="background: #F8F8F8">
     <div class="layui-row ">
         <div class="layui-col-md8" style="background-color:#f8f8f8;">
@@ -95,50 +98,104 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-md4" style="background-color:#f8f8f8;">
-
-                            <div class="layui-form-item">
-                                <div class="layui-card-body" style="padding: 15px;">
-                                    <form class="layui-form" action="" lay-filter="component-form-group">
-
-                                        <input id="files" name="files" value="0"  class="layui-input" type="hidden">
-                                        <div class="layui-upload">
-                                            <p>上传附件</p>
-                                            <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
-                                            <div class="layui-upload-list">
-                                                <table class="layui-table">
-                                                    <thead>
-                                                    <tr><th>文件名</th>
-                                                        <th>大小</th>
-                                                        <th>状态</th>
-                                                        <th>操作</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody id="demoList"></tbody>
-                                                </table>
-                                            </div>
-                                            <button type="button" class="layui-btn" id="testListAction">开始上传</button>
-                                        </div>
-                                        <div class="layui-form-item layui-form-text">
-                                            <label class="layui-form-label">诊断结果</label>
-                                            <div class="layui-input-block">
-                                                <textarea name="disno" id="disno" placeholder="请输入内容" class="layui-textarea"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="layui-form-item layui-layout-admin">
-                                            <div class="layui-input-block">
-                                                <div class="layui-row" style="left: 0;">
-                                                    <button class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
-                                                    <button type="reset" class="layui-btn layui-btn-primary">保存</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+        <div class="layui-col-md4">
+            <div>
+                <fieldset class="layui-elem-field">
+                    <legend>重新上传</legend>
+                    <div style="background-color: #f8f8f8;height: auto;margin:15px 20px 0 30px">
+                        <div class="layui-form-item">
+                            <i class="tub layui-icon layui-icon-username" style="color: #1E9FFF;"></i>
+                            <label>医院 : </label>
+                            <span id="text_hos_name"></span>
+                        </div>
+                        <div class="layui-form-item">
+                            <i class="tub layui-icon layui-icon-log" style="color: #FF5722;"></i>
+                            <label>申请人 : </label>
+                            <span id="text_doctor_name">xxx医院</span>
+                        </div>
+                        <div class="layui-form-item">
+                            <i class="tub layui-icon layui-icon-diamond" style="color: #ff1e31;"></i>
+                            <label>电话号码 : </label>
+                            <span id="text_doctor_tel">2020-12-02 16:00</span>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="ok-body">
+                <div class="layui-fluid">
+                    <div class="layui-card">
+                        <div class="layui-card-header">病人信息</div>
+                        <div class="layui-card-body" style="padding: 15px;">
+                            <form class="layui-form" action="" lay-filter="component-form-group">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">患者名称</label>
+                                    <div class="layui-input-block">
+                                        <input id="f_patient_name" type="text" name="patient_name" required lay-verify="required" placeholder="请输入名称" class="layui-input">
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">患者生日</label>
+                                    <div class="layui-input-block">
+                                        <input id="f_patient_birth" data-id="" type="date" name="patient_birth" id="date" required lay-verify="required" placeholder="请选择患者生日" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">患者身高</label>
+                                    <div class="layui-input-block">
+                                        <input id="f_patient_tall" type="text" name="patient_tall" required lay-verify="required" placeholder="请输入身高,单位cm" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">患者体重</label>
+                                    <div class="layui-input-block">
+                                        <input id="f_patient_weight" type="text" name="patient_weight" required lay-verify="required" placeholder="请输入体重,单位kg" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">所属科室</label>
+                                    <div class="layui-input-block">
+                                        <input id="f_department" type="text"  name="department" required lay-verify="required" placeholder="请输入所属科室" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item layui-form-text">
+                                    <label class="layui-form-label">备注</label>
+                                    <div class="layui-input-block">
+                                        <textarea id="f_bz" name="bz" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                    </div>
+                                </div>
+
+                                <input id="files" name="files" value="0"  class="layui-input" type="hidden">
+                                <div class="layui-upload">
+                                    <p>上传附件</p>
+                                    <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+                                    <div class="layui-upload-list">
+                                        <table class="layui-table">
+                                            <thead>
+                                            <tr><th>文件名</th>
+                                                <th>大小</th>
+                                                <th>状态</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="demoList"></tbody>
+                                        </table>
+                                    </div>
+                                    <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+                                </div>
+
+                                <div class="layui-form-item layui-layout-admin">
+                                    <div class="layui-input-block">
+                                        <div class="" style="left: 0;">
+                                            <button id="subBtu" class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -150,7 +207,33 @@
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/application.js"></script>
 <script src="/js/hyx.js"></script>
+<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
 <script>
+    layui.use('jquery',function(){
+        var $ = layui.jquery;
+        var width = $(window).width();
+
+        $.ajax({
+        // url: '../php/creatSceneXml.php',
+        url: '/getInfo',
+        type: 'GET'
+        })
+        .done(function (result) {
+        console.log(result)
+        $('#text_doctor_name').text(result.doctor_name)
+        $("#text_hos_name").text(result.doctor_account)
+        $("#text_doctor_tel").text(result.doctor_tel)
+
+        })
+        .fail(function () {
+        console.log("error");
+        })
+        .always(function () {
+        console.log("complete");
+        });
+
+})
     layui.use('laydate', function(){
         var laydate = layui.laydate;
         //执行一个laydate实例
@@ -158,38 +241,37 @@
             elem: '#date' //指定元素
         });
     });
+    let disgnose_id ;
+    let transactor
+    let comment_text;
     layui.use(['form','layer'], function(){
         $ = layui.jquery;
-
         var form = layui.form,layer = layui.layer;
-        let disgnose_id,fenfa,transactor;
+
         //监听提交
         form.on('submit(add)', function(data){
             console.log(data.field.files);
-            let disgnosResult = $("#disno").val();
-            let code = $("#disgnose_code").text();
-            let comment_text ;
+            //诊断标号
+            let disgnose_code = $("#disgnose_code").text();
             $.ajax({
-                url:"/disgnoseResuletBack",
+                url:"/reUploadRequestDisnosis?disgnose_code="+disgnose_code,
                 type:"post",
                 async:true,//异步加载
-                data:{
-                    disgnosResult,
-                    code
-                },
+                data:data.field,
                 success:function (obj) {
                     if(obj["msg"]=="success"){
-                        alert("诊断结果成功返回");
+                        alert("提交成功");
                         disgnose_id = obj.data.id;
                         transactor = obj.userName;
                         comment_text = obj.data.comment_text;
                         // 获得frame索引
                         var index = parent.layer.getFrameIndex(window.name);
-                        update_diagnosis(5);
-                        add_process("诊断任务已完成");
+
                         //关闭当前frame
-                        // parent.layer.close(index);
-                        // window.parent.location.reload(); //刷新父页面
+                        parent.layer.close(index);
+                        window.parent.location.reload(); //刷新父页面
+                        add_process("重新提交")
+                        update_diagnosis(1)
                     }
                     if(obj["msg"]=="error"){
                         alert("error");
@@ -197,59 +279,57 @@
                 }
             });
             return false;
-
-            //添加流程
-            function add_process(transact_type2) {
-                //获取诊断编号
-
-                 fenfa = $("#doctor_name").text();
-                let transact_stat = 5;
-               let  transact_comment=$("#disno").val();
-                //添加流程
-                $.ajax({
-                    url: '/hos/process/add_process',
-                    dataType: 'json',
-                    type: 'post',
-                    data: {disgnose_id:disgnose_id,fenfa:fenfa,transactor:transactor,
-                        transact_type:transact_type2,transact_comment:transact_comment,transact_stat:transact_stat},
-                    success: function (resData) {
-                        if(resData.code == '201'){
-                            layer.msg(resData.data.msg,{icon: 5});//失败的表情
-                        }else{
-                            layer.msg("成功", {
-                                icon: 6,//成功的表情
-                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
-                            }, function(){
-                                window.location.reload();
-                            });
-                        }
-                    }
-                });
-            };
-            //更新诊断表转态
-            function update_diagnosis(stat2) {
-                $.ajax({
-                    url: '/hos/diagnosis_info/update_diagnosis_info',
-                    dataType: 'json',
-                    type: 'post',
-                    data: {id:disgnose_id,comment_text:comment_text,stat:stat2},
-                    success: function (resData) {
-                        if(resData.code == '201'){
-                            layer.msg(resData.data.msg,{icon: 5});//失败的表情
-                        }else{
-                            layer.msg("成功", {
-                                icon: 6,//成功的表情
-                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
-                            }, function(){
-                                window.location.reload();
-                            });
-                        }
-                    }
-                });
-            }
         });
     });
 
+    //添加流程
+    function add_process(transact_type2) {
+        //获取诊断编号
+        fenfa = $("#doctor_name").text();
+        let transact_stat = 1;
+        let  transact_comment=$("#disno").val();
+        //添加流程
+        $.ajax({
+            url: '/hos/process/add_process',
+            dataType: 'json',
+            type: 'post',
+            data: {disgnose_id:disgnose_id,fenfa:fenfa,transactor:transactor,
+                transact_type:transact_type2,transact_comment:transact_comment,transact_stat:transact_stat},
+            success: function (resData) {
+                if(resData.code == '201'){
+                    layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                }else{
+                    layer.msg("成功", {
+                        icon: 6,//成功的表情
+                        time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        window.location.reload();
+                    });
+                }
+            }
+        });
+    };
+    //更新诊断表转态
+    function update_diagnosis(stat2) {
+        $.ajax({
+            url: '/hos/diagnosis_info/update_diagnosis_info',
+            dataType: 'json',
+            type: 'post',
+            data: {id:disgnose_id,comment_text:comment_text,stat:stat2},
+            success: function (resData) {
+                if(resData.code == '201'){
+                    layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                }else{
+                    layer.msg("成功", {
+                        icon: 6,//成功的表情
+                        time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        window.location.reload();
+                    });
+                }
+            }
+        });
+    }
     //文件上传
     var files=[];
     //JavaScript代码区域
@@ -262,7 +342,7 @@
         var demoListView = $('#demoList')
             ,uploadListIns = upload.render({
             elem: '#testList'
-            ,url: '/fileResultUpload' //改成您自己的上传接口
+            ,url: '/fileUpload' //改成您自己的上传接口
             ,accept: 'file'
             // ,exts: 'txt|rar|zip|doc|docx|pdf|xls|xlsx' //允许上传的文件类型
             ,multiple: true
@@ -366,7 +446,7 @@
                 cols: [[
                     //序列号
                     {field: 'fileName',title: "文件名称"}
-                    , {field: 'type',  title: '类型', width: 100}
+                    , {field: 'type',  title: '类型',  width: 100 }
                 ]
                 ]
             });
@@ -407,6 +487,15 @@
                         dia.comment_text = datas[i].disgnose_info.comment_text;
                         dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
                         dia.stat = datas[i].disgnose_info.stat;
+                        if(dia.stat == "3"||dia.stat == "5"){
+                            $("#subBtu").prop("disable")
+                        }
+                        //填充到输入框
+                        $("#f_bz").val(dia.comment_text)
+                        $("#f_patient_birth").val(dia.patient_birth)
+                        $("#f_patient_tall").val(dia.patient_tall)
+                        $("#f_patient_weight").val(dia.patient_weight)
+                        $("#f_patient_name").val(dia.patient_name)
 
                         $("#hos_nme").text(dia.hos_nme)
                         $("#patient_name").text(dia.patient_name)
