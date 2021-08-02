@@ -1,5 +1,6 @@
 package com.hl.hos.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hl.hos.pojo.Attached;
 import com.hl.hos.pojo.Disgnose_info;
 import com.hl.hos.pojo.Doctor_info;
@@ -130,6 +131,66 @@ public class FileUploadController {
             result.setMsg("error");
         }
         fileslist.clear(); //清除
+        return result;
+    }
+
+    @GetMapping("/getDisnosisByCode")
+    public Result getDisnosisByCode(String disgnose_code){//根据诊断编号获取信息
+        Disgnose_info disgnoseInfoByCode = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("disgnose_code", disgnose_code));
+        Result result = new Result();
+        result.setCode(200);
+        result.setData(disgnoseInfoByCode);
+        return result;
+    }
+    /**
+     * 重新上传诊断申请
+     * @param patient_name
+     * @param patient_birth
+     * @param patient_tall
+     * @param patient_weight
+     * @param department
+     * @param bz
+     * @param disgnose_code
+     * @return
+     */
+    @RequestMapping("/reUploadRequestDisnosis")
+    @ResponseBody
+    public Result reUploadRequestDisnosis(String patient_name,
+                                          String patient_birth,
+                                          String patient_tall,
+                                          String patient_weight,
+                                          String department,
+                                          String bz,
+                                          String disgnose_code,
+                                          HttpSession session){
+        //更新诊断信息
+        Disgnose_info disgnoseInfoByCode = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("disgnose_code", disgnose_code));
+        Result result = new Result();
+        Doctor_info doctor_info = (Doctor_info) session.getAttribute("doctor_info");
+        if(disgnoseInfoByCode == null){
+            result.setMsg("error");
+            result.setCode(500);
+        }else{
+            disgnoseInfoByCode.setPatient_name(patient_name);
+            disgnoseInfoByCode.setPatient_birth(Timestamp.valueOf(patient_birth+" 00:00:00"));
+            disgnoseInfoByCode.setPatient_tall(patient_tall);
+            disgnoseInfoByCode.setPatient_weight(patient_weight);
+            disgnoseInfoByCode.setDepartment(department);
+            disgnoseInfoByCode.setComment_text(bz);
+            disgnoseInfoByCode.setStat(1);//设置为初始值
+            disgnoseInfoService.updateById(disgnoseInfoByCode); //更新表
+
+            if(!fileslist.isEmpty()){
+                for(int i = 0;i< fileslist.size();i++){
+                    Attached attached = fileslist.get(i);
+                    attached.setDisgnose_id(disgnoseInfoByCode.getId()); //附件绑定
+                    attachedService.updateById(attached);
+                }
+            }
+            result.setCode(200);
+            result.setMsg("success");
+            result.setData( disgnoseInfoByCode);
+        }
         return result;
     }
 
