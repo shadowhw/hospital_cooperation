@@ -41,6 +41,26 @@
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/application.js"></script>
 <script>
+    let rs ;
+
+    layui.use('jquery',function(){
+        var $ = layui.jquery;
+        $.ajax({
+            // url: '../php/creatSceneXml.php',
+            url: '/getInfo',
+            type: 'GET'
+        })
+            .done(function (result) {
+                rs=result;
+                console.log(result)
+            })
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                console.log("complete");
+            })
+    })
 
     layui.use(['form'], function () {
         var $ = layui.jquery
@@ -50,8 +70,8 @@
         $(function () {
             $("#savePwd").click(function () {
                 var policeInfo = JSON.parse(window.sessionStorage.getItem("police"));
-                policeId=$("#policeId").val(policeInfo.policeId)
-                var oldPwd = document.getElementById("oldPwd").value;
+                // policeId=$("#policeId").val(policeInfo.policeId)
+                // var oldPwd = document.getElementById("oldPwd").value;
                 var newPwd = document.getElementById("newPwd").value;
                 var reNewPwd = document.getElementById("reNewPwd").value;
                 if(newPwd !==reNewPwd){
@@ -63,13 +83,13 @@
                     layer.confirm('确定修改密码?', {icon: 3, title: '提示'}, function (index) {
                         showloading(true)
                         $.ajax({
-                            url: mainUri + "/user/updatePwdByP",
+                            url:"/hos/doctor_info/updatePwdByP",
                             type: 'post',
                             dataType: 'json',
                             data: {
-                                oldPwd: $("#oldPwd").val(),
+                                // oldPwd: $("#oldPwd").val(),
                                 pwd: $("#newPwd").val(),
-                                policeId: policeInfo.policeId
+                                doctorId: rs.id
                             },
                             success: function (data) {
                                 showloading(false)
@@ -81,6 +101,7 @@
                                     }, function () {
 
                                     });
+                                    window.location = "/"
                                     return false;
                                 } else {
                                     layer.alert('密码修改失败了！', {icon: 2});
