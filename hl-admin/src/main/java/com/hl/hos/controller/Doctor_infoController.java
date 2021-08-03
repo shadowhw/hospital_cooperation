@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.Doc;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -229,6 +231,30 @@ public class Doctor_infoController {
         result.setMsg("成功");
         result.setCode(200);
         return result;
+    }
+
+    @PostMapping("/updatePwdByP")
+    public Result result(String doctorId, String pwd, HttpSession session){
+        Result result = new Result();
+
+        Doctor_info doctorInfoById = doctor_infoService.getById(doctorId);
+        if(doctorInfoById == null){
+            result.setCode(500);
+        }else {
+            String newPwd1 = MD5Util.getMd5(pwd);
+
+            doctorInfoById.setDoctor_pwd(newPwd1); //更改密码
+            boolean b = doctor_infoService.updateById(doctorInfoById);
+            if(b){
+                result.setCode(0);
+                session.removeAttribute("doctor_info");
+            }else{
+                result.setCode(500);
+            }
+        }
+
+        return result;
+
     }
 }
 
