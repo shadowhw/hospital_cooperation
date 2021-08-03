@@ -4,6 +4,6 @@
 .idea
 *.ipr
 *.iws
-.gitignore
 **/target/
 /.idea/**
+.idea/workspace.xml
