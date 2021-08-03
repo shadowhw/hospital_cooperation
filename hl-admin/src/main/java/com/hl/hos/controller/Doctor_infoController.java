@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.print.Doc;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -233,7 +234,7 @@ public class Doctor_infoController {
     }
 
     @PostMapping("/updatePwdByP")
-    public Result result(String doctorId,String pwd){
+    public Result result(String doctorId, String pwd, HttpSession session){
         Result result = new Result();
 
         Doctor_info doctorInfoById = doctor_infoService.getById(doctorId);
@@ -246,10 +247,12 @@ public class Doctor_infoController {
             boolean b = doctor_infoService.updateById(doctorInfoById);
             if(b){
                 result.setCode(0);
+                session.removeAttribute("doctor_info");
             }else{
                 result.setCode(500);
             }
         }
+
         return result;
 
     }
