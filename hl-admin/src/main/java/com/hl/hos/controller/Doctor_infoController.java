@@ -5,10 +5,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hl.hos.backPogo.DoctorHos;
+import com.hl.hos.pojo.Disgnose_info;
 import com.hl.hos.pojo.Doctor_info;
 import com.hl.hos.pojo.Hos_info;
 import com.hl.hos.pojo.Result;
+import com.hl.hos.service.Disgnose_infoService;
 import com.hl.hos.service.Doctor_infoService;
+import com.hl.hos.service.Doctor_with_disgnoseService;
 import com.hl.hos.service.Hos_infoService;
 import com.hl.hos.utils.DateUtil;
 import com.hl.hos.utils.MD5Util;
@@ -38,7 +41,11 @@ public class Doctor_infoController {
     @Autowired
     private Hos_infoService hos_infoService;
     @Autowired
+    private Disgnose_infoService disgnose_infoService;
+    @Autowired
     private Result result;
+    @Autowired
+    private Doctor_with_disgnoseService doctor_with_disgnoseService;
 
     /**
      * 根据页码和状态查询所有医生信息
@@ -52,12 +59,12 @@ public class Doctor_infoController {
         //协助医师
         if(type==1)
         {
-            queryWrapper.in("stat",1,3,4);
+            queryWrapper.in("stat",1,3);
         }
         //普通医师
         if(type==2)
         {
-            queryWrapper.in("stat",2,5,6);
+            queryWrapper.in("stat",2,4);
         }
 
         List<Doctor_info> list = doctor_infoService.list(queryWrapper);
@@ -91,6 +98,47 @@ public class Doctor_infoController {
     {
         if(doctor_info.getDoctor_pwd()!=null)
             doctor_info.setDoctor_pwd(MD5Util.getMd5(doctor_info.getDoctor_pwd()));
+        //如果是删除直接删除
+        if(doctor_info.getStat()==8)
+        {
+            //获取身份
+            Doctor_info tem_doc = doctor_infoService.getById(doctor_info.getId());
+            HashMap<String,Object> map = new HashMap<>();
+            //协作医师删除协作记录
+            if(tem_doc.getStat()==1)
+            {
+                map.put("doctor_id",tem_doc.getId());
+                doctor_with_disgnoseService.removeByMap(map);
+            }
+
+            //普通医师删除上传的申请和和有关该诊断表的协助信息
+            if(tem_doc.getStat()==2)
+            {
+                map.put("doctor_id",tem_doc.getId());
+
+                HashMap<String,Object> t = new HashMap<>();
+                //获取该医师的所有诊断记录
+                List<Disgnose_info> list = disgnose_infoService.list(new QueryWrapper<Disgnose_info>()
+                    .eq("doctor_id",doctor_info.getId())
+                );
+                if(list.size()>=1)
+                {
+                    //删除协助表
+                    for (int i = 0; i < list.size(); i++)
+                    {
+                        Disgnose_info t_dis = list.get(i);
+                        t.put("disgnose_id",t_dis.getId());
+                        doctor_with_disgnoseService.removeByMap(t);
+                    }
+                }
+                disgnose_infoService.removeByMap(map);
+            }
+            doctor_infoService.removeById(doctor_info.getId());
+            result.setCode(200);
+            result.setData(null);
+            result.setMsg("删除成功");
+            return result;
+        }
         if(doctor_infoService.updateById(doctor_info))
         {
             result.setCount(1);

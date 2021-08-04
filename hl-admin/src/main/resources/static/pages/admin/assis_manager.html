@@ -126,7 +126,7 @@
         <table class="layui-hide" id="tableId" lay-filter="tableId"></table>
     </div>
     <script type="text/html" id="barDemo">
-        <a class="layui-btn layui-btn-xs" lay-event="zhuxiao">注销</a>
+        <a class="layui-btn layui-btn-xs" lay-event="zhuxiao">删除</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="tingyong">停用</a>
         <a class="layui-btn layui-btn-info layui-btn-xs" lay-event="qiyong">启用</a>
         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="chongzhimima">重置密码</a>
@@ -252,8 +252,8 @@
             //通过
             switch (obj.event) {
                 case "zhuxiao":
-                    info = "注销";
-                    stat = 3;
+                    info = "删除";
+                    stat = 8;
                     break;
                 case "tingyong":
                     info = "停用";
