@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>管理员分配诊断</title>
+    <title>协作医师处理诊断</title>
     <link rel="stylesheet" href="/lib/layui/css/layui.css">
 </head>
 
@@ -96,7 +96,6 @@
             </div>
         </div>
         <div class="layui-col-md4" style="background-color:#f8f8f8;">
-
                             <div class="layui-form-item">
                                 <div class="layui-card-body" style="padding: 15px;">
                                     <form class="layui-form" action="" lay-filter="component-form-group">
@@ -120,16 +119,16 @@
                                             <button type="button" class="layui-btn" id="testListAction">开始上传</button>
                                         </div>
                                         <div class="layui-form-item layui-form-text">
-                                            <label class="layui-form-label">诊断结果</label>
+                                            <label class="layui-form-label">诊断结果/退回原因</label>
                                             <div class="layui-input-block">
-                                                <textarea name="disno" id="disno" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                                <textarea name="disno" id="disno" placeholder="请输入诊断结果或退回原因" class="layui-textarea"></textarea>
                                             </div>
                                         </div>
                                         <div class="layui-form-item layui-layout-admin">
                                             <div class="layui-input-block">
                                                 <div class="layui-row" style="left: 0;">
                                                     <button class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
-                                                    <button type="reset" class="layui-btn layui-btn-primary">保存</button>
+                                                    <button type="reset" class="layui-btn layui-btn-primary" id="btu_roll_back">退回诊断申请</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -158,8 +157,99 @@
             elem: '#date' //指定元素
         });
     });
+
+    //退回操作
+    layui.use('layer', function(){
+       $= layui.jquery;
+       $("#btu_roll_back").on("click",function (){
+           let comm_text = $("#disno").val(); //退回原因
+           let code = $("#disgnose_code").text();//
+           $.ajax({
+               url:"/disnosis_roll_back",
+               type:"post",
+               async:true,//异步加载
+               data:{
+                   comm_text,
+                   code
+               },
+               success:function (obj) {
+                   if(obj["msg"]=="success"){
+                       alert("诊断申请退回");
+                       disgnose_id = obj.data.id;
+                       transactor = obj.userName;
+                       comment_text = obj.data.comment_text;
+                       // 获得frame索引
+                       var index = parent.layer.getFrameIndex(window.name);
+                       update_diagnosis(3);
+                       add_process("诊断结果退回");
+                       //关闭当前frame
+                       // parent.layer.close(index);
+                       // window.parent.location.reload(); //刷新父页面
+                   }
+                   if(obj["msg"]=="error"){
+                       alert("error");
+                   }
+               }
+           });
+           return false;
+       })
+
+        //添加流程
+        function add_process(transact_type2) {
+            //获取诊断编号
+
+            fenfa = $("#doctor_name").text();
+            let transact_stat = 5;
+            let  transact_comment=$("#disno").val();
+            //添加流程
+            $.ajax({
+                url: '/hos/process/add_process',
+                dataType: 'json',
+                type: 'post',
+                data: {disgnose_id:disgnose_id,fenfa:fenfa,transactor:transactor,
+                    transact_type:transact_type2,transact_comment:transact_comment,transact_stat:transact_stat},
+                success: function (resData) {
+                    if(resData.code == '201'){
+                        layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                    }else{
+                        layer.msg("成功", {
+                            icon: 6,//成功的表情
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            window.location.reload();
+                        });
+                    }
+                }
+            });
+        };
+        //更新诊断表转态
+        function update_diagnosis(stat2) {
+            $.ajax({
+                url: '/hos/diagnosis_info/update_diagnosis_info',
+                dataType: 'json',
+                type: 'post',
+                data: {id:disgnose_id,comment_text:comment_text,stat:stat2},
+                success: function (resData) {
+                    if(resData.code == '201'){
+                        layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                    }else{
+                        layer.msg("成功", {
+                            icon: 6,//成功的表情
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            window.location.reload();
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+
+    //提交诊断申请
     layui.use(['form','layer'], function(){
         $ = layui.jquery;
+
 
         var form = layui.form,layer = layui.layer;
         let disgnose_id,fenfa,transactor;
@@ -179,14 +269,14 @@
                 },
                 success:function (obj) {
                     if(obj["msg"]=="success"){
-                        alert("诊断结果成功返回");
+                        alert("诊断结果返回给管理员");
                         disgnose_id = obj.data.id;
                         transactor = obj.userName;
                         comment_text = obj.data.comment_text;
                         // 获得frame索引
                         var index = parent.layer.getFrameIndex(window.name);
-                        update_diagnosis(5);
-                        add_process("诊断任务已完成");
+                        update_diagnosis(6);
+                        add_process("结果返回管理员");
                         //关闭当前frame
                         // parent.layer.close(index);
                         // window.parent.location.reload(); //刷新父页面
