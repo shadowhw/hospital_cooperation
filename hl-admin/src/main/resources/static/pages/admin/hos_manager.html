@@ -71,9 +71,7 @@
         <table class="layui-hide" id="tableId" lay-filter="tableId"></table>
     </div>
     <script type="text/html" id="barDemo">
-<!--        <a class="layui-btn layui-btn-xs" lay-event="zhuxiao">注销</a>-->
-<!--        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="tingyong">停用</a>-->
-<!--        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="chongzhimima">重置密码</a>-->
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
 </body>
 
@@ -160,7 +158,7 @@
                     //   }
                     //   }
                     , {field: 'comment_text', title: '备注',width: 100}
-                    //, {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 250}
+                    , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 250}
                 ]
             ],
             page: {
@@ -178,34 +176,35 @@
             var stat = 0;//状态
             //通过
             switch (obj.event) {
-                case "zhuxiao":
-                    info = "注销";
-                    stat = 3;
+                case "del":
+                    info = "删除";
+                    stat = 8;
                     break;
                 case "tingyong":
                     info = "停用";
                     stat = 4;
                     break;
             }
-            if(obj.event!="chongzhimima")
+            if(obj.event=="del")
             {
                 //确认框
                 layer.confirm("确认要"+info+"吗?",function (index) {
                     //通过操作
+                    let id = obj.data.id;
+                    let hos_name = obj.data.hos_name;
+                    let hos_addr = obj.data.hos_addr;
+
                     $.ajax({
-                        url:'/hos/doctor_info/update_doctor_info',
+                        url:'/hos/hos_info/update_hos_info',
                         type:'get',
                         data:{
-                            'stat':stat,'id':data.doctor_id,
-                        },
-                        beforeSend:function () {
-                            this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
+                            'id':id,'hos_name':hos_name,'hos_addr':hos_addr,'stat':8
                         },
                         success:function(data){
                             if(data.code == '201'){
-                                layer.msg(data.data.msg,{icon: 5});//失败的表情
+                                layer.msg(data.msg,{icon: 5});//失败的表情
                             }else{
-                                layer.msg("成功", {
+                                layer.msg("修改成功", {
                                     icon: 6,//成功的表情
                                     time: 1000 //1秒关闭（如果不配置，默认是3秒）
                                 }, function(){
@@ -214,24 +213,12 @@
                             }
                         },
                     });
+
+                    layer.msg('修改成功'+id+hos_name, {icon: 1});
                     layer.close(index);
                 })
             }
-            //重置密码
-            if(obj.event=="chongzhimima")
-            {
-                layer.open({
-                    type: 2,
-                    title: '查看详情',
-                    shadeClose: false,
-                    //shade: [0.3],
-                    btn: [ '关闭'],//关闭按钮
-                    maxmin: false, //开启最大化最小化按钮
-                    area: ['100%', '100%'],
-                    scrollbar: true, //屏蔽滚动条
-                    content: "/pages/admin/reset_pwd.html?doctor_id="+data.doctor_id
-                });
-            }
+
         });
 
         //单元格编辑
@@ -247,7 +234,7 @@
                     url:'/hos/hos_info/update_hos_info',
                     type:'get',
                     data:{
-                        'id':id,'hos_name':hos_name,'hos_addr':hos_addr
+                        'id':id,'hos_name':hos_name,'hos_addr':hos_addr,'stat':1
                     },
                     success:function(data){
                         if(data.code == '201'){

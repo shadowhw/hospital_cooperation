@@ -53,7 +53,7 @@ public class Doctor_infoController {
      */
     @ResponseBody
     @GetMapping("/get_doctor_list")
-    public Result get_doctor_list(String page,String limit,int type)
+    public Result get_doctor_list(String page,String limit,int type,int pass)
     {
         QueryWrapper<Doctor_info> queryWrapper = new QueryWrapper<>();//排除协助医师
         //协助医师
@@ -64,6 +64,7 @@ public class Doctor_infoController {
         //普通医师
         if(type==2)
         {
+            queryWrapper.eq("pass",pass);
             queryWrapper.in("stat",2,4);
         }
 
@@ -99,7 +100,7 @@ public class Doctor_infoController {
         if(doctor_info.getDoctor_pwd()!=null)
             doctor_info.setDoctor_pwd(MD5Util.getMd5(doctor_info.getDoctor_pwd()));
         //如果是删除直接删除
-        if(doctor_info.getStat()==8)
+        if(doctor_info.getStat()!=null && doctor_info.getStat()==8)
         {
             //获取身份
             Doctor_info tem_doc = doctor_infoService.getById(doctor_info.getId());

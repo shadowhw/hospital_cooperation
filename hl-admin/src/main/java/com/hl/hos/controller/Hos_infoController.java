@@ -105,6 +105,16 @@ public class Hos_infoController {
     @GetMapping("/update_hos_info")
     public Result update_hos_info(Hos_info hos_info)
     {
+        //删除
+        if(hos_info.getStat()==8)
+        {
+            hos_infoService.removeById(hos_info.getId());
+            result.setCount(1);
+            result.setData(null);
+            result.setCode(200);
+            result.setMsg("删除!");
+            return result;
+        }
         if(hos_infoService.updateById(hos_info))
         {
             result.setCount(1);

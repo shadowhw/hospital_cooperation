@@ -71,28 +71,8 @@
                 <div class="layui-card-body">
                     <div>
                         <div class="layui-upload-list" style="max-width: 1000px;">
-                            <table class="layui-table">
-                                <colgroup>
-                                    <col>
-                                    <col width="150">
-                                    <col width="260">
-                                    <col width="150">
-                                </colgroup>
-                                <thead>
-                                <tr><th>文件名</th>
-                                    <th>大小</th>
-                                </tr></thead>
-                                <tbody id="demoList">
-                                <tr><td>附件1.xml</td>
-                                    <td>20MB</td>
-                                </tr>
-                                <tr><td>附件2.jpg</td>
-                                    <td>5MB</td>
-                                </tr>
-                                <tr><td>附件3.mp4</td>
-                                    <td>890MB</td>
-                                </tr>
-                                </tbody>
+                            <table class="layui-table" id="demoList1">
+
                             </table>
                         </div>
                     </div>
@@ -188,11 +168,45 @@
 <script src="/js/hyx.js"></script>
 
 <script>
-    layui.use(['form','laydate'], function () {
+    layui.use(['form','laydate',"table"], function () {
         // layui引入需要的组件
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
+        var table = layui.table;
+        //获取诊断编号
+        var disgnose_id = GetQueryString("disgnose_id");
+
+        //附件信息渲染
+        table.render({
+            elem: '#demoList1'
+            , url: '/getAttchedAndResutAttched?disgnose_id='+disgnose_id
+            , title: '文件'
+            , page: false
+            , parseData: function (res) {
+                let datas = res.data;
+                console.log(datas.length)
+                let rs = [];
+                for (let i = 0; i < datas.length; i++) {
+                    let dia = {}
+                    dia.fileName = datas[i].attached.attched_name;
+                    dia.type = datas[i].type;
+                    rs.push(dia)
+                }
+                return {
+                    "code": 0, //解析接口状态
+                    "msg": res.msg,
+                    "count": res.count,
+                    "data": rs //解析数据列表
+                };
+            },
+            cols: [[
+                //序列号
+                {field: 'fileName',title: "文件名称"}
+                , {field: 'type',  title: '类型', width: 100}
+            ]
+            ]
+        });
 
         // 二级联动 第一步 渲染父级
         $.ajax({
@@ -406,10 +420,9 @@
                         $("#doctor_name").text(dia.doctor_name)
                         $("#create_time").text(dia.create_time)
                         $("#disgnose_code").text(dia.disgnose_code)
-
                         //根据诊断状态显示不同的操作菜单
                         switch (dia.stat) {
-                            case 1:
+                            case 1://创建状态不能驳回和反馈
                                 $("input:radio").eq(0).attr("disabled",false);
                                 $("input:radio").eq(1).attr("disabled",false);
                                 $("input:radio").eq(2).attr("disabled",true);
@@ -421,8 +434,9 @@
                                 $("input:radio").eq(2).attr("disabled",true);
                                 $("input:radio").eq(3).attr("disabled",true);
                                 break;
-                            case 3://已分配和驳回协助都不能显示分配任务
+                            case 3://已分配和驳回协助都不能显示分配任务和协作医师完成
                             case 4:
+                            case 6:
                                 $("#choice_hos").hide();
                                 $("#choice_doc").hide();
                                 $("input:radio").eq(0).attr("disabled",true);

@@ -72,9 +72,13 @@
 </body>
 
 <script type="text/html" id="barDemo">
+    {{#  if(d.stat == '4'){ }}
+        <a class="layui-btn layui-btn-info layui-btn-xs" lay-event="qiyong">启用</a>
+    {{#  } }}
+    {{#  if(d.stat == '2'){ }}
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="tingyong">停用</a>
+    {{#  } }}
     <a class="layui-btn layui-btn-xs" lay-event="zhuxiao">删除</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="tingyong">停用</a>
-    <a class="layui-btn layui-btn-info layui-btn-xs" lay-event="qiyong">启用</a>
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="chongzhimima">重置密码</a>
 </script>
 
@@ -101,8 +105,9 @@
                 method:"get"
             },
             where: {
-                type:2//查询普通医师
+                type:2,//查询普通医师
                 // 'procTatus': thisValue//当前的状态
+                pass:1
             },
             parseData: function (res) { //res 即为原始返回的数据
                 let datas = res.data;
@@ -111,6 +116,8 @@
                 for(let i=0;i<datas.length;i++)
                 {
                     let doc = {};
+                    if(datas[i].hos_info==null)
+                        continue;
                     //格式化时间
                     let date = new Date(datas[i].doctor_info.create_time).Format("yyyy-MM-dd HH:mm:ss");
                     doc.doctor_id = datas[i].doctor_info.id;
@@ -120,6 +127,7 @@
                     doc.hos_addr = datas[i].hos_info.hos_addr;
                     doc.doctor_zuoji = datas[i].doctor_info.doctor_zuoji;
                     doc.email = datas[i].doctor_info.email;
+                    doc.stat = datas[i].doctor_info.stat;
                     doc.create_time = date;
                     doc.comment_text = datas[i].doctor_info.comment_text;
                     if(datas[i].doctor_info.pass==0)
@@ -147,15 +155,14 @@
                 , {field: 'doctor_zuoji', title: '座机号码', width: 120}
                 , {field: 'email', title: '联系邮箱', width: 150}
                 , {field: 'create_time', title: '申请时间', width: 200}
-                // , {
-                //     field: "pass", title: "审核状态", width: 90, templet: function (d) {
-                //         if (d.pass == "否") {
-                //             return "<div style='color:#d92d29;font-weight: bold;font-size:15px'>" + "未通过" + "</div>"
-                //         } else{
-                //             return "<div style='color:#478f43;font-weight: bold;font-size:15px'>" + "已通过" + "</div>"
-                //         }
-                //     }
-                // }
+                , {field: "stat", title: "账号状态", width: 90, templet: function (d) {
+                    if (d.stat == 2) {
+                        return "<div style='color:#478f43;font-weight: bold;font-size:15px'>" + "正常" + "</div>"
+                    } else if (d.stat == 4){
+                        return "<div style='color:#d92d29;font-weight: bold;font-size:15px'>" + "已停用" + "</div>"
+                    }
+                    }
+                }
                 , {field: 'comment_text', title: '备注',width: 100}
                 , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 250}
                 ]
