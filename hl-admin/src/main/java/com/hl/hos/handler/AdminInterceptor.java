@@ -20,6 +20,7 @@ public class AdminInterceptor implements HandlerInterceptor
             request.getRequestDispatcher("/login").forward(request,response);
             return false;
         }
+
         return true;
     }
 }

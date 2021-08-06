@@ -30,6 +30,7 @@ public class WebMvcConfig implements WebMvcConfigurer
         registry.addInterceptor(new HosInterceptor())
                 .addPathPatterns("/*").excludePathPatterns(ex);
 
+
         //普通用户防止进入管理员页面
         registry.addInterceptor(new AdminInterceptor())
                 .addPathPatterns("/admin");
