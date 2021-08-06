@@ -1,6 +1,7 @@
 package com.hl.hos.config;
 
 import ch.qos.logback.core.pattern.Converter;
+import com.hl.hos.handler.AdminInterceptor;
 import com.hl.hos.handler.HosInterceptor;
 import com.hl.hos.pojo.Disgnose_info;
 import org.springframework.context.annotation.Configuration;
@@ -28,5 +29,9 @@ public class WebMvcConfig implements WebMvcConfigurer
         Collections.addAll(ex,"/login","/register","/userLogin");
         registry.addInterceptor(new HosInterceptor())
                 .addPathPatterns("/*").excludePathPatterns(ex);
+
+        //普通用户防止进入管理员页面
+        registry.addInterceptor(new AdminInterceptor())
+                .addPathPatterns("/admin");
     }
 }

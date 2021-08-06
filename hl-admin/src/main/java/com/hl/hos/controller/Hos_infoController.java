@@ -129,5 +129,24 @@ public class Hos_infoController {
         }
         return result;
     }
+
+
+    /**
+     * 根据医院地址查询医院信息
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/get_hos_by_addr")
+    public Result get_hos_by_addr(String hos_addr)
+    {
+        List<Hos_info> hos_list = hos_infoService.list(new QueryWrapper<Hos_info>()
+                .eq("hos_addr",hos_addr)
+        );
+
+        result.setCount(hos_list.size());
+        result.setData(hos_list);
+        result.setCode(200);
+        return result;
+    }
 }
 
