@@ -9,157 +9,236 @@
 </head>
 
 <style>
-    .tdAdapt {
-        font-size: 16.0pt;
-        word-wrap: break-word;
-        word-break: break-all;
-    }
-
     .textarea {
         margin-right: 3px;
     }
-
-    .divarea {
-        margin-bottom: 5px;
+    .button-style{
+        background-color: #FFFFFF;border: #FFFFFF
     }
-
-    .tub {
-        font-size: 16px;
-        margin-right: 5px;
+    .required {
+        color: #ffb800;
+        font-size: 32px;
+        float: left;
+        margin-left: 5px;
+        margin-top: 5px;
+        position: absolute;
+        right: -15px;
+    }
+    .addinput {
+        margin-right: 40px;
     }
 </style>
 
 <body>
-<div class="layui-bg-gray" style="padding: 30px;">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
+<div class="layui-bg-gray" style="padding: 10px;">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8">
             <div class="layui-card">
                 <div class="layui-card-header">诊断信息</div>
                 <div class="layui-card-body">
-                    <sapn class="textarea">诊断编码 : <span id="disgnose_code"></span></sapn>
+                    <sapn class="textarea">诊断编码：<span id="disgnose_code"></span></sapn>
                     <br>
-                    <sapn class="textarea">申请单位 : <span id="hos_nme"></span></sapn>
+                    <sapn class="textarea">申请单位：<span id="hos_nme"></span></sapn>
                     <br>
-                    <sapn class="textarea">申请医生 : <span id="doctor_name"></span></sapn>
+                    <sapn class="textarea">申请医生：<span id="doctor_name"></span></sapn>
                     <br>
-                    <sapn class="textarea">诊断 : <span id="diagnose_result"></span></sapn>
+                    <sapn class="textarea">诊&#12288;&#12288;断：</sapn><span id="diagnose_result"></span>
                     <br>
-                    <sapn class="textarea">申请时间 : <span id="create_time"></span></sapn>
+                    <sapn class="textarea">申请时间：<span id="create_time"></span></sapn>
                     <br>
                 </div>
             </div>
-        </div>
-        <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header">患者信息</div>
                 <div class="layui-card-body">
-                    <sapn class="textarea">患者姓名 : <span id="patient_name"></span></sapn>
+                    <sapn class="textarea">患者姓名：<span id="patient_name"></span></sapn>
                     <br>
-                    <sapn class="textarea">患者出生日期 : <span id="patient_birth"></span></sapn>
+                    <sapn class="textarea">患者出生日期：<span id="patient_birth"></span></sapn>
                     <br>
-                    <sapn class="textarea">患者身高 : <span id="patient_tall"></span></sapn>
+                    <sapn class="textarea">患者身高：<span id="patient_tall"></span></sapn>
                     <br>
-                    <sapn class="textarea">患者体重 : <span id="patient_weight"></span></sapn>
+                    <sapn class="textarea">患者体重：<span id="patient_weight"></span></sapn>
                     <br>
                 </div>
             </div>
-        </div>
-
-        <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header">诊断附件</div>
                 <div class="layui-card-body">
-                    <div>
-                        <div class="layui-upload-list" style="max-width: 1000px;">
-                            <table class="layui-table" id="demoList1">
-
-                            </table>
+                        <div>
+                            <div class="layui-upload-list" style="max-width: 1000px;">
+                                <table class="layui-table" id="demoList1">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="ok-body" style="background: #f8f8f8">
+                <div class="layui-row">
+                    <div style="background-color:#f8f8f8;">
+                        <div style="background: #d2d2d2">
+                            <div style="width: 100%;height: 100%;margin: 0 auto;">
+                                <!--流程显示页面-->
+                                <div style="background-color:#fdfdfd;">
+                                    <iframe scrolling="yes" frameborder="0" width="100%"
+                                            height="700px" id="processData"
+                                            onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh>700?fdh:700)"></iframe>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <br/>
         </div>
-    </div>
-</div>
-<div class="ok-body" style="background: #F8F8F8">
-    <div class="layui-row ">
-        <div class="layui-col-md8" style="background-color:#f8f8f8;">
-            <div style="background: #d2d2d2">
-                <div style="width: 100%;height: 100%;margin: 0 auto;">
-                    <!--流程显示页面-->
-                    <div style="background-color:#fdfdfd;">
-                        <iframe scrolling="yes" frameborder="0" width="100%"
-                                height="700px" id="processData"
-                                onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh>700?fdh:700)"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md4" style="background-color:#f8f8f8;">
-            <legend style="font-size: 20px">操作处理</legend>
-            <div class="layui-col-md12">
-                <div class="layui-card">
-                    <div class="layui-card-body">
-                        <div class="layui-form">
-                            <div class="layui-form-item" pane="">
-                                <div class="layui-input-block">
-                                    <div class="layui-row">
-                                        <div class="layui-col-md6">
-                                            <input type="radio" name="shenqing" value="回退申请" title="回退申请">
+        <div class="layui-col-md4">
+            <div style="background-color:#f8f8f8;padding-bottom: 300px">
+                <legend class="layui-card-header" style="font-size: 16px">操作处理</legend>
+                <div class="layui-card" style="background-color: #FFFFFF;padding-bottom: 50px">
+                        <div class="layui-card-body">
+                            <div class="layui-form">
+                                <div class="layui-form-item" pane="">
+                                    <div class="">
+                                        <div class="layui-row a1" id="a1" style="margin-bottom: 15px">
+                                            <div class="layui-col-md6">
+                                                <button type="button" name="shenqing" id="backApply" class="layui-btn layui-btn-primary button-style">
+                                                    <i class="layui-icon layui-icon-prev-circle" style="font-size: 18px;color: red;"></i>
+                                                    <span>回退申请</span>
+                                                </button>
+                                            </div>
+                                            <div class="layui-col-md6">
+                                                <button type="button" name="shenqing" id="assignTasks" class="layui-btn layui-btn-primary button-style">
+                                                    <i class="layui-icon layui-icon-auz" style="padding-top:10px;font-size: 18px;color: #1E9FFF;"></i>
+                                                    <span>分配诊断任务</span>
+                                                </button>
+<!--                                                <input type="radio" name="shenqing" value="分配诊断任务" title="分配诊断任务">-->
+                                            </div>
                                         </div>
-                                        <div class="layui-col-md6">
-                                            <input type="radio" name="shenqing" value="分配诊断任务" title="分配诊断任务">
+                                        <div class="layui-row a2" id="a2">
+                                            <div class="layui-col-md6">
+                                                <button type="button" name="shenqing" id="rejectApply" class="layui-btn layui-btn-primary button-style">
+                                                    <i class="layui-icon layui-icon-tips" style="padding-top:10px;font-size: 18px;color: gold;"></i>
+                                                    <span>驳回诊断报告</span>
+                                                </button>
+                                            </div>
+                                            <div class="layui-col-md6">
+                                                <button type="button" name="shenqing" id="feedbackApply" class="layui-btn layui-btn-primary button-style">
+                                                    <i class="layui-icon layui-icon-log" style="padding-top:10px;font-size: 20px;color: green;"></i>
+                                                    <span>反馈诊断报告</span>
+                                                </button>
+<!--                                                <input type="radio" name="shenqing" value="反馈诊断报告" title="反馈诊断报告">-->
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="layui-row">
-                                        <div class="layui-col-md6">
-                                            <input type="radio" name="shenqing" value="驳回诊断报告" title="驳回诊断报告">
-                                        </div>
-                                        <div class="layui-col-md6">
-                                            <input type="radio" name="shenqing" value="反馈诊断报告" title="反馈诊断报告">
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="layui-form">
-                            <div id="choice_hos" class="layui-form-item" style="margin-top: 20px">
-                                <div style="margin: 10px">医院</div>
-                                    <select name="select_hos" lay-filter="select_hos" id="select_hos" lay-verify="required">
-
-                                    </select>
-
-                            </div>
-                            <div id="choice_doc" class="layui-form-item" style="margin-top: 20px">
-                                <div style="margin: 10px">医生</div>
-                                <div class="layui-form-item layui-form-text" style="display: inline">
-                                    <select name="select_doc" id="select_doc" lay-filter="select_doc" lay-verify="required">
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="layui-form-item">
-                                <div class="layui-form-item layui-form-text" style="margin: 10px">
-                                    操作备注
-                                </div>
-                                <div>
-                                    <textarea name="comment_text" id="comment_text" placeholder="输入处理备注"
+                            <hr>
+                            <div class="layui-form">
+<!--                                <div id="choice_hos" class="layui-form-item" style="margin-top: 20px">-->
+<!--                                    <div style="margin: 10px">医院</div>-->
+<!--                                    <div class="layui-form-item layui-form-text" style="display: inline">-->
+<!--                                        <select name="select_hos" lay-filter="select_hos" id="select_hos" lay-verify="required"></select>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div id="choice_doc" class="layui-form-item" style="margin-top: 20px">-->
+<!--                                    <div style="margin: 10px">医生</div>-->
+<!--                                    <div class="layui-form-item layui-form-text" style="display: inline">-->
+<!--                                        <select name="select_doc" id="select_doc" lay-filter="select_doc" lay-verify="required"></select>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="layui-form-item" style="text-align: left">-->
+<!--                                    <input type="radio" name="isread" value="1" title="已阅" checked="">-->
+<!--                                    <input type="radio" name="isread1" value="2" title="已阅1" >-->
+<!--                                </div>-->
+                                <div class="layui-form-item">
+                                    <textarea name="comment_text" id="comment_text" placeholder="请输入处理备注"
                                               class="layui-textarea"></textarea>
                                 </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <button type="button" class="layui-btn" lay-submit lay-filter="add" id="submit">确认</button>
+                                <div class="layui-form-item" style="text-align: right">
+                                    <button type="button" class="layui-btn" lay-submit lay-filter="add" id="submit">确认</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
-<br/>
+<!--回退申请弹框-->
+<from style="display:none;margin: 20px 60px 20px 20px" class="layui-form" name="backApplybu" id="backApplybu" action=""
+      lay-filter="useru">
+    <div style="margin: 20px;">
+        <div style="padding-left: 40px;">
+            <span >提示：回退申请，需要填写回退原因。</span>
+        </div>
+        <div class="layui-form-item" style="margin-top: 20px;">
+            <label class="layui-form-label">回退原因</label>
+            <div class="layui-input-block" style="margin-right:40px">
+                <textarea placeholder="请输入回退原因..." class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+</from>
+<!--分配诊断任务弹框-->
+<from style="display:none;margin: 20px 60px 20px 20px" class="layui-form" name="assignTasksbu" id="assignTasksbu" action=""
+      lay-filter="useru">
+    <div style="margin: 20px">
+        <div style="padding-left: 40px;">
+            <span>提示：进行以下操作，分配此任务！</span>
+        </div>
+        <div id="choice_hos" class="layui-form-item" style="margin-top: 20px">
+            <label class="layui-form-label">医&#12288;&#12288;院</label>
+            <div class="layui-input-block addinput">
+                <i class="required">*</i>
+                <select name="select_hos" id="select_hos" lay-filter="select_hos" lay-verify="required">
+                </select>
+            </div>
+        </div>
+        <div id="choice_doc" class="layui-form-item" style="margin-top: 20px">
+            <label class="layui-form-label">医&#12288;&#12288;生</label>
+            <div class="layui-input-block addinput">
+                <i class="required">*</i>
+                <select name="select_doc" id="select_doc" lay-filter="select_doc" lay-verify="required"></select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">操作备注</label>
+            <div class="layui-input-block" style="margin-right:40px">
+                <textarea placeholder="请输入备注..." class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+</from>
+<!--驳回诊断报告弹框-->
+<from style="display:none;margin: 20px 60px 20px 20px" class="layui-form" name="rejectApplybu" id="rejectApplybu" action=""
+      lay-filter="useru">
+    <div style="margin: 20px;">
+        <div style="padding-left: 40px;">
+            <span >提示：驳回诊断报告，需要填写原因。</span>
+        </div>
+        <div class="layui-form-item" style="margin-top: 20px;">
+            <label class="layui-form-label">驳回原因</label>
+            <div class="layui-input-block" style="margin-right:40px">
+                <textarea placeholder="请输入原因..." class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+</from>
+<!--反馈诊断报告弹框-->
+<from style="display:none;margin: 20px 60px 20px 20px" class="layui-form" name="feedbackApplybu" id="feedbackApplybu" action=""
+      lay-filter="useru">
+    <div style="margin: 20px;">
+        <div style="padding-left: 40px;">
+            <span >提示：反馈诊断报告，需要填写反馈备注。</span>
+        </div>
+        <div class="layui-form-item" style="margin-top: 20px;">
+            <label class="layui-form-label">反馈备注</label>
+            <div class="layui-input-block" style="margin-right:40px">
+                <textarea placeholder="请输入备注..." class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+</from>
+
 </body>
 
 <script src="../../lib/layui/layui.js"></script>
@@ -168,7 +247,7 @@
 <script src="/js/hyx.js"></script>
 
 <script>
-    layui.use(['form','laydate',"table"], function () {
+    layui.use(['form','laydate',"table","layer"], function () {
         // layui引入需要的组件
         var $ = layui.jquery;
         var layer = layui.layer;
@@ -176,7 +255,6 @@
         var table = layui.table;
         //获取诊断编号
         var disgnose_id = GetQueryString("disgnose_id");
-
         //附件信息渲染
         table.render({
             elem: '#demoList1'
@@ -249,12 +327,13 @@
                     form.render('select');
                 }
             });
+
         });
 
         //提交处理
         $("#submit").click(function () {
 
-            let radio_val = $("input[name='shenqing']:checked").val();
+            let radio_val = $("button[name='shenqing']:checked").val();
             let comment_text = $("#comment_text").val();
             let diagnosis_id =  GetQueryString("disgnose_id");
             let select_doc =  $("#select_doc").find("option:selected").text();//选择的医生
@@ -367,7 +446,98 @@
         });
 
     });
-
+    $("#backApply").on("click", function(){
+        var index = layer.open({
+            type: 1,
+            title: ['回退申请', 'font-size:14px; color:red;'],//数组第二项可以写任意css样式；如果你不想显示标题栏，你可以title: false
+            shade: 0.6,
+            maxmin: true,//允许全屏最小化
+            id: (new Date()).valueOf(), //设定一个id，防止重复弹出 时间戳1280977330748
+            btn: ['保存', '取消'],
+            btnAlign: 'r',
+            area: ['480px', '350px'],
+            content: $("#backApplybu"),
+            btn: ['确定', '取消'],
+            yes: function(index, layero){
+                //do something
+                alert("确定回退吗？");
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            },
+            btn2: function(index, layero){
+                alert("确定取消回退吗？");
+                layer.close(index)
+            }
+        });
+    })
+    $("#assignTasks").on("click", function(){
+        var index = layer.open({
+            type: 1,
+            title: ['分配诊断任务', 'font-size:14px; color:#1E9FFF;'],
+            shade: 0.6,
+            maxmin: true,//允许全屏最小化
+            id: (new Date()).valueOf(),
+            btn: ['保存', '取消'],
+            btnAlign: 'r',
+            area: ['520px', '420px'],
+            content: $("#assignTasksbu"),
+            btn: ['确定', '取消'],
+            yes: function(index, layero){
+                //do something
+                alert("确定此操作吗？");
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            },
+            btn2: function(index, layero){
+                alert("确定取消此操作吗？");
+                layer.close(index)
+            }
+        });
+    })
+    $("#rejectApply").on("click", function(){
+        var index = layer.open({
+            type: 1,
+            title: ['驳回诊断报告', 'font-size:14px; color:gold;'],
+            shade: 0.6,
+            maxmin: true,//允许全屏最小化
+            id: (new Date()).valueOf(),
+            btn: ['保存', '取消'],
+            btnAlign: 'r',
+            area: ['480px', '350px'],
+            content: $("#rejectApplybu"),
+            btn: ['确定', '取消'],
+            yes: function(index, layero){
+                //do something
+                alert("确定回退吗？");
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            },
+            btn2: function(index, layero){
+                alert("确定取消回退吗？");
+                layer.close(index)
+            }
+        });
+    })
+    $("#feedbackApply").on("click", function(){
+        var index = layer.open({
+            type: 1,
+            title: ['反馈诊断报告', 'font-size:14px; color:green;'],
+            shade: 0.6,
+            maxmin: true,//允许全屏最小化
+            id: (new Date()).valueOf(),
+            btn: ['保存', '取消'],
+            btnAlign: 'r',
+            area: ['480px', '350px'],
+            content: $("#feedbackApplybu"),
+            btn: ['确定', '取消'],
+            yes: function(index, layero){
+                //do something
+                alert("确定回退吗？");
+                layer.close(index);
+            },
+            btn2: function(index, layero){
+                alert("确定取消回退吗？");
+                layer.close(index)
+            }
+        });
+    })
 </script>
 
 <script>
@@ -423,34 +593,38 @@
                         //根据诊断状态显示不同的操作菜单
                         switch (dia.stat) {
                             case 1://创建状态不能驳回和反馈
-                                $("input:radio").eq(0).attr("disabled",false);
-                                $("input:radio").eq(1).attr("disabled",false);
-                                $("input:radio").eq(2).attr("disabled",true);
-                                $("input:radio").eq(3).attr("disabled",true);
+                                // $("#choice_hos").hide();
+                                $("#a2").hide();
+                                // $("input:radio").eq(0).attr("disabled",false);
+                                // $("input:radio").eq(1).attr("disabled",false);
+                                // $("input:radio").eq(2).attr("disabled",true);
+                                // $("input:radio").eq(3).attr("disabled",true);
                                 break;
                             case 2://退回后不能分配
-                                $("input:radio").eq(0).attr("disabled",false);
-                                $("input:radio").eq(1).attr("disabled",true);
-                                $("input:radio").eq(2).attr("disabled",true);
-                                $("input:radio").eq(3).attr("disabled",true);
+                                $("#assignTasks").hide();
+                                // $("input:radio").eq(0).attr("disabled",false);
+                                // $("input:radio").eq(1).attr("disabled",true);
+                                // $("input:radio").eq(2).attr("disabled",true);
+                                // $("input:radio").eq(3).attr("disabled",true);
                                 break;
                             case 3://已分配和驳回协助都不能显示分配任务和协作医师完成
                             case 4:
                             case 6:
-                                $("#choice_hos").hide();
-                                $("#choice_doc").hide();
-                                $("input:radio").eq(0).attr("disabled",true);
-                                $("input:radio").eq(1).attr("disabled",true);
-                                $("input:radio").eq(2).attr("disabled",false);
-                                $("input:radio").eq(3).attr("disabled",false);
+                                $("#a2").hide();
+                                // $("#choice_hos").hide();
+                                // $("#choice_doc").hide();
+                                // $("input:radio").eq(0).attr("disabled",true);
+                                // $("input:radio").eq(1).attr("disabled",true);
+                                // $("input:radio").eq(2).attr("disabled",false);
+                                // $("input:radio").eq(3).attr("disabled",false);
                                 break;
                             case 5:
-                                $("#choice_hos").hide();
-                                $("#choice_doc").hide();
-                                $("input:radio").eq(0).attr("disabled",true);
-                                $("input:radio").eq(1).attr("disabled",true);
-                                $("input:radio").eq(2).attr("disabled",true);
-                                $("input:radio").eq(3).attr("disabled",true);
+                                // $("#choice_hos").hide();
+                                // $("#choice_doc").hide();
+                                // $("input:radio").eq(0).attr("disabled",true);
+                                // $("input:radio").eq(1).attr("disabled",true);
+                                // $("input:radio").eq(2).attr("disabled",true);
+                                // $("input:radio").eq(3).attr("disabled",true);
                                 break;
                         }
                     }

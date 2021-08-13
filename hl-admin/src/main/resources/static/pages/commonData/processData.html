@@ -15,6 +15,9 @@
     .layui-timeline-item{
         padding-bottom: 40px;
     }
+    .textstyle{
+        font-size: 14px
+    }
 </style>
 
 <body>
@@ -76,13 +79,13 @@
             "        </li>\n" +
             "        <hr style='border: 1px dashed #4db0fd;height: 1px;margin: 0 15px 20px 10px'>";
 
-        var content = "<h3 class=\"layui-timeline-title\"><span>"+"分发人:"+fenfa+"</span>"+"</h3>"+
-            "<h3 class=\"layui-timeline-title\"><span>"+"分发时间:"+fenfa_time+"</span>"+"</h3>"+
+        var content = "<div><img style='width:40px;height: 40px;border-radius:70%;' src=\"/images/toux3.jpg\"></img><h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"分&nbsp;发&nbsp;人&nbsp;：&nbsp;&nbsp;"+fenfa+"</span>"+"</h3></div>"+
+            "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"分发时间："+fenfa_time+"</span>"+"</h3>"+
             // "<h3 class=\"layui-timeline-title\"><span>"+"分发备注:"+fenfa_comment+"</span>"+"</h3>"+
-            "<h3 class=\"layui-timeline-title\"><span>"+"处理人:"+transactor+"</span>"+"</h3>"+
-            "<h3 class=\"layui-timeline-title\"><span>"+"处理时间:"+transact_time+"</span>"+"</h3>"+
-            "<h3 class=\"layui-timeline-title\"><span>"+"处理类型:"+transact_type+"</span>"+"</h3>"+
-            "<h3 class=\"layui-timeline-title\"><span>"+"处理备注:"+transact_comment+"</span>"+"</h3>";
+            "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"处&nbsp;理&nbsp;人&nbsp;：&nbsp;&nbsp;"+transactor+"</span>"+"</h3>"+
+            "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"处理时间："+transact_time+"</span>"+"</h3>"+
+            "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"处理类型："+transact_type+"</span>"+"</h3>"+
+            "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"处理备注："+transact_comment+"</span>"+"</h3>";
             // "                <p>" +
             // "由"+userName+"分配给"+docUserName
             // +"                </p>"

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>查询弹窗</title>
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../../css/oksub.css">
+</head>
+<body>
+<div class="layui-row" style="margin-right: 10px">
+    <form class="layui-form ok-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号</label>
+            <div class="layui-input-block">
+                <input type="text" id="doctor_account" name="" lay-verify="title" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                <input type="text" id="doctor_name" name="" lay-verify="title" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+                <input type="text" id="email" name="" lay-verify="title" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">电话</label>
+            <div class="layui-input-block">
+                <input type="text" id="doctor_tel" name="" lay-verify="title" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <button class="layui-btn" lay-submit="" lay-filter="search"
+                style="margin-top:15px;margin-right: 15px;float: right">
+            <i class="layui-icon layui-icon-search"></i>
+        </button>
+    </form>
+</div>
+
+<script src="/lib/layui/layui.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/application.js"></script>
+<script src="/js/hyx.js"></script>
+<script src="/js/model.js"></script>
+<script>
+
+</script>
+<script>
+    layui.use(["table", 'laydate', 'form',], function () {
+        let $ = layui.jquery;
+        let table = layui.table;
+        let form = layui.form;
+        let laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#create_time',
+            trigger: 'click'
+        });
+
+
+
+    })
+
+
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(search)', function(data){
+            //layer.msg(JSON.stringify(data.field));
+            //获取输入的值
+            let doctor_account =document.getElementById("doctor_account").value; //账号
+            let doctor_name =document.getElementById("doctor_name").value;//姓名
+            let email =document.getElementById("email").value;//邮箱
+            let doctor_tel=document.getElementById("doctor_tel").value;//电话
+           
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            //将获取到的值穿到父级页面
+            // window.parent.document.isChange=1
+            window.parent.document.doctor_account=doctor_account
+            window.parent.document.doctor_name=doctor_name
+            window.parent.document.email=email
+            window.parent.document.doctor_tel=doctor_tel
+
+            parent.layer.close(index);//关闭当前iframe
+
+
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

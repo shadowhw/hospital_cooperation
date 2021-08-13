@@ -10,43 +10,69 @@
 <div class="layui-row" style="margin-right: 10px">
     <form class="layui-form ok-form">
         <div class="layui-form-item">
-            <label class="layui-form-label">列表编号</label>
+            <label class="layui-form-label">病例编码</label>
             <div class="layui-input-block">
-                <input type="text" id="askprocessId" name="" lay-verify="title" autocomplete="off" class="layui-input">
+                <input type="text" id="disgnose_code" name="" lay-verify="title" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">申请诊断编号</label>
+            <label class="layui-form-label">患者姓名</label>
             <div class="layui-input-block">
-                <input type="text" id="diagnosisId" name="" lay-verify="title" autocomplete="off" class="layui-input">
+                <input type="text" id="patient_name" name="" lay-verify="title" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">申请人</label>
+            <label class="layui-form-label">患者身高</label>
             <div class="layui-input-block">
-                <input type="text" id="name" name="" lay-verify="title" autocomplete="off" class="layui-input">
+                <input type="text" id="patient_tall" name="" lay-verify="title" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">所属单位</label>
+            <label class="layui-form-label">患者体重</label>
             <div class="layui-input-block">
-                <input type="text" id="hospital" name="" lay-verify="title" autocomplete="off" class="layui-input">
+                <input type="text" id="patient_weight" name="" lay-verify="title" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">所属科室</label>
+            <label class="layui-form-label">诊断结果</label>
             <div class="layui-input-block">
-                <input type="text" id="department" name="" autocomplete="off" class="layui-input">
+                <input type="text" id="diagnose_result" name="" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">申请时间</label>
             <div class="layui-input-block">
-                <input type="text" id="askForTime" name="" autocomplete="off" class="layui-input">
+                <input type="text" id="create_time" name="" autocomplete="off" class="layui-input">
             </div>
         </div>
+        <!--        <div class="layui-form-item" style="width: 25%">-->
+        <!--            <label class="layui-form-label">处理状态</label>-->
+        <!--            <div class="layui-input-block">-->
+        <!--                <select name="stat" id="stat">-->
+        <!--                    <option value="" selected="">全部</option>-->
+        <!--                    <option value="1">待分配</option>-->
+        <!--                    <option value="2">已退回</option>-->
+        <!--                    <option value="3">已被分配</option>-->
+        <!--                    <option value="4">被驳回</option>-->
+        <!--                    <option value="5">已完成</option>-->
+        <!--                </select>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
+        <div class="layui-form-item">
+            <label class="layui-form-label">处理状态</label>
+            <div class="layui-input-block">
+                <select name="reportingLevel" id="stat" lay-filter="aihao">
+                    <option value="" selected="">全部</option>
+                    <option value="1">待分配</option>
+                    <option value="2">已退回</option>
+                    <option value="3">已被分配</option>
+                    <option value="4">被驳回</option>
+                    <option value="5">已完成</option>
+                </select>
+            </div>
+        </div>
 
         <button class="layui-btn" lay-submit="" lay-filter="search"
                 style="margin-top:15px;margin-right: 15px;float: right">
@@ -55,9 +81,11 @@
     </form>
 </div>
 
-<script src="../../lib/layui/layui.js"></script>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/application.js"></script>
+<script src="/lib/layui/layui.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/application.js"></script>
+<script src="/js/hyx.js"></script>
+<script src="/js/model.js"></script>
 <script>
 
 </script>
@@ -70,18 +98,11 @@
 
         //日期
         laydate.render({
-            elem: '#startTime',
+            elem: '#create_time',
             trigger: 'click'
         });
 
-        laydate.render({
-            elem: '#endTime',
-            trigger: 'click'
-        });
 
-        let storage = window.localStorage;
-        storage.skin = "1";
-        storage.anim = "5";
 
     })
 
@@ -91,6 +112,26 @@
 
         //监听提交
         form.on('submit(search)', function(data){
+            //layer.msg(JSON.stringify(data.field));
+            //获取输入的值
+            let disgnose_code =document.getElementById("disgnose_code").value; //案件编号
+            let patient_name =document.getElementById("patient_name").value;//督办级别
+            let patient_tall =document.getElementById("patient_tall").value;//案件描述
+            //时间区间内的案件
+            let patient_weight=document.getElementById("patient_weight").value;//开始时间
+            let create_time=document.getElementById("create_time").value;//结束时间
+            let stat=document.getElementById("stat").value;//结束时间
+
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            //将获取到的值穿到父级页面
+            // window.parent.document.isChange=1
+            window.parent.document.disgnose_code=disgnose_code
+            window.parent.document.patient_name=patient_name
+            window.parent.document.patient_tall=patient_tall
+            window.parent.document.patient_weight=patient_weight
+            window.parent.document.create_time=create_time
+            window.parent.document.stat=stat
+
             parent.layer.close(index);//关闭当前iframe
 
 

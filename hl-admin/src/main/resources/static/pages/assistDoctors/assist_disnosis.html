@@ -66,87 +66,127 @@
 </fieldset>
 <div class="search">
     <div class="layui-row">
-        <div class="layui-col-md3">
-            <div class="layui-form-item">
-                <label class="layui-form-label">病例编码</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" id="disgnose_code" autocomplete="off" placeholder="请输入病例编码" class="layui-input">
+        <form class="layui-form ok-form">
+            <div class="layui-col-md3">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">病例编码</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" id="disgnose_code" autocomplete="off" placeholder="请输入病例编码"
+                               class="layui-input">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="layui-col-md3">
-            <div class="layui-form-item">
-                <label class="layui-form-label">患者姓名</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" id="patient_name" autocomplete="off" placeholder="请输入患者姓名" class="layui-input">
+            <div class="layui-col-md3">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">患者姓名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" id="patient_name" autocomplete="off" placeholder="请输入患者姓名"
+                               class="layui-input">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="layui-col-md3">
-            <div class="layui-form-item">
-                <label class="layui-form-label">患者身高</label>
+            <div class="layui-inline" style="width: 25%">
+                <label class="layui-form-label">处理状态</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" id="patient_tall" autocomplete="off" placeholder="请输入患者身高" class="layui-input">
+                    <select name="stat" id="stat">
+                        <option value="" selected="">全部</option>
+                        <option value="1">待分配</option>
+                        <option value="2">已退回</option>
+                        <option value="3">已被分配</option>
+                        <option value="4">被驳回</option>
+                        <option value="5">已完成</option>
+                    </select>
                 </div>
             </div>
-        </div>
-        <div class="layui-col-md3">
-            <div class="layui-form-item">
-                <label class="layui-form-label">患者体重</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" id="patient_weight" autocomplete="off" placeholder="请输入患者体重" class="layui-input">
-                </div>
+
+            <!--            <div class="layui-form-item" style="width: 25%">-->
+            <!--                <label class="layui-form-label">审核状态</label>-->
+            <!--                <div class="layui-input-block">-->
+            <!--                    <select name="stat" id="stat">-->
+            <!--                        <option value="" selected="">全部</option>-->
+            <!--                        <option value="1">待分配</option>-->
+            <!--                        <option value="2">已退回</option>-->
+            <!--                        <option value="3">已被分配</option>-->
+            <!--                        <option value="4">被驳回</option>-->
+            <!--                        <option value="5">已完成</option>-->
+            <!--                        <lect>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="layui-col-md3">-->
+            <!--                <div class="layui-form-item">-->
+            <!--                    <label class="layui-form-label">患者身高</label>-->
+            <!--                    <div class="layui-input-block">-->
+            <!--                        <input type="text" name="title" id="patient_tall" autocomplete="off" placeholder="请输入患者身高" class="layui-input">-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="layui-col-md3">-->
+            <!--                <div class="layui-form-item">-->
+            <!--                    <label class="layui-form-label">患者体重</label>-->
+            <!--                    <div class="layui-input-block">-->
+            <!--                        <input type="text" name="title" id="patient_weight" autocomplete="off" placeholder="请输入患者体重" class="layui-input">-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+
+            <div id="selectMore" style="float: right; margin-right:50px;"
+                 class="layui-btn layui-btn-normal layui-btn-radius">
+                更多
             </div>
-        </div>
+            <div id="selectForm" style="float: right; margin-right:50px;"
+                 class="layui-btn layui-btn-normal layui-btn-radius">
+                <i class="layui-icon layui-icon-search"></i>
+            </div>
+        </form>
     </div>
 </div>
-<div class="search">
-    <div class="layui-row">
-        <div class="layui-col-md3">
-            <div class="layui-form-item">
-                <label class="layui-form-label">诊断结果</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" id="diagnose_result" autocomplete="off" placeholder="请输入诊断结果" class="layui-input">
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md3">
-            <div class="layui-form-item">
-                <label class="layui-form-label">申请时间</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" id="create_time" autocomplete="off" placeholder="请输入申请时间" class="layui-input">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="layui-row">
-    <form class="layui-form ok-form">
-        <div class="layui-form-item" style="width: 25%">
-            <label class="layui-form-label">审核状态</label>
-            <div class="layui-input-block">
-                <select name="stat" id="stat">
-                    <option value="" selected="">全部</option>
-                    <option value="1">待分配</option>
-                    <option value="2">已退回</option>
-                    <option value="3">已被分配</option>
-                    <option value="4">被驳回</option>
-                    <option value="5">已完成</option>
-                </select>
-            </div>
-        </div>
-        <div id="selectForm" style="float: right; margin-right:50px;"
-             class="layui-btn layui-btn-normal layui-btn-radius">
-            <i class="layui-icon layui-icon-search"></i>
-        </div>
-    </form>
-</div>
+<!--<div class="search">-->
+<!--    <div class="layui-row">-->
+<!--        <div class="layui-col-md3">-->
+<!--            <div class="layui-form-item">-->
+<!--                <label class="layui-form-label">诊断结果</label>-->
+<!--                <div class="layui-input-block">-->
+<!--                    <input type="text" name="title" id="diagnose_result" autocomplete="off" placeholder="请输入诊断结果" class="layui-input">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-col-md3">-->
+<!--            <div class="layui-form-item">-->
+<!--                <label class="layui-form-label">申请时间</label>-->
+<!--                <div class="layui-input-block">-->
+<!--                    <input type="text" name="title" id="create_time" autocomplete="off" placeholder="请输入申请时间" class="layui-input">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="layui-row">-->
+<!--    <form class="layui-form ok-form">-->
+<!--        <div class="layui-form-item" style="width: 25%">-->
+<!--            <label class="layui-form-label">审核状态</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <select name="stat" id="stat">-->
+<!--                    <option value="" selected="">全部</option>-->
+<!--                    <option value="1">待分配</option>-->
+<!--                    <option value="2">已退回</option>-->
+<!--                    <option value="3">已被分配</option>-->
+<!--                    <option value="4">被驳回</option>-->
+<!--                    <option value="5">已完成</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div id="selectForm" style="float: right; margin-right:50px;"-->
+<!--             class="layui-btn layui-btn-normal layui-btn-radius">-->
+<!--            <i class="layui-icon layui-icon-search"></i>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
 <!--数据表格-->
 <div class="list-con">
     <table class="layui-hide" id="tableId" lay-filter="tableId"></table>
 </div>
 </body>
-
 
 
 <script src="/lib/layui/layui.js"></script>
@@ -175,8 +215,7 @@
                 let datas = res.data;
 
                 let rs = [];
-                for(let i=0;i<datas.length;i++)
-                {
+                for (let i = 0; i < datas.length; i++) {
                     let dia = {};
                     //格式化时间
                     let date = new Date(datas[i].disgnose_info.create_time).Format("yyyy-MM-dd HH:mm:ss");
@@ -207,33 +246,33 @@
             cols: [
                 [
                     //序列号
-                    {field:'nums',type:"numbers",title:"序号"}
-                    ,  {field:'nums',type:"numbers",title:"病例编码",width:150}
+                    {field: 'nums', type: "numbers", title: "序号"}
+                    , {field: 'nums', type: "numbers", title: "病例编码", width: 150}
                     , {field: 'hos_nme', title: '单位名称', width: 250}//单位名称通过医生信息查询
                     , {field: 'doctor_name', title: '申请人', width: 100}
-                    , {field: 'id', title: '诊断编号', width: 150, fixed: 'left', unresize: true, sort: true, hide:true}
+                    , {field: 'id', title: '诊断编号', width: 150, fixed: 'left', unresize: true, sort: true, hide: true}
                     , {field: 'patient_name', title: '患者姓名', width: 100}
                     , {field: 'patient_birth', title: '患者出生日期', width: 150}
                     , {field: 'patient_tall', title: '患者身高', width: 100}
                     , {field: 'patient_weight', title: '患者体重', width: 100}
                     , {field: 'diagnose_result', title: '诊断', width: 250}
                     , {field: 'create_time', title: '申请时间', width: 200}
-                    ,{
+                    , {
                     field: "stat", title: "状态", width: 100, templet: function (d) {
                         if (d.stat == 1) {
                             return "<div style='color:#d92d29;font-weight: bold;font-size:15px'>" + "未处理" + "</div>"
-                        }else if (d.stat == 2) {
+                        } else if (d.stat == 2) {
                             return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已退回" + "</div>"
-                        }else if (d.stat == 3) {
+                        } else if (d.stat == 3) {
                             return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已被分配" + "</div>"
-                        }else if (d.stat == 4) {
+                        } else if (d.stat == 4) {
                             return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "被驳回" + "</div>"
-                        }else if (d.stat == 5) {
+                        } else if (d.stat == 5) {
                             return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已完成" + "</div>"
                         }
                     }
                 }
-                    , {field: 'comment_text', title: '备注',width:100}
+                    , {field: 'comment_text', title: '备注', width: 100}
                 ]
             ],
             page: {
@@ -252,11 +291,11 @@
                 title: '分配任务',
                 shadeClose: false,
                 //shade: [0.3],
-                btn: [ '关闭'],//关闭按钮
+                btn: ['关闭'],//关闭按钮
                 maxmin: false, //开启最大化最小化按钮
                 area: ['100%', '100%'],
                 scrollbar: true, //屏蔽滚动条
-                content: '/pages/assistDoctors/diagnosis_result.html?disgnose_id='+data.id
+                content: '/pages/assistDoctors/diagnosis_result.html?disgnose_id=' + data.id
             });
             var state = data.procTatus;
 
@@ -264,10 +303,12 @@
             //show(url);
             obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
         });
+
         //跳转详细页面设置
         function show(url) {
             window.open(url, 'newwindow', 'width=' + (window.screen.availWidth - 10) + ',height=' + (window.screen.availHeight - 30) + ', top=0, left=0, toolbar=no, menubar=no, scrollbars=yes, resizable=yes,location=no, status=no')
         }
+
         //回到全部页面
         $("#changeType button").on('click', function () {
             $("#changeType button").removeClass("layui-btn-normal-inside");
@@ -285,29 +326,29 @@
         })
 
 
-
         //搜索
         $("#selectForm").click(function () {
             let disgnose_code = $("#disgnose_code").val();
             let patient_name = $("#patient_name").val();
-            let patient_tall = $("#patient_tall").val();
-            let patient_weight = $("#patient_weight").val();
-            let diagnose_result = $("#diagnose_result").val();
-            let create_time = $("#create_time").val();
-            let stat = $("#stat").val();
+            let patient_tall = $("#patient_tall").val()==undefined?"":$("#patient_tall").val();
+            let patient_weight = $("#patient_weight").val()==undefined?"":$("#patient_weight").val();
+            let diagnose_result = $("#diagnose_result").val()==undefined?"":$("#diagnose_result").val();
+            let create_time = $("#create_time").val()==undefined?"":$("#create_time").val();
+            let stat = $("#stat").val()==undefined?"":$("#stat").val();
+
 
 
             //重载页面
             articleTable.reload({
-                url:"/get_disgnois_list_byparams_W",
+                url: "/get_disgnois_list_byparams_W",
                 where: {
                     'disgnose_code': disgnose_code,
-                    'patient_name':patient_name,
-                    'patient_tall':patient_tall,
-                    'patient_weight':patient_weight,
-                    'diagnose_result':diagnose_result,
-                    'create_time':create_time,
-                    'stat':stat
+                    'patient_name': patient_name,
+                    'patient_tall': patient_tall,
+                    'patient_weight': patient_weight,
+                    'diagnose_result': diagnose_result,
+                    'create_time': create_time,
+                    'stat': stat
                 },
                 page: {
                     curr: 1
@@ -317,22 +358,71 @@
 
         //刷新页面
         $("#selectEmpty").on('click', backAll);
+
         function backAll() {
             articleTable.reload({
                 where: {
                     //传到服务器数据
                     'procTatus': thisValue,
-                    'caseId':'',
-                    'procLevel':'',
-                    'caseDescription':'',
-                    'startTime':'',
-                    'endTime':''
+                    'caseId': '',
+                    'procLevel': '',
+                    'caseDescription': '',
+                    'startTime': '',
+                    'endTime': ''
                 },
                 page: {
                     curr: 1//回到第一页
                 }
             })
             return false;
+        }
+
+        //高级搜索
+        $("#selectMore").on('click', selectMore);
+
+        function selectMore() {
+            //清空主页面的部门
+            // selDepartment.setValue([]);
+            okLayer.open("查询条件", "selectForm.html", "35%", "65%", function (layero) {
+                let iframeWin = window[layero.find("iframe")[0]["name"]];
+            }, function () {
+
+                var disgnose_code1 = window.document.disgnose_code;
+                var patient_name1 = window.document.patient_name;
+                var patient_tall1 = window.document.patient_tall;
+                var patient_weight1 = window.document.patient_weight;
+                var diagnose_result1 = window.document.diagnose_result;
+                var create_time1 = window.document.create_time;
+                var stat1 = window.document.stat;
+
+                // var newStartDate = startTime.replace(/-/g, "/");//时间格式转换
+
+                //将搜索框置空
+                window.document.disgnose_code = "";
+                window.document.patient_name = "";
+                window.document.patient_tall = "";
+                window.document.patient_weight = "";
+                window.document.diagnose_result = "";
+                window.document.create_time = "";
+                window.document.stat = "";
+
+                //重载页面
+                articleTable.reload({
+                    url: "/get_disgnois_list_byparams_W",
+                    where: {
+                        'disgnose_code': disgnose_code1,
+                        'patient_name': patient_name1,
+                        'patient_tall': patient_tall1,
+                        'patient_weight': patient_weight1,
+                        'diagnose_result': diagnose_result1,
+                        'create_time': create_time1,
+                        'stat': stat1
+                    },
+                    page: {
+                        curr: 1
+                    }
+                })
+            })
         }
     })
 </script>

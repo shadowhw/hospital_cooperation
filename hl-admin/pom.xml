@@ -23,6 +23,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+<!--            <optional>true</optional>-->
         </dependency>
 
 
@@ -110,6 +111,24 @@
                     <include>**/*.json</include>
                     <include>**/*.jpg</include>
                     <include>**/*.jpeg</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+<!--            Spring Boot使用layui的字体图标时无法正常显示解决办法-->
+<!--            经过maven的filter，会破坏font文件的二进制文件格式，导致前台解析出错-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <!--<exclude>reference</exclude>-->
+                    <exclude>static/**/*</exclude>
+                    <!--<exclude>MyBatisGeneratorConfig.xml</exclude>-->
+                </excludes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>static/**/*</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>
