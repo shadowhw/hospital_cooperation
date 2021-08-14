@@ -149,10 +149,10 @@
 <!--                                    <input type="radio" name="isread" value="1" title="已阅" checked="">-->
 <!--                                    <input type="radio" name="isread1" value="2" title="已阅1" >-->
 <!--                                </div>-->
-                                <div class="layui-form-item">
-                                    <textarea name="comment_text" id="comment_text" placeholder="请输入处理备注"
-                                              class="layui-textarea"></textarea>
-                                </div>
+<!--                                <div class="layui-form-item">-->
+<!--                                    <textarea name="comment_text" id="comment_text" placeholder="请输入处理备注"-->
+<!--                                              class="layui-textarea"></textarea>-->
+<!--                                </div>-->
                                 <div class="layui-form-item" style="text-align: right">
                                     <button type="button" class="layui-btn" lay-submit lay-filter="add" id="submit">确认</button>
                                 </div>
@@ -173,7 +173,7 @@
         <div class="layui-form-item" style="margin-top: 20px;">
             <label class="layui-form-label">回退原因</label>
             <div class="layui-input-block" style="margin-right:40px">
-                <textarea placeholder="请输入回退原因..." class="layui-textarea"></textarea>
+                <textarea placeholder="请输入回退原因..." class="layui-textarea" id="back_comm"></textarea>
             </div>
         </div>
     </div>
@@ -203,7 +203,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">操作备注</label>
             <div class="layui-input-block" style="margin-right:40px">
-                <textarea placeholder="请输入备注..." class="layui-textarea"></textarea>
+                <textarea placeholder="请输入备注..." class="layui-textarea" id="comm_task"></textarea>
             </div>
         </div>
     </div>
@@ -218,7 +218,7 @@
         <div class="layui-form-item" style="margin-top: 20px;">
             <label class="layui-form-label">驳回原因</label>
             <div class="layui-input-block" style="margin-right:40px">
-                <textarea placeholder="请输入原因..." class="layui-textarea"></textarea>
+                <textarea placeholder="请输入原因..." class="layui-textarea" id="comm_bohui"></textarea>
             </div>
         </div>
     </div>
@@ -233,7 +233,7 @@
         <div class="layui-form-item" style="margin-top: 20px;">
             <label class="layui-form-label">反馈备注</label>
             <div class="layui-input-block" style="margin-right:40px">
-                <textarea placeholder="请输入备注..." class="layui-textarea"></textarea>
+                <textarea placeholder="请输入备注..." class="layui-textarea" id="comm_fankui"></textarea>
             </div>
         </div>
     </div>
@@ -247,6 +247,39 @@
 <script src="/js/hyx.js"></script>
 
 <script>
+    let d_id = GetQueryString("disgnose_id");
+
+    let comment_text = $("#comment_text").val();
+    let diagnosis_id =  GetQueryString("disgnose_id");
+
+    //流程信息
+    let transact_comment = comment_text;
+    //添加流程
+    function add_process(transact_type2,fenfa) {
+        //添加流程
+        $.ajax({
+            url: '/hos/process/add_process',
+            dataType: 'json',
+            type: 'post',
+            data: {disgnose_id:d_id,fenfa:fenfa,transactor:"管理员",
+                transact_type:transact_type2,
+                transact_comment:transact_comment,
+                transact_stat:1},
+            success: function (resData) {
+                if(resData.code == '201'){
+                    layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                }else{
+                    layer.msg("成功", {
+                        icon: 6,//成功的表情
+                        time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        window.location.reload();
+                    });
+                }
+            }
+        });
+    };
+
     layui.use(['form','laydate',"table","layer"], function () {
         // layui引入需要的组件
         var $ = layui.jquery;
@@ -263,7 +296,6 @@
             , page: false
             , parseData: function (res) {
                 let datas = res.data;
-                console.log(datas.length)
                 let rs = [];
                 for (let i = 0; i < datas.length; i++) {
                     let dia = {}
@@ -330,36 +362,77 @@
 
         });
 
-        //提交处理
-        $("#submit").click(function () {
+        //更新诊断表
+        function update_diagnosis(stat2,comm) {
+            $.ajax({
+                url: '/hos/diagnosis_info/update_diagnosis_info',
+                dataType: 'json',
+                type: 'post',
+                data: {id:diagnosis_id,comment_text:comm,stat:stat2},
+                success: function (resData) {
+                    if(resData.code == '201'){
+                        layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                    }else{
+                        layer.msg("成功", {
+                            icon: 6,//成功的表情
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            window.location.reload();
+                        });
+                    }
+                }
+            });
+        };
 
-            let radio_val = $("button[name='shenqing']:checked").val();
-            let comment_text = $("#comment_text").val();
-            let diagnosis_id =  GetQueryString("disgnose_id");
-            let select_doc =  $("#select_doc").find("option:selected").text();//选择的医生
+        $("#backApply").on("click", function(){
+            console.log($("#back_comm").val())
+            var index = layer.open({
+                type: 1,
+                title: ['回退申请', 'font-size:14px; color:red;'],//数组第二项可以写任意css样式；如果你不想显示标题栏，你可以title: false
+                shade: 0.6,
+                maxmin: true,//允许全屏最小化
+                id: (new Date()).valueOf(), //设定一个id，防止重复弹出 时间戳1280977330748
+                btn: ['保存', '取消'],
+                btnAlign: 'r',
+                area: ['480px', '350px'],
+                content: $("#backApplybu"),
+                btn: ['确定', '取消'],
+                yes: function(index, layero){
+                    //do something
+                    // alert("确定回退吗？");
+                    update_diagnosis(2,$("#back_comm").val());
+                    add_process("回退诊断申请",$("#doctor_name").text());
+                    layer.close(index); //如果设定了yes回调，需进行手工关闭
+                },
+                btn2: function(index, layero){
+                    alert("确定取消回退吗？");
+                    layer.close(index)
+                }
+            });
+        })
 
-            //流程信息
-            let fenfa = $("#doctor_name").text();
-            let transactor = "管理员";
-            let transact_comment = comment_text;
-            let transact_stat = 1;
-
-            if(radio_val==undefined)
-            {
-                layer.msg("你未选择操作项")
-                return;
-            }
-            if(radio_val=="回退申请")
-            {
-                update_diagnosis(2);
-                add_process("回退诊断申请");
-            }else if(radio_val=="分配诊断任务")
-            {
+    });
+    //分配
+    $("#assignTasks").on("click", function(){
+        var index = layer.open({
+            type: 1,
+            title: ['分配诊断任务', 'font-size:14px; color:#1E9FFF;'],
+            shade: 0.6,
+            maxmin: true,//允许全屏最小化
+            id: (new Date()).valueOf(),
+            btn: ['保存', '取消'],
+            btnAlign: 'r',
+            area: ['520px', '420px'],
+            content: $("#assignTasksbu"),
+            btn: ['确定', '取消'],
+            yes: function(index, layero){
+                //do something
+                //alert("确定此操作吗？");
                 $.ajax({
                     url: '/hos/diagnosis_info/update_diagnosis_info',
                     dataType: 'json',
                     type: 'post',
-                    data: {id:diagnosis_id,comment_text:comment_text,stat:3},
+                    data: {id:d_id,comment_text:$("#comm_task").val(),stat:3},
                     success: function (resData) {
                         if(resData.code == '201'){
                             layer.msg(resData.data.msg,{icon: 5});//失败的表情
@@ -369,7 +442,7 @@
                                 url: '/hos/doctor_with_disgnose/add_assist',
                                 dataType: 'json',
                                 type: 'post',
-                                data: {disgnose_id:diagnosis_id,doctor_account:select_doc},
+                                data: {disgnose_id:d_id,doctor_account:$("#select_doc").find("option:selected").text()},
                                 success: function (resData2) {
                                     if(resData2.code == '201'){
                                         layer.msg(resData2.data.msg,{icon: 5});//失败的表情
@@ -387,103 +460,7 @@
                         }
                     }
                 });
-                add_process("管理已分配诊断任务");
-            }else if(radio_val=="驳回诊断报告")
-            {
-                update_diagnosis(4);
-                add_process("管理已驳回诊断报告");
-            }else if(radio_val=="反馈诊断报告")
-            {
-                update_diagnosis(5);
-                add_process("诊断任务已完成");
-            }
-
-            //添加流程
-            function add_process(transact_type2) {
-                //添加流程
-                $.ajax({
-                    url: '/hos/process/add_process',
-                    dataType: 'json',
-                    type: 'post',
-                    data: {disgnose_id:diagnosis_id,fenfa:fenfa,transactor:transactor,
-                        transact_type:transact_type2,transact_comment:transact_comment,transact_stat:transact_stat},
-                    success: function (resData) {
-                        if(resData.code == '201'){
-                            layer.msg(resData.data.msg,{icon: 5});//失败的表情
-                        }else{
-                            layer.msg("成功", {
-                                icon: 6,//成功的表情
-                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
-                            }, function(){
-                                window.location.reload();
-                            });
-                        }
-                    }
-                });
-            };
-            //更新诊断表转态
-            function update_diagnosis(stat2) {
-                $.ajax({
-                    url: '/hos/diagnosis_info/update_diagnosis_info',
-                    dataType: 'json',
-                    type: 'post',
-                    data: {id:diagnosis_id,comment_text:comment_text,stat:stat2},
-                    success: function (resData) {
-                        if(resData.code == '201'){
-                            layer.msg(resData.data.msg,{icon: 5});//失败的表情
-                        }else{
-                            layer.msg("成功", {
-                                icon: 6,//成功的表情
-                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
-                            }, function(){
-                                window.location.reload();
-                            });
-                        }
-                    }
-                });
-            }
-
-        });
-
-    });
-    $("#backApply").on("click", function(){
-        var index = layer.open({
-            type: 1,
-            title: ['回退申请', 'font-size:14px; color:red;'],//数组第二项可以写任意css样式；如果你不想显示标题栏，你可以title: false
-            shade: 0.6,
-            maxmin: true,//允许全屏最小化
-            id: (new Date()).valueOf(), //设定一个id，防止重复弹出 时间戳1280977330748
-            btn: ['保存', '取消'],
-            btnAlign: 'r',
-            area: ['480px', '350px'],
-            content: $("#backApplybu"),
-            btn: ['确定', '取消'],
-            yes: function(index, layero){
-                //do something
-                alert("确定回退吗？");
-                layer.close(index); //如果设定了yes回调，需进行手工关闭
-            },
-            btn2: function(index, layero){
-                alert("确定取消回退吗？");
-                layer.close(index)
-            }
-        });
-    })
-    $("#assignTasks").on("click", function(){
-        var index = layer.open({
-            type: 1,
-            title: ['分配诊断任务', 'font-size:14px; color:#1E9FFF;'],
-            shade: 0.6,
-            maxmin: true,//允许全屏最小化
-            id: (new Date()).valueOf(),
-            btn: ['保存', '取消'],
-            btnAlign: 'r',
-            area: ['520px', '420px'],
-            content: $("#assignTasksbu"),
-            btn: ['确定', '取消'],
-            yes: function(index, layero){
-                //do something
-                alert("确定此操作吗？");
+                add_process("管理已分配诊断任务",$("#doctor_name").text());
                 layer.close(index); //如果设定了yes回调，需进行手工关闭
             },
             btn2: function(index, layero){
@@ -506,7 +483,26 @@
             btn: ['确定', '取消'],
             yes: function(index, layero){
                 //do something
-                alert("确定回退吗？");
+                //alert("确定回退吗？");
+                $.ajax({
+                    url: '/hos/diagnosis_info/update_diagnosis_info',
+                    dataType: 'json',
+                    type: 'post',
+                    data: {id:d_id,comment_text:$("#comm_bohui").val(),stat:4},
+                    success: function (resData) {
+                        if(resData.code == '201'){
+                            layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                        }else{
+                            layer.msg("成功", {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function(){
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+                add_process("管理已驳回诊断报告");
                 layer.close(index); //如果设定了yes回调，需进行手工关闭
             },
             btn2: function(index, layero){
@@ -529,7 +525,25 @@
             btn: ['确定', '取消'],
             yes: function(index, layero){
                 //do something
-                alert("确定回退吗？");
+                $.ajax({
+                    url: '/hos/diagnosis_info/update_diagnosis_info',
+                    dataType: 'json',
+                    type: 'post',
+                    data: {id:d_id,comment_text:$("#comm_fankui").val(),stat:5},
+                    success: function (resData) {
+                        if(resData.code == '201'){
+                            layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                        }else{
+                            layer.msg("成功", {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function(){
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+                add_process("诊断任务已完成");
                 layer.close(index);
             },
             btn2: function(index, layero){
@@ -559,6 +573,7 @@
                 if(data.code == '201'){
                     alert(data.data.msg);//失败的表情
                 }else{
+
                     let datas = data.data;
                     let rs = [];
                     for(let i=0;i<datas.length;i++)
@@ -581,6 +596,7 @@
                         dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
                         dia.stat = datas[i].disgnose_info.stat;
 
+
                         $("#hos_nme").text(dia.hos_nme)
                         $("#patient_name").text(dia.patient_name)
                         $("#patient_birth").text(dia.patient_birth)
@@ -594,6 +610,8 @@
                         switch (dia.stat) {
                             case 1://创建状态不能驳回和反馈
                                 // $("#choice_hos").hide();
+                                $("#a1").show();
+                                $("#assignTasks").show();
                                 $("#a2").hide();
                                 // $("input:radio").eq(0).attr("disabled",false);
                                 // $("input:radio").eq(1).attr("disabled",false);
@@ -602,6 +620,7 @@
                                 break;
                             case 2://退回后不能分配
                                 $("#assignTasks").hide();
+                                $("#a2").hide();
                                 // $("input:radio").eq(0).attr("disabled",false);
                                 // $("input:radio").eq(1).attr("disabled",true);
                                 // $("input:radio").eq(2).attr("disabled",true);
@@ -609,8 +628,10 @@
                                 break;
                             case 3://已分配和驳回协助都不能显示分配任务和协作医师完成
                             case 4:
+                            //诊断医师完成后显示驳回和反馈
                             case 6:
-                                $("#a2").hide();
+                                $("#a1").hide();
+                                $("#a2").show();
                                 // $("#choice_hos").hide();
                                 // $("#choice_doc").hide();
                                 // $("input:radio").eq(0).attr("disabled",true);

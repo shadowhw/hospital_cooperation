@@ -33,8 +33,8 @@
                 <div class="layui-form-item" style="margin-top: 30px">
                     <label class="layui-form-label">医院名称&#12288;</label>
                     <div class="layui-input-block">
-                        <select name="select_hos" id="select_hos" lay-filter="select_hos" lay-verify="required">
-                        </select>
+                        <input style="float: left;" type="text"
+                               class="layui-input" name="select_hos" id="select_hos" placeholder="请输入医院名称" autocomplete="off">
                     </div>
                 </div>
 
@@ -147,10 +147,9 @@
 
         form.on('submit(register)',function (data) {
             var data_info = data.field;
-            console.log(data_info)
-            console.log("添加")
+
             //医院信息
-            var hos_name = data_info.hos_name;
+            var hos_name = data_info.select_hos;
             var hos_addr = data_info.province+data_info.city+data_info.county;
 
             $.ajax({
@@ -170,6 +169,7 @@
                             icon: 6,//成功的表情
                             time: 1000 //1秒关闭（如果不配置，默认是3秒）
                         }, function(){
+                            window.location.reload();
                             //window.location.href="/login";
                         });
                     }

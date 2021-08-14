@@ -26,7 +26,7 @@ public class WebMvcConfig implements WebMvcConfigurer
     public void addInterceptors(InterceptorRegistry registry)
     {
         List<String> ex = new ArrayList<>();
-        Collections.addAll(ex,"/login","/register","/userLogin");
+        Collections.addAll(ex,"/login","/register","/userLogin","/register_doctor");
         registry.addInterceptor(new HosInterceptor())
                 .addPathPatterns("/*").excludePathPatterns(ex);
 

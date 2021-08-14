@@ -89,6 +89,7 @@ public class Hos_infoController {
             result.setMsg("添加成功");
             result.setCount(1);
             result.setCode(200);
+            result.setData(null);
         }else {
             result.setMsg("该医院已经存在！");
             result.setCount(0);
