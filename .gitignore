@@ -6,4 +6,4 @@
 *.iws
 **/target/
 /.idea/**
-.idea/workspace.xml
+/.idea/workspace.xml
