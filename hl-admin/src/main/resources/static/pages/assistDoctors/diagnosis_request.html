@@ -405,7 +405,27 @@
 </script>
 
 <script>
+    function downLoadFile(obj){
+        var fileName = obj.name;
+        alert(fileName);
+        // $.ajax({
+        //     url: '/downLoadFileByFileName',
+        //     method: 'GET',
+        //     data: {
+        //         fileName: fileName
+        //     },
+        //     success: function(result){
+        //         if (result.code == 200 ){
+        //             //下载成功
+        //         }else{
+        //             //下载失败
+        //         }
+        //     }
+        // })
+        window.open("/downLoadFileByFileName?fileName="+fileName)
+    }
     $(document).ready(function(){
+
         //获取诊断编号
         var disgnose_id = GetQueryString("disgnose_id");
         // $.ajax({
@@ -433,6 +453,8 @@
                         let dia = {}
                         dia.fileName = datas[i].attached.attched_name;
                         dia.type = datas[i].type;
+                        let fName = dia.fileName;
+                        dia.download = '<button type="button" class="layui-btn layui-btn-sm" name="'+fName+'" onclick="downLoadFile(this)">下载</button>'
                         rs.push(dia)
                     }
                     return {
@@ -446,10 +468,13 @@
                     //序列号
                     {field: 'fileName',title: "文件名称"}
                     , {field: 'type',  title: '类型',  width: 100 }
+                    ,{field: 'download' ,title: '操作',width:100 }
                 ]
                 ]
             });
         });
+
+
 
         //甚至诊断iframe的src
         $("#processData").attr("src","/pages/commonData/processData.html?disgnose_id="+disgnose_id);
