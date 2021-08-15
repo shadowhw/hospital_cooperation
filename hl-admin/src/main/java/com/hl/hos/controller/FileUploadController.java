@@ -135,6 +135,7 @@ public class FileUploadController {
     }
 
     @GetMapping("/getDisnosisByCode")
+    @ResponseBody
     public Result getDisnosisByCode(String disgnose_code){//根据诊断编号获取信息
         Disgnose_info disgnoseInfoByCode = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("disgnose_code", disgnose_code));
         Result result = new Result();
