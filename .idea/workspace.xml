@@ -7,7 +7,10 @@
     <bookmark url="file://$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/waitingForDistribution.html" line="384" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78dab43c-66fb-460e-9e5a-a48ec3e4971e" name="默认更改列表" comment="何夜息-第一次上传项目" />
+    <list default="true" id="78dab43c-66fb-460e-9e5a-a48ec3e4971e" name="默认更改列表" comment="何夜息-第一次上传项目">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/hl-admin/target/" />
     <ignored path="$PROJECT_DIR$/hl-common/target/" />
@@ -77,20 +80,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3">
-              <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+            <state relative-caret-position="-51">
+              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Diagnosis_infoController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="54" column="45" lean-forward="true" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Diagnosis_infoController.java">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="52" column="12" lean-forward="true" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="189">
+              <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -186,7 +198,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/homepage.html" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/backPogo/DoctorList.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/backPogo/DoctorHos.java" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/pojo/Result.java" />
@@ -237,6 +248,7 @@
         <option value="$PROJECT_DIR$/hl-admin/src/main/resources/static/pages/admin/add_assis.html" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Diagnosis_infoController.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -310,239 +322,6 @@
             <path>
               <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
               <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hl" type="462c0819:PsiDirectoryNode" />
-              <item name="hos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hl" type="462c0819:PsiDirectoryNode" />
-              <item name="hos" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hl" type="462c0819:PsiDirectoryNode" />
-              <item name="hos" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hl" type="462c0819:PsiDirectoryNode" />
-              <item name="hos" type="462c0819:PsiDirectoryNode" />
-              <item name="handler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hl" type="462c0819:PsiDirectoryNode" />
-              <item name="hos" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hl" type="462c0819:PsiDirectoryNode" />
-              <item name="hos" type="462c0819:PsiDirectoryNode" />
-              <item name="pojo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hl" type="462c0819:PsiDirectoryNode" />
-              <item name="hos" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hl" type="462c0819:PsiDirectoryNode" />
-              <item name="hos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital_cooperation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospital_cooperation" type="462c0819:PsiDirectoryNode" />
-              <item name="hl-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="generated-sources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -683,7 +462,7 @@
       <workItem from="1628342546925" duration="2138000" />
       <workItem from="1628492705137" duration="795000" />
       <workItem from="1628694837553" duration="19065000" />
-      <workItem from="1629098605557" duration="5506000" />
+      <workItem from="1629098605557" duration="5586000" />
     </task>
     <servers />
   </component>
@@ -720,13 +499,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="276661000" />
+    <option name="totallyTimeSpent" value="276741000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.29490617" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.29490617" />
       <window_info id="Structure" order="1" sideWeight="0.5021097" side_tool="true" weight="0.29490617" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -737,7 +516,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
       <window_info anchor="bottom" id="Favorites" order="2" sideWeight="0.49932975" weight="0.203966" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.4953083" visible="true" weight="0.3796034" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4953083" visible="true" weight="0.3796034" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.39886847" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -746,7 +525,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49932975" weight="0.3186969" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49932975" weight="0.28895184" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50469166" side_tool="true" weight="0.26203966" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50469166" side_tool="true" visible="true" weight="0.3796034" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.49865952" weight="0.46175638" />
       <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32956153" />
       <window_info anchor="bottom" id="调试" order="15" weight="0.36685553" />
@@ -899,13 +678,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.2.9.RELEASE/spring-webmvc-5.2.9.RELEASE.jar!/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.2.9.RELEASE/spring-webmvc-5.2.9.RELEASE-sources.jar!/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="828">
@@ -1317,8 +1089,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3">
-          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+        <state relative-caret-position="-51">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1346,11 +1118,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hl-admin/src/main/java/com/hl/hos/controller/Diagnosis_infoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="52" column="12" lean-forward="true" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
+        <state relative-caret-position="274">
+          <caret line="54" column="45" lean-forward="true" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
         </state>
       </provider>
     </entry>
