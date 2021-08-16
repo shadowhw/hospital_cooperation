@@ -50,7 +50,9 @@ public class Diagnosis_infoController
         List<DiagnosisDoctorHos> resList = new ArrayList<DiagnosisDoctorHos>();
 
         Page<Disgnose_info> page1 = new Page<Disgnose_info>(Integer.parseInt(page),Integer.parseInt(limit));
-        IPage<Disgnose_info> iPage = disgnose_infoService.page(page1);
+        QueryWrapper<Disgnose_info> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("create_time");
+        IPage<Disgnose_info> iPage = disgnose_infoService.page(page1,queryWrapper);
 
         for (int i = 0; i < iPage.getRecords().size(); i++)
         {
@@ -160,7 +162,7 @@ public class Diagnosis_infoController
         if (!StringUtils.isEmpty(stat.trim())){
             queryWrapper.like("stat",stat);
         }
-
+        queryWrapper.orderByDesc("create_time");
         List<Disgnose_info> list = disgnose_infoService.list(queryWrapper);
 
         List<DiagnosisDoctorHos> resList = new ArrayList<DiagnosisDoctorHos>();

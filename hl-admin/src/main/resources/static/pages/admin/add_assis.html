@@ -34,7 +34,7 @@
                 <div class="layui-form-item" style="margin-top: 30px">
                     <label class="layui-form-label">医院名称&#12288;</label>
                     <div class="layui-input-block">
-                        <select name="select_hos" id="name" lay-filter="name" lay-verify="required">
+                        <select name="select_hos" id="select_hos" lay-filter="name" lay-verify="required">
                         </select>
                     </div>
                 </div>
@@ -93,7 +93,27 @@
             elem: '#area-picker',
             change: function (res) {
                 //选择结果
-                console.log(res);
+                let addr = res.province + res.city + res.county;
+                $.ajax({
+                    url: '/hos/hos_info/get_hos_by_addr',
+                    dataType: 'json',
+                    type: 'get',
+                    data:{hos_addr:addr},
+                    success: function (resData) {
+                        $('#select_hos').empty();
+                        $.each(resData.data, function (index, value) {
+                            // 这里的 value.roomName
+                            // 前者是页面显示的值，后者是传递给后台的值。
+                            // 正常情况下，后者应该是 value.id
+
+                            $('#select_hos').append(new Option(value.hos_name, value.hos_name));	// 下拉菜单里添加元素
+
+                        });
+
+                        //渲染select
+                        form.render('select');
+                    }
+                });
             }
         });
 
@@ -129,7 +149,7 @@
         form.on('submit(register)',function (data) {
             var data_info = data.field;
             //医院信息
-            var hos_name = data_info.hos_name;
+            var hos_name = data_info.select_hos;
             var hos_addr = data_info.province+data_info.city+data_info.county;
 
             //医生信息
@@ -156,6 +176,7 @@
                             icon: 6,//成功的表情
                             time: 1000 //1秒关闭（如果不配置，默认是3秒）
                         }, function(){
+                            window.location.reload();
                             //window.location.href="/login";
                         });
                     }
