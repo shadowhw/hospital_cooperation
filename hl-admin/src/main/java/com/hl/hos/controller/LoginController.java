@@ -57,7 +57,10 @@ public class LoginController {
             session.setAttribute("error","账号没有激活");
             return "redirect:/login";
         }
-
+        if(pass==3){ //停用
+            session.setAttribute("error","账号停用");
+            return "redirect:/login";
+        }
         String addr = "/login";
         Integer stat = doctorRes.getStat();//获取状态码
         session.setAttribute("doctor_info",doctorRes);

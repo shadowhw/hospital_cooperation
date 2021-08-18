@@ -1,11 +1,9 @@
 package com.hl.hos.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.hl.hos.pojo.Attached;
-import com.hl.hos.pojo.Disgnose_info;
-import com.hl.hos.pojo.Doctor_info;
-import com.hl.hos.pojo.Result;
+import com.hl.hos.pojo.*;
 import com.hl.hos.service.AttachedService;
+import com.hl.hos.service.Attached_resultService;
 import com.hl.hos.service.Disgnose_infoService;
 import com.hl.hos.utils.FileNameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.print.Doc;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -33,6 +31,9 @@ public class FileUploadController {
     private Disgnose_infoService disgnoseInfoService; //诊断申请表
     @Autowired
     private AttachedService attachedService;//诊断申请附件
+    @Autowired
+    private Attached_resultService attachedResultService;
+
     //论文的Id集合
     private List<Attached> fileslist = new ArrayList<>();
     private Doctor_info doctor_info;
@@ -135,6 +136,7 @@ public class FileUploadController {
     }
 
     @GetMapping("/getDisnosisByCode")
+    @ResponseBody
     public Result getDisnosisByCode(String disgnose_code){//根据诊断编号获取信息
         Disgnose_info disgnoseInfoByCode = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("disgnose_code", disgnose_code));
         Result result = new Result();
@@ -205,6 +207,67 @@ public class FileUploadController {
     public Doctor_info getInfo(HttpSession httpSession){
         doctor_info = (Doctor_info)httpSession.getAttribute("doctor_info");
         return doctor_info;
+    }
+
+
+    @GetMapping("/downLoadFileByFileName")
+    @ResponseBody()
+    public Result   downLoadFileByFileName(HttpServletRequest request, HttpServletResponse response,String fileName) {
+        Result result = new Result();
+        if (fileName != null) {
+
+            //先去数据库中查找是否有此文件
+            Attached attachedByFileName = attachedService.getOne(new QueryWrapper<Attached>().eq("attched_name", fileName));
+            Attached_result attachedResultByFileName = attachedResultService.getOne(new QueryWrapper<Attached_result>().eq("attched_name",fileName));
+            if(attachedByFileName == null && attachedResultByFileName == null){ //两个文件都为null
+                result.setCode(500);
+                result.setMsg("文件不存在");
+                return result;
+            }
+            //设置文件路径
+            File file = new File(savePath+fileName);
+            //File file = new File(realPath , fileName);
+            if (file.exists()) {
+//                response.setContentType("application/force-download");// 设置强制下载不打开
+                response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名
+                byte[] buffer = new byte[1024];
+                FileInputStream fis = null;
+                BufferedInputStream bis = null;
+                try {
+                    fis = new FileInputStream(file);
+                    bis = new BufferedInputStream(fis);
+                    OutputStream os = response.getOutputStream();
+                    int i = bis.read(buffer);
+                    while (i != -1) {
+                        os.write(buffer, 0, i);
+                        i = bis.read(buffer);
+                    }
+                    result.setCode(200);
+                    result.setMsg("下载成功");
+                    return result;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally { // 做关闭操作
+                    if (bis != null) {
+                        try {
+                            bis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (fis != null) {
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        result.setCode(500);
+        result.setMsg("下载出错了！");
+        return result;
     }
 }
 
