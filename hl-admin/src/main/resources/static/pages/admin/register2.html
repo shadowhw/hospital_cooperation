@@ -150,10 +150,10 @@
                 , {field: 'hos_name', title: '单位名称', width: 250,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'doctor_id', title: '角色ID', width: 150, fixed: 'left', unresize: true, sort: true, hide:true,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'hos_addr', title: '医院地址', width: 200,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
-                , {field: 'doctor_name', title: '联系人', width: 100,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
-                , {field: 'doctor_tel', title: '联系电话', width: 120,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
-                , {field: 'doctor_zuoji', title: '座机号码', width: 120,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
-                , {field: 'email', title: '联系邮箱', width: 150,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                , {field: 'doctor_name', title: '联系人',edit:"text", width: 100,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                , {field: 'doctor_tel', title: '联系电话',edit:"text", width: 120,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                , {field: 'doctor_zuoji', title: '座机号码',edit:"text", width: 120,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                , {field: 'email', title: '联系邮箱',edit:"text", width: 150,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'create_time', title: '申请时间', width: 200,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: "stat", title: "账号状态", width: 90,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px', templet: function (d) {
                     if (d.stat == 2) {
@@ -354,6 +354,45 @@
             })
             return false;
         }
+
+        //单元格编辑
+        table.on('edit(tableId)', function(obj){ //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
+            //询问框
+            layer.confirm("您确定为:"+obj.value+"吗?", {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                let id = obj.data.doctor_id;
+                let doctor_name = obj.data.doctor_name;
+                let doctor_tel = obj.data.doctor_tel;
+                let doctor_zuoji = obj.data.doctor_zuoji;
+                let email = obj.data.email;
+
+                $.ajax({
+                    url:'/hos/doctor_info/update_doctor_info',
+                    type:'get',
+                    data:{
+                        'id':id,'doctor_name':doctor_name,'doctor_tel':doctor_tel,
+                        'doctor_zuoji':doctor_zuoji,'email':email
+                    },
+                    success:function(data){
+                        if(data.code == '201'){
+                            layer.msg(data.msg,{icon: 5});//失败的表情
+                        }else{
+                            layer.msg("修改成功", {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function(){
+                                window.location.reload();
+                            });
+                        }
+                    },
+                });
+
+                layer.msg('修改成功'+id+hos_name, {icon: 1});
+            }, function(){
+                window.location.reload();
+            });
+        });
     })
 </script>
 </html>
