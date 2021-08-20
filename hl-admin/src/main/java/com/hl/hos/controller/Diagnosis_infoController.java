@@ -46,12 +46,15 @@ public class Diagnosis_infoController
     @GetMapping("/get_diagnosis_list")
     public Result get_diagnosis_list(String page,String limit)
     {
-        List<Disgnose_info> list = disgnose_infoService.list();
+        QueryWrapper<Disgnose_info> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("create_time");
+        queryWrapper.ne("stat",0);
+        //不包括状态0：保存
+        List<Disgnose_info> list = disgnose_infoService.list(queryWrapper);
         List<DiagnosisDoctorHos> resList = new ArrayList<DiagnosisDoctorHos>();
 
         Page<Disgnose_info> page1 = new Page<Disgnose_info>(Integer.parseInt(page),Integer.parseInt(limit));
-        QueryWrapper<Disgnose_info> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByDesc("create_time");
+
         IPage<Disgnose_info> iPage = disgnose_infoService.page(page1,queryWrapper);
 
         for (int i = 0; i < iPage.getRecords().size(); i++)
@@ -61,6 +64,9 @@ public class Diagnosis_infoController
 
             //医生账号不能用时不显示
             Doctor_info doctorInfo = doctor_infoService.getById(disgnose_info.getDoctor_id());
+            //医生账号被删除
+            if(doctorInfo==null)
+                continue;
             if(doctorInfo.getStat()==5 || doctorInfo.getStat()==6)
                 continue;//不绑定信息
             diagnosisDoctorHos.setDisgnose_info(disgnose_info);//绑定诊断信息
