@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.sql.Timestamp;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,7 +22,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_attached_result")
-public class Attached_result implements Serializable {
+public class Attached_result extends Model<Attached_result> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
