@@ -1,0 +1,11 @@
+[
+  {
+    "title": "诊断申请管理",
+    "href": "/pages/assistDoctors/askdiagnosisList.html",
+    "fontFamily": "ok-icon",
+    "icon": "&#xe654;",
+    "spread": true,
+    "isCheck": true
+  }
+
+]

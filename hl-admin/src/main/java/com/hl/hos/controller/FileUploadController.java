@@ -110,7 +110,7 @@ public class FileUploadController {
         disgnose_info.setStat(0); //只是临时保存，不需要提交
 
         boolean save = false;
-        if(id == null|| "".equals(id)){ //并没有该记录临时
+        if(id == null|| "".equals(id)|| "0".equals(id)){ //并没有该记录临时
              save = disgnoseInfoService.save(disgnose_info);
         }else{
             disgnose_info.setId(Long.valueOf(id));
@@ -172,7 +172,7 @@ public class FileUploadController {
         disgnose_info.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
         disgnose_info.setDisgnose_code(new SimpleDateFormat("yyyyMMdd").format(new Date())+ UUID.randomUUID().toString().substring(5,8));
         boolean b = false;
-       if(id == null ||"".equals(id)){ //不存在临时记录
+       if(id == null ||"".equals(id) || "0".equals(id)){ //不存在临时记录
             b = disgnose_info.insert(); //直接保存
        }else{
            disgnose_info.setId(Long.valueOf(id));
