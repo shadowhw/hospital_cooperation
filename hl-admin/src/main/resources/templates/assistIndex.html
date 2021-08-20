@@ -94,7 +94,7 @@
                     <span name="policName"></span>
                 </a>
                 <dl id="userInfo" class="layui-nav-child">
-                    <dd><a lay-id="u-1" href="javascript:" data-url="/pages/user/user">个人中心</a></dd>
+<!--                    <dd><a lay-id="u-1" href="javascript:" data-url="/pages/user/user">个人中心</a></dd>-->
                     <dd><a lay-id="u-2" href="javascript:" data-url="/pages/user/user">密码修改</a></dd>
                     <dd>
                         <hr/>
@@ -426,22 +426,22 @@
         $("#logout").click(function () {
             okLayer.confirm("确定要退出吗？", function (index) {
                 $.ajax({
-                    url: mainUri + '/vUserInfo/quit',
-                    type: "post",
+                    url: '/logOut',
+                    type: "GET",
                     dataType: "json",
                     success: function (data) {
                         okTab.tabClose(3);
                         sessionStorage.setItem('tabMenu', '');
                         sessionStorage.setItem('tabMenuLeft', '');
                         window.sessionStorage.setItem("police", "");
-                        window.location = mainUri+"/login.html";
+                        window.location = "/";
                     },
                     error: function () {
                         okTab.tabClose(3);
                         sessionStorage.setItem('tabMenu', '');
                         sessionStorage.setItem('tabMenuLeft', '');
                         window.sessionStorage.setItem("police", "");
-                        window.location = mainUri+"/login.html";
+                        window.location = "/login.html";
                     }
                 });
             });
