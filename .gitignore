@@ -5,5 +5,5 @@
 *.ipr
 *.iws
 **/target/
-/.idea/**
-/.idea/workspace.xml
+./.idea/**
+./.idea/workspace.xml
