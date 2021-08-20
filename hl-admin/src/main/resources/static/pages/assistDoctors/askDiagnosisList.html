@@ -74,7 +74,7 @@
         <legend>申请诊断
                 <button type="button" style="margin-left: 7px" id="uploadData"
                         class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius">
-                    上传申请
+                    新建诊断申请
                 </button>
         </legend>
     </fieldset>
@@ -211,6 +211,8 @@
                             return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已完成" + "</div>"
                         }else if (d.stat == 6){
                             return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已分配" + "</div>"
+                        }else if(d.stat == 0){
+                            return "<div style='color:#00fa19;font-weight: bold;font-size:15px'>" + "临时保存" + "</div>"
                         }
                     }
                 }
@@ -243,18 +245,22 @@
         //根据所选择的状态按钮，跳转案件状态详细页面
         table.on('row(tableId)', function (obj) {
             var data = obj.data;
+            if(data.stat == 2 || data.stat == 4){
+                show('/pages/assistDoctors/assits_reupload.html?disgnose_id='+data.id)
+            }else{
+                layer.open({
+                    type: 2,
+                    title: '分配任务',
+                    shadeClose: false,
+                    //shade: [0.3],
+                    btn: [ '关闭'],//关闭按钮
+                    maxmin: false, //开启最大化最小化按钮
+                    area: ['100%', '100%'],
+                    scrollbar: true, //屏蔽滚动条
+                    content: '/pages/assistDoctors/diagnosis_request.html?disgnose_id='+data.id
+                });
+            }
 
-            layer.open({
-                type: 2,
-                title: '分配任务',
-                shadeClose: false,
-                //shade: [0.3],
-                btn: [ '关闭'],//关闭按钮
-                maxmin: false, //开启最大化最小化按钮
-                area: ['100%', '100%'],
-                scrollbar: true, //屏蔽滚动条
-                content: '/pages/assistDoctors/diagnosis_request.html?disgnose_id='+data.id
-            });
             var state = data.procTatus;
 
             //var url = "/pages/admin/waitingForDistribution.html"

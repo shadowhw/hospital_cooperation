@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>协作医师处理诊断</title>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css">
+</head>
+
+<style>
+    .textarea {
+        margin-right: 3px;
+    }
+
+    .button-style {
+        background-color: #FFFFFF;
+        border: #FFFFFF
+    }
+</style>
+
+<body>
+<div class="layui-bg-gray" style="padding: 30px;">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8">
+            <div class="layui-card">
+                <div class="layui-card-header">诊断信息</div>
+                <div class="layui-card-body">
+                    <sapn class="textarea">诊断编码 : <span id="disgnose_code"></span></sapn>
+                    <br>
+                    <sapn class="textarea">申请单位 : <span id="hos_nme"></span></sapn>
+                    <br>
+                    <sapn class="textarea">申请医生 : <span id="doctor_name"></span></sapn>
+                    <br>
+                    <sapn class="textarea">诊断 : <span id="diagnose_result"></span></sapn>
+                    <br>
+                    <sapn class="textarea">申请时间 : <span id="create_time"></span></sapn>
+                    <br>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">患者信息</div>
+                <div class="layui-card-body">
+                    <sapn class="textarea">患者姓名 : <span id="patient_name"></span></sapn>
+                    <br>
+                    <sapn class="textarea">患者出生日期 : <span id="patient_birth"></span></sapn>
+                    <br>
+                    <sapn class="textarea">患者身高 : <span id="patient_tall"></span></sapn>
+                    <br>
+                    <sapn class="textarea">患者体重 : <span id="patient_weight"></span></sapn>
+                    <br>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">诊断附件</div>
+                <div class="layui-card-body">
+                    <div>
+                        <div class="layui-upload-list" style="max-width: 1000px;">
+                            <table class="layui-table" id="demoList1">
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">上传附件</div>
+                <div class="layui-card-body">
+                    <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+                    <div>
+                        <div class="layui-upload-list">
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th>文件名</th>
+                                    <th>大小</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="demoList"></tbody>
+                            </table>
+                        </div>
+                        <div style="text-align: right">
+                            <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="ok-body" style="background: #F8F8F8">
+                <div class="layui-row ">
+                    <div style="background-color:#f8f8f8;">
+                        <div style="background: #d2d2d2">
+                            <div style="width: 100%;height: 100%;margin: 0 auto;">
+                                <!--流程显示页面-->
+                                <div style="background-color:#fdfdfd;">
+                                    <iframe scrolling="yes" frameborder="0" width="100%"
+                                            height="700px" id="processData"
+                                            onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh>700?fdh:700)"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div style="background-color:#f8f8f8;padding-bottom: 300px">
+                <legend class="layui-card-header" style="font-size: 16px">操作处理</legend>
+                <div class="layui-card" style="background-color: #FFFFFF;padding-bottom: 50px">
+                    <div class="layui-card-body">
+                        <div class="layui-form" action="" lay-filter="component-form-group">
+                            <div class="layui-form-item" pane="">
+                                <div class="">
+                                    <div class="layui-row a1" id="a1" style="margin-bottom: 15px">
+                                        <div class="layui-col-md6">
+                                            <button type="button" name="shenqing" id="backApply"
+                                                    class="layui-btn layui-btn-primary button-style">
+                                                <i class="layui-icon layui-icon-prev-circle"
+                                                   style="font-size: 18px;color: red;"></i>
+                                                <span>回退诊断申请</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           <!-- <input id="files" name="files" value="0" class="layui-input" type="hidden">
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">诊断结果/退回原因</label>
+                                <div class="layui-input-block">
+                                    <textarea name="disno" id="disno" placeholder="请输入诊断结果或退回原因"
+                                              class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-layout-admin">
+                                <div class="layui-input-block">
+                                    <div class="layui-row" style="left: 0;">
+                                        <button class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
+                                        <button type="reset" class="layui-btn layui-btn-primary" id="btu_roll_back">
+                                            退回诊断申请
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                        <hr>
+                        <div class="layui-form">
+                            <div class="layui-form-item" style="text-align: left">
+                                <input type="radio" name="isread" value="1" title="诊断结果返回" checked="">
+                            </div>
+                            <div class="layui-form-item">
+                                    <textarea name="comment_text" id="comment_text" placeholder="请输入处理备注" class="layui-textarea"></textarea>
+                            </div>
+                            <div class="layui-form-item" style="text-align: right">
+                                <button type="button" class="layui-btn" lay-submit lay-filter="add" id="submit">确认提交 </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--回退诊断申请弹框-->
+<from style="display:none;margin: 20px 60px 20px 20px" class="layui-form" name="backApplybu" id="backApplybu" action=""
+      lay-filter="useru">
+    <div style="margin: 20px;">
+        <div style="padding-left: 40px;">
+            <span>提示：回退诊断申请，需要填写回退原因。</span>
+        </div>
+        <div class="layui-form-item" style="margin-top: 20px;">
+            <label class="layui-form-label">回退原因</label>
+            <div class="layui-input-block" style="margin-right:40px">
+                <textarea placeholder="请输入回退原因..." id="disno"  class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+</from>
+</body>
+
+<script src="../../lib/layui/layui.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/application.js"></script>
+<script src="/js/hyx.js"></script>
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#date' //指定元素
+        });
+    });
+
+    //退回操作
+    layui.use('layer', function () {
+        $ = layui.jquery;
+        $("#btu_roll_back").on("click", function () {
+            let comm_text = $("#disno").val(); //退回原因
+            let code = $("#disgnose_code").text();//
+            $.ajax({
+                url: "/disnosis_roll_back",
+                type: "post",
+                async: true,//异步加载
+                data: {
+                    comm_text,
+                    code
+                },
+                success: function (obj) {
+                    if (obj["msg"] == "success") {
+                        alert("诊断申请退回");
+                        disgnose_id = obj.data.id;
+                        transactor = obj.userName;
+                        comment_text = obj.data.comment_text;
+                        // 获得frame索引
+                        var index = parent.layer.getFrameIndex(window.name);
+                        update_diagnosis(3);
+                        add_process("诊断结果退回");
+                        //关闭当前frame
+                        // parent.layer.close(index);
+                        // window.parent.location.reload(); //刷新父页面
+                    }
+                    if (obj["msg"] == "error") {
+                        alert("error");
+                    }
+                }
+            });
+            return false;
+        })
+
+        //添加流程
+        function add_process(transact_type2) {
+            //获取诊断编号
+
+            fenfa = $("#doctor_name").text();
+            let transact_stat = 5;
+            let transact_comment = $("#disno").val();
+            //添加流程
+            $.ajax({
+                url: '/hos/process/add_process',
+                dataType: 'json',
+                type: 'post',
+                data: {
+                    disgnose_id: disgnose_id, fenfa: fenfa, transactor: transactor,
+                    transact_type: transact_type2, transact_comment: transact_comment, transact_stat: transact_stat
+                },
+                success: function (resData) {
+                    if (resData.code == '201') {
+                        layer.msg(resData.data.msg, {icon: 5});//失败的表情
+                    } else {
+                        layer.msg("成功", {
+                            icon: 6,//成功的表情
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        }, function () {
+                            window.location.reload();
+                        });
+                    }
+                }
+            });
+        };
+
+        //更新诊断表转态
+        function update_diagnosis(stat2) {
+            $.ajax({
+                url: '/hos/diagnosis_info/update_diagnosis_info',
+                dataType: 'json',
+                type: 'post',
+                data: {id: disgnose_id, comment_text: comment_text, stat: stat2},
+                success: function (resData) {
+                    if (resData.code == '201') {
+                        layer.msg(resData.data.msg, {icon: 5});//失败的表情
+                    } else {
+                        layer.msg("成功", {
+                            icon: 6,//成功的表情
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        }, function () {
+                            window.location.reload();
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+
+    //提交诊断申请
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+
+
+        var form = layui.form, layer = layui.layer;
+        let disgnose_id, fenfa, transactor;
+        //监听提交
+        form.on('submit(add)', function (data) {
+            console.log(data.field.files);
+            let disgnosResult = $("#disno").val();
+            let code = $("#disgnose_code").text();
+            let comment_text;
+            $.ajax({
+                url: "/disgnoseResuletBack",
+                type: "post",
+                async: true,//异步加载
+                data: {
+                    disgnosResult,
+                    code
+                },
+                success: function (obj) {
+                    if (obj["msg"] == "success") {
+                        alert("诊断结果返回给管理员");
+                        disgnose_id = obj.data.id;
+                        transactor = obj.userName;
+                        comment_text = obj.data.comment_text;
+                        // 获得frame索引
+                        var index = parent.layer.getFrameIndex(window.name);
+                        update_diagnosis(6);
+                        add_process("结果返回管理员");
+                        //关闭当前frame
+                        // parent.layer.close(index);
+                        // window.parent.location.reload(); //刷新父页面
+                    }
+                    if (obj["msg"] == "error") {
+                        alert("error");
+                    }
+                }
+            });
+            return false;
+
+            //添加流程
+            function add_process(transact_type2) {
+                //获取诊断编号
+
+                fenfa = $("#doctor_name").text();
+                let transact_stat = 5;
+                let transact_comment = $("#disno").val();
+                //添加流程
+                $.ajax({
+                    url: '/hos/process/add_process',
+                    dataType: 'json',
+                    type: 'post',
+                    data: {
+                        disgnose_id: disgnose_id, fenfa: fenfa, transactor: transactor,
+                        transact_type: transact_type2, transact_comment: transact_comment, transact_stat: transact_stat
+                    },
+                    success: function (resData) {
+                        if (resData.code == '201') {
+                            layer.msg(resData.data.msg, {icon: 5});//失败的表情
+                        } else {
+                            layer.msg("成功", {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function () {
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+            };
+
+            //更新诊断表转态
+            function update_diagnosis(stat2) {
+                $.ajax({
+                    url: '/hos/diagnosis_info/update_diagnosis_info',
+                    dataType: 'json',
+                    type: 'post',
+                    data: {id: disgnose_id, comment_text: comment_text, stat: stat2},
+                    success: function (resData) {
+                        if (resData.code == '201') {
+                            layer.msg(resData.data.msg, {icon: 5});//失败的表情
+                        } else {
+                            layer.msg("成功", {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function () {
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    });
+    //添加流程
+    function add_process(transact_type2) {
+        //获取诊断编号
+
+        fenfa = $("#doctor_name").text();
+        let transact_stat = 5;
+        let transact_comment = $("#disno").val();
+        //添加流程
+        $.ajax({
+            url: '/hos/process/add_process',
+            dataType: 'json',
+            type: 'post',
+            data: {
+                disgnose_id: disgnose_id, fenfa: fenfa, transactor: transactor,
+                transact_type: transact_type2, transact_comment: transact_comment, transact_stat: transact_stat
+            },
+            success: function (resData) {
+                if (resData.code == '201') {
+                    layer.msg(resData.data.msg, {icon: 5});//失败的表情
+                } else {
+                    layer.msg("成功", {
+                        icon: 6,//成功的表情
+                        time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                    }, function () {
+                        window.location.reload();
+                    });
+                }
+            }
+        });
+    };
+
+    //更新诊断表转态
+    function update_diagnosis(stat2) {
+        $.ajax({
+            url: '/hos/diagnosis_info/update_diagnosis_info',
+            dataType: 'json',
+            type: 'post',
+            data: {id: disgnose_id, comment_text: comment_text, stat: stat2},
+            success: function (resData) {
+                if (resData.code == '201') {
+                    layer.msg(resData.data.msg, {icon: 5});//失败的表情
+                } else {
+                    layer.msg("成功", {
+                        icon: 6,//成功的表情
+                        time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                    }, function () {
+                        window.location.reload();
+                    });
+                }
+            }
+        });
+    }
+    //文件上传
+    var files = [];
+    //JavaScript代码区域
+    layui.use(['element', 'upload'], function () {
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+        //上传
+        //多文件列表示例
+        var demoListView = $('#demoList')
+            , uploadListIns = upload.render({
+            elem: '#testList'
+            , url: '/fileResultUpload' //改成您自己的上传接口
+            , accept: 'file'
+            // ,exts: 'txt|rar|zip|doc|docx|pdf|xls|xlsx' //允许上传的文件类型
+            , multiple: true
+            , auto: false
+            , bindAction: '#testListAction'
+            , choose: function (obj) {
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function (index, file, result) {
+                    var tr = $(['<tr id="upload-' + index + '">'
+                        , '<td>' + file.name + '</td>'
+                        , '<td>' + (file.size / 1024).toFixed(1) + 'kb</td>'
+                        , '<td>等待上传</td>'
+                        , '<td>'
+                        , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        , '</td>'
+                        , '</tr>'].join(''));
+
+                    //单个重传
+                    tr.find('.demo-reload').on('click', function () {
+                        obj.upload(index, file);
+                    });
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function () {
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+
+                    demoListView.append(tr);
+                });
+            }
+            , done: function (res, index, upload) {
+                if (res.code == 0) {
+                    files.push({"fileName": res.filename, "fileUrl": res.fileUrl, "fileSize": res.fileSize});//,"fileUrl":res.fileUrl
+                    var json = JSON.stringify(files);
+                    //将上传的文件信息加入到集合中并转换成json字符串
+                    $("#fileJson").attr("value", json);
+
+                    var fileUrl = res.fileUrl;
+                    var tr = demoListView.find('tr#upload-' + index)
+                        , tds = tr.children();
+                    tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                    tds.eq(3).html('<span>' + fileUrl + '</span>');
+                    tds.eq(4).html(''); //清空操作
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+                }
+                this.error(index, upload);
+            }
+            , error: function (index, upload) {
+                var tr = demoListView.find('tr#upload-' + index)
+                    , tds = tr.children();
+                tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+            }
+        });
+    });
+
+    $("#backApply").on("click", function () {
+        var index = layer.open({
+            type: 1,
+            title: ['回退申请', 'font-size:14px; color:red;'],//数组第二项可以写任意css样式；如果你不想显示标题栏，你可以title: false
+            shade: 0.6,
+            maxmin: true,//允许全屏最小化
+            id: (new Date()).valueOf(), //设定一个id，防止重复弹出 时间戳1280977330748
+            btn: ['保存', '取消'],
+            btnAlign: 'r',
+            area: ['480px', '350px'],
+            content: $("#backApplybu"),
+            btn: ['确定', '取消'],
+            yes: function (index, layero) {
+                //do something
+                alert("确定回退吗？");
+
+                let comm_text = $("#disno").val(); //退回原因
+                let code = $("#disgnose_code").text();//
+                $.ajax( {
+                    url: "/disnosis_roll_back",
+                    type: "post",
+                    async: true,//异步加载
+                    data: {
+                        comm_text,
+                        code
+                    },
+                    success: function (obj) {
+                        if (obj["msg"] == "success") {
+                            alert("诊断申请退回");
+                            disgnose_id = obj.data.id;
+                            transactor = obj.userName;
+                            comment_text = obj.data.comment_text;
+                            // 获得frame索引
+                            var index = parent.layer.getFrameIndex(window.name);
+                            update_diagnosis(3);
+                            add_process("诊断结果退回");
+                            //关闭当前frame
+                            // parent.layer.close(index);
+                            // window.parent.location.reload(); //刷新父页面
+                        }
+                        if (obj["msg"] == "error") {
+                            alert("error");
+                        }
+                    }
+                });
+                return false;
+
+
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            },
+            btn2: function (index, layero) {
+                alert("确定取消回退吗？");
+                layer.close(index)
+            }
+        });
+    })
+
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        //获取诊断编号
+        var disgnose_id = GetQueryString("disgnose_id");
+        // $.ajax({
+        //     url: '/getAttchedAndResutAttched',
+        //     data: {
+        //         disgnose_id:disgnose_id,
+        //     },
+        //     success: function(obj){
+        //         console.log(obj)
+        //     }
+        // })
+        layui.use(["layer", "table"], function () {
+            var layer = layui.layer;
+            var table = layui.table;
+            table.render({
+                elem: '#demoList1'
+                , url: '/getAttchedAndResutAttched?disgnose_id=' + disgnose_id
+                , title: '文件'
+                , page: false
+                , parseData: function (res) {
+                    let datas = res.data;
+                    console.log(datas.length)
+                    let rs = [];
+                    for (let i = 0; i < datas.length; i++) {
+                        let dia = {}
+                        dia.fileName = datas[i].attached.attched_name;
+                        dia.type = datas[i].type;
+                        rs.push(dia)
+                    }
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": res.msg,
+                        "count": res.count,
+                        "data": rs //解析数据列表
+                    };
+                },
+                cols: [[
+                    //序列号
+                    {field: 'fileName', title: "文件名称"}
+                    , {field: 'type', title: '类型', width: 100}
+                ]
+                ]
+            });
+        });
+
+        //甚至诊断iframe的src
+        $("#processData").attr("src", "/pages/commonData/processData.html?disgnose_id=" + disgnose_id);
+
+        //设置分配信息
+        $.ajax({
+            url: '/hos/diagnosis_info/get_diagnosis_by_id',
+            type: 'get',
+            data: {
+                'id': disgnose_id
+            },
+            success: function (data) {
+                if (data.code == '201') {
+                    alert(data.data.msg);//失败的表情
+                } else {
+                    let datas = data.data;
+                    let rs = [];
+                    for (let i = 0; i < datas.length; i++) {
+                        let dia = {};
+                        //格式化时间
+                        let date = new Date(datas[i].disgnose_info.create_time).Format("yyyy-MM-dd HH:mm:ss");
+                        //出生日期
+                        let birth = new Date(datas[i].disgnose_info.patient_birth).Format("yyyy-MM-dd");
+
+                        dia.doctor_name = datas[i].doctor_info.doctor_name;
+                        dia.patient_name = datas[i].disgnose_info.patient_name;
+                        dia.patient_birth = birth;
+                        dia.patient_tall = datas[i].disgnose_info.patient_tall;
+                        dia.patient_weight = datas[i].disgnose_info.patient_weight;
+                        dia.diagnose_result = datas[i].disgnose_info.diagnose_result;
+                        dia.hos_nme = datas[i].hos_info.hos_name;
+                        dia.create_time = date;
+                        dia.comment_text = datas[i].disgnose_info.comment_text;
+                        dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
+                        dia.stat = datas[i].disgnose_info.stat;
+
+                        $("#hos_nme").text(dia.hos_nme)
+                        $("#patient_name").text(dia.patient_name)
+                        $("#patient_birth").text(dia.patient_birth)
+                        $("#patient_tall").text(dia.patient_tall)
+                        $("#patient_weight").text(dia.patient_weight)
+                        $("#diagnose_result").text(dia.diagnose_result)
+                        $("#doctor_name").text(dia.doctor_name)
+                        $("#create_time").text(dia.create_time)
+                        $("#disgnose_code").text(dia.disgnose_code)
+
+                    }
+                }
+            },
+        });
+
+    });
+</script>
+<script>
+
+</script>
+<script>
+    let processDataHeight = 0
+
+    //获取处理过程信息
+    function getprocessData(processId) {
+        $("#processData").on("load", function () {
+            var data = {processId: processId}
+            this.contentWindow.getParentData(data)
+        })
+    }
+
+    layui.use(['element', 'form'], function () {
+        var form = layui.form
+        form.render('select');
+    });
+
+
+    function caseReturnData(returnData) {
+
+    }
+
+    function processReturnData(returnData) {
+        $("#processData").height(returnData.height)
+        processDataHeight = returnData.height
+    }
+</script>
+
+
+</html>

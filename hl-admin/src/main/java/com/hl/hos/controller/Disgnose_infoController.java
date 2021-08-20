@@ -248,5 +248,24 @@ public class Disgnose_infoController {
         return result;
     }
 
+    @GetMapping("/getTempDisgnose_info")
+    public Result getTempDisgnose_info(HttpSession session){
+        Doctor_info doctor_info = (Doctor_info)session.getAttribute("doctor_info");
+        Disgnose_info disgnose_info = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("stat", 0).eq("doctor_id",doctor_info.getId()));
+        Result result = new Result();
+        result.setData(disgnose_info);
+        return result;
+    }
+
+    @GetMapping("/getDisgnose_InfoById")
+    public Result getDisgnose_InfoById(String id){
+        Result result = new Result();
+        Disgnose_info byId = disgnoseInfoService.getById(id);
+        result.setData(byId);
+        return result;
+    }
+
+
+
 }
 

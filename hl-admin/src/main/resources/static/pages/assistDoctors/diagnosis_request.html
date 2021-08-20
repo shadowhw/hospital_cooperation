@@ -98,106 +98,7 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-md4">
-            <div>
-                <fieldset class="layui-elem-field">
-                    <legend>重新上传</legend>
-                    <div style="background-color: #f8f8f8;height: auto;margin:15px 20px 0 30px">
-                        <div class="layui-form-item">
-                            <i class="tub layui-icon layui-icon-username" style="color: #1E9FFF;"></i>
-                            <label>医院 : </label>
-                            <span id="text_hos_name"></span>
-                        </div>
-                        <div class="layui-form-item">
-                            <i class="tub layui-icon layui-icon-log" style="color: #FF5722;"></i>
-                            <label>申请人 : </label>
-                            <span id="text_doctor_name">xxx医院</span>
-                        </div>
-                        <div class="layui-form-item">
-                            <i class="tub layui-icon layui-icon-diamond" style="color: #ff1e31;"></i>
-                            <label>电话号码 : </label>
-                            <span id="text_doctor_tel">2020-12-02 16:00</span>
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="ok-body">
-                <div class="layui-fluid">
-                    <div class="layui-card">
-                        <div class="layui-card-header">病人信息</div>
-                        <div class="layui-card-body" style="padding: 15px;">
-                            <form class="layui-form" action="" lay-filter="component-form-group">
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">患者名称</label>
-                                    <div class="layui-input-block">
-                                        <input id="f_patient_name" type="text" name="patient_name" required lay-verify="required" placeholder="请输入名称" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">患者生日</label>
-                                    <div class="layui-input-block">
-                                        <input id="f_patient_birth" data-id="" type="date" name="patient_birth" id="date" required lay-verify="required" placeholder="请选择患者生日" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">患者身高</label>
-                                    <div class="layui-input-block">
-                                        <input id="f_patient_tall" type="text" name="patient_tall" required lay-verify="required" placeholder="请输入身高,单位cm" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">患者体重</label>
-                                    <div class="layui-input-block">
-                                        <input id="f_patient_weight" type="text" name="patient_weight" required lay-verify="required" placeholder="请输入体重,单位kg" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">所属科室</label>
-                                    <div class="layui-input-block">
-                                        <input id="f_department" type="text"  name="department" required lay-verify="required" placeholder="请输入所属科室" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-form-item layui-form-text">
-                                    <label class="layui-form-label">备注</label>
-                                    <div class="layui-input-block">
-                                        <textarea id="f_bz" name="bz" placeholder="请输入内容" class="layui-textarea"></textarea>
-                                    </div>
-                                </div>
 
-                                <input id="files" name="files" value="0"  class="layui-input" type="hidden">
-                                <div class="layui-upload">
-                                    <p>上传附件</p>
-                                    <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
-                                    <div class="layui-upload-list">
-                                        <table class="layui-table">
-                                            <thead>
-                                            <tr><th>文件名</th>
-                                                <th>大小</th>
-                                                <th>状态</th>
-                                                <th>操作</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="demoList"></tbody>
-                                        </table>
-                                    </div>
-                                    <button type="button" class="layui-btn" id="testListAction">开始上传</button>
-                                </div>
-
-                                <div class="layui-form-item layui-layout-admin">
-                                    <div class="layui-input-block">
-                                        <div class="" style="left: 0;">
-                                            <button id="subBtu" class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
-                                            <button type="reset" class="layui-btn layui-btn-primary">保存</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
 </div>
 <br/>
@@ -408,22 +309,28 @@
     //文件下载
     function downLoadFile(obj){
         var fileName = obj.name;
-        // $.ajax({
-        //     url: '/downLoadFileByFileName',
-        //     method: 'GET',
-        //     data: {
-        //         fileName: fileName
-        //     },
-        //     success: function(result){
-        //         if (result.code == 200 ){
-        //             //下载成功
-        //         }else{
-        //             //下载失败
-        //         }
-        //     }
-        // })
         window.open("/downLoadFileByFileName?fileName="+fileName)
     }
+
+    //文件删除
+    function deleteThiFile(obj){
+        var fileName = obj.name;
+        $.ajax({
+            url: "/deleteThisFile?fileName="+fileName,
+            type: "GET",
+            success: function (obj){
+                //删除回调
+                if(obj.msg == "success"){ //删除成功
+                    layer.msg("修改成功", {icon:1,time:1000},function(){
+                        setTimeout('window.location.reload()',1000);
+                    });
+                }else{
+                    layer.msg("失败")
+                }
+            }
+        })
+    }
+
     $(document).ready(function(){
 
         //获取诊断编号
@@ -454,7 +361,8 @@
                         dia.fileName = datas[i].attached.attched_name;
                         dia.type = datas[i].type;
                         let fName = dia.fileName;
-                        dia.download = '<button type="button" class="layui-btn layui-btn-sm" name="'+fName+'" onclick="downLoadFile(this)">下载</button>'
+                        dia.download = '<button type="button" class="layui-btn layui-btn-sm" name="'+fName+'" onclick="downLoadFile(this)">下载</button>' + '<button type="button" class="layui-btn layui-btn-sm" name="'+fName+'" onclick="deleteThiFile(this)">删除</button>'
+
                         rs.push(dia)
                     }
                     return {
@@ -468,7 +376,7 @@
                     //序列号
                     {field: 'fileName',title: "文件名称"}
                     , {field: 'type',  title: '类型',  width: 100 }
-                    ,{field: 'download' ,title: '操作',width:100 }
+                    ,{field: 'download' ,title: '操作',width:175 }
                 ]
                 ]
             });

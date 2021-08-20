@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.sql.Timestamp;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_disgnose_info")
-public class Disgnose_info implements Serializable {
+public class Disgnose_info extends Model<Disgnose_info> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

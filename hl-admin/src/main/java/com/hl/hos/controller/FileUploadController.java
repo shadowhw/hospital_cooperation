@@ -72,12 +72,71 @@ public class FileUploadController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-
-
             result.setCode(0);
             result.setMsg("成功");
         }
        return result;
+    }
+
+
+    /**
+     * 临时保存
+     * @param patient_name
+     * @param patient_birth
+     * @param patient_tall
+     * @param patient_weight
+     * @param department
+     * @param bz
+     * @return
+     */
+    @PostMapping("/saveTempDisgnose_info")
+    @ResponseBody
+    public Result saveTempDisgnose(String id ,
+                                    String patient_name,
+                                   String patient_birth,
+                                   String patient_tall,
+                                   String patient_weight,
+                                   String department,
+                                   String bz){
+        Disgnose_info disgnose_info = new Disgnose_info();
+        Result result = new Result();
+        disgnose_info.setPatient_name(patient_name);
+        disgnose_info.setPatient_tall(patient_tall);
+        disgnose_info.setPatient_birth(Timestamp.valueOf(patient_birth+" 00:00:00")); //兼容timestamp
+        disgnose_info.setPatient_weight(patient_weight);
+        disgnose_info.setDepartment(department);
+        disgnose_info.setComment_text(bz);
+        disgnose_info.setDoctor_id(doctor_info.getId());
+        disgnose_info.setStat(0); //只是临时保存，不需要提交
+
+        boolean save = false;
+        if(id == null|| "".equals(id)){ //并没有该记录临时
+             save = disgnoseInfoService.save(disgnose_info);
+        }else{
+            disgnose_info.setId(Long.valueOf(id));
+            save = disgnoseInfoService.updateById(disgnose_info);
+        }
+        //讲诊断信息保存到数据库
+
+        System.out.println(disgnose_info);
+        if(save){ //保存成功
+            try {
+                //附件表更新，与诊断申请绑定
+                for (int i = 0; i < fileslist.size(); i++) {
+                    Attached attached = fileslist.get(i);
+                    attached.setDisgnose_id(disgnose_info.getId());
+                    attachedService.updateById(attached);
+                }
+                result.setMsg("success");
+            }catch (Exception e){
+                e.printStackTrace();
+                result.setMsg("error");
+            }
+        }else{
+            result.setMsg("error");
+        }
+        fileslist.clear(); //清除
+        return result;
     }
 
     /**
@@ -92,7 +151,8 @@ public class FileUploadController {
      */
     @PostMapping("/saveDisgnose_info")
     @ResponseBody
-    public Result saveDisa(String patient_name,
+    public Result saveDisa(String id,
+                            String patient_name,
                            String patient_birth,
                            String patient_tall,
                            String patient_weight,
@@ -108,14 +168,19 @@ public class FileUploadController {
         disgnose_info.setDepartment(department);
         disgnose_info.setComment_text(bz);
         disgnose_info.setDoctor_id(doctor_info.getId());
-        disgnose_info.setStat(1);
+        disgnose_info.setStat(1); //查看是否有临时的
         disgnose_info.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
         disgnose_info.setDisgnose_code(new SimpleDateFormat("yyyyMMdd").format(new Date())+ UUID.randomUUID().toString().substring(5,8));
+        boolean b = false;
+       if(id == null ||"".equals(id)){ //不存在临时记录
+            b = disgnose_info.insert(); //直接保存
+       }else{
+           disgnose_info.setId(Long.valueOf(id));
+           b = disgnose_info.updateById();
+       }
 
-        //讲诊断信息保存到数据库
-        boolean save = disgnoseInfoService.save(disgnose_info);
-        System.out.println(disgnose_info);
-        if(save){ //保存成功
+
+        if(b){ //保存成功
             try {
                 //附件表更新，与诊断申请绑定
                 for (int i = 0; i < fileslist.size(); i++) {
