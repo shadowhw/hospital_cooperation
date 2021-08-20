@@ -172,6 +172,8 @@
                     //出生日期
                     let birth = new Date(datas[i].disgnose_info.patient_birth).Format("yyyy-MM-dd");
 
+                    if(datas[i].hos_info==null)
+                        continue;
                     dia.id = datas[i].disgnose_info.id;
                     dia.doctor_name = datas[i].doctor_info.doctor_name;
                     dia.patient_name = datas[i].disgnose_info.patient_name;

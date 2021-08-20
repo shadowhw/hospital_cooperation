@@ -2,6 +2,7 @@
 *.iml
 .idea/**
 .idea
+/.idea/
 *.ipr
 *.iws
 **/target/

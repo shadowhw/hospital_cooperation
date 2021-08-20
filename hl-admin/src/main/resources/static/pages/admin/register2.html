@@ -122,6 +122,7 @@
                     let date = new Date(datas[i].doctor_info.create_time).Format("yyyy-MM-dd HH:mm:ss");
                     doc.doctor_id = datas[i].doctor_info.id;
                     doc.doctor_name = datas[i].doctor_info.doctor_name;
+                    doc.doctor_account = datas[i].doctor_info.doctor_account;
                     doc.doctor_tel = datas[i].doctor_info.doctor_tel;
                     doc.hos_name = datas[i].hos_info.hos_name;
                     doc.hos_addr = datas[i].hos_info.hos_addr;
@@ -148,6 +149,7 @@
                    //序列号
                   {field:'nums',type:"numbers",title:"编号",style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'hos_name', title: '单位名称', width: 250,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                , {field: 'doctor_account', title: '账号', width: 250,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'doctor_id', title: '角色ID', width: 150, fixed: 'left', unresize: true, sort: true, hide:true,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'hos_addr', title: '医院地址', width: 200,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'doctor_name', title: '联系人',edit:"text", width: 100,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
