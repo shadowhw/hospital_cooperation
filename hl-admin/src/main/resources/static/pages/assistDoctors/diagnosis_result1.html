@@ -150,7 +150,7 @@
                                 <input type="radio" name="isread" value="1" title="诊断结果返回" checked="">
                             </div>
                             <div class="layui-form-item">
-                                    <textarea name="comment_text" id="comment_text" placeholder="请输入处理备注" class="layui-textarea"></textarea>
+                                    <textarea name="comment_text" id="comment_text" placeholder="请输入诊断结果" class="layui-textarea"></textarea>
                             </div>
                             <div class="layui-form-item" style="text-align: right">
                                 <button type="button" class="layui-btn" lay-submit lay-filter="add" id="submit">确认提交 </button>
@@ -294,7 +294,7 @@
         //监听提交
         form.on('submit(add)', function (data) {
             console.log(data.field.files);
-            let disgnosResult = $("#disno").val();
+            let disgnosResult = $("#comment_text").val();
             let code = $("#disgnose_code").text();
             let comment_text;
             $.ajax({

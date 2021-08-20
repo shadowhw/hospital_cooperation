@@ -328,6 +328,8 @@ public class FileUploadController {
                         }
                     }
                 }
+            }else{
+
             }
         }
         result.setCode(500);

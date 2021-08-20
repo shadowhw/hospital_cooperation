@@ -206,7 +206,7 @@
                         }else if (d.stat == 3) {
                             return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已分配" + "</div>"
                         }else if (d.stat == 4) {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "被驳回" + "</div>"
+                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "正在处理" + "</div>"
                         }else if (d.stat == 5) {
                             return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已完成" + "</div>"
                         }else if (d.stat == 6){
@@ -245,7 +245,7 @@
         //根据所选择的状态按钮，跳转案件状态详细页面
         table.on('row(tableId)', function (obj) {
             var data = obj.data;
-            if(data.stat == 2 || data.stat == 4){
+            if(data.stat == 2 ){
                 show('/pages/assistDoctors/assits_reupload.html?disgnose_id='+data.id)
             }else{
                 layer.open({
