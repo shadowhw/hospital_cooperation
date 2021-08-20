@@ -9,11 +9,9 @@ import com.hl.hos.service.Doctor_infoService;
 import com.hl.hos.service.Hos_infoService;
 import com.hl.hos.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -81,5 +79,13 @@ public class LoginController {
     @GetMapping("/assist")
     public String getess(){
         return "assistIndex";
+    }
+
+    @GetMapping("/logOut")
+    @ResponseBody
+    public String logOut(HttpSession session){
+        Doctor_info doctor_info = (Doctor_info)session.getAttribute("doctor_info");
+        session.removeAttribute("doctor_info");
+        return "see u "+doctor_info.getDoctor_name();
     }
 }

@@ -566,6 +566,30 @@
 </script>
 
 <script>
+    //文件下载
+    function downLoadFile(obj){
+        var fileName = obj.name;
+        window.open("/downLoadFileByFileName?fileName="+fileName)
+    }
+
+    //文件删除
+    function deleteThiFile(obj){
+        var fileName = obj.name;
+        $.ajax({
+            url: "/deleteThisFile?fileName="+fileName,
+            type: "GET",
+            success: function (obj){
+                //删除回调
+                if(obj.msg == "success"){ //删除成功
+                    layer.msg("修改成功", {icon:1,time:1000},function(){
+                        setTimeout('window.location.reload()',1000);
+                    });
+                }else{
+                    layer.msg("失败")
+                }
+            }
+        })
+    }
     $(document).ready(function () {
         //获取诊断编号
         var disgnose_id = GetQueryString("disgnose_id");
@@ -594,6 +618,8 @@
                         let dia = {}
                         dia.fileName = datas[i].attached.attched_name;
                         dia.type = datas[i].type;
+                        dia.download = '<button type="button" class="layui-btn layui-btn-sm" name="'+dia.fileName+'" onclick="downLoadFile(this)">下载</button>' + '<button type="button" class="layui-btn layui-btn-sm" name="'+dia.fileName+'" onclick="deleteThiFile(this)">删除</button>'
+
                         rs.push(dia)
                     }
                     return {
@@ -607,6 +633,7 @@
                     //序列号
                     {field: 'fileName', title: "文件名称"}
                     , {field: 'type', title: '类型', width: 100}
+                    ,{field: 'download' ,title: '操作',width:175 }
                 ]
                 ]
             });
@@ -663,9 +690,6 @@
         });
 
     });
-</script>
-<script>
-
 </script>
 <script>
     let processDataHeight = 0
