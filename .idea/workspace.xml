@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78dab43c-66fb-460e-9e5a-a48ec3e4971e" name="默认更改列表" comment="何夜息-第一次上传项目">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,8 +47,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+            <state relative-caret-position="216">
+              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -226,13 +225,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5167000" />
+    <option name="totallyTimeSpent" value="5552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.29490617" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.29490617" />
       <window_info id="Structure" order="1" sideWeight="0.5021097" side_tool="true" weight="0.29490617" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -243,16 +242,16 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
       <window_info anchor="bottom" id="Favorites" order="2" sideWeight="0.49932975" weight="0.203966" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49463806" visible="true" weight="0.27478755" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49463806" weight="0.37818697" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.39886847" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32956153" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49865952" weight="0.3186969" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="9" sideWeight="0.49798927" visible="true" weight="0.3186969" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49932975" weight="0.28895184" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5020107" side_tool="true" weight="0.3186969" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5020107" side_tool="true" visible="true" weight="0.3186969" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.49865952" weight="0.46175638" />
       <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32956153" />
       <window_info anchor="bottom" id="调试" order="15" sideWeight="0.4966488" weight="0.4036827" />
@@ -507,8 +506,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        <state relative-caret-position="216">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>
