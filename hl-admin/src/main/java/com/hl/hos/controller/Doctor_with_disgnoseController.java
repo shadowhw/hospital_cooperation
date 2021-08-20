@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.awt.*;
+import java.util.List;
+
 /**
  * <p>
  *  前端控制器
@@ -41,6 +44,19 @@ public class Doctor_with_disgnoseController {
     @PostMapping("/add_assist")
     public Result add_assist(Doctor_with_disgnose doctor_with_disgnose,String doctor_account)
     {
+        //分配医生有记录不做修改
+        List<Doctor_with_disgnose> list = doctor_with_disgnoseService.list(new QueryWrapper<Doctor_with_disgnose>()
+            .eq("doctor_id",doctor_with_disgnose.getDoctor_id())
+            .eq("disgnose_id",doctor_with_disgnose.getDisgnose_id())
+        );
+        if(list.size()>=1)
+        {
+            result.setCount(1);
+            result.setData(null);
+            result.setCode(200);
+            result.setMsg("成功!");
+            return result;
+        }
         doctor_with_disgnose.setCreate_time(DateUtil.getNowSqlDateTime());
         doctor_with_disgnose.setStat(1);
 
