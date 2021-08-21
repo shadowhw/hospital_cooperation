@@ -153,9 +153,9 @@
 <!--                                    <textarea name="comment_text" id="comment_text" placeholder="请输入处理备注"-->
 <!--                                              class="layui-textarea"></textarea>-->
 <!--                                </div>-->
-                                <div class="layui-form-item" style="text-align: right">
-                                    <button type="button" class="layui-btn" lay-submit lay-filter="add" id="submit">确认</button>
-                                </div>
+<!--                                <div class="layui-form-item" style="text-align: right">-->
+<!--                                    <button type="button" class="layui-btn" lay-submit lay-filter="add" id="submit">确认</button>-->
+<!--                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -252,6 +252,40 @@
     let comment_text = $("#comment_text").val();
     let diagnosis_id =  GetQueryString("disgnose_id");
 
+    //文件下载
+    function downLoadFile(obj){
+        var fileName = obj.name;
+        console.log(fileName)
+        window.open("/downLoadFileByFileName?fileName="+fileName)
+    }
+
+    //文件删除
+    function deleteThiFile(obj){
+        var fileName = obj.name;
+        $.ajax({
+            url: "/deleteThisFile?fileName="+fileName,
+            type: "GET",
+            success: function (obj){
+                //删除回调
+                if(obj.msg == "success"){ //删除成功
+                    layer.msg("修改成功", {icon:1,time:1000},function(){
+                        setTimeout('window.location.reload()',1000);
+                    });
+                }else{
+                    layer.msg("失败")
+                }
+            }
+        })
+    }
+    let admin_name = "";
+    $.ajax({
+        url: "/getInfo",
+        type: "GET",
+        success: function (obj){
+            admin_name = obj.doctor_name;
+        }
+    })
+
     //流程信息
     let transact_comment = comment_text;
     //添加流程
@@ -261,7 +295,7 @@
             url: '/hos/process/add_process',
             dataType: 'json',
             type: 'post',
-            data: {disgnose_id:d_id,fenfa:fenfa,transactor:"管理员",
+            data: {disgnose_id:d_id,fenfa:fenfa,transactor:admin_name,
                 transact_type:transact_type2,
                 transact_comment:transact_comment,
                 transact_stat:1},
@@ -301,6 +335,8 @@
                     let dia = {}
                     dia.fileName = datas[i].attached.attched_name;
                     dia.type = datas[i].type;
+                    let fName = dia.fileName;
+                    dia.download = '<button type="button" class="layui-btn layui-btn-sm" name="'+fName+'" onclick="downLoadFile(this)">下载</button>' + '<button type="button" class="layui-btn layui-btn-sm" name="'+fName+'" onclick="deleteThiFile(this)">删除</button>'
                     rs.push(dia)
                 }
                 return {
@@ -314,6 +350,7 @@
                 //序列号
                 {field: 'fileName',title: "文件名称"}
                 , {field: 'type',  title: '类型', width: 100}
+                ,{field: 'download' ,title: '操作',width:175 }
             ]
             ]
         });
@@ -469,6 +506,7 @@
             }
         });
     })
+    //驳回
     $("#rejectApply").on("click", function(){
         var index = layer.open({
             type: 1,
@@ -502,7 +540,7 @@
                         }
                     }
                 });
-                add_process("管理已驳回诊断报告");
+                add_process("管理已驳回诊断报告",$("#doctor_name").text());
                 layer.close(index); //如果设定了yes回调，需进行手工关闭
             },
             btn2: function(index, layero){
@@ -511,6 +549,7 @@
             }
         });
     })
+    //反馈
     $("#feedbackApply").on("click", function(){
         var index = layer.open({
             type: 1,
@@ -543,7 +582,7 @@
                         }
                     }
                 });
-                add_process("诊断任务已完成");
+                add_process("诊断任务已完成",$("#doctor_name").text());
                 layer.close(index);
             },
             btn2: function(index, layero){
@@ -639,13 +678,9 @@
                                 // $("input:radio").eq(2).attr("disabled",false);
                                 // $("input:radio").eq(3).attr("disabled",false);
                                 break;
-                            case 5:
-                                // $("#choice_hos").hide();
-                                // $("#choice_doc").hide();
-                                // $("input:radio").eq(0).attr("disabled",true);
-                                // $("input:radio").eq(1).attr("disabled",true);
-                                // $("input:radio").eq(2).attr("disabled",true);
-                                // $("input:radio").eq(3).attr("disabled",true);
+                            case 5://完成什么都不显示
+                                $("#a1").hide();
+                                $("#a2").hide();
                                 break;
                         }
                     }
