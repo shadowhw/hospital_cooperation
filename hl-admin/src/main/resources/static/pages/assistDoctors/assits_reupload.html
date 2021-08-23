@@ -116,13 +116,13 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">患者身高</label>
                             <div class="layui-input-block">
-                                <input type="text" name="patient_tall" required lay-verify="required" placeholder="请输入身高,单位cm" class="layui-input">
+                                <input type="number" onkeyup="this.value=this.value.replace(/\D/g,'') name="patient_tall" required lay-verify="required" placeholder="请输入身高,单位cm" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">患者体重</label>
                             <div class="layui-input-block">
-                                <input type="text" name="patient_weight" required lay-verify="required" placeholder="请输入体重,单位kg" class="layui-input">
+                                <input type="number" onkeyup="this.value=this.value.replace(/\D/g,'') name="patient_weight" required lay-verify="required" placeholder="请输入体重,单位kg" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -354,7 +354,7 @@
                         update_diagnosis(1)
                         //关闭当前frame
                         parent.layer.close(index);
-                        window.parent.location.reload(); //刷新父页面
+                        window.close();
                     }
                     if(obj["msg"]=="error"){
                         alert("error");

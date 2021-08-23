@@ -618,7 +618,11 @@
                         let dia = {}
                         dia.fileName = datas[i].attached.attched_name;
                         dia.type = datas[i].type;
-                        dia.download = '<button type="button" class="layui-btn layui-btn-sm" name="'+dia.fileName+'" onclick="downLoadFile(this)">下载</button>' + '<button type="button" class="layui-btn layui-btn-sm" name="'+dia.fileName+'" onclick="deleteThiFile(this)">删除</button>'
+                        if("结果附件" == dia.type){
+                            dia.download = '<button type="button" class="layui-btn layui-btn-sm" name="'+dia.fileName+'" onclick="downLoadFile(this)">下载</button>' + '<button type="button"  class="layui-btn layui-btn-sm" name="'+dia.fileName+'" onclick="deleteThiFile(this)">删除</button>'
+                        }else{
+                            dia.download = '<button type="button" class="layui-btn layui-btn-sm" name="'+dia.fileName+'" onclick="downLoadFile(this)">下载</button>' + '<button type="button" disabled class="layui-btn layui-btn-disabled layui-btn-sm" name="'+dia.fileName+'" onclick="deleteThiFile(this)">删除</button>'
+                        }
 
                         rs.push(dia)
                     }
@@ -683,6 +687,7 @@
                         $("#doctor_name").text(dia.doctor_name)
                         $("#create_time").text(dia.create_time)
                         $("#disgnose_code").text(dia.disgnose_code)
+
 
                     }
                 }

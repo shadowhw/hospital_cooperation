@@ -1,6 +1,7 @@
 package com.hl;
 
 
+import com.hl.hos.utils.MD5Util;
 import org.junit.Test;
 public class ApplicationTest
 {
