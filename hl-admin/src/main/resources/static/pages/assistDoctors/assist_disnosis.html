@@ -260,19 +260,19 @@
                     , {
                     field: "stat", title: "状态", width: 100, templet: function (d) {
                         if (d.stat == 1) {
-                            return "<div style='color:#d92d29;font-weight: bold;font-size:15px'>" + "未处理" + "</div>"
+                            return "<div style='color:#d99329;font-weight: bold;font-size:15px'>" + "未处理" + "</div>"
                         } else if (d.stat == 2) {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已退回" + "</div>"
+                            return "<div style='color:rgba(237,155,176,0.91);font-weight: bold;font-size:15px'>" + "已退回" + "</div>"
                         } else if (d.stat == 3) {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已分配" + "</div>"
+                            return "<div style='color:#11ccae;font-weight: bold;font-size:15px'>" + "已分配" + "</div>"
                         } else if (d.stat == 4) {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "被驳回" + "</div>"
+                            return "<div style='color:#fa0070;font-weight: bold;font-size:15px'>" + "被驳回" + "</div>"
                         } else if (d.stat == 5) {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已完成" + "</div>"
+                            return "<div style='color:#22f10b;font-weight: bold;font-size:15px'>" + "已完成" + "</div>"
                         }else if (d.stat == 6) {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "返回管理员" + "</div>"
+                            return "<div style='color:#16d274;font-weight: bold;font-size:15px'>" + "返回管理员" + "</div>"
                         }else if (d.stat == 0) {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "未提交" + "</div>"
+                            return "<div style='color:#fa0096;font-weight: bold;font-size:15px'>" + "未提交" + "</div>"
                         }
                     }
                 }

@@ -200,19 +200,19 @@
                     ,{
                     field: "stat", title: "状态", width: 100, templet: function (d) {
                         if (d.stat == 1) {
-                            return "<div style='color:#d92d29;font-weight: bold;font-size:15px'>" + "未处理" + "</div>"
+                            return "<div style='color:#d99329;font-weight: bold;font-size:15px'>" + "未处理" + "</div>"
                         }else if (d.stat == 2) {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已退回" + "</div>"
+                            return "<div style='color:rgba(250,0,63,0.91);font-weight: bold;font-size:15px'>" + "已退回" + "</div>"
                         }else if (d.stat == 3) {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已分配" + "</div>"
+                            return "<div style='color:#11ccae;font-weight: bold;font-size:15px'>" + "已分配" + "</div>"
                         }else if (d.stat == 4) {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "正在处理" + "</div>"
+                            return "<div style='color:#12eac9;font-weight: bold;font-size:15px'>" + "正在处理" + "</div>"
                         }else if (d.stat == 5) {
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已完成" + "</div>"
+                            return "<div style='color:#0fd81a;font-weight: bold;font-size:15px'>" + "已完成" + "</div>"
                         }else if (d.stat == 6){
-                            return "<div style='color:#fae600;font-weight: bold;font-size:15px'>" + "已分配" + "</div>"
+                            return "<div style='color:#0cedc7;font-weight: bold;font-size:15px'>" + "已分配" + "</div>"
                         }else if(d.stat == 0){
-                            return "<div style='color:#00fa19;font-weight: bold;font-size:15px'>" + "临时保存" + "</div>"
+                            return "<div style='color:rgba(0,250,42,0.05);font-weight: bold;font-size:15px'>" + "临时保存" + "</div>"
                         }
                     }
                 }
