@@ -161,15 +161,18 @@ public class Doctor_infoController {
      */
     @ResponseBody
     @GetMapping("/get_doc_of_hos")
-    public Result get_doc_of_hos(Long hos_id)
+    public Result get_doc_of_hos(Long hos_id,String type)
     {
+        QueryWrapper<Doctor_info> queryWrapper = new QueryWrapper<Doctor_info>();
+        queryWrapper.select("id","doctor_name","doctor_account").eq("hos_id",hos_id).eq("pass",1);
 
-        List<Doctor_info> doc_list = doctor_infoService.list(new QueryWrapper<Doctor_info>()
-                .select("id","doctor_name","doctor_account")
-                .eq("hos_id",hos_id)
-                .eq("pass",1)//通过的医生
-                .in("stat",0,1,2,3)//状态正常的医生
-        );
+        if(type.equals("xz"))//查询协助医师
+            queryWrapper.eq("stat",1);//协作医师
+        else if(type.equals("pt"))
+            queryWrapper.eq("stat",2);//普通医师
+        else
+            queryWrapper.in("stat",0,1,2);//所以账号正常的账号
+        List<Doctor_info> doc_list = doctor_infoService.list(queryWrapper);
         result.setCount(doc_list.size());//数量应该是所有数据的大小
         result.setData(doc_list);
         result.setCode(200);

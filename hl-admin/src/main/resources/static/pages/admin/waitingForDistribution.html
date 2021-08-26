@@ -173,7 +173,7 @@
         <div class="layui-form-item" style="margin-top: 20px;">
             <label class="layui-form-label">回退原因</label>
             <div class="layui-input-block" style="margin-right:40px">
-                <textarea placeholder="请输入回退原因..." class="layui-textarea" id="back_comm"></textarea>
+                <textarea placeholder="请输入回退原因..." required lay-verify="required" class="layui-textarea" id="back_comm"></textarea>
             </div>
         </div>
     </div>
@@ -203,7 +203,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">操作备注</label>
             <div class="layui-input-block" style="margin-right:40px">
-                <textarea placeholder="请输入备注..." class="layui-textarea" id="comm_task"></textarea>
+                <textarea placeholder="请输入备注..." lay-verify="required" class="layui-textarea" id="comm_task"></textarea>
             </div>
         </div>
     </div>
@@ -218,7 +218,7 @@
         <div class="layui-form-item" style="margin-top: 20px;">
             <label class="layui-form-label">驳回原因</label>
             <div class="layui-input-block" style="margin-right:40px">
-                <textarea placeholder="请输入原因..." class="layui-textarea" id="comm_bohui"></textarea>
+                <textarea placeholder="请输入原因..." lay-verify="required" class="layui-textarea" id="comm_bohui"></textarea>
             </div>
         </div>
     </div>
@@ -233,7 +233,7 @@
         <div class="layui-form-item" style="margin-top: 20px;">
             <label class="layui-form-label">反馈备注</label>
             <div class="layui-input-block" style="margin-right:40px">
-                <textarea placeholder="请输入备注..." class="layui-textarea" id="comm_fankui"></textarea>
+                <textarea placeholder="请输入备注..." lay-verify="required" class="layui-textarea" id="comm_fankui"></textarea>
             </div>
         </div>
     </div>
@@ -382,7 +382,7 @@
                 url: '/hos/doctor_info/get_doc_of_hos',
                 dataType: 'json',
                 type: 'get',
-                data: {hos_id:hos_id},
+                data: {hos_id:hos_id,type:"xz"},
                 success: function (resData) {
                     // 清空选项
                     $('#select_doc').empty();
@@ -437,6 +437,12 @@
                 yes: function(index, layero){
                     //do something
                     // alert("确定回退吗？");
+                    if($("#back_comm").val()=="")
+                    {
+                        alert("备注不能为空");
+                        return;
+                    }
+
                     update_diagnosis(2,$("#back_comm").val());
                     add_process("回退诊断申请",$("#doctor_name").text());
                     layer.close(index); //如果设定了yes回调，需进行手工关闭
@@ -520,8 +526,18 @@
             content: $("#rejectApplybu"),
             btn: ['确定', '取消'],
             yes: function(index, layero){
+                if($("#comm_task").val()=="")
+                {
+                    alert("备注不能为空");
+                    return;
+                }
                 //do something
                 //alert("确定回退吗？");
+                if($("#comm_bohui").val()=="")
+                {
+                    alert("备注不能为空");
+                    return;
+                }
                 $.ajax({
                     url: '/hos/diagnosis_info/update_diagnosis_info',
                     dataType: 'json',
@@ -544,7 +560,7 @@
                 layer.close(index); //如果设定了yes回调，需进行手工关闭
             },
             btn2: function(index, layero){
-                alert("确定取消回退吗？");
+                alert("确定取消驳回吗？");
                 layer.close(index)
             }
         });
@@ -586,7 +602,7 @@
                 layer.close(index);
             },
             btn2: function(index, layero){
-                alert("确定取消回退吗？");
+                alert("确定取消操作吗？");
                 layer.close(index)
             }
         });
@@ -657,9 +673,10 @@
                                 // $("input:radio").eq(2).attr("disabled",true);
                                 // $("input:radio").eq(3).attr("disabled",true);
                                 break;
-                            case 2://退回后不能分配
+                            case 2://退回后不能分配,也不显示回退
                                 $("#assignTasks").hide();
                                 $("#a2").hide();
+                                $("#a1").hide();
                                 // $("input:radio").eq(0).attr("disabled",false);
                                 // $("input:radio").eq(1).attr("disabled",true);
                                 // $("input:radio").eq(2).attr("disabled",true);

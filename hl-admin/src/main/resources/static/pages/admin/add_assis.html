@@ -16,17 +16,17 @@
                 <div class="layui-form-item" id="area-picker" style="padding-top: 20px">
                     <div class="layui-form-label">医院地址&#12288;</div>
                     <div class="layui-input-inline" style="width: 85px;">
-                        <select name="province" class="province-selector" data-value="广东省" lay-filter="province-1">
+                        <select name="province" class="province-selector" data-value="" lay-filter="province-1">
                             <option value="">请选择省</option>
                         </select>
                     </div>
                     <div class="layui-input-inline" style="width: 85px;">
-                        <select name="city" class="city-selector" data-value="深圳市" lay-filter="city-1">
+                        <select name="city" class="city-selector" data-value="" lay-filter="city-1">
                             <option value="">请选择市</option>
                         </select>
                     </div>
                     <div class="layui-input-inline" style="width: 85px;">
-                        <select name="county" class="county-selector" data-value="龙岗区" lay-filter="county-1">
+                        <select name="county" id="cou" class="county-selector" data-value="" lay-filter="county-1">
                             <option value="">请选择区</option>
                         </select>
                     </div>
@@ -89,6 +89,7 @@
         let $ = layui.jquery;
         var layarea = layui.layarea;
 
+
         layarea.render({
             elem: '#area-picker',
             change: function (res) {
@@ -116,8 +117,6 @@
                 });
             }
         });
-
-
 
         /**
          * 表单input组件单击时
@@ -176,7 +175,10 @@
                             icon: 6,//成功的表情
                             time: 1000 //1秒关闭（如果不配置，默认是3秒）
                         }, function(){
-                            window.location.reload();
+                            // window.location.reload();
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            window.parent.layui.table.reload("tableId");//调用父页面重载表格
+                            parent.layer.close(index); //再执行关闭
                             //window.location.href="/login";
                         });
                     }
