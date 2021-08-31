@@ -1,11 +1,19 @@
 [
   {
+    "title": "文件页",
+    "href": "/pages/admin/file_manager.html",
+    "fontFamily": "ok-icon",
+    "icon": "&#xe6b2;",
+    "spread": false,
+    "isCheck": true
+  },
+  {
     "title": "最近访问",
     "href": "/pages/admin/assis_manager.html",
     "fontFamily": "ok-icon",
     "icon": "&#xe6b2;",
     "spread": false,
-    "isCheck": true
+    "isCheck": false
   },
   {
     "title": "注册申请管理",
