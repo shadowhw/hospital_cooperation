@@ -30,11 +30,11 @@ public class CodeGenerator
 
         // 2.数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3307/fuwaiHos?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai");
+        dsc.setUrl("jdbc:mysql://150.223.27.2:3306/fuwaihos?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("kingsley");
+        dsc.setPassword("FwDb123456");
 
 
         //3. 包配置

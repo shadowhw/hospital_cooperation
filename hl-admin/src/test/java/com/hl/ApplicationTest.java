@@ -1,6 +1,7 @@
 package com.hl;
 
 
+import com.hl.hos.utils.CodeGenerator;
 import com.hl.hos.utils.MD5Util;
 import org.junit.Test;
 public class ApplicationTest
@@ -16,7 +17,7 @@ public class ApplicationTest
     //代码生成器
     @Test
     public void codeGenerator(){
-        //CodeGenerator.codeGenerator("hos","t_disnose_result");
+        //CodeGenerator.codeGenerator("hos","t_template");
     }
 
 
