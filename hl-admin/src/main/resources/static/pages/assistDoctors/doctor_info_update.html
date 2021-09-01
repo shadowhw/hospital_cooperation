@@ -1,0 +1,130 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>设置我的资料</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../lib/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../css/oksub.css">
+  <link rel="stylesheet" href="../../myicon/iconfont.css" type="text/css">
+
+</head>
+<body>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+      <div class="layui-card" >
+        <div class="layui-card-header">设置我的资料</div>
+
+        <div class="layui-card-body" pad15 style="float: left">
+          <div class="layui-upload" style="float: left;margin-left: 410px;margin-top: 100px;">
+
+            <div class="layui-upload-list">
+              <img class="layui-upload-img" id="demo1"  style="width:200px;height:200px;border-radius:50%;"  src="../../images/login.jpg">
+              <p id="demoText"></p>
+            </div>
+            <button type="button" class="layui-btn" id="test1" style="margin-left: 50px;margin-top: 20px">上传头像</button>
+          </div>
+        </div>
+
+        <div style="width: 600px;float: right;margin-right: 400px;margin-top: 100px">
+            <div class="layui-form-item">
+              <label class="layui-form-label">医院地址</label>
+              <div class="layui-input-block">
+                <input type="text" name="hosAddr" disabled value="广东省深圳市龙岗区" readonly class="layui-input" style="border: #7bbfea solid 0.5px">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">医院名称</label>
+              <div class="layui-input-block">
+                <input type="text" name="hosName" disabled value="昆明市第一人民院" readonly class="layui-input" style="border: #7bbfea solid 0.5px">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">医生姓名</label>
+              <div class="layui-input-block">
+                <input type="text" name="doctorName" lay-verify="required" lay-reqtext="医生姓名不能为空" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">联系电话</label>
+              <div class="layui-input-block">
+                <input type="text" name="doctorTel" lay-verify="phone" lay-reqtext="联系电话不能为空" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">座机</label>
+              <div class="layui-input-block">
+                <input type="text" name="doctor_zj"  lay-reqtext="座机不能为空" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">邮箱</label>
+              <div class="layui-input-block">
+                <input type="text" name="doctor_email" value="" lay-verify="email" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-form-item" style="margin-top: 30px">
+              <div class="layui-input-block">
+                <button type="submit" class="layui-btn" id="btu_sub" >立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../lib/layui/layui.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script>
+
+  layui.use('upload', function() {
+    $.ajax({
+      url: "/hos/doctor_info/getDoctorWithHosInfo",
+      type: "POST",
+      success: function (obj) {
+        let hosDoctor = obj.data;
+        let doctorInfo = hosDoctor.doctor_info;
+        let hos_info = hosDoctor.hos_info;
+        $("input[name='hosAddr']").val(hos_info.hos_addr)
+        $("input[name='hosName']").val(hos_info.hos_name)
+        $("input[name='doctorName']").val(doctorInfo.doctor_name)
+        $("input[name='doctorTel']").val(doctorInfo.doctor_tel)
+        $("input[name='doctor_zj']").val(doctorInfo.doctor_zuoji)
+        $("input[name='doctor_email']").val(doctorInfo.email)
+        console.log(obj.data)
+      }
+    })
+  });
+
+      $("#btu_sub").on("click",function(){
+        let doctor_name =$("input[name='doctorName']").val()
+        let doctor_tel =$("input[name='doctorTel']").val()
+        let doctor_zuoji =$("input[name='doctor_zj']").val()
+        let email =$("input[name='doctor_email']").val()
+        $.ajax({
+          url: '/hos/doctor_info/updateDoctorInfo',
+          type: 'POST',
+          data: {
+            doctor_name,
+            doctor_tel,
+            doctor_zuoji,
+            email
+          },
+          success: function (data) {
+            layer.msg("提交成功")
+              window.close();
+          }
+        });
+      })
+</script>
+</body>
+</html>

@@ -308,5 +308,42 @@ public class Doctor_infoController {
         return result;
 
     }
+
+    /**
+     * 获取医师和医院信息
+     * @return
+     */
+    @PostMapping("/getDoctorWithHosInfo")
+    @ResponseBody
+    public Result getDoctorWithHosInfo(HttpSession session){
+        Doctor_info doctor_info = (Doctor_info)session.getAttribute("doctor_info");
+        //查找出医院信息
+        Hos_info hostInfo = hos_infoService.getById(doctor_info.getHos_id());
+        DoctorHos doctorHos = new DoctorHos();
+        doctorHos.setDoctor_info(doctor_info);
+        doctorHos.setHos_info(hostInfo);
+
+        Result result = new Result();
+        result.setData(doctorHos);
+        return result;
+    }
+
+    /**
+     * 个人信息更新
+     */
+    @PostMapping("/updateDoctorInfo")
+    public Result updateDoctorInfo(Doctor_info doctor_info,HttpSession session){
+        Doctor_info d = (Doctor_info)session.getAttribute("doctor_info");
+        long id = d.getId();
+        doctor_info.setId(id);
+        doctor_info.updateById();
+
+        //查询数据库更新session
+        Doctor_info byId = doctor_infoService.getById(id);
+
+        //更新seession
+        session.setAttribute("doctor_info",byId);
+        return null;
+    }
 }
 
