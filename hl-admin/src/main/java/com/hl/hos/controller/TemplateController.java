@@ -148,10 +148,10 @@ public class TemplateController {
 
     /**
      * 根据id删除末班文件，物理删除
-     * @param id
+     * @param file_name
      * @return
      */
-    @GetMapping("/delete_file_by_id")
+    @GetMapping("/delete_file_by_name")
     public Result delete_file_by_id(String file_name){
         Result result = new Result();
         //根据id查询模板文件
