@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加医院</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/css/oksub.css">
+    <link rel="stylesheet" href="/lib/layui/css/layui.css">
+</head>
+<body>
+<!--上传弹出-->
+<from style="width: 600px;height: 270px;background-color: #0c199c" class="layui-form" name="btnadd1" id="btnadd1" action=""
+      lay-filter="useru">
+    <div style="margin: 0 auto;width: 600px;height: 270px;">
+        <div class="layui-form-item" id="area-picker" style="padding-top: 20px">
+            <div class="layui-input-block" style="display: flex;justify-content: space-between" >
+                <input style="float: left; background-color: #9ed6ff" type="text"
+                       class="layui-input">
+
+                <button class="layui-btn layui-btn-normal" style="background-color:#1e9fff;color:#fff;float: right">选择文档</button>
+            </div>
+
+        </div>
+
+        <button class="layui-btn layui-btn-normal" style="margin-bottom:20px;background-color:#1e9fff;color:#fff;float: right">上传</button>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" lay-submit lay-filter="register" class="layui-btn layui-btn-normal"
+                        style="margin: 0 auto;width:400px;">确定
+                </button>
+            </div>
+        </div>
+    </div>
+</from>
+<script>
+    // layui.use(['form', 'okLayer', 'layer'],function () {
+    //     let layer = layui.layer;
+    //     layer.open({
+    //         type: 1,
+    //         title: "添加文档",
+    //         closeBtn: 1,
+    //         skin: 'layui-layer-molv',
+    //         shade: 0.6,
+    //         btn: ['保存', '取消'],
+    //         btnAlign: 'r',
+    //         content: $("#btnadd"),//引用的弹出层的页面层的方式加载修改界面表单
+    //         area: ['500px', '480px'],
+    //         success: function (index) {
+    //         },
+    //         btn1: function (index, layero) {
+    //             showloading(true)
+    //             $.ajax({
+    //                 url: mainUri + "/user/updateInfo",//Ajax请求路径
+    //                 data: {
+    //                     // "noChangeSession": 1,
+    //                     // "policeId": $("#policeId").val(),
+    //                     // "fullName": $("#fullName").val(),
+    //                     // "phone": $("#phone").val(),
+    //                     // "agender": $("input[name='agender']:checked").val(),
+    //                     // "roleId": $("#roleId").find("option:checked").val(),
+    //                     // "departmentId": $("#departmentIds").find("option:checked").val()
+    //                 },    //这个是传给后台的值
+    //                 type: "Post",
+    //                 dataType: "json",
+    //                 success: function (data) {
+    //                     showloading(false)
+    //                     if (data.code == 0) {    //这个是从后台取回来的状态值
+    //                         layer.msg("上传成功", {icon: 6});
+    //                         layer.closeAll();//关闭弹窗
+    //                         articleTable.reload();
+    //                     } else {
+    //                         layer.msg("上传失败", {icon: 5});
+    //                     }
+    //                 },
+    //                 error: function () {
+    //                     showloading(false)
+    //                 }
+    //
+    //             });
+    //         },
+    //         btn2: function (index, layero) {
+    //         }
+    //     });
+    // })
+</script>
+</body>
+</html>
