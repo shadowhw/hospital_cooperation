@@ -1,13 +1,5 @@
 [
   {
-    "title": "首页",
-    "href": "/pages/admin/file_manager.html",
-    "fontFamily": "ok-icon",
-    "icon": "&#xe6b2;",
-    "spread": false,
-    "isCheck": true
-  },
-  {
     "title": "注册申请管理",
     "href": "/pages/admin/register.html",
     "fontFamily": "ok-icon",
@@ -58,5 +50,21 @@
         "spread": false
       }
     ]
+  },
+  {
+    "title": "标准文档管理",
+    "href": "/pages/admin/levelfile_manager.html",
+    "fontFamily": "ok-icon",
+    "icon": "&#xe6b2;",
+    "spread": false,
+    "isCheck": false
+  },
+  {
+    "title": "首页",
+    "href": "/pages/admin/file_manager.html",
+    "fontFamily": "ok-icon",
+    "icon": "&#xe6b2;",
+    "spread": false,
+    "isCheck": true
   }
 ]
