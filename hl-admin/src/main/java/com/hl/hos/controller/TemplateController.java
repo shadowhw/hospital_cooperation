@@ -5,9 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hl.hos.backPogo.DoctorFile;
-import com.hl.hos.pojo.Doctor_info;
-import com.hl.hos.pojo.Result;
-import com.hl.hos.pojo.Template;
+import com.hl.hos.pojo.*;
 import com.hl.hos.service.Doctor_infoService;
 import com.hl.hos.service.TemplateService;
 import com.hl.hos.utils.DateUtil;
@@ -19,9 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -148,5 +146,98 @@ public class TemplateController {
         return result;
     }
 
+    /**
+     * 根据id删除末班文件，物理删除
+     * @param id
+     * @return
+     */
+    @GetMapping("/delete_file_by_id")
+    public Result delete_file_by_id(String file_name){
+        Result result = new Result();
+        //根据id查询模板文件
+        Template temByid = templateService.getOne(new QueryWrapper<Template>().eq("file_name",file_name));
+        if(temByid == null) {
+            result.setCode(500);
+            result.setMsg("文件不存在");
+
+        }else{
+            String filePath = temByid.getFile_addr()+temByid.getFile_name();
+            File file = new File(filePath);
+            if(file.delete()){
+                //删除数据库的记录
+                boolean b = temByid.deleteById();
+                if(b){
+                    result.setMsg("文件删除成功");
+                    result.setCode(200);
+                }
+            }else{
+                result.setCode(500);
+                result.setMsg("文件删除失败");
+            }
+        }
+
+        return result;
+    }
+    @GetMapping("/download_template_file_by_name")
+    @ResponseBody()
+    public Result   downLoadFileByFileName(HttpServletRequest request, HttpServletResponse response, String fileName) {
+        Result result = new Result();
+        if (fileName != null) {
+
+            //先去数据库中查找是否有此文件
+            Template attachedByFileName = templateService.getOne(new QueryWrapper<Template>().eq("file_name", fileName));
+            Template attachedResultByFileName = templateService.getOne(new QueryWrapper<Template>().eq("file_name",fileName));
+            if(attachedByFileName == null && attachedResultByFileName == null){ //两个文件都为null
+                result.setCode(500);
+                result.setMsg("文件不存在");
+                return result;
+            }
+            //设置文件路径
+            File file = new File(savePath+fileName);
+            //File file = new File(realPath , fileName);
+            if (file.exists()) {
+                response.setContentType("application/force-download");// 设置强制下载不打开
+                response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名
+                byte[] buffer = new byte[1024];
+                FileInputStream fis = null;
+                BufferedInputStream bis = null;
+                try {
+                    fis = new FileInputStream(file);
+                    bis = new BufferedInputStream(fis);
+                    OutputStream os = response.getOutputStream();
+                    int i = bis.read(buffer);
+                    while (i != -1) {
+                        os.write(buffer, 0, i);
+                        i = bis.read(buffer);
+                    }
+                    result.setCode(200);
+                    result.setMsg("下载成功");
+                    return result;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally { // 做关闭操作
+                    if (bis != null) {
+                        try {
+                            bis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (fis != null) {
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }else{
+
+            }
+        }
+        result.setCode(500);
+        result.setMsg("下载出错了！");
+        return result;
+    }
 }
 
