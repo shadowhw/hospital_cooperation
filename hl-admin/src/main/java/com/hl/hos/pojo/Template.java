@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.stereotype.Component;
@@ -20,7 +22,7 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_template")
 @Component
-public class Template implements Serializable {
+public class Template extends Model<Template> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
