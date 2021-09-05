@@ -7,7 +7,7 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <link rel="stylesheet" href="/lib/layui/css/layui.css">
     <link rel="stylesheet" href="/css/oksub.css">
-    <link rel="stylesheet" href="/myicon/iconfont.css" type="text/css">
+    <link rel="s标准文档管理tylesheet" href="/myicon/iconfont.css" type="text/css">
     <meta charset="UTF-8"/>
     <title>文件管理</title>
 </head>
@@ -225,7 +225,7 @@
                 let layer = layui.layer;
                 layer.open({
                     type: 2,
-                    title: '添加协助医师',
+                    title: '添加模板文件',
                     shadeClose: true,
                     shade: [0.3],
                     //btn: [ '关闭'],//关闭按钮
@@ -237,6 +237,7 @@
         });
     });
 </script>
+<script src="/js/hyx.js"></script>
 <script>
     layui.use('table', function(){
         var table = layui.table;
@@ -245,15 +246,35 @@
         table.render({
             elem: '#tableId'
             ,height: 312
-            ,url: '/demo/table/user/' //数据接口
+            ,url: '/hos/template/file_list' //数据接口
             ,page: true //开启分页
             ,cols: [[ //表头
-                {field: 'id', title: '<span class="label label-palegreen">重要</span>文件名称',fixed: 'left',style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                {field: 'filename', title: '<span class="label label-palegreen">重要</span>文件名称',fixed: 'left',style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 ,{field: 'username', title: '上传用户', width:180,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
-                ,{field: 'sex', title: '上传时间', width:280,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                ,{field: 'create_time', title: '上传时间', width:280,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {fixed: 'right',title: '操作', toolbar: '#barDemo', width: 256,style:'background-color:#ffffff;color: #000000;font-weight:normal'}
             ]
             ],
+            parseData: function (res) { //res 即为原始返回的数据
+                let datas = res.data;
+                let rs = [];
+                for(let i=0;i<datas.length;i++)
+                {
+                    let file = {};
+                    //格式化时间
+                    let date = new Date(datas[i].template.creat_time).Format("yyyy-MM-dd HH:mm:ss");
+                    file.filename = datas[i].template.file_name;
+                    file.username = datas[i].doctor_info.doctor_name;
+                    file.create_time = date;
+                    rs.push(file);
+                }
+                return {
+                    "code": 0, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.count, //解析数据长度
+                    "data": rs //解析数据列表
+                };
+            },
             done: function (res, curr, count) {
                 $('tr').css({'background-color': '#1E9FFF', 'color': '#000000','font-weight':'bold','border': 'none'});
             },
@@ -264,6 +285,44 @@
                 theme: '#1E9FFF',
             },
         });
+
+        //toolbar操作
+        table.on('tool(tableId)',function (obj) {
+            var data = obj.data;
+
+            if(obj.event=="del")
+            {
+                //确认框
+                layer.confirm("确认要"+"删除"+"吗?",function (index) {
+                    //通过操作
+                    $.ajax({
+                        url:'/hos/template/delete_file_by_name',
+                        type:'get',
+                        data:{
+                            'file_name':data.filename,
+                        },
+                        beforeSend:function () {
+                            this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
+                        },
+                        success:function(data){
+                            if(data.code == '201'){
+                                layer.msg(data.data.msg,{icon: 5});//失败的表情
+                            }else{
+                                layer.msg("成功", {
+                                    icon: 6,//成功的表情
+                                    time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+                                    window.location.reload();
+                                });
+                            }
+                        },
+                    });
+                    layer.close(index);
+                })
+            }
+        });
+
+
     });
 </script>
 
