@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="/css/oksub.css">
     <link rel="stylesheet" href="/lib/layui/css/layui.css">
+    <script src="../../lib/layui/layui.js"></script>
 </head>
 <body>
 <!--上传弹出-->
@@ -17,7 +18,7 @@
                 <input style="float: left; background-color: #9ed6ff" type="text"
                        class="layui-input">
 
-                <button class="layui-btn layui-btn-normal" style="background-color:#1e9fff;color:#fff;float: right">选择文档</button>
+                <button class="layui-btn layui-btn-normal" id="up" style="background-color:#1e9fff;color:#fff;float: right">选择文档</button>
             </div>
 
         </div>
@@ -33,6 +34,21 @@
     </div>
 </from>
 <script>
+    layui.use('upload', function(){
+        var upload = layui.upload;
+
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#up' //绑定元素
+            ,url: '/upload/' //上传接口
+            ,done: function(res){
+                //上传完毕回调
+            }
+            ,error: function(){
+                //请求异常回调
+            }
+        });
+    });
     // layui.use(['form', 'okLayer', 'layer'],function () {
     //     let layer = layui.layer;
     //     layer.open({
