@@ -128,53 +128,54 @@
                 <label class="layui-form-label">医院地址&#12288;</label>
                 <div class="layui-input-block">
                     <input style="float: left; background-color: #9ed6ff" type="text"
-                           class="layui-input" name="province-selector" placeholder="请输入医院地址" autocomplete="off" disabled>
+                           class="layui-input" id="hos_addr" name="hos_addr" placeholder="请输入医院地址" autocomplete="off" disabled>
                 </div>
             </div>
             <div class="layui-form-item" style="margin-top: 30px">
                 <label class="layui-form-label">医院名称&#12288;</label>
                 <div class="layui-input-block">
                     <input style="float: left; background-color: #9ed6ff" type="text"
-                           class="layui-input" name="select_hos" placeholder="请输入医院名称" autocomplete="off" disabled>
+                           class="layui-input" id="hos_name" name="hos_name" placeholder="请输入医院名称" autocomplete="off" disabled>
+                </div>
+            </div>
+            <div class="layui-form-item" style="margin-top: 30px;display:none;">
+                <label class="layui-form-label">编号</label>
+                <div class="layui-input-block">
+                    <input style="float: left;" type="text"
+                           class="layui-input" id="doctor_id" name="doctor_id" maxlength="8" placeholder="请输入联系人姓名" lay-verify="required" autocomplete="off">
                 </div>
             </div>
             <div class="layui-form-item" style="margin-top: 30px">
                 <label class="layui-form-label">联&nbsp;&nbsp;系&nbsp;&nbsp;人&#12288;</label>
                 <div class="layui-input-block">
                     <input style="float: left;" type="text"
-                           class="layui-input" name="doctor_name" maxlength="8" placeholder="请输入联系人姓名" lay-verify="required" autocomplete="off">
+                           class="layui-input" id="doctor_name1" name="doctor_name1" maxlength="8" placeholder="请输入联系人姓名" lay-verify="required" autocomplete="off">
                 </div>
             </div>
             <div class="layui-form-item" style="margin-top: 30px">
                 <label class="layui-form-label">电话号码&#12288;</label>
                 <div class="layui-input-block">
                     <input style="float: left;" type="text"
-                           class="layui-input" name="doctor_tel" placeholder="请输入电话号码" lay-verify="phone" autocomplete="off">
+                           class="layui-input" id="doctor_tel" name="doctor_tel" placeholder="请输入电话号码" lay-verify="phone" autocomplete="off">
                 </div>
             </div>
             <div class="layui-form-item" style="margin-top: 30px">
                 <label class="layui-form-label">座机号码&#12288;</label>
                 <div class="layui-input-block">
-                    <input style="float: left;" type="text"
-                           class="layui-input" name="doctor_zuoji" placeholder="请输入座机号码" autocomplete="off">
+                    <input style="cfloat: left;" type="text"
+                           class="layui-input" id="doctor_zuoji" name="doctor_zuoji" placeholder="请输入座机号码" autocomplete="off">
                 </div>
             </div>
+
+
             <div class="layui-form-item" style="margin-top: 30px">
                 <label class="layui-form-label">邮&#12288;&#12288;箱&#12288;</label>
                 <div class="layui-input-block">
                     <input style="float: left;" type="text"
-                           class="layui-input" name="email" placeholder="请输入邮箱地址" lay-verify="email" autocomplete="off">
+                           class="layui-input" id="email" name="email" placeholder="请输入邮箱地址" lay-verify="email" autocomplete="off">
                 </div>
             </div>
 
-
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <button type="button" lay-submit lay-filter="register" class="layui-btn layui-btn-normal"
-                            style="width:400px;margin-top:20px; float: right">添加
-                    </button>
-                </div>
-            </div>
         </div>
     </from>
 
@@ -363,20 +364,15 @@
                 });
             }
             else if (obj.event === 'editt') {//修改
-                // $("#policeId").val(obj.data.policeId);
-                // $("#fullName").val(obj.data.fullName);
-                // var agender = obj.data.agender;
-                // if (agender) {
-                //     $("input[name=agender][value=1]").prop("checked", "false");
-                // } else {
-                //     $("input[name=agender][value=0]").prop("checked", "true");
-                // }
-                // $("#phone").val(obj.data.phone);
-                // roleId = obj.data.role.roleId;
-                // departmentId = obj.data.department.departmentId;
-                // //$("#roleId").val(obj.data.role.roleId);
-                // //$("#departmentIds").val(obj.data.department.departmentId)
-                // form.render();
+                $("#hos_name").val(obj.data.hos_name);
+                $("#hos_addr").val(obj.data.hos_addr);
+                var doctor_name1=obj.data.doctor_name;
+                $("#doctor_name1").val(doctor_name1);
+                $("#doctor_tel").val(obj.data.doctor_tel);
+                $("#doctor_zuoji").val(obj.data.doctor_zuoji);
+                $("#email").val(obj.data.email);
+                $("#doctor_id").val(obj.data.doctor_id);
+                form.render();
                 openDetial(obj, obj.data)
                 //动态向表传递赋值可以参看文章进行修改界面的更新前数据的显示，当然也是异步请求的要数据的修改数据的获取
             }
@@ -532,15 +528,15 @@
                 btn1: function (index, layero) {
                     showloading(true)
                     $.ajax({
-                        url: mainUri + "/user/updateInfo",//Ajax请求路径
+                        url: "/hos/doctor_info/update_doctor_info",//Ajax请求路径
                         data: {
-                            "noChangeSession": 1,
-                            "policeId": $("#policeId").val(),
-                            "fullName": $("#fullName").val(),
-                            "phone": $("#phone").val(),
-                            "agender": $("input[name='agender']:checked").val(),
-                            "roleId": $("#roleId").find("option:checked").val(),
-                            "departmentId": $("#departmentIds").find("option:checked").val()
+                            "hos_name": $("#hos_name").val(),
+                            "hos_addr": $("#hos_addr").val(),
+                            "doctor_name": $("#doctor_name1").val(),
+                            "doctor_tel": $("#doctor_tel").val(),
+                            "doctor_zuoji": $("#doctor_zuoji").val(),
+                            "email": $("#email").val(),
+                            "doctor_id": $("#doctor_id").val()
                         },    //这个是传给后台的值
                         type: "Post",
                         dataType: "json",
