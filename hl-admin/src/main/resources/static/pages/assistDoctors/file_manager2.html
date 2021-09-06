@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/beyond.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/oksub.css">
+    <link rel="stylesheet" href="/myicon/iconfont.css" type="text/css">
+    <meta charset="UTF-8"/>
+    <title>标准文件</title>
+</head>
+<style>
+    .list-con {
+        padding: 0 10px 15px 10px;
+        margin-bottom: 20px;
+    }
+    .layui-col{
+        background-color: #FFFFFF;
+    }
+
+    .typeButton {
+        height: 27px;
+        vertical-align: middle;
+        font-size: 13px;
+        text-align: center;
+        line-height: 27px;
+    }
+    .list-con .layui-table td,
+    .layui-table-view,
+    .layui-table[lay-skin=line],
+    .layui-table[lay-skin=row] {
+        border: none;
+    }
+
+    .list-con .layui-table tbody {
+        color: #777777;
+    }
+
+    .list-con .layui-table tbody tr:hover,
+    .layui-table[lay-even] tr:nth-child(even) {
+        background-color: rgb(226, 226, 226);
+        color: black;
+        font-weight: bold;
+    }
+
+    .layui-table tr {
+        border-bottom: 1px #e2e2e2 solid;
+    }
+
+
+    .typeButton {
+        height: 27px;
+        vertical-align: middle;
+        font-size: 13px;
+        text-align: center;
+        line-height: 27px;
+    }
+
+    .layui-btn-primary-inside {
+        background-color: #1E9FFF;
+        border: none;
+        color: #FFF;
+    }
+
+    .layui-btn-normal-inside {
+        background-color: #FFF;
+        color: #1E9FFF;
+        border: 1px solid #1E9FFF;
+    }
+    .mail-container{
+        background-color: #FD482C;
+        width: 100%;
+    }
+    .mail-header{
+        background-color: #0c199c;
+        width: 100%;
+
+    }
+</style>
+
+<body>
+<div class="layui-col">
+    <div class="list-con">
+        <table class="layui-hide" id="tableId" lay-filter="tableId"></table>
+    </div>
+    <!-- <div class="mail-container">
+         <div class="mail-header">
+             <ul class="header-buttons">
+                 <li>
+                     <a class="tooltip-primary" data-toggle="tooltip" data-original-title="Forward"><i class="glyphicon glyphicon-plus"></i></a>
+                 </li>
+                 <li>
+                     <a class="tooltip-primary" data-toggle="tooltip" data-original-title="Remove"><i class="glyphicon glyphicon-remove"></i></a>
+                 </li>
+                 <li>
+                     <a class="tooltip-primary" data-toggle="tooltip" data-original-title="Important"><i class="fa fa-exclamation"></i></a>
+                 </li>
+             </ul>
+             <ul class="header-buttons pull-right">
+                 <li>
+                     <a><i class="fa fa-angle-left"></i></a>
+                 </li>
+                 <li>
+                     <a><i class="fa fa-angle-right"></i></a>
+                 </li>
+                 <li class="search">
+                                     <span class="input-icon">
+                                         <input type="text" class="form-control input-sm" id="fontawsome-search">
+                                         <i class="glyphicon glyphicon-search lightgray"></i>
+                                     </span>
+                 </li>
+             </ul>
+             <div class="pages">
+                 1-100 of 608
+             </div>
+         </div>
+         <div class="mail-body" style="background-color: #00F7DE">
+             <ul class="mail-list">
+                 <li class="list-item unread">
+                     <div class="item-check">
+                         <label>
+                             <input type="checkbox">
+                             <span class="text"></span>
+                         </label>
+                     </div>
+                     <div class="item-star">
+                         <a href="#" class="">
+                             <i class="fa fa-star-o"></i>
+                         </a>
+                     </div>
+                     <div class="item-sender">
+                         <a href="#" class="col-name">上传用户</a>
+                     </div>
+                     <div class="item-subject">
+                         <span class="label label-palegreen">重要</span>
+                         <a href="#">
+                             文件名称
+                         </a>
+                     </div>
+                     <div class="item-options">
+                         <a href="#"><i class="fa fa-paperclip"></i></a>
+                     </div>
+                     <div class="item-time">
+                         2021/08/31
+                     </div>
+                 </li>
+                 <li class="list-item">
+                     <div class="item-check">
+                         <label>
+                             <input type="checkbox">
+                             <span class="text"></span>
+                         </label>
+                     </div>
+                     <div class="item-star">
+                         <a href="#" class="">
+                             <i class="fa fa-star-o"></i>
+                         </a>
+                     </div>
+                     <div class="item-sender">
+                         <a href="#" class="col-name">上传用户2</a>
+                     </div>
+                     <div class="item-subject">
+                         <a href="#">
+                             文件名称
+                         </a>
+                     </div>
+                     <div class="item-options">
+                         <a href="#"><i class="fa fa-paperclip"></i></a>
+                     </div>
+                     <div class="item-time">
+                         2021/08/31
+                     </div>
+                 </li>
+                 <li class="list-item">
+                     <div class="item-check">0
+                         <label>
+                             <input type="checkbox">
+                             <span class="text"></span>
+                         </label>
+                     </div>
+                     <div class="item-star">
+                         <a href="#" class="stared">
+                             <i class="fa fa-star"></i>
+                         </a>
+                     </div>
+                     <div class="item-sender">
+                         <a href="#" class="col-name">上传用户3</a>
+                     </div>
+                     <div class="item-subject">
+                         <a href="#">
+                             文件名称
+                         </a>
+                     </div>
+                     <div class="item-options">
+                         <a href="#"><i class="fa fa-paperclip"></i></a>
+                     </div>
+                     <div class="item-time">
+                         2021/08/31
+                     </div>
+                 </li>
+             </ul>
+         </div>
+     </div>-->
+</div>
+<script src="/lib/layui/layui.js"></script>
+<script src="/js/hyx.js"></script>
+<script src="/js/jquery.min.js"></script>
+    <script>
+        layui.use('table', function(){
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#tableId'
+                ,height: 312
+                ,url: '/hos/template/file_list' //数据接口
+                ,page: true //开启分页
+                ,cols: [[ //表头
+                    {field: 'filename', title: '<span class="label label-palegreen">重要</span>文件名称',fixed: 'left',style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                    ,{field: 'username', title: '上传用户', width:180,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                    , {fixed: 'right',title: '操作', toolbar: '#barDemo', width: 256,style:'background-color:#ffffff;color: #000000;font-weight:normal'}
+                ]
+                ],
+                parseData: function (res) { //res 即为原始返回的数据
+                    let datas = res.data;
+                    let rs = [];
+                    for(let i=0;i<datas.length;i++)
+                    {
+                        let file = {};
+
+                        file.filename = datas[i].template.file_name;
+                        file.username = datas[i].doctor_info.doctor_name;
+
+                        rs.push(file);
+                    }
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": res.msg, //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": rs //解析数据列表
+                    };
+                },
+                done: function (res, curr, count) {
+                    $('tr').css({'background-color': '#1E9FFF', 'color': '#000000','font-weight':'bold','border': 'none'});
+                },
+                page: {
+                    layout: ['prev', 'page', 'next', 'skip', 'count'],
+                    groups: 3,
+                    limit: 10,
+                    theme: '#1E9FFF',
+                },
+            });
+            //文件下载
+            table.on('row(tableId)', function (obj) {
+                var data = obj.data;
+                window.open("/hos/template/download_template_file_by_name?fileName="+data.filename)
+            });
+
+            //toolbar操作
+            table.on('tool(tableId)',function (obj) {
+                var data = obj.data;
+
+                if(obj.event=="del")
+                {
+                    //确认框
+                    layer.confirm("确认要"+"删除"+"吗?",function (index) {
+                        //通过操作
+                        $.ajax({
+                            url:'/hos/template/delete_file_by_name',
+                            type:'get',
+                            data:{
+                                'file_name':data.filename,
+                            },
+                            beforeSend:function () {
+                                this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
+                            },
+                            success:function(data){
+                                if(data.code == '201'){
+                                    layer.msg(data.data.msg,{icon: 5});//失败的表情
+                                }else{
+                                    layer.msg("成功", {
+                                        icon: 6,//成功的表情
+                                        time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                                    }, function(){
+                                        window.location.reload();
+                                    });
+                                }
+                            },
+                        });
+                        layer.close(index);
+                    })
+                }
+            });
+            //表单提交下载文件
+            // form.on('submit(DownBtn)', function(data){
+            //     var checkData = table.checkStatus('Table').data; //选中数据表格对象信息
+            //     var ids = new Array(); //存数组
+            //     for(var j = 0,len = checkData.length; j < len; j++){
+            //         ids.push(checkData[j].id); //id-push到数组
+            //     }
+            //     $("#ids").attr("value", ids); //将ids存到input框内
+            //
+            //     document.Form.submit(); // 表单提交
+            // });
+        });
+    </script>
+
+</body>
+</html>
