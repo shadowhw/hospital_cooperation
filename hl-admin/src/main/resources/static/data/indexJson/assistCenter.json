@@ -13,5 +13,11 @@
     "fontFamily": "ok-icon",
     "icon": "&#xe654;",
     "spread": false
+  },
+  {
+    "title":"标准文件",
+    "href": "/pages/assistDoctors/file_manager2.html",
+    "icon": "&#xe654;",
+    "spread": false
   }
 ]

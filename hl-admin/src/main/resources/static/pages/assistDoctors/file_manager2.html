@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/oksub.css">
     <link rel="stylesheet" href="/myicon/iconfont.css" type="text/css">
     <meta charset="UTF-8"/>
-    <title>文件管理</title>
+    <title>标准文件</title>
 </head>
 <style>
     .list-con {
@@ -220,7 +220,6 @@
                 ,cols: [[ //表头
                     {field: 'filename', title: '<span class="label label-palegreen">重要</span>文件名称',fixed: 'left',style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                     ,{field: 'username', title: '上传用户', width:180,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
-                    ,{field: 'create_time', title: '上传时间', width:280,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                     , {fixed: 'right',title: '操作', toolbar: '#barDemo', width: 256,style:'background-color:#ffffff;color: #000000;font-weight:normal'}
                 ]
                 ],
@@ -230,11 +229,10 @@
                     for(let i=0;i<datas.length;i++)
                     {
                         let file = {};
-                        //格式化时间
-                        let date = new Date(datas[i].template.creat_time).Format("yyyy-MM-dd HH:mm:ss");
+
                         file.filename = datas[i].template.file_name;
                         file.username = datas[i].doctor_info.doctor_name;
-                        file.create_time = date;
+
                         rs.push(file);
                     }
                     return {
