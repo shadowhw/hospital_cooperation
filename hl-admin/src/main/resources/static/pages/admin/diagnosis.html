@@ -202,15 +202,15 @@
                   //序列号
                   {field:'nums',type:"numbers",title:"序号",style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 ,  {field:'disgnose_code',title:"病例编码",width:150,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
-                , {field: 'hos_nme', title: '单位名称', width: 200,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}//单位名称通过医生信息查询
+                , {field: 'hos_nme', title: '单位名称', width: 150,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}//单位名称通过医生信息查询
                 , {field: 'doctor_name', title: '申请人', width: 100,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'id', title: '诊断编号', width: 150, fixed: 'left', unresize: true, sort: true, hide:true,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'patient_name', title: '患者姓名', width: 100,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'patient_birth', title: '患者出生日期', width: 120,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
-                , {field: 'patient_tall', title: '患者身高', width: 70,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
-                , {field: 'patient_weight', title: '患者体重', width: 70,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                , {field: 'patient_tall', title: '患者身高', width: 100,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                , {field: 'patient_weight', title: '患者体重', width: 100,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                    , {field: 'create_time', title: '申请时间', width: 200,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'diagnose_result', title: '诊断', width: 250,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
-                , {field: 'create_time', title: '申请时间', width: 200,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 ,{
                     field: "stat", title: "状态", width: 100,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px', templet: function (d) {
                         if (d.stat == 1) {
@@ -292,7 +292,6 @@
             let create_time = $("#create_time").val()==undefined?"":$("#create_time").val();
             let stat = $("#stat").val()==undefined?"":$("#stat").val();
 
-
             //重载页面
             articleTable.reload({
                 url:"/hos/diagnosis_info/get_diagnosis_list_by_params",
@@ -341,13 +340,13 @@
                 let iframeWin = window[layero.find("iframe")[0]["name"]];
             }, function () {
 
-                var disgnose_code1 = window.document.disgnose_code;
-                var patient_name1 = window.document.patient_name;
-                var patient_tall1 = window.document.patient_tall;
-                var patient_weight1 = window.document.patient_weight;
-                var diagnose_result1 = window.document.diagnose_result;
-                var create_time1 = window.document.create_time;
-                var stat1 = window.document.stat;
+                var disgnose_code1 = window.document.disgnose_code==undefined?"":window.document.disgnose_code;
+                var patient_name1 = window.document.patient_name==undefined?"":window.document.patient_name;
+                var patient_tall1 = window.document.patient_tall==undefined?"":window.document.patient_tall;
+                var patient_weight1 = window.document.patient_weight==undefined?"":window.document.patient_weight;
+                var diagnose_result1 = window.document.diagnose_result==undefined?"":window.document.diagnose_result;
+                var create_time1 = window.document.create_time==undefined?"":window.document.create_time;
+                var stat1 = window.document.stat==undefined?"":window.document.stat;
 
                 // var newStartDate = startTime.replace(/-/g, "/");//时间格式转换
 

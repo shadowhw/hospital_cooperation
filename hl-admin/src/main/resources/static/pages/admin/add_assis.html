@@ -14,7 +14,7 @@
         <form class="layui-form" style="width: 500px;height: 500px;margin: 0 auto;box-shadow: #e3e3e3 10px 10px 30px 5px;">
             <div style="margin: 0 auto;width: 400px;height: 270px;">
                 <div class="layui-form-item" id="area-picker" style="padding-top: 20px">
-                    <div class="layui-form-label">医院地址&#12288;</div>
+                    <div class="layui-form-label"><span style="display:block;float:left;margin-top:5px;height:10px;color: red;font-size: 30px;">*</span>医院地址&#12288;</div>
                     <div class="layui-input-inline" style="width: 85px;">
                         <select name="province" class="province-selector" data-value="" lay-filter="province-1">
                             <option value="">请选择省</option>
@@ -32,21 +32,21 @@
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 30px">
-                    <label class="layui-form-label">医院名称&#12288;</label>
+                    <label class="layui-form-label"><span style="display:block;float:left;margin-top:5px;height:10px;color: red;font-size: 30px;">*</span>医院名称&#12288;</label>
                     <div class="layui-input-block">
                         <select name="select_hos" id="select_hos" lay-filter="name" lay-verify="required">
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 30px">
-                    <label class="layui-form-label">联&nbsp;&nbsp;系&nbsp;&nbsp;人&#12288;</label>
+                    <label class="layui-form-label"><span style="display:block;float:left;margin-top:5px;height:10px;color: red;font-size: 30px;">*</span>联&nbsp;&nbsp;系&nbsp;&nbsp;人&#12288;</label>
                     <div class="layui-input-block">
                         <input style="float: left;" type="text"
                                class="layui-input" name="doctor_name" maxlength="8" placeholder="请输入联系人姓名" lay-verify="required" autocomplete="off">
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 30px">
-                    <label class="layui-form-label">电话号码&#12288;</label>
+                    <label class="layui-form-label"><span style="display:block;float:left;margin-top:5px;height:10px;color: red;font-size: 30px;">*</span>电话号码&#12288;</label>
                     <div class="layui-input-block">
                         <input style="float: left;" type="text"
                                class="layui-input" name="doctor_tel" placeholder="请输入电话号码" lay-verify="phone" autocomplete="off">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 30px">
-                    <label class="layui-form-label">邮&#12288;&#12288;箱&#12288;</label>
+                    <label class="layui-form-label"><span style="display:block;float:left;margin-top:5px;height:10px;color: red;font-size: 30px;">*</span>邮&#12288;&#12288;箱&#12288;</label>
                     <div class="layui-input-block">
                         <input style="float: left;" type="text"
                                class="layui-input" name="email" placeholder="请输入邮箱地址" lay-verify="email" autocomplete="off">

@@ -27,9 +27,9 @@
     </style>
 </head>
 <body>
-<div class="page-fill" id="login" style="margin-top: 30%">
+<div class="page-fill" id="login" style="margin-top: 20%">
 
-    <form class="layui-form" action="userLogin" method="post" style="height: 300px">
+    <form class="layui-form" action="userLogin" method="post">
         <h2 class="tit">国家结构性心脏病介入质控中心影像评估核心实验室</h2>
 
         <span th:text="${session.error}" style="color: red"></span>
@@ -45,7 +45,10 @@
         <div class="layui-form-item">
             <button class="layui-btn layui-block" lay-filter="login" lay-submit="">登录</button>
         </div>
-        <a href="./pages/user/register.html" style="float: right">注册</a>
+        <a href="./pages/user/register.html"  class="layui-btn layui-btn-warm">注册</a>
+        <a data-type="auto" id="forget"  class="">忘记密码</a>
+
+        <p style="margin-top: 20px;font-size: 8px">若您在系统使用中存在问题，可反馈至邮箱：XXXX@163.com</p>
     </form>
 </div>
 <!--js逻辑-->
@@ -84,6 +87,13 @@
                 layer.closeAll('loading');
             }
         }
+
+        $("#forget").click(function () {
+            layer.open({
+                title: '提示'
+                ,content: '请联系管理员进行密码充值！邮箱:15487878@qq.com'
+            });
+        });
 
         /**
          * 表单提交
