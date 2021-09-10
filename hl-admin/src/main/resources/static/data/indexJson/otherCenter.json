@@ -6,5 +6,11 @@
     "icon": "&#xe654;",
     "spread": true,
     "isCheck": true
+  },
+  {
+    "title":"标准文件",
+    "href": "/pages/assistDoctors/file_manager2.html",
+    "icon": "&#xe654;",
+    "spread": false
   }
 ]

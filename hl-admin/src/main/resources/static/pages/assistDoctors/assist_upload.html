@@ -232,12 +232,16 @@
                 },
                 success:function (obj) {
                     if(obj["msg"]=="success"){
-                        alert("保存成功");
-                        // 获得frame索引
-                        var index = parent.layer.getFrameIndex(window.name);
-                        //关闭当前frame
-                        parent.layer.close(index);
-                        window.parent.location.reload(); //刷新父页面
+                        layer.msg("保存成功。", {
+                            offset: ['50%'],
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        }, function () {
+                            // 获得frame索引
+                            var index = parent.layer.getFrameIndex(window.name);
+                            //关闭当前frame
+                            window.parent.$("#selectForm").click();
+                            parent.layer.close(index);
+                        });
                     }
                     if(obj["msg"]=="error"){
                         alert("保存失败");
@@ -261,12 +265,18 @@
                 data:data.field,
                 success:function (obj) {
                     if(obj["msg"]=="success"){
-                        alert("提交成功");
-                        // 获得frame索引
-                        var index = parent.layer.getFrameIndex(window.name);
-                        //关闭当前frame
-                        parent.layer.close(index);
-                        window.close()
+                        layer.msg("提交成功。", {
+                            offset: ['50%'],
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        }, function () {
+                            // 获得frame索引
+                            var index = parent.layer.getFrameIndex(window.name);
+                            //关闭当前frame
+                            window.parent.$("#selectForm").click();
+                            parent.layer.close(index);
+                        });
+
+                        //window.close()
                     }
                     if(obj["msg"]=="error"){
                         alert("error");
