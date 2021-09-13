@@ -120,7 +120,7 @@
         <a class="layui-btn layui-btn-xs" lay-event="editt">编辑</a>
     </script>
 
-<!--修改弹出-->
+    <!--修改弹出-->
     <from style="display:none;margin: 20px 60px 20px 20px" class="layui-form" name="edit1" id="edit1" action=""
           lay-filter="useru">
         <div style="margin: 0 auto;width: 400px;height: 270px;">
@@ -146,14 +146,14 @@
                 </div>
             </div>
             <div class="layui-form-item" style="margin-top: 30px">
-                <label class="layui-form-label">联&nbsp;&nbsp;系&nbsp;&nbsp;人&#12288;</label>
+                <label class="layui-form-label"><span style="display:block;float:left;margin-top:5px;height:10px;color: red;font-size: 30px;">*</span>联&nbsp;&nbsp;系&nbsp;&nbsp;人&#12288;</label>
                 <div class="layui-input-block">
                     <input style="float: left;" type="text"
                            class="layui-input" id="doctor_name1" name="doctor_name1" maxlength="8" placeholder="请输入联系人姓名" lay-verify="required" autocomplete="off">
                 </div>
             </div>
             <div class="layui-form-item" style="margin-top: 30px">
-                <label class="layui-form-label">电话号码&#12288;</label>
+                <label class="layui-form-label"><span style="display:block;float:left;margin-top:5px;height:10px;color: red;font-size: 30px;">*</span>电话号码&#12288;</label>
                 <div class="layui-input-block">
                     <input style="float: left;" type="text"
                            class="layui-input" id="doctor_tel" name="doctor_tel" placeholder="请输入电话号码" lay-verify="phone" autocomplete="off">
@@ -169,10 +169,10 @@
 
 
             <div class="layui-form-item" style="margin-top: 30px">
-                <label class="layui-form-label">邮&#12288;&#12288;箱&#12288;</label>
+                <label class="layui-form-label"><span style="display:block;float:left;margin-top:5px;height:10px;color: red;font-size: 30px;">*</span>邮&#12288;&#12288;箱&#12288;</label>
                 <div class="layui-input-block">
                     <input style="float: left;" type="text"
-                           class="layui-input" id="email" name="email" placeholder="请输入邮箱地址" lay-verify="email" autocomplete="off">
+                           class="layui-input" id="email" name="email" placeholder="请输入邮箱地址" lay-verify="email|required" autocomplete="off">
                 </div>
             </div>
 
@@ -318,7 +318,7 @@
                     stat = 1;
                     break;
             }
-            if(obj.event!="chongzhimima")
+            if(obj.event!="chongzhimima" && obj.event!="editt")
             {
                 //确认框
                 layer.confirm("确认要"+info+"吗?",function (index) {
@@ -523,7 +523,15 @@
                 btnAlign: 'r',
                 content: $("#edit1"),//引用的弹出层的页面层的方式加载修改界面表单
                 area: ['500px', '480px'],
-                success: function (index) {
+                success: function (layero,index) {
+                    // 添加form标识
+                    layero.addClass('layui-form');
+                    // 将保存按钮改变成提交按钮
+                    layero.find('.layui-layer-btn0').attr({
+                        'lay-filter': 'update',
+                        'lay-submit': ''
+                    });
+                    form.render();
                 },
                 btn1: function (index, layero) {
                     showloading(true)

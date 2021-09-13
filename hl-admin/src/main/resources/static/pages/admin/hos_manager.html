@@ -74,6 +74,27 @@
         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
+
+    <!--修改弹出-->
+    <from style="display:none;margin: 20px 60px 20px 20px" class="layui-form" name="edit1" id="edit1" action=""
+          lay-filter="useru">
+        <div style="margin: 0 auto;width: 400px;height: 270px;">
+            <div class="layui-form-item" style="margin-top: 30px">
+                <label class="layui-form-label">医院名称&#12288;</label>
+                <div class="layui-input-block">
+                    <input style="float: left;" type="text"
+                           class="layui-input" id="hos_name" name="hos_name" placeholder="请输入医院名称" autocomplete="off">
+                </div>
+            </div>
+            <div class="layui-form-item" style="margin-top: 30px;display:none;">
+                <label class="layui-form-label">编号</label>
+                <div class="layui-input-block">
+                    <input style="float: left;" type="text"
+                           class="layui-input" id="hos_id" name="hos_id" maxlength="8" placeholder="请输入联系人姓名" lay-verify="required" autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </from>
 </body>
 
 <script src="/lib/layui/layui.js"></script>
@@ -225,6 +246,15 @@
                 })
             }
 
+            if(obj.event=="edit")
+            {
+                $("#hos_name").val(obj.data.hos_name);
+                $("#hos_addr").val(obj.data.hos_addr);
+                $("#hos_id").val(obj.data.id);
+                form.render();
+                openDetial(obj, obj.data)
+            }
+
         });
 
         //单元格编辑
@@ -261,6 +291,53 @@
                 window.location.reload();
             });
         });
+
+        //编辑
+        function openDetial(title, area, obj) {
+            layer.open({
+                type: 1,
+                title: "医院信息修改",
+                closeBtn: 1,
+                skin: 'layui-layer-molv',
+                area: area,
+                shade: 0.6,
+                maxmin: true,//允许全屏最小化
+                id: (new Date()).valueOf(), //设定一个id，防止重复弹出 时间戳1280977330748
+                btn: ['保存', '取消'],
+                btnAlign: 'r',
+                content: $("#edit1"),//引用的弹出层的页面层的方式加载修改界面表单
+                area: ['500px', '480px'],
+                success: function (index) {
+                },
+                btn1: function (index, layero) {
+                    showloading(true)
+                    let id = $("#hos_id").val();
+                    let hos_name = $("#hos_name").val();
+                    let hos_addr = $("#hos_addr").val();
+                    $.ajax({
+                        url:'/hos/hos_info/update_hos_info',
+                        type:'get',
+                        data:{
+                            'id':id,'hos_name':hos_name,'hos_addr':hos_addr,'stat':1
+                        },
+                        success:function(data){
+                            if(data.code == '201'){
+                                layer.msg(data.msg,{icon: 5});//失败的表情
+                            }else{
+                                layer.msg("修改成功", {
+                                    icon: 6,//成功的表情
+                                    time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+                                    window.location.reload();
+                                });
+                            }
+                        },
+                    });
+                },
+                btn2: function (index, layero) {
+                }
+            });
+        }
 
         //点击查看详情页面
         // table.on('row(tableId)', function (obj) {

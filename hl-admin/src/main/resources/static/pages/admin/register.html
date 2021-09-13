@@ -359,20 +359,12 @@
                 let iframeWin = window[layero.find("iframe")[0]["name"]];
             }, function () {
 
-                var doctor_name1 = window.document.doctor_name;
-                var doctor_account1 = window.document.doctor_account;
-                var doctor_tel1 = window.document.doctor_tel;
-                var email1 = window.document.email;
-                var stat1 = window.document.stat;
+                var doctor_name1 = window.document.doctor_name==undefined?"":window.document.doctor_name;
+                var doctor_account1 = window.document.doctor_account==undefined?"":window.document.doctor_account;
+                var doctor_tel1 = window.document.doctor_tel==undefined?"":window.document.doctor_tel;
+                var email1 = window.document.email==undefined?"":window.document.email;
 
                 // var newStartDate = startTime.replace(/-/g, "/");//时间格式转换
-
-                //将搜索框置空
-                window.document.disgnose_code = "";
-                window.document.doctor_account = "";
-                window.document.doctor_tel = "";
-                window.document.email = "";
-                window.document.stat = "";
 
                 //重载页面
                 articleTable.reload({
@@ -382,9 +374,8 @@
                         'doctor_account': doctor_account1,
                         'doctor_tel': doctor_tel1,
                         'email': email1,
-                        'stat': stat1,
-                        'type': 1,
-                        'pass': 1
+                        'type': 2,
+                        'pass': 0
                     },
                     page: {
                         curr: 1
