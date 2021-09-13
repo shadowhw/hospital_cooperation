@@ -231,7 +231,7 @@
                     {
                         let file = {};
                         //格式化时间
-                        let date = new Date(datas[i].template.creat_time).Format("yyyy-MM-dd HH:mm:ss");
+                        let date = datas[i].template.creat_time;
                         file.filename = datas[i].template.file_name;
                         file.username = datas[i].doctor_info.doctor_name;
                         file.create_time = date;
