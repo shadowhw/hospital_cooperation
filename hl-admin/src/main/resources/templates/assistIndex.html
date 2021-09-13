@@ -95,7 +95,7 @@
                 </a>
                 <dl id="userInfo" class="layui-nav-child">
                     <dd><a lay-id="u-1" href="javascript:" id="doctor_info_center">个人中心</a></dd>
-                    <dd><a lay-id="u-2" href="javascript:" id="changePwd" >密码修改</a></dd>
+                    <dd><a lay-id="u-2" href="javascript:resetPwd()" >密码修改</a></dd>
                     <dd>
                         <hr/>
                     </dd>
@@ -198,6 +198,37 @@
         //打开医生信息界面
         window.open("/pages/assistDoctors/doctor_info_update.html")
     })
+    var data;
+    layui.use('jquery',function(){
+        var $ = layui.jquery;
+        $.ajax({
+            // url: '../php/creatSceneXml.php',
+            url: '/getInfo',
+            type: 'GET'
+        })
+            .done(function (result) {
+                data=result;
+                console.log(result)
+            })
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                console.log("complete");
+            })
+    })
+    function resetPwd(){
+        layer.open({
+            type: 2,
+            title: '查看详情',
+            shadeClose: false,
+            //shade: [0.3],
+            maxmin: false, //开启最大化最小化按钮
+            area: ['100%', '100%'],
+            scrollbar: true, //屏蔽滚动条
+            content: "/pages/otherDoctors/reset_pwd.html?doctor_id="+data.doctor_id
+        });
+    }
 
     var objOkTab = "";
 

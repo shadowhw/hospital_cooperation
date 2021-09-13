@@ -226,24 +226,23 @@ layui.use(["element", "layer", "okUtils", "okTab", "okLayer", "jQContextMenu"], 
    */
   $("#logout").click(function () {
     okLayer.confirm("确定要退出吗？", function (index) {
-      //获取分派信息
       $.ajax({
-        url: mainUri + '/vUserInfo/quit',
-        type: "post",
+        url: '/logOut',
+        type: "GET",
         dataType: "json",
         success: function (data) {
           okTab.tabClose(3);
           sessionStorage.setItem('tabMenu', '');
           sessionStorage.setItem('tabMenuLeft', '');
           window.sessionStorage.setItem("police", "");
-          window.location = mainUri+"/login.html";
+          window.location = "/";
         },
         error: function () {
           okTab.tabClose(3);
           sessionStorage.setItem('tabMenu', '');
           sessionStorage.setItem('tabMenuLeft', '');
           window.sessionStorage.setItem("police", "");
-          window.location = mainUri+"/login.html";
+          window.location = "/login.html";
         }
       });
     });
