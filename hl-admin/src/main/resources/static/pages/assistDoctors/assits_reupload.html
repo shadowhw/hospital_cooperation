@@ -241,6 +241,7 @@
                 for (let i = 0; i < datas.length; i++) {
                     let dia = {}
                     dia.fileName = datas[i].attached.attched_name;
+                    dia.fileName2 = dia.fileName.substr(33);
                     dia.type = datas[i].type;
                     let fName = dia.fileName;
                     dia.download = '<button type="button" class="layui-btn layui-btn-sm" name="'+fName+'" onclick="downLoadFile(this)">下载</button>' + '<button type="button" class="layui-btn layui-btn-sm" name="'+fName+'" onclick="deleteThiFile(this)">删除</button>'
@@ -256,7 +257,8 @@
             },
             cols: [[
                 //序列号
-                {field: 'fileName',title: "文件名称"}
+                {field: 'fileName',title: "文件名称",hide: true}
+                ,{field: 'fileName2',title: '文件名'}
                 , {field: 'type',  title: '类型',  width: 100 }
                 ,{field: 'download' ,title: '操作',width:175 }
             ]

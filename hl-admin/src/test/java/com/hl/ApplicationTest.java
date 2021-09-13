@@ -11,7 +11,8 @@ public class ApplicationTest
     @Test
     public void contextLoads()
     {
-
+        int length = "69989970e72b46cf97d1d05e8af3ea56_".length();
+        System.out.println(length);
     }
 
     //代码生成器
