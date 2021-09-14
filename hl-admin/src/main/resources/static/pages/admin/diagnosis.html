@@ -178,6 +178,7 @@
                     dia.doctor_name = datas[i].doctor_info.doctor_name;
                     dia.patient_name = datas[i].disgnose_info.patient_name;
                     dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
+                    dia.assist_doctor_name = datas[i].assist_doctor_name;
                     dia.patient_birth = birth;
                     dia.patient_tall = datas[i].disgnose_info.patient_tall+"cm";
                     dia.patient_weight = datas[i].disgnose_info.patient_weight+"kg";
@@ -204,6 +205,7 @@
                 ,  {field:'disgnose_code',title:"病例编码",width:150,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'hos_nme', title: '单位名称', width: 150,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}//单位名称通过医生信息查询
                 , {field: 'doctor_name', title: '申请人', width: 100,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                , {field: 'assist_doctor_name', title: '当前负责人', width: 100,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'id', title: '诊断编号', width: 150, fixed: 'left', unresize: true, sort: true, hide:true,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'patient_name', title: '患者姓名', width: 100,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                 , {field: 'patient_birth', title: '患者出生日期', width: 120,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}

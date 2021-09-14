@@ -23,7 +23,7 @@
 
 <div class="page-fill" style="margin-top: 5%">
     <div style="width: 100%;height: 100%;">
-        <form class="layui-form" method="post" action="" id="main"  style="width: 550px;height: 500px;margin: 50px auto;box-shadow: #e3e3e3 10px 10px 30px 5px;padding-top: 80px">
+        <form class="layui-form" method="post" action="" id="main"  style="width: 550px;height: 600px;margin: 50px auto;box-shadow: #e3e3e3 10px 10px 30px 5px;padding-top: 80px">
             <div style="margin: 0 auto;width: 450px;height: 60px;text-align: center">
                 <h2 style="color: #121a65">普通医师账号注册</h2>
             </div>
@@ -49,13 +49,13 @@
                 <div class="layui-form-item" style="margin-top: 30px">
                     <label class="layui-form-label"><span style="display:block;float:left;margin-top:5px;height:10px;color: red;font-size: 30px;">*</span>医院名称&#12288;</label>
                     <div class="layui-input-block">
-                        <!--                        <input style="float: left;" type="text"-->
-                        <!--                            class="layui-input" placeholder="请输入完成单位名" lay-verify="required" name="hos_name" autocomplete="off">-->
-                        <!--                        <span style="color: crimson;font-size: 0.8rem">-->
-                        <!--                           请注意填写公章上显示的完整单位名-->
-                        <!--                        </span>-->
-                        <select name="select_hos" id="select_hos" lay-filter="select_hos" lay-verify="required">
-                        </select>
+                        <input style="float: left;" type="text"
+                            class="layui-input" placeholder="请输入完成单位名" lay-verify="required" name="select_hos" autocomplete="off">
+                        <span style="color: crimson;font-size: 0.8rem">
+                           请注意填写公章上显示的完整单位名
+                        </span>
+<!--                        <select name="select_hos" id="select_hos" lay-filter="select_hos" lay-verify="required">-->
+<!--                        </select>-->
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 30px">
@@ -141,14 +141,6 @@
                     }
                 });
             }
-        });
-
-        /**
-         * 表单input组件单击时
-         */
-        $("#login .input-item .layui-input").click(function (e) {
-            e.stopPropagation();
-            $(this).addClass("layui-input-focus").find(".layui-input").focus();
         });
 
         /**

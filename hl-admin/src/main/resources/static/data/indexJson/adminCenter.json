@@ -23,14 +23,14 @@
     "spread": false
   },
   {
-    "title": "普通医师管理",
+    "title": "录入医师管理",
     "href": "/pages/admin/register2.html",
     "fontFamily": "ok-icon",
     "icon": "&#xe66f;",
     "spread": false
   },
   {
-    "title": "协作医师管理",
+    "title": "普通医师管理",
     "href": "/pages/admin/assis_manager.html",
     "fontFamily": "ok-icon",
     "icon": "&#xe612;",

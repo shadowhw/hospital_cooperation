@@ -18,4 +18,5 @@ public class DiagnosisDoctorHos implements Serializable
     private Doctor_info doctor_info;
     private Hos_info hos_info;
     private Disgnose_info disgnose_info;
+    private String assist_doctor_name;//当前负责人
 }

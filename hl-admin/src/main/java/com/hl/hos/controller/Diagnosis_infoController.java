@@ -6,12 +6,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hl.hos.backPogo.DiagnosisDoctorHos;
 import com.hl.hos.backPogo.DoctorHos;
-import com.hl.hos.pojo.Disgnose_info;
-import com.hl.hos.pojo.Doctor_info;
-import com.hl.hos.pojo.Hos_info;
-import com.hl.hos.pojo.Result;
+import com.hl.hos.pojo.*;
 import com.hl.hos.service.Disgnose_infoService;
 import com.hl.hos.service.Doctor_infoService;
+import com.hl.hos.service.Doctor_with_disgnoseService;
 import com.hl.hos.service.Hos_infoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -35,6 +33,8 @@ public class Diagnosis_infoController
     private Disgnose_infoService disgnose_infoService;
     @Autowired
     private Hos_infoService hos_infoService;
+    @Autowired
+    private Doctor_with_disgnoseService doctor_with_disgnoseService;
     @Autowired
     private Result result;
 
@@ -64,6 +64,19 @@ public class Diagnosis_infoController
 
             //医生账号不能用时不显示
             Doctor_info doctorInfo = doctor_infoService.getById(disgnose_info.getDoctor_id());
+
+            //查询协作医师姓名
+            List<Doctor_with_disgnose> doctor_with_disgnose = doctor_with_disgnoseService.list(new QueryWrapper<Doctor_with_disgnose>()
+                .eq("disgnose_id",disgnose_info.getId())
+            );
+            if(doctor_with_disgnose.size()>=1)
+            {
+                Doctor_info assist = doctor_infoService.getById(doctor_with_disgnose.get(0).getDoctor_id());
+                diagnosisDoctorHos.setAssist_doctor_name(assist.getDoctor_name());
+            }else {
+                diagnosisDoctorHos.setAssist_doctor_name("暂无");
+            }
+
             //医生账号被删除
             if(doctorInfo==null)
                 continue;
@@ -103,6 +116,18 @@ public class Diagnosis_infoController
 
             diagnosisDoctorHos.setDisgnose_info(disgnose_info);//绑定诊断信息
             Doctor_info doctorInfo = doctor_infoService.getById(disgnose_info.getDoctor_id());
+            //查询协作医师姓名
+            List<Doctor_with_disgnose> doctor_with_disgnose = doctor_with_disgnoseService.list(new QueryWrapper<Doctor_with_disgnose>()
+                    .eq("disgnose_id",disgnose_info.getId())
+            );
+            if(doctor_with_disgnose.size()>=1)
+            {
+                Doctor_info assist = doctor_infoService.getById(doctor_with_disgnose.get(0).getDoctor_id());
+                diagnosisDoctorHos.setAssist_doctor_name(assist.getDoctor_name());
+            }else {
+                diagnosisDoctorHos.setAssist_doctor_name("暂无");
+            }
+
             diagnosisDoctorHos.setDoctor_info(doctorInfo);//绑定医生
             Long hos_id = doctor_infoService.getById(disgnose_info.getDoctor_id()).getHos_id();
             diagnosisDoctorHos.setHos_info(hos_infoService.getById(hos_id));//绑定医院信息
@@ -179,6 +204,17 @@ public class Diagnosis_infoController
             DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();
             Disgnose_info disgnose_info = list.get(i);
 
+            //查询协作医师姓名
+            List<Doctor_with_disgnose> doctor_with_disgnose = doctor_with_disgnoseService.list(new QueryWrapper<Doctor_with_disgnose>()
+                    .eq("disgnose_id",disgnose_info.getId())
+            );
+            if(doctor_with_disgnose.size()>=1)
+            {
+                Doctor_info assist = doctor_infoService.getById(doctor_with_disgnose.get(0).getDoctor_id());
+                diagnosisDoctorHos.setAssist_doctor_name(assist.getDoctor_name());
+            }else {
+                diagnosisDoctorHos.setAssist_doctor_name("暂无");
+            }
 
             Doctor_info doctorInfo = doctor_infoService.getById(disgnose_info.getDoctor_id());
             if(doctorInfo.getStat()==5 || doctorInfo.getStat()==6)
