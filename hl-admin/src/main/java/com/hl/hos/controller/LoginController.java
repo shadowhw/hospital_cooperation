@@ -67,7 +67,7 @@ public class LoginController {
         }else if(stat == 1){ //协作医师
             addr = "assist_index";
         }else{ //上传者医师
-            addr = "otherIndex";
+            addr = "assist_index";
         }
 
 
