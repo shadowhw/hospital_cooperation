@@ -40,12 +40,20 @@
         //执行实例
         var uploadInst = upload.render({
             elem: '#up' //绑定元素
+            ,exts: 'txt|rar|zip|doc|docx|pdf|xls|xlsx'
             ,url: '/hos/template/fileUpload' //上传接口
             ,done: function(res){
                 //上传完毕回调
+                layer.msg("上传成功")
+                var index=parent.layer.getFrameIndex(window.name); //获取当前窗口的name
+
+                parent.layer.close(index);//关闭当前窗口
+
+                window.parent.location.reload();//刷新
             }
             ,error: function(){
                 //请求异常回调
+                layer.msg("上传失败")
             }
         });
     });

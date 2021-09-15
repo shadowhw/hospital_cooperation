@@ -94,7 +94,7 @@
                     <span name="policName"></span>
                 </a>
                 <dl id="userInfo" class="layui-nav-child">
-                    <dd><a lay-id="u-1" href="javascript:" data-url="/pages/user/user">个人中心</a></dd>
+                    <dd><a lay-id="u-1" href="javascript:" id="doctor_info_center">个人中心</a></dd>
                     <dd><a lay-id="u-2" href="javascript:" id="resPwd">密码修改</a></dd>
                     <dd>
                         <hr/>
@@ -178,6 +178,12 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/indexJs/adminCenter.js"></script>
 <script>
+
+    $("#doctor_info_center").on("click",function(){
+        //打开医生信息界面
+        window.open("/pages/assistDoctors/doctor_info_update.html")
+    })
+
     layui.use(['okLayer', 'layer'], function () {
         let $ = layui.jquery;
         let doc_id = $("#doc_id").val();

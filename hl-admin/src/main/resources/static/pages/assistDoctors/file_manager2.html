@@ -220,7 +220,7 @@
                 ,cols: [[ //表头
                     {field: 'filename', title: '<span class="label label-palegreen">重要</span>文件名称',fixed: 'left',style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                     ,{field: 'username', title: '上传用户', width:180,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
-                    , {fixed: 'right',title: '操作', toolbar: '#barDemo', width: 256,style:'background-color:#ffffff;color: #000000;font-weight:normal'}
+                    // , {fixed: 'right',title: '操作', toolbar: '#barDemo', width: 256,style:'background-color:#ffffff;color: #000000;font-weight:normal'}
                 ]
                 ],
                 parseData: function (res) { //res 即为原始返回的数据
@@ -232,7 +232,7 @@
 
                         file.filename = datas[i].template.file_name;
                         file.username = datas[i].doctor_info.doctor_name;
-
+                        // file.right = '双击文件名下载...'
                         rs.push(file);
                     }
                     return {
