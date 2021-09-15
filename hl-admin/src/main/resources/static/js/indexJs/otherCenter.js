@@ -230,8 +230,8 @@ layui.use(["element", "layer", "okUtils", "okTab", "okLayer", "jQContextMenu"], 
   $("#logout").click(function () {
     okLayer.confirm("确定要退出吗？", function (index) {
       $.ajax({
-        url: mainUri + '/vUserInfo/quit',
-        type: "post",
+        url: mainUri + '/logout',
+        type: "get",
         dataType: "json",
         success: function (data) {
           okTab.tabClose(3);
