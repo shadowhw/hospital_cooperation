@@ -218,7 +218,8 @@
                 ,url: '/hos/template/file_list' //数据接口
                 ,page: true //开启分页
                 ,cols: [[ //表头
-                    {field: 'filename', title: '<span class="label label-palegreen">重要</span>文件名称',fixed: 'left',style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
+                    {field: 'filename', title: '<span class="label label-palegreen">重要</span>文件名称',fixed: 'left',style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px',hide: true}
+                    ,{field: 'filename2', title: '<span class="label label-palegreen">重要</span>文件名称',fixed: 'left',style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                     ,{field: 'username', title: '上传用户', width:180,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                     ,{field: 'create_time', title: '上传时间', width:280,style:'background-color:#ffffff;color: #000000;font-weight:normal;border:1px'}
                     , {fixed: 'right',title: '操作', toolbar: '#barDemo', width: 256,style:'background-color:#ffffff;color: #000000;font-weight:normal'}
@@ -233,6 +234,7 @@
                         //格式化时间
                         let date = datas[i].template.creat_time;
                         file.filename = datas[i].template.file_name;
+                        file.filename2 = file.filename.substr(33);
                         file.username = datas[i].doctor_info.doctor_name;
                         file.create_time = date;
                         rs.push(file);
