@@ -57,7 +57,7 @@ public class Disgnose_infoController {
         Doctor_info doctor_info = (Doctor_info) session.getAttribute("doctor_info");
         List<Disgnose_info> list = disgnoseInfoService.list(new QueryWrapper<Disgnose_info>().eq("doctor_id",doctor_info.getId()));//所有分页
 
-        QueryWrapper<Disgnose_info> q1 = new QueryWrapper<Disgnose_info>().eq("doctor_id", doctor_info.getId());
+        QueryWrapper<Disgnose_info> q1 = new QueryWrapper<Disgnose_info>().eq("doctor_id", doctor_info.getId()).orderByDesc("create_time");
         //根据医生查出医院以及他的诊断申请
         Page<Disgnose_info> disgnose_infoPage = disgnoseInfoService.page(new Page<Disgnose_info>(Integer.parseInt(page), Integer.parseInt(limit)), q1);
         Hos_info hos_infoPage = hosInfoService.getOne( new QueryWrapper<Hos_info>().eq("id",doctor_info.getHos_id()));
@@ -113,7 +113,7 @@ public class Disgnose_infoController {
         if (!StringUtils.isEmpty(stat.trim())){
             queryWrapper.like("stat",stat);
         }
-        queryWrapper.eq("doctor_id",((Doctor_info)seesion.getAttribute("doctor_info")).getId());
+        queryWrapper.eq("doctor_id",((Doctor_info)seesion.getAttribute("doctor_info")).getId()).orderByDesc("create_time");
 
         List<Disgnose_info> list = disgnoseInfoService.list(queryWrapper);
 
@@ -179,16 +179,17 @@ public class Disgnose_infoController {
         if (!StringUtils.isEmpty(stat.trim())){
             queryWrapper.like("stat",stat);
         }
+        queryWrapper.orderByDesc("create_time");
         //查询出当前医生的诊断任务
         Doctor_info doctor_info = (Doctor_info)seesion.getAttribute("doctor_info");
-        List<Doctor_with_disgnose> dwdL = doctorWithDisgnoseService.list(new QueryWrapper<Doctor_with_disgnose>().eq("doctor_id",doctor_info.getId()));
+        List<Doctor_with_disgnose> dwdL = doctorWithDisgnoseService.list(new QueryWrapper<Doctor_with_disgnose>().eq("doctor_id",doctor_info.getId()).orderByDesc("create_time"));
 
         List<DiagnosisDoctorHos> diagnosisDoctorHosList = new ArrayList<>();
         //根据分配表查询出所有诊断申请
         for(int i = 0 ;i<dwdL.size();i++){
             Long disgnose_id = dwdL.get(i).getDisgnose_id();
             QueryWrapper<Disgnose_info> queryWrapper1 = queryWrapper.clone();
-            Disgnose_info disgnose_info = disgnoseInfoService.getOne(queryWrapper1.eq("id",disgnose_id));
+            Disgnose_info disgnose_info = disgnoseInfoService.getOne(queryWrapper1.eq("id",disgnose_id).orderByDesc("create_time"));
             queryWrapper1.clear();
             if(disgnose_info!=null){
                 Doctor_info doctor_info1 = doctorInfoService.getById(disgnose_info.getDoctor_id());
@@ -220,7 +221,7 @@ public class Disgnose_infoController {
         int count = doctorWithDisgnoseService.count(new QueryWrapper<Doctor_with_disgnose>().eq("doctor_id",doctor_info.getId()));
         //2. 分页查询
         IPage<Doctor_with_disgnose> doctor_with_disgnosePage = new Page<Doctor_with_disgnose>(Integer.parseInt(page), Integer.parseInt(limit));
-        QueryWrapper<Doctor_with_disgnose> q1 = new QueryWrapper<Doctor_with_disgnose>().eq("doctor_id", doctor_info.getId());
+        QueryWrapper<Doctor_with_disgnose> q1 = new QueryWrapper<Doctor_with_disgnose>().eq("doctor_id", doctor_info.getId()).orderByDesc("create_time");
         IPage<Doctor_with_disgnose> dwdPage = doctorWithDisgnoseService.page(doctor_with_disgnosePage, q1);
         List<Doctor_with_disgnose> dwdR = dwdPage.getRecords();//dwd数据
 

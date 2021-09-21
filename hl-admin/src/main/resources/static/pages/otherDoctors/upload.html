@@ -157,13 +157,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">患者身高</label>
             <div class="layui-input-block">
-                <input type="text" name="patient_tall" lay-verify="required" placeholder="请输入患者身高" autocomplete="off" class="layui-input">
+                <input type="text" name="patient_tall" onblur="bmi_led" lay-verify="required" placeholder="请输入患者身高" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">患者体重</label>
             <div class="layui-input-block">
-                <input type="text" name="patient_weight" lay-verify="required" placeholder="请输入患者体重" autocomplete="off" class="layui-input">
+                <input type="text" name="patient_weight" onblur="" lay-verify="required" placeholder="请输入患者体重" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
@@ -190,6 +190,18 @@
     <script src="../../lib/layui/layui.js" charset="utf-8"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
     <script>
+        //计算BMI
+        function bmi_led(){
+            let tall = $("#patient_tall").val();
+            let wheghit = $("#patient_weight").val();
+            alert("")
+            if(tall!==""&& wheghit!=="" && tall.length>0 && wheghit.length >0){
+                alert(tall)
+            }
+        }
+
+
+
         layui.use(['upload', 'element', 'layer'], function(){
             var $ = layui.jquery
                 ,upload = layui.upload

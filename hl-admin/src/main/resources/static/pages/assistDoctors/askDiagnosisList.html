@@ -104,7 +104,7 @@
                         <option value="" selected="">全部</option>
                         <option value="1">待分配</option>
                         <option value="2">已退回</option>
-                        <option value="3">已被分配</option>
+                        <option value="3">已分配</option>
                         <option value="4">被驳回</option>
                         <option value="5">已完成</option>
                     </select>
@@ -171,6 +171,7 @@
                     dia.hos_nme = datas[i].hos_info.hos_name;
                     dia.create_time = date;
                     dia.comment_text = datas[i].disgnose_info.comment_text;
+                    dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
                     dia.stat = datas[i].disgnose_info.stat;
 
                     rs.push(dia);
@@ -187,20 +188,20 @@
                 [
                     //序列号
                     {field:'nums',type:"numbers",title:"序号"}
-                    ,  {field:'nums',type:"numbers",title:"病例编码",width:150}
-                    , {field: 'hos_nme', title: '单位名称', width: 250}//单位名称通过医生信息查询
+                    ,  {field:'disgnose_code',title:"病例编码",width:100}
+                    , {field: 'hos_nme', title: '单位名称', width: 120}//单位名称通过医生信息查询
                     , {field: 'doctor_name', title: '申请人', width: 100}
                     , {field: 'id', title: '诊断编号', width: 150, fixed: 'left', unresize: true, sort: true, hide:true}
                     , {field: 'patient_name', title: '患者姓名', width: 100}
                     , {field: 'patient_birth', title: '患者出生日期', width: 150}
                     , {field: 'patient_tall', title: '患者身高', width: 100}
                     , {field: 'patient_weight', title: '患者体重', width: 100}
-                    , {field: 'diagnose_result', title: '诊断', width: 250}
+                    , {field: 'diagnose_result', title: '诊断', width: 150}
                     , {field: 'create_time', title: '申请时间', width: 200}
                     ,{
                     field: "stat", title: "状态", width: 100, templet: function (d) {
                         if (d.stat == 1) {
-                            return "<div style='color:#d99329;font-weight: bold;font-size:15px'>" + "未处理" + "</div>"
+                            return "<div style='color:#d99329;font-weight: bold;font-size:15px'>" + "未分配" + "</div>"
                         }else if (d.stat == 2) {
                             return "<div style='color:rgba(250,0,63,0.91);font-weight: bold;font-size:15px'>" + "已退回" + "</div>"
                         }else if (d.stat == 3) {
