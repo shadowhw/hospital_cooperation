@@ -163,7 +163,7 @@ public class Disgnose_infoController {
      * @return
      */
     @GetMapping("/get_disgnois_list_byparams_W")
-    public Result get_disgnois_list_byparams_W(String disgnose_code,String patient_name,String patient_tall,String patient_weight,String diagnose_result,String create_time,String stat,
+    public Result get_disgnois_list_byparams_W(String disgnose_code,String patient_name,String patient_tall,String patient_weight,String diagnose_result,String create_time,String end_time,String stat,
                                                HttpSession seesion){
         //拼接条件查询
         QueryWrapper<Disgnose_info> queryWrapper = new QueryWrapper<>();
@@ -179,11 +179,17 @@ public class Disgnose_infoController {
         if (!StringUtils.isEmpty(patient_weight.trim())){
             queryWrapper.like("patient_weight",patient_weight);
         }
+        if(diagnose_result!=null)
         if (!StringUtils.isEmpty(diagnose_result.trim())){
             queryWrapper.like("diagnose_result",diagnose_result);
         }
-        if (!StringUtils.isEmpty(create_time.trim())){
-            queryWrapper.like("create_time",create_time);
+        if (!StringUtils.isEmpty(create_time.trim()) && !StringUtils.isEmpty(end_time.trim())){
+
+            Timestamp create_time1 = Timestamp.valueOf(create_time+" 00:00:00");
+            Timestamp end_time1 = Timestamp.valueOf(end_time+" 00:00:00");
+            long endT = end_time1.getTime()+1000*60*60*24;
+            end_time1.setTime(endT);
+            queryWrapper.between("create_time",create_time1,end_time1);
         }
         if (!StringUtils.isEmpty(stat.trim())){
             queryWrapper.like("stat",stat);
