@@ -43,7 +43,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">申请时间</label>
             <div class="layui-input-block">
-                <input type="text" id="create_time" name="" autocomplete="off" class="layui-input">
+                <input type="text" id="create_time" onblur="" name="" autocomplete="off" class="layui-input">
+                <input type="text" id="end_time" name="" autocomplete="off" class="layui-input">
             </div>
         </div>
         <!--        <div class="layui-form-item" style="width: 25%">-->
@@ -102,6 +103,12 @@
             trigger: 'click'
         });
 
+        //日期
+        laydate.render({
+            elem: '#end_time',
+            trigger: 'click'
+        });
+
 
 
     })
@@ -120,6 +127,7 @@
             //时间区间内的案件
             let patient_weight=document.getElementById("patient_weight").value;//开始时间
             let create_time=document.getElementById("create_time").value;//结束时间
+            let end_time=document.getElementById("end_time").value;//结束时间
             let stat=document.getElementById("stat").value;//结束时间
 
             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -129,7 +137,7 @@
             window.parent.document.patient_name=patient_name
             window.parent.document.patient_tall=patient_tall
             window.parent.document.patient_weight=patient_weight
-            window.parent.document.create_time=create_time
+            window.parent.document.time_search=[create_time,end_time]
             window.parent.document.stat=stat
 
             parent.layer.close(index);//关闭当前iframe

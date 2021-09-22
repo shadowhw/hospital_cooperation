@@ -303,6 +303,7 @@
             let create_time = $("#create_time").val()==undefined?"":$("#create_time").val();
             let stat = $("#stat").val()==undefined?"":$("#stat").val();
 
+            console.log(create_time);
 
             //重载页面
             articleTable.reload({
@@ -359,19 +360,20 @@
                 var patient_tall1 = window.document.patient_tall;
                 var patient_weight1 = window.document.patient_weight;
                 var diagnose_result1 = window.document.diagnose_result;
-                var create_time1 = window.document.create_time;
+                var create_time1 = window.document.time_search;
                 var stat1 = window.document.stat;
-
                 // var newStartDate = startTime.replace(/-/g, "/");//时间格式转换
-
+                console.log(create_time1[0]+"")
+                console.log(create_time1[1]+"")
                 //将搜索框置空
                 window.document.disgnose_code = "";
                 window.document.patient_name = "";
                 window.document.patient_tall = "";
                 window.document.patient_weight = "";
                 window.document.diagnose_result = "";
-                window.document.create_time = "";
+                window.document.time_search = [];
                 window.document.stat = "";
+
 
                 //重载页面
                 articleTable.reload({
@@ -382,7 +384,8 @@
                         'patient_tall': patient_tall1,
                         'patient_weight': patient_weight1,
                         'diagnose_result': diagnose_result1,
-                        'create_time': create_time1,
+                        'create_time': create_time1[0],
+                        'end_time': create_time1[1],
                         'stat': stat1
                     },
                     page: {
