@@ -41,8 +41,8 @@ public class RegisterController
 //            result.setMsg("该单位账号已存在");
 //            return result;
 //        }
-        //不存在就添加单位
-        hos_info.setStat(1);
+        //不存在就添加单位,状态为2待审核
+        hos_info.setStat(2);
         hos_info.setCreate_time(DateUtil.getNowSqlDateTime());
         if(list.size()==0)
         {

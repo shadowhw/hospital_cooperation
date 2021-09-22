@@ -33,6 +33,8 @@ public class Hos_info implements Serializable {
 
     private String hos_tel;
 
+    private String lxr; //联系人
+
     private Timestamp create_time;
 
     private Integer stat;

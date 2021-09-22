@@ -249,7 +249,7 @@
         //根据所选择的状态按钮，跳转案件状态详细页面
         table.on('row(tableId)', function (obj) {
             var data = obj.data;
-            if(data.stat == 2 ){
+            if(data.stat == 2 || data.stat == 0){
                 show('/pages/assistDoctors/assits_reupload.html?disgnose_id='+data.id)
             }else{
                 layer.open({

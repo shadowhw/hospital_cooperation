@@ -16,6 +16,7 @@ import com.hl.hos.service.Hos_infoService;
 import com.hl.hos.utils.DateUtil;
 import com.hl.hos.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -95,7 +96,7 @@ public class Doctor_infoController {
      */
     @ResponseBody
     @GetMapping("/update_doctor_info")
-    public Result update_doctor_info(Doctor_info doctor_info)
+    public Result update_doctor_info(Doctor_info doctor_info,@Nullable String hos_addr,@Nullable String hos_name)
     {
         if(doctor_info.getDoctor_pwd()!=null)
             doctor_info.setDoctor_pwd(MD5Util.getMd5(doctor_info.getDoctor_pwd()));
@@ -142,6 +143,18 @@ public class Doctor_infoController {
         }
         if(doctor_infoService.updateById(doctor_info))
         {
+            //通过后更改医院状态为通过
+            if(doctor_info.getPass()==1)
+            {
+                QueryWrapper<Hos_info> queryWrapper = new QueryWrapper<>();
+                queryWrapper.eq("hos_addr",hos_addr).eq("hos_name",hos_name);
+                Hos_info hos_info = hos_infoService.getOne(queryWrapper);
+                if(hos_info.getStat()==2)
+                {
+                    hos_info.setStat(1);
+                    hos_infoService.updateById(hos_info);
+                }
+            }
             result.setCount(1);
             result.setData(null);
             result.setCode(200);

@@ -65,7 +65,14 @@
         <button type="button" id="btn_add" class="layui-btn layui-btn-radius layui-btn-normal">
             <i class="layui-icon">&#xe654;添加医院</i>
         </button>
+        <div class="layui-form-item layui-input-inline">
+            <div class="layui-form-label">批量导入</div>
+            <div class="layui-form-block">
+                <input type="file" class="layui-btn layui-btn-primary" id="LAY-excel-import-excel" multiple="multiple">
+            </div>
+        </div>
     </fieldset>
+
     <!--数据表格-->
     <div class="list-con">
         <table class="layui-hide" id="tableId" lay-filter="tableId"></table>
@@ -100,6 +107,7 @@
 <script src="/lib/layui/layui.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/application.js"></script>
+<script src="../../lib/layui/lay/modules/excel.js"></script>
 <script src="/js/hyx.js"></script>
 <script src="/js/model.js"></script>
 <script>
@@ -338,6 +346,49 @@
                 }
             });
         }
+        //批量导入
+        // 监听上传文件的事件
+        $('#LAY-excel-import-excel').change(function(e) {
+            var files = e.target.files;
+            try {
+                // 方式一：先读取数据，后梳理数据
+                LAY_EXCEL.importExcel(files, {}, function(data) {
+                    var hos_arr = [];
+                    data = LAY_EXCEL.filterImportData(data, {
+                        'hos_name': 'A'
+                        ,'lxr': 'B'
+                        ,'hos_tel': 'C'
+                        ,'hos_addr': 'D'
+                    })
+                    for(let i=1;i<data['0'].Sheet1.length;i++)
+                        hos_arr.push(data['0'].Sheet1[i])
+                    $.ajax({
+                        url:'/hos/hos_info/batch_add_hos',
+                        type:'post',
+                        dataType: 'json',
+                        contentType: "application/json; charset=utf-8",
+                        data:{
+                            'hos_infos':JSON.stringify(hos_arr)
+                        },
+                        success:function(data){
+                            if(data.code == '201'){
+                                layer.msg(data.msg,{icon: 5});//失败的表情
+                            }else{
+                                layer.msg("添加成功", {
+                                    icon: 6,//成功的表情
+                                    time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+                                    window.location.reload();
+                                });
+                            }
+                        },
+                    });
+                    console.log(hos_arr);
+                });
+            } catch (e) {
+                layer.alert(e.message);
+            }
+        });
 
         //点击查看详情页面
         // table.on('row(tableId)', function (obj) {

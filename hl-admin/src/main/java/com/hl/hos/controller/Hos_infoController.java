@@ -1,6 +1,8 @@
 package com.hl.hos.controller;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -11,6 +13,7 @@ import com.hl.hos.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,10 +41,12 @@ public class Hos_infoController {
     @GetMapping("/get_hos_list")
     public Result get_hos_list(String page, String limit)
     {
-        List<Hos_info> list = hos_infoService.list();
+        QueryWrapper<Hos_info> queryWrapper = new QueryWrapper<Hos_info>().eq("stat",1);
+
+        List<Hos_info> list = hos_infoService.list(queryWrapper);
 
         Page<Hos_info> page1 = new Page<Hos_info>(Integer.parseInt(page),Integer.parseInt(limit));
-        IPage<Hos_info> iPage = hos_infoService.page(page1);
+        IPage<Hos_info> iPage = hos_infoService.page(page1,queryWrapper);
 
         result.setCount(list.size());//数量应该是所有数据的大小
         result.setData(iPage.getRecords());
@@ -50,7 +55,7 @@ public class Hos_infoController {
     }
 
     /**
-     * 不分页查询所有医院信息
+     * 不分页查询所有医院信息：只查询通过状态为1的医院
      * @return
      */
     @ResponseBody
@@ -59,6 +64,7 @@ public class Hos_infoController {
     {
         List<Hos_info> hos_list = hos_infoService.list(new QueryWrapper<Hos_info>()
                 .select("id","hos_name")
+                .eq("stat",1)
         );
 
         result.setCount(hos_list.size());
@@ -97,6 +103,42 @@ public class Hos_infoController {
         }
         return result;
     }
+
+    /**
+     * 批量导入医院信息
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("/batch_add_hos")
+    public Result batch_add_hos(@RequestBody String hos_infos)
+    {
+        String decode = URLDecoder.decode(hos_infos);
+        JSONArray jsonArray = JSONArray.parseArray(decode.substring(10));
+        List<Hos_info> list = jsonArray.toJavaList(Hos_info.class);
+        for (int i = 0; i < list.size(); i++)
+        {
+            //存在后不能添加
+            Hos_info tem = hos_infoService.getOne(new QueryWrapper<Hos_info>()
+                    .eq("hos_name",list.get(i).getHos_name())
+                    .eq("hos_addr",list.get(i).getHos_addr())
+            );
+            //
+            if(tem==null)
+            {
+                list.get(i).setCreate_time(DateUtil.getNowSqlDateTime());
+                list.get(i).setStat(1);
+                list.get(i).setComment_text("批量导入医院信息");
+                hos_infoService.save(list.get(i));
+            }else {
+                //System.out.println("存在");
+            }
+        }
+        result.setMsg("添加成功");
+        result.setData(null);
+        result.setCode(200);
+        return result;
+    }
+
 
 
     /**

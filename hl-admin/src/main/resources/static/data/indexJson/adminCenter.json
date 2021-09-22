@@ -30,7 +30,7 @@
     "spread": false
   },
   {
-    "title": "普通医师管理",
+    "title": "协作专家管理",
     "href": "/pages/admin/assis_manager.html",
     "fontFamily": "ok-icon",
     "icon": "&#xe612;",
