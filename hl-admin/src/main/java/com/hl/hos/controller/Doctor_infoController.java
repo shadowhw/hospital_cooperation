@@ -285,12 +285,19 @@ public class Doctor_infoController {
         doctor_info.setPass(1);
         doctor_info.setHos_id(hos_id);
         doctor_info.setStat(1);//协作医师
-        doctor_info.setDoctor_pwd(MD5Util.getMd5(doctor_info.getDoctor_tel()));//默认密码就是电话号码
+        doctor_info.setDoctor_pwd(MD5Util.getMd5("123456"));//默认密码为123456
         //设置医生账号：医院名加该医院数量
         List<Doctor_info> hos_doctors = doctor_infoService.list(new QueryWrapper<Doctor_info>()
                 .eq("hos_id",hos_id)
         );
-        doctor_info.setDoctor_account(hos_info.getHos_name()+(hos_doctors.size()+1));
+        String accountName = "";
+        if(hos_doctors.size() <9){ //小于10添加0
+             accountName = hos_info.getHos_name()+"E"+"0"+(hos_doctors.size()+1);
+        }else{
+            accountName = hos_info.getHos_name()+"E"+(hos_doctors.size()+1);
+        }
+
+        doctor_info.setDoctor_account(accountName);
         doctor_infoService.save(doctor_info);
 
         result.setMsg("成功");

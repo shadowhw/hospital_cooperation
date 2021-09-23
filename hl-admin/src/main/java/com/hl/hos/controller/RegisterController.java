@@ -57,12 +57,18 @@ public class RegisterController
         doctor_info.setPass(0);
         doctor_info.setHos_id(hos_id);
         doctor_info.setStat(2);//上传者
-        doctor_info.setDoctor_pwd(MD5Util.getMd5(doctor_info.getDoctor_tel()));//默认密码就是电话号码
+        doctor_info.setDoctor_pwd(MD5Util.getMd5("123456"));//初始密码
         //设置医生账号：医院名加该医院数量
         List<Doctor_info> hos_doctors = doctor_infoService.list(new QueryWrapper<Doctor_info>()
             .eq("hos_id",hos_id)
         );
-        doctor_info.setDoctor_account(hos_info.getHos_name()+(hos_doctors.size()+1));
+        String accountName = "";
+        if(hos_doctors.size() <9){ //小于9添加0
+            accountName = hos_info.getHos_name()+"D"+"0"+(hos_doctors.size()+1);
+        }else{
+            accountName = hos_info.getHos_name()+"D"+(hos_doctors.size()+1);
+        }
+        doctor_info.setDoctor_account(accountName);
         doctor_infoService.save(doctor_info);
 
         result.setMsg("成功");
