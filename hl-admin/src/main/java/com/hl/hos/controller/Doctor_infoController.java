@@ -1,6 +1,8 @@
 package com.hl.hos.controller;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.print.Doc;
 import javax.servlet.http.HttpSession;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -165,6 +168,82 @@ public class Doctor_infoController {
             result.setCode(201);
             result.setMsg("修改失败!");
         }
+        return result;
+    }
+
+    /**
+     * 批量导入医生信息
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("/batch_add_doc")
+    public Result batch_add_doc(@RequestBody String doc_infos)
+    {
+        String decode = URLDecoder.decode(doc_infos);
+        JSONArray jsonArray = JSONArray.parseArray(decode.substring(10));
+        String no_hos_doc = "";//没有地址的医生不入库
+        for (int i = 0; i < jsonArray.size(); i++)
+        {
+            JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+            if(jsonObject.getString("hos_name").equals("")
+                || jsonObject.getString("hos_name")==null
+                || jsonObject.getString("hos_addr").equals("")
+                || jsonObject.getString("hos_addr")==null
+            )
+            {
+                no_hos_doc += jsonObject.getString("doctor_name")+",";
+                continue;
+            }
+            //查询医院:不存在就新增
+            Hos_info hos_info = hos_infoService.getOne(new QueryWrapper<Hos_info>()
+                .eq("hos_name",jsonObject.getString("hos_name"))
+                .eq("hos_addr",jsonObject.getString("hos_addr"))
+            );
+            if(hos_info==null)
+            {
+                hos_info = new Hos_info();
+                hos_info.setStat(1);
+                hos_info.setComment_text("批量添加医生时添加医院");
+                hos_info.setCreate_time(DateUtil.getNowSqlDateTime());
+                hos_info.setHos_addr(jsonObject.getString("hos_addr"));
+                hos_info.setHos_name(jsonObject.getString("hos_name"));
+                hos_infoService.save(hos_info);
+            }
+            //查询医生是否已经添加
+            Doctor_info doctorInfo = doctor_infoService.getOne(new QueryWrapper<Doctor_info>()
+                .eq("doctor_name",jsonObject.getString("doctor_name"))
+                .eq("doctor_zuoji",jsonObject.getString("doctor_zuoji"))
+                .eq("stat",1)
+                .eq("doctor_tel",jsonObject.getString("doctor_tel"))
+                .eq("email",jsonObject.getString("email"))
+            );
+            if(doctorInfo!=null)
+                continue;//存在不需要添加
+            else
+                doctorInfo = new Doctor_info();
+            doctorInfo.setStat(1);//协作医生
+            doctorInfo.setDoctor_pwd(MD5Util.getMd5("123456"));
+            //设置医生账号：医院名加该医院数量
+            List<Doctor_info> hos_doctors = doctor_infoService.list(new QueryWrapper<Doctor_info>()
+                    .eq("hos_id",hos_info.getId())
+            );
+            String accountName = hos_doctors.size() < 9 ? hos_info.getHos_name()+"E"+"0"+(hos_doctors.size()+1) : hos_info.getHos_name()+"E"+(hos_doctors.size()+1);
+            doctorInfo.setDoctor_account(accountName);
+            doctorInfo.setHos_id(hos_info.getId());
+            doctorInfo.setDoctor_tel(jsonObject.getString("doctor_tel"));
+            doctorInfo.setPass(1);
+            doctorInfo.setCreate_time(DateUtil.getNowSqlDateTime());
+            doctorInfo.setComment_text("批量导入协作医生");
+            doctorInfo.setDoctor_addr(jsonObject.getString("doctor_addr"));
+            doctorInfo.setDoctor_name(jsonObject.getString("doctor_name"));
+            doctorInfo.setDoctor_zuoji(jsonObject.getString("doctor_zuoji"));
+            doctorInfo.setEmail(jsonObject.getString("email"));
+            doctor_infoService.save(doctorInfo);
+        }
+
+        result.setMsg("添加成功");
+        result.setData(no_hos_doc);
+        result.setCode(200);
         return result;
     }
 

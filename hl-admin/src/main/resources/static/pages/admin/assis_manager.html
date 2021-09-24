@@ -67,6 +67,12 @@
                     class="typeButton layui-btn layui-btn-primary layui-btn-primary-inside layui-btn-radius">
                 添加协作专家
             </button>
+            <div class="layui-form-item layui-input-inline">
+                <div class="layui-form-label">批量导入</div>
+                <div class="layui-form-block">
+                    <input type="file" class="layui-btn layui-btn-primary" id="LAY-excel-import-excel" multiple="multiple">
+                </div>
+            </div>
         </legend>
     </fieldset>
     <div class="search">
@@ -184,6 +190,7 @@
 <script src="/lib/layui/layui.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/application.js"></script>
+<script src="../../lib/layui/lay/modules/excel.js"></script>
 <script src="/js/hyx.js"></script>
 <script src="/js/model.js"></script>
 <script>
@@ -375,6 +382,52 @@
                 form.render();
                 openDetial(obj, obj.data)
                 //动态向表传递赋值可以参看文章进行修改界面的更新前数据的显示，当然也是异步请求的要数据的修改数据的获取
+            }
+        });
+
+        //批量导入
+        // 监听上传文件的事件
+        $('#LAY-excel-import-excel').change(function(e) {
+            var files = e.target.files;
+            try {
+                // 方式一：先读取数据，后梳理数据
+                LAY_EXCEL.importExcel(files, {}, function(data) {
+                    var hos_arr = [];
+                    data = LAY_EXCEL.filterImportData(data, {
+                        'hos_name': 'A'
+                        ,'hos_addr': 'B'
+                        ,'doctor_name': 'C'
+                        ,'doctor_addr': 'D'
+                        ,'doctor_tel': 'E'
+                        ,'email': 'F'
+                        ,'doctor_zuoji': 'G'
+                    })
+                    for(let i=1;i<data['0'].Sheet1.length;i++)
+                        hos_arr.push(data['0'].Sheet1[i])
+                    $.ajax({
+                        url:'/hos/doctor_info/batch_add_doc',
+                        type:'post',
+                        dataType: 'json',
+                        contentType: "application/json; charset=utf-8",
+                        data:{
+                            'doc_infos':JSON.stringify(hos_arr)
+                        },
+                        success:function(data){
+                            if(data.code == '201'){
+                                layer.msg(data.msg,{icon: 5});//失败的表情
+                            }else{
+                                layer.msg("添加成功", {
+                                    icon: 6,//成功的表情
+                                    time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+                                    window.location.reload();
+                                });
+                            }
+                        },
+                    });
+                });
+            } catch (e) {
+                layer.alert(e.message);
             }
         });
 
