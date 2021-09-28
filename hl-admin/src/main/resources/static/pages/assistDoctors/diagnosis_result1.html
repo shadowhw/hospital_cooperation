@@ -519,16 +519,28 @@
                 //if(res.code == 0){ //上传成功
                 var tr = that.elemList.find('tr#upload-'+ index)
                     ,tds = tr.children();
-                tds.eq(3).html(''); //清空操作
-                // delete this.files[index]; //删除文件队列已经上传成功的文件
-                // return;
-                // //}
-                // this.error(index, upload);
+                tds.eq(3).html('<button  class="layui-btn layui-btn-xs layui-btn-danger demo-delete'+index+'">删除</button>'); //清空操作
+
                 arr_pv[done_id] = 100;
                 done_id++;
 
-                let id = "#p_"+done_id;
+                let id = "#p_"+done_id
                 $(id).val(100);
+
+                console.log(res.data)
+                if(res.data ==null){ //没有成功
+                    tr.remove();
+                    layer.msg("无内容为空，选取失败..", {icon:1,time:1000},function(){
+                        // setTimeout('window.location.reload()',1000);
+                    });
+                }
+                //删除文
+                $(".demo-delete"+index).on("click",function(){
+                    delete files[index]; //删除对应的文件
+                    tr.remove();
+                    uploadListIns.config.elem.next()[0].value = '';
+                    deleteThiFile2(res.data)
+                })
 
             }
             ,allDone: function(obj){ //多文件上传完毕后的状态回调
@@ -619,8 +631,25 @@
         var fileName = obj.name;
         window.open("/downLoadFileByFileName?fileName="+fileName)
     }
-
-    //文件删除
+    //根据文件名删除
+    function deleteThiFile2(obj) {
+        var fileName = obj;
+        $.ajax({
+            url: "/deleteThisFile?fileName=" + fileName,
+            type: "GET",
+            success: function (obj) {
+                //删除回调
+                if (obj.msg == "success") { //删除成功
+                    layer.msg("修改成功", {icon: 1, time: 1000}, function () {
+                        setTimeout('window.location.reload()', 1000);
+                    });
+                } else {
+                    layer.msg("失败")
+                }
+            }
+        })
+    }
+    //根据控件属性删除
     function deleteThiFile(obj){
         var fileName = obj.name;
         $.ajax({

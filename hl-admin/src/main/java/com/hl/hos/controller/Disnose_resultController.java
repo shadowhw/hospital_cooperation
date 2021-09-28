@@ -74,8 +74,8 @@ public class Disnose_resultController {
                 attachedResult.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
                 attachedResult.setDoctor_id(doctor_info.getId());
                 attachedResultServices.save(attachedResult);
-
                 attachedResultList.add(attachedResult);
+                result.setData(attachedResult.getAttched_name());
             }catch (Exception e){
 
             }

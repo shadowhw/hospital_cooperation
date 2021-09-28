@@ -113,6 +113,22 @@
                                 <input type="date" name="patient_birth" id="date" required lay-verify="required" placeholder="请选择患者生日" class="layui-input">
                             </div>
                         </div>
+                        <script>
+                            //计算BMI
+                            function bmi_led(){
+                                let tall = $("input[name='patient_tall']").val();
+                                let weight = $("input[name='patient_weight']").val();
+
+                                if(tall!==""&& weight!==""){
+                                    tall /=100;
+                                    let BMI = weight/(tall*tall)
+                                    let steBmi = BMI+"";
+                                    BMI = BMI.toFixed(2)
+                                    //计算BMI值，填充到指定
+                                    $("input[name='patient_BMI']").val(BMI)
+                                }
+                            }
+                        </script>
                         <div class="layui-form-item">
                             <label class="layui-form-label">患者身高</label>
                             <div class="layui-input-block">
@@ -182,20 +198,7 @@
 <script src="../../lib/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
 <script>
-    //计算BMI
-    function bmi_led(){
-        let tall = $("input[name='patient_tall']").val();
-        let weight = $("input[name='patient_weight']").val();
 
-        if(tall!==""&& weight!==""){
-            tall /=100;
-            let BMI = weight/(tall*tall)
-            let steBmi = BMI+"";
-            BMI = BMI.toFixed(2)
-            //计算BMI值，填充到指定
-            $("input[name='patient_BMI']").val(BMI)
-        }
-    }
 
     let disId = 0;
     layui.use('laydate', function(){
@@ -460,17 +463,29 @@
                 //if(res.code == 0){ //上传成功
                 var tr = that.elemList.find('tr#upload-'+ index)
                     ,tds = tr.children();
-                tds.eq(3).html(''); //清空操作
-                // delete this.files[index]; //删除文件队列已经上传成功的文件
-                // return;
-                // //}
-                // this.error(index, upload);
+
+                tds.eq(3).html('<button  class="layui-btn layui-btn-xs layui-btn-danger demo-delete'+index+'">删除</button>'); //清空操作
+
                 arr_pv[done_id] = 100;
                 done_id++;
 
-                let id = "#p_"+done_id;
+                let id = "#p_"+done_id
                 $(id).val(100);
 
+                console.log(res.data)
+                if(res.data ==null){ //没有成功
+                    tr.remove();
+                    layer.msg("无内容为空，选取失败..", {icon:1,time:1000},function(){
+                        // setTimeout('window.location.reload()',1000);
+                    });
+                }
+                //删除文
+                $(".demo-delete"+index).on("click",function(){
+                    delete files[index]; //删除对应的文件
+                    tr.remove();
+                    uploadListIns.config.elem.next()[0].value = '';
+                    deleteThiFile(res.data)
+                })
             }
             ,allDone: function(obj){ //多文件上传完毕后的状态回调
                 console.log(obj)
@@ -494,6 +509,25 @@
         var i  =  1;
     });
 
+
+    //文件删除
+    function deleteThiFile(name){
+        var fileName = name
+        $.ajax({
+            url: "/deleteThisFile?fileName="+fileName,
+            type: "GET",
+            success: function (obj){
+                //删除回调
+                if(obj.msg == "success"){ //删除成功
+                    layer.msg("修改成功", {icon:1,time:1000},function(){
+                        // setTimeout('window.location.reload()',1000);
+                    });
+                }else{
+                    layer.msg("失败")
+                }
+            }
+        })
+    }
 </script>
 
 </body>

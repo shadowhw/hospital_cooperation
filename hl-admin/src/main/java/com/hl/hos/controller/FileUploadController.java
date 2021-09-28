@@ -68,6 +68,8 @@ public class FileUploadController {
                 attached.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
                 attachedService.save(attached);
                 fileslist.add(attached);//加入进集合 便于绑定
+                //上传成功还需要返回文件名称
+                result.setData(attached.getAttched_name());
 
             }catch (Exception e){
                 e.printStackTrace();

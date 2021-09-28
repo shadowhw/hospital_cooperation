@@ -13,9 +13,12 @@ import com.hl.hos.service.Disgnose_infoService;
 import com.hl.hos.service.Doctor_infoService;
 import com.hl.hos.service.Doctor_with_disgnoseService;
 import com.hl.hos.service.Hos_infoService;
+import com.hl.hos.service.impl.MailServiceImpl;
 import com.hl.hos.utils.DateUtil;
 import com.hl.hos.utils.MD5Util;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +50,8 @@ public class Doctor_infoController {
     private Result result;
     @Autowired
     private Doctor_with_disgnoseService doctor_with_disgnoseService;
+    @Autowired
+    MailServiceImpl mailService; //邮件
 
     /**
      * 根据页码和状态查询所有医生信息
@@ -89,6 +94,11 @@ public class Doctor_infoController {
         result.setCode(200);
         return result;
     }
+
+
+    @Value("${spring.mail.username}")
+    private String sendServiceMail ;
+
 
     /**
      * 更新医生信息
@@ -143,9 +153,11 @@ public class Doctor_infoController {
         }
         if(doctor_infoService.updateById(doctor_info))
         {
+            Doctor_info byId = doctor_infoService.getById(doctor_info.getId());
             //通过后更改医院状态为通过
             if(doctor_info.getPass()==1)
             {
+                //通过
                 QueryWrapper<Hos_info> queryWrapper = new QueryWrapper<>();
                 queryWrapper.eq("hos_addr",hos_addr).eq("hos_name",hos_name);
                 Hos_info hos_info = hos_infoService.getOne(queryWrapper);
@@ -154,6 +166,23 @@ public class Doctor_infoController {
                     hos_info.setStat(1);
                     hos_infoService.updateById(hos_info);
                 }
+
+                mailService.sendSimpleMail(
+                        sendServiceMail
+                        ,byId.getEmail()
+                        ,sendServiceMail
+                        ,"国家结构性心脏病介入质控中心影像评估核心实验室审核通知"
+                        ,"您的注册申请已审核通过，您现在可以登录您的账号了!"+"<a href="+"http://150.223.27.2:81"+"/>点击前往登录<a/>"
+                );
+
+
+            }else { //未通过
+                mailService.sendSimpleMail(
+                        sendServiceMail
+                        ,byId.getEmail()
+                        ,sendServiceMail
+                        ,"国家结构性心脏病介入质控中心影像评估核心实验室审核通知"
+                        ,"您的注册申请未审核通过!!");
             }
             result.setCount(1);
             result.setData(null);
