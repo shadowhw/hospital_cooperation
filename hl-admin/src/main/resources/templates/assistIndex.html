@@ -182,17 +182,21 @@
 <!--<script src="js/indexJs/assistCenter.js"></script>-->
 <script>
     let url ="";
-    $.ajax({
-        url:"/getInfo",
-        type:"GET",
-        success:function (result){
-            if(result.stat == 1){
-                url ="/data/indexJson/assistCenter.json"
-            }else{
-                url ="/data/indexJson/otherC.json"
+    $(function(){
+        $.ajax({
+            url:"/getInfo",
+            type:"GET",
+            success:function (result){
+                if(result.stat == 1){
+                    url ="/data/indexJson/assistCenter.json"
+                }else{
+                    url ="/data/indexJson/otherC.json"
+                }
             }
-        }
+        })
     })
+
+
 
     $("#doctor_info_center").on("click",function(){
         //打开医生信息界面
@@ -217,6 +221,7 @@
                 console.log("complete");
             })
     })
+
     function resetPwd(){
         layer.open({
             type: 2,
@@ -241,6 +246,7 @@
         var okTab = layui.okTab({
             // 菜单请求路径
             url,
+
             // 允许同时选项卡的个数
             openTabNum: 30,
             // 如果返回的结果和navs.json中的数据结构一致可省略这个方法

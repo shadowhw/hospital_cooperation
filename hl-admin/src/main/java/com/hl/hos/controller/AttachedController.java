@@ -43,15 +43,21 @@ public class AttachedController {
             File file ;
             if(attached != null){ //删除诊断申请附件
                  file = new File(attached.getAttached_addr()+attached.getAttched_name());
-                if(file.delete()){
-                    boolean b = attached.deleteById();
-                    if(b)
-                        result.setMsg("success");
-                    else
+                if(file.exists())
+                    if(file.delete()){
+                        boolean b = attached.deleteById();
+                        if(b)
+                            result.setMsg("success");
+                        else
+                            result.setMsg("error");
+                    }else
+                        //删除失败
                         result.setMsg("error");
-                }else
-                    //删除失败
-                    result.setMsg("error");
+                else{
+                    attached.deleteById();
+                    result.setMsg("success");
+                }
+
 
             }else{ //删除诊断结果附件
                 file = new File(attachedResult.getAttached_addr()+attachedResult.getAttched_name());
