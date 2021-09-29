@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -169,7 +170,7 @@ public class Diagnosis_infoController
      */
     @ResponseBody
     @GetMapping("/get_diagnosis_list_by_params")
-    public Result get_diagnosis_list_by_params(String disgnose_code,String patient_name,String patient_tall,String patient_weight,String diagnose_result,String create_time,String stat)
+    public Result get_diagnosis_list_by_params(String disgnose_code,String patient_name,String patient_tall,String patient_weight,String diagnose_result,String create_time,String end_time,String stat)
     {
         QueryWrapper<Disgnose_info> queryWrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(disgnose_code.trim())){
@@ -187,9 +188,17 @@ public class Diagnosis_infoController
         if (!StringUtils.isEmpty(diagnose_result.trim())){
             queryWrapper.like("diagnose_result",diagnose_result);
         }
-        if (!StringUtils.isEmpty(create_time.trim())){
-            queryWrapper.like("create_time",create_time);
+        if (!StringUtils.isEmpty(create_time.trim()) && !StringUtils.isEmpty(end_time.trim())){
+
+            Timestamp create_time1 = Timestamp.valueOf(create_time+" 00:00:00");
+            Timestamp end_time1 = Timestamp.valueOf(end_time+" 00:00:00");
+            long endT = end_time1.getTime()+1000*60*60*24;
+            end_time1.setTime(endT);
+            queryWrapper.between("create_time",create_time1,end_time1);
         }
+//        if (!StringUtils.isEmpty(create_time.trim())){
+//            queryWrapper.like("create_time",create_time);
+//        }
         if (!StringUtils.isEmpty(stat.trim())){
             queryWrapper.like("stat",stat);
         }

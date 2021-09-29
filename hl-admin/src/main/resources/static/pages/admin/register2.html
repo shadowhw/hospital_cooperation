@@ -65,6 +65,40 @@
     <legend>录入医师管理</legend>
 </fieldset>
 
+<div class="search">
+    <div class="layui-row">
+        <form class="layui-form ok-form layui-row">
+            <div class="layui-col-md3">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">账号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" id="doctor_account" autocomplete="off" placeholder="请输入账号"
+                               class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" id="doctor_name" autocomplete="off" placeholder="请输入姓名"
+                               class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <div id="selectMore" style="float: right; margin-right:50px;"
+                 class="layui-btn layui-btn-normal layui-btn-radius">
+                更多
+            </div>
+            <div id="selectForm" style="float: right; margin-right:50px;"
+                 class="layui-btn layui-btn-normal layui-btn-radius">
+                <i class="layui-icon layui-icon-search"></i>
+            </div>
+        </form>
+    </div>
+</div>
+
 <!--数据表格-->
 <div class="list-con">
     <table class="layui-hide" id="tableId" lay-filter="tableId"></table>
@@ -367,45 +401,71 @@
         })
 
         //搜索
-        $("#selectForm").on('click', selectForm);
-        function selectForm() {
-            okLayer.open("查询条件", "selectForm.html", "35%", "60%", function (layero) {
+        $("#selectForm").click(function () {
+            let doctor_name = $("#doctor_name").val()==undefined?"":$("#doctor_name").val();
+            let doctor_account = $("#doctor_account").val()==undefined?"":$("#doctor_account").val();
+            let doctor_tel = $("#doctor_tel").val()==undefined?"":$("#doctor_tel").val();
+            let email = $("#email").val()==undefined?"":$("#email").val();
+            let stat = $("#stat").val()==undefined?"":$("#stat").val();
+            //重载页面
+            articleTable.reload({
+                url:"/hos/doctor_info/get_doctor_list_by_params",
+                where: {
+                    'doctor_name': doctor_name,
+                    'doctor_account':doctor_account,
+                    'doctor_tel':doctor_tel,
+                    'email':email,
+                    'stat':stat,
+                    'type':2,
+                    'pass':1
+                },
+                page: {
+                    curr: 1
+                }
+            })
+        });
+
+        //高级搜索
+        $("#selectMore").on('click', selectMore);
+
+        function selectMore() {
+            //清空主页面的部门
+            // selDepartment.setValue([]);
+            okLayer.open("查询条件", "selectForm.html", "35%", "65%", function (layero) {
                 let iframeWin = window[layero.find("iframe")[0]["name"]];
             }, function () {
-                //获取搜索页面传过来的搜索条件
-                var caseId = window.document.caseId;
-                var procLevel = window.document.procLevel;
-                var caseDescription = window.document.caseDescription;
-                var startTime = window.document.startTime;
-                var endTime = window.document.endTime;
-                var newStartDate = startTime.replace(/-/g, "/");//时间格式转换
-                var newEndDate = endTime.replace(/-/g, "/");
-                //置空搜索框
-                window.document.caseId="";
-                window.document.procLevel="";
-                window.document.caseDescription="";
-                window.document.startTime="";
-                window.document.endTime="";
-                var isChange=window.document.isChange;
-                window.document.isChange=0
-                if(isChange!=1){
-                    return
-                }
+
+                var doctor_name1 = window.document.doctor_name;
+                var doctor_account1 = window.document.doctor_account;
+                var doctor_tel1 = window.document.doctor_tel;
+                var email1 = window.document.email;
+                var stat1 = window.document.stat;
+
+                // var newStartDate = startTime.replace(/-/g, "/");//时间格式转换
+
+                //将搜索框置空
+                window.document.disgnose_code = "";
+                window.document.doctor_account = "";
+                window.document.doctor_tel = "";
+                window.document.email = "";
+                window.document.stat = "";
+
                 //重载页面
                 articleTable.reload({
+                    url: "/hos/doctor_info/get_doctor_list_by_params",
                     where: {
-                        'procTatus': thisValue,
-                        'caseId':caseId,
-                        'procLevel':procLevel,
-                        'caseDescription':caseDescription,
-                        'startTime':newStartDate,
-                        'endTime':newEndDate
+                        'doctor_name': doctor_name1,
+                        'doctor_account': doctor_account1,
+                        'doctor_tel': doctor_tel1,
+                        'email': email1,
+                        'stat': stat1,
+                        'type': 2,
+                        'pass': 1
                     },
                     page: {
                         curr: 1
                     }
                 })
-                return false;
             })
         }
 
