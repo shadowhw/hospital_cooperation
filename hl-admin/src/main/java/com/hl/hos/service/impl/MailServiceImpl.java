@@ -24,7 +24,7 @@ public class MailServiceImpl implements MailService {
      * @param content 内容
      */
     @Override
-    public void sendSimpleMail(String from, String to, String cc, String subject, String content) {
+    public void sendSimpleMail(String from, String to, String cc, String subject, String content) throws RuntimeException {
         /*
          * 邮件信息
          * */
@@ -37,7 +37,12 @@ public class MailServiceImpl implements MailService {
         /*
          * 发送邮件
          * */
-        javaMailSender.send(simpleMailMessage);
+        try {
+            javaMailSender.send(simpleMailMessage);
+        }catch (Exception e){
+            throw e;
+        }
+
     }
 
     /**
