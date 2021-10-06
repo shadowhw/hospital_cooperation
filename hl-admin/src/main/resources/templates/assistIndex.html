@@ -120,13 +120,14 @@
                         </div>
                     </div>
                 </a>
-                <p>你好！<span class="userName" id="username" name="policName" th:text="${session.doctor_info.doctor_name}"></span>, 欢迎登录</p>
+                <p>你好！<span class="userName"  id="username" name="policName" th:text="${session.doctor_info.doctor_name}"></span>, 欢迎登录</p>
             </div>
+            <span id="user_stat"style="display: none" th:text="${session.doctor_info.stat}" ></span>
             <!--左侧导航菜单-->
             <ul id="navBar" class="layui-nav okadmin-nav okadmin-bg-20222A layui-nav-tree">
                 <li class="layui-nav-item layui-this">
                     <a href="javascript:" lay-id="1" data-url="">
-                        <i is-close=false class="ok-icon">&#xe66f;</i>
+                        <i is-close=false class="ok-icon" >&#xe66f;</i>
                         首页
                     </a>
                 </li>
@@ -182,17 +183,29 @@
 <!--<script src="js/indexJs/assistCenter.js"></script>-->
 <script>
     let url ="";
-    $.ajax({
-        url:"/getInfo",
-        type:"GET",
-        success:function (result){
-            if(result.stat == 1){
-                url ="/data/indexJson/assistCenter.json"
-            }else{
-                url ="/data/indexJson/otherC.json"
-            }
-        }
-    })
+     //有Bug 弃用!!!!
+    // $(function(){
+    //     $.ajax({
+    //         url:"/getInfo",
+    //         type:"GET",
+    //         success:function (result){
+    //             if(result.stat == 1){
+    //                 url ="/data/indexJson/assistCenter.json"
+    //             }else{
+    //                 url ="/data/indexJson/otherC.json"
+    //             }
+    //         }
+    //     })
+    // })
+
+    console.log($("#user_stat").text())
+    if($("user_stat").text == 1){
+        url = "/data/indexJson/assistCenter.json"
+    }else{
+        url ="/data/indexJson/otherC.json"
+    }
+
+
 
     $("#doctor_info_center").on("click",function(){
         //打开医生信息界面
@@ -217,6 +230,7 @@
                 console.log("complete");
             })
     })
+
     function resetPwd(){
         layer.open({
             type: 2,
@@ -241,6 +255,7 @@
         var okTab = layui.okTab({
             // 菜单请求路径
             url,
+
             // 允许同时选项卡的个数
             openTabNum: 30,
             // 如果返回的结果和navs.json中的数据结构一致可省略这个方法

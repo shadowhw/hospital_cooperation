@@ -10,7 +10,9 @@ import com.hl.hos.pojo.Hos_info;
 import com.hl.hos.pojo.Result;
 import com.hl.hos.service.Hos_infoService;
 import com.hl.hos.utils.DateUtil;
+import com.mysql.cj.conf.HostInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URLDecoder;
@@ -190,6 +192,31 @@ public class Hos_infoController {
         result.setCount(hos_list.size());
         result.setData(hos_list);
         result.setCode(200);
+        return result;
+    }
+
+    /**
+     * 组合查询
+     */
+    @ResponseBody
+    @GetMapping("/get_hos_by_argments")
+    public Result get_hos_by_argments(String hos_name,String hos_addr){
+        Result result = new Result();
+        QueryWrapper<Hos_info> queryWrapper = new QueryWrapper<Hos_info>();
+        if(!StringUtils.isEmpty(hos_addr.trim())){ //
+            queryWrapper.like("hos_addr",hos_addr);
+        }
+
+        if(!StringUtils.isEmpty(hos_name.trim())){
+            queryWrapper.like("hos_name",hos_name);
+        }
+
+         List<Hos_info> hos_infoList= hos_infoService.list(queryWrapper);
+        result.setData(hos_infoList);
+        result.setCode(201);
+        result.setCount(hos_infoList.size());
+        result.setMsg("");
+
         return result;
     }
 }

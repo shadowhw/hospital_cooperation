@@ -11,4 +11,5 @@ public interface MailService {
 
 
     public void sendSimpleMail(String from,String to,String cc,String subject,String content);
+    public void sendMineEmail(String from,String to ,String cc, String subject ,String content);
 }

@@ -155,6 +155,7 @@ public class Doctor_infoController {
         }
         if(doctor_infoService.updateById(doctor_info))
         {
+            //根据Id查找该医生
             Doctor_info byId = doctor_infoService.getById(doctor_info.getId());
             //通过后更改医院状态为通过
             if(doctor_info.getPass()==1)
@@ -169,7 +170,7 @@ public class Doctor_infoController {
                     hos_infoService.updateById(hos_info);
                 }
 
-                mailService.sendSimpleMail(
+                mailService.sendMineEmail(
                         sendServiceMail
                         ,byId.getEmail()
                         ,sendServiceMail
@@ -179,12 +180,17 @@ public class Doctor_infoController {
 
 
             }else { //未通过
-                mailService.sendSimpleMail(
-                        sendServiceMail
-                        ,byId.getEmail()
-                        ,sendServiceMail
-                        ,"国家结构性心脏病介入质控中心影像评估核心实验室审核通知"
-                        ,"您的注册申请未审核通过!!");
+                try {
+                    mailService.sendSimpleMail(
+                            sendServiceMail
+                            ,byId.getEmail()
+                            ,sendServiceMail
+                            ,"国家结构性心脏病介入质控中心影像评估核心实验室审核通知"
+                            ,"您的注册申请未审核通过!!");
+                }catch (Exception exception){
+
+                }
+
             }
             result.setCount(1);
             result.setData(null);

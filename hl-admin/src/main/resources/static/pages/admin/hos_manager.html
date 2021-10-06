@@ -78,6 +78,35 @@
         </div>
     </fieldset>
 
+    <div class="search">
+        <div class="layui-row">
+            <form class="layui-form ok-form layui-row">
+                <div class="layui-col-md3">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">医院名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" id="hos_name_q" autocomplete="off" placeholder="请输入医院名称"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">医院地址</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" id="hos_addr_q" autocomplete="off" placeholder="请输入医院地址"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div id="selectForm" style="float: right; margin-right:50px;"
+                     class="layui-btn layui-btn-normal layui-btn-radius">
+                    <i class="layui-icon layui-icon-search"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!--数据表格-->
     <div class="list-con">
         <table class="layui-hide" id="tableId" lay-filter="tableId"></table>
@@ -99,10 +128,10 @@
                 </div>
             </div>
             <div class="layui-form-item" style="margin-top: 30px;display:none;">
-                <label class="layui-form-label">编号</label>
+                <label class="layui-form-label">医院地址</label>
                 <div class="layui-input-block">
                     <input style="float: left;" type="text"
-                           class="layui-input" id="hos_id" name="hos_id" maxlength="8" placeholder="请输入联系人姓名" lay-verify="required" autocomplete="off">
+                           class="layui-input" id="host_addr" name="hos_id" maxlength="8" placeholder="请输入联系人姓名" lay-verify="required" autocomplete="off">
                 </div>
             </div>
         </div>
@@ -417,6 +446,24 @@
         //     //show(url);
         //     obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
         // });
+
+        $("#selectForm").on("click",function() {
+            let hos_name = $("#hos_name_q").val();
+            let hos_addr = $("#hos_addr_q").val();
+            console.log(hos_name)
+
+            articleTable.reload({
+                url:'/hos/hos_info/get_hos_by_argments',
+                type:'get',
+                where: {
+                    hos_name,
+                    hos_addr
+                },
+                page:{
+                    curr: 1
+                }
+            });
+        });
 
     })
 </script>
