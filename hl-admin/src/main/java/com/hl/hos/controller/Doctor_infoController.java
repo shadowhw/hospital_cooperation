@@ -77,7 +77,6 @@ public class Doctor_infoController {
             queryWrapper.in("stat",2,4);
         }
 
-        List<Doctor_info> list = doctor_infoService.list(queryWrapper);
         List<DoctorHos> doctorLists = new ArrayList<DoctorHos>();
 
         Page<Doctor_info> page1 = new Page<Doctor_info>(Integer.parseInt(page),Integer.parseInt(limit));
@@ -92,7 +91,7 @@ public class Doctor_infoController {
             doctorHos.setHos_info(hos_infoService.getById(doctorInfo.getHos_id()));
             doctorLists.add(doctorHos);
         }
-        result.setCount(list.size());//数量应该是所有数据的大小
+        result.setCount(doctorLists.size());//数量应该是所有数据的大小
         result.setData(doctorLists);
         result.setCode(200);
         return result;
