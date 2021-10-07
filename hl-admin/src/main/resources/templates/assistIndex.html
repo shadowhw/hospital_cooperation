@@ -199,7 +199,7 @@
     // })
 
     console.log($("#user_stat").text())
-    if($("user_stat").text == 1){
+    if($("#user_stat").text() == 1){
         url = "/data/indexJson/assistCenter.json"
     }else{
         url ="/data/indexJson/otherC.json"
@@ -211,6 +211,7 @@
         //打开医生信息界面
         window.open("/pages/assistDoctors/doctor_info_update.html")
     })
+
     var data;
     layui.use('jquery',function(){
         var $ = layui.jquery;
@@ -255,7 +256,6 @@
         var okTab = layui.okTab({
             // 菜单请求路径
             url,
-
             // 允许同时选项卡的个数
             openTabNum: 30,
             // 如果返回的结果和navs.json中的数据结构一致可省略这个方法
