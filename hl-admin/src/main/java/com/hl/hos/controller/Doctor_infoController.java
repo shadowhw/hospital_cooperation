@@ -158,16 +158,16 @@ public class Doctor_infoController {
             //根据Id查找该医生
             Doctor_info byId = doctor_infoService.getById(doctor_info.getId());
             //通过后更改医院状态为通过
-            if(doctor_info.getPass()==1)
+            if(byId.getPass()==1)
             {
                 //通过
-                QueryWrapper<Hos_info> queryWrapper = new QueryWrapper<>();
-                queryWrapper.eq("hos_addr",hos_addr).eq("hos_name",hos_name);
-                Hos_info hos_info = hos_infoService.getOne(queryWrapper);
+                //QueryWrapper<Hos_info> queryWrapper = new QueryWrapper<>();
+                //queryWrapper.eq("hos_addr",hos_addr).eq("hos_name",hos_name);
+                Hos_info hos_info = hos_infoService.getById(byId.getHos_id());
                 if(hos_info.getStat()==2)
                 {
                     hos_info.setStat(1);
-                    hos_infoService.updateById(hos_info);
+                    hos_infoService.saveOrUpdate(hos_info);
                 }
 
                 mailService.sendMineEmail(
