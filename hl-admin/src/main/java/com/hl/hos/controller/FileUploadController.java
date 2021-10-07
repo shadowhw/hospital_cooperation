@@ -34,9 +34,10 @@ public class FileUploadController {
     @Autowired
     private Attached_resultService attachedResultService;
 
-    //论文的Id集合
+    //文件集合
     private List<Attached> fileslist = new ArrayList<>();
     private Doctor_info doctor_info;
+
     //文件上传接口
     @PostMapping("/fileUpload")
     @ResponseBody
@@ -44,6 +45,17 @@ public class FileUploadController {
                              HttpServletRequest request,
                              HttpSession session) throws IOException {
         Result result = new Result();
+
+        //防止重复文件上传
+        for (int i = 0; i < fileslist.size(); i++) {
+            String exitsName = fileslist.get(i).getAttched_name().substring(33);
+            if(exitsName.equals( file.getOriginalFilename())){
+                result.setCode(0);
+                result.setMsg("成功");
+                result.setData(fileslist.get(i).getAttched_name());
+                return result;
+            }
+        }
 
         String fileName = "";
         if(file.isEmpty()){

@@ -300,5 +300,14 @@ public class Diagnosis_infoController
     }
 
 
+    @ResponseBody
+    @GetMapping("/getDisgnosis_info_by_code_a")
+    public Result getDisgnosis_info_by_code(String code){
+        Disgnose_info disgnose_code = disgnose_infoService.getOne(new QueryWrapper<Disgnose_info>().eq("disgnose_code",code));
+        Result result = new Result();
+        result.setData(disgnose_code);
+        return result;
+    }
+
 }
 

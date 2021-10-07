@@ -548,6 +548,9 @@
 
                 let id = "#p_"+done_id;
                 $(id).val(100);
+                $(id).replaceWith(function () {
+                    return $("<span>成功</span>");
+                });
 
                 console.log(res.data)
                 if(res.data ==null){ //没有成功

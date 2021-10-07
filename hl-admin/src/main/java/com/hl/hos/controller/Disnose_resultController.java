@@ -57,6 +57,17 @@ public class Disnose_resultController {
     @PostMapping("/fileResultUpload")
     public Result fileResultUpload(MultipartFile file , HttpSession session){
         Result result = new Result();
+
+        //判断是否为重复上传内容
+        for (int i = 0; i < attachedResultList.size(); i++) {
+            if(attachedResultList.get(i).getAttched_name().substring(33).equals(file.getOriginalFilename())){
+                result.setMsg("成功");
+                result.setCode(0);
+                result.setData(attachedResultList.get(i).getAttched_name());
+                return result;
+            }
+        }
+
         doctor_info = (Doctor_info) session.getAttribute("doctor_info");
         if(!file.isEmpty()){
             //获取文件名称
