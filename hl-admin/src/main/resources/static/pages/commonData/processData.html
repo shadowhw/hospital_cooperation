@@ -28,6 +28,9 @@
 </div>
 
 <div style="background-color:#fdfdfd;margin-top: 10px;padding-top: 20px;">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend style="color: crimson;font-weight: bold" id="cur"></legend>
+    </fieldset>
     <ul class="layui-timeline" id="timeline">
         <!--li拼接到这-->
     </ul>
@@ -44,6 +47,10 @@
 <script>
     $(document).ready(function(){
         var disgnose_id = GetQueryString("disgnose_id");
+
+        let s = localStorage.getItem("cur_stat");
+        $("#cur").text("当前处理流程结点："+s)//设置记录数
+
         //或者诊断表的流程
         $.ajax({
             url:'/hos/process/get_process_data_by_id',
@@ -57,7 +64,6 @@
                 }else{
                     $("#processCount").text(data.data.length)//设置记录数
                     var process = data.data;
-
                     for(let i=0;i<data.count;i++)
                     {
                         let date1 = new Date(process[i].fenfa_time).Format("yyyy-MM-dd HH:mm:ss");
@@ -92,7 +98,6 @@
             // "                <p>" +
             // "由"+userName+"分配给"+docUserName
             // +"                </p>"
-
         $("#timeline").append(top+content+botton);
         returnData();
     }
@@ -108,7 +113,6 @@
         var layedit = layui.layedit;
         var upload = layui.upload;
         var form = layui.form;
-
     });
 </script>
 

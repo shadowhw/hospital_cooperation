@@ -647,7 +647,6 @@
                 if(data.code == '201'){
                     alert(data.data.msg);//失败的表情
                 }else{
-
                     let datas = data.data;
                     let rs = [];
                     for(let i=0;i<datas.length;i++)
@@ -670,6 +669,27 @@
                         dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
                         dia.stat = datas[i].disgnose_info.stat;
 
+                        //添加状态缓存
+                        switch (dia.stat) {
+                            case 1:
+                                localStorage.setItem("cur_stat","录入医师创建申请");
+                                break;
+                            case 2:
+                                localStorage.setItem("cur_stat","管理员已退回诊断申请");
+                                break;
+                            case 3:
+                                localStorage.setItem("cur_stat","管理员已分配等待协作专家处理");
+                                break;
+                            case 4:
+                                localStorage.setItem("cur_stat","管理员已驳回协助医师报告");
+                                break;
+                            case 5:
+                                localStorage.setItem("cur_stat","诊断任务已完成");
+                                break;
+                            case 6:
+                                localStorage.setItem("cur_stat","协作专家完成诊断等待管理员处理");
+                                break;
+                        }
 
                         $("#hos_nme").text(dia.hos_nme)
                         $("#patient_name").text(dia.patient_name)
@@ -701,7 +721,11 @@
                                 // $("input:radio").eq(2).attr("disabled",true);
                                 // $("input:radio").eq(3).attr("disabled",true);
                                 break;
-                            case 3://已分配和驳回协助都不能显示分配任务和协作医师完成
+                            case 3://已分配后啥也不显示
+                                $("#assignTasks").hide();
+                                $("#a2").hide();
+                                $("#a1").hide();
+                                break;
                             case 4:
                             //诊断医师完成后显示驳回和反馈
                             case 6:
@@ -799,7 +823,7 @@
             , page: false
             , parseData: function (res) {
                 let datas = res.data;
-                console.log(datas.length)
+                // console.log(datas.length)
                 let rs = [];
                 for (let i = 0; i < datas.length; i++) {
                     let dia = {}
