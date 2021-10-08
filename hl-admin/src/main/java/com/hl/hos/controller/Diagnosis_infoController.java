@@ -2,7 +2,6 @@ package com.hl.hos.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hl.hos.backPogo.DiagnosisDoctorHos;
 import com.hl.hos.backPogo.DoctorHos;
@@ -12,6 +11,7 @@ import com.hl.hos.service.Doctor_infoService;
 import com.hl.hos.service.Doctor_with_disgnoseService;
 import com.hl.hos.service.Hos_infoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,45 +52,8 @@ public class Diagnosis_infoController
         queryWrapper.ne("stat",0);
         //不包括状态0：保存
         List<Disgnose_info> list = disgnose_infoService.list(queryWrapper);
-        List<DiagnosisDoctorHos> resList = new ArrayList<DiagnosisDoctorHos>();
+        List<DiagnosisDoctorHos> resList = disgnose_infoService.get_dia_by_page(queryWrapper,page,limit);
 
-        Page<Disgnose_info> page1 = new Page<Disgnose_info>(Integer.parseInt(page),Integer.parseInt(limit));
-
-        IPage<Disgnose_info> iPage = disgnose_infoService.page(page1,queryWrapper);
-
-        for (int i = 0; i < iPage.getRecords().size(); i++)
-        {
-            DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();
-            Disgnose_info disgnose_info = iPage.getRecords().get(i);
-
-            //医生账号不能用时不显示
-            Doctor_info doctorInfo = doctor_infoService.getById(disgnose_info.getDoctor_id());
-
-            //查询协作医师姓名
-            List<Doctor_with_disgnose> doctor_with_disgnose = doctor_with_disgnoseService.list(new QueryWrapper<Doctor_with_disgnose>()
-                .eq("disgnose_id",disgnose_info.getId())
-            );
-            if(doctor_with_disgnose.size()>=1)
-            {
-                Doctor_info assist = doctor_infoService.getById(doctor_with_disgnose.get(0).getDoctor_id());
-                diagnosisDoctorHos.setAssist_doctor_name(assist.getDoctor_name());
-            }else {
-                diagnosisDoctorHos.setAssist_doctor_name("暂无");
-            }
-
-            //医生账号被删除
-            if(doctorInfo==null)
-                continue;
-            if(doctorInfo.getStat()==5 || doctorInfo.getStat()==6)
-                continue;//不绑定信息
-            diagnosisDoctorHos.setDisgnose_info(disgnose_info);//绑定诊断信息
-            doctorInfo.setDoctor_pwd(null);
-            diagnosisDoctorHos.setDoctor_info(doctorInfo);//绑定医生
-            Long hos_id = doctor_infoService.getById(disgnose_info.getDoctor_id()).getHos_id();
-            diagnosisDoctorHos.setHos_info(hos_infoService.getById(hos_id));//绑定医院信息
-
-            resList.add(diagnosisDoctorHos);
-        }
         result.setCount(list.size());//数量应该是所有数据的大小
         result.setData(resList);
         result.setCode(200);
@@ -124,7 +87,9 @@ public class Diagnosis_infoController
             if(doctor_with_disgnose.size()>=1)
             {
                 Doctor_info assist = doctor_infoService.getById(doctor_with_disgnose.get(0).getDoctor_id());
-                diagnosisDoctorHos.setAssist_doctor_name(assist.getDoctor_name());
+                //当前负责人
+                Hos_info hosInfo = hos_infoService.getById(assist.getHos_id());
+                diagnosisDoctorHos.setAssist_doctor_name(hosInfo.getHos_name()+"-"+assist.getDoctor_name());
             }else {
                 diagnosisDoctorHos.setAssist_doctor_name("暂无");
             }
@@ -170,7 +135,7 @@ public class Diagnosis_infoController
      */
     @ResponseBody
     @GetMapping("/get_diagnosis_list_by_params")
-    public Result get_diagnosis_list_by_params(String disgnose_code,String patient_name,String patient_tall,String patient_weight,String diagnose_result,String create_time,String end_time,String stat)
+    public Result get_diagnosis_list_by_params(@Nullable String page,@Nullable String limit,String disgnose_code, String patient_name, String patient_tall, String patient_weight, String diagnose_result, String create_time, String end_time, String stat)
     {
         QueryWrapper<Disgnose_info> queryWrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(disgnose_code.trim())){
@@ -205,36 +170,7 @@ public class Diagnosis_infoController
         queryWrapper.orderByDesc("create_time");
         List<Disgnose_info> list = disgnose_infoService.list(queryWrapper);
 
-        List<DiagnosisDoctorHos> resList = new ArrayList<DiagnosisDoctorHos>();
-
-
-        for (int i = 0; i < list.size(); i++)
-        {
-            DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();
-            Disgnose_info disgnose_info = list.get(i);
-
-            //查询协作医师姓名
-            List<Doctor_with_disgnose> doctor_with_disgnose = doctor_with_disgnoseService.list(new QueryWrapper<Doctor_with_disgnose>()
-                    .eq("disgnose_id",disgnose_info.getId())
-            );
-            if(doctor_with_disgnose.size()>=1)
-            {
-                Doctor_info assist = doctor_infoService.getById(doctor_with_disgnose.get(0).getDoctor_id());
-                diagnosisDoctorHos.setAssist_doctor_name(assist.getDoctor_name());
-            }else {
-                diagnosisDoctorHos.setAssist_doctor_name("暂无");
-            }
-
-            Doctor_info doctorInfo = doctor_infoService.getById(disgnose_info.getDoctor_id());
-            if(doctorInfo.getStat()==5 || doctorInfo.getStat()==6)
-                continue;//不绑定信息
-            doctorInfo.setDoctor_pwd(null);
-            diagnosisDoctorHos.setDoctor_info(doctorInfo);//绑定医生
-            Long hos_id = doctor_infoService.getById(disgnose_info.getDoctor_id()).getHos_id();
-            diagnosisDoctorHos.setHos_info(hos_infoService.getById(hos_id));//绑定医院信息
-            diagnosisDoctorHos.setDisgnose_info(disgnose_info);//绑定诊断信息
-            resList.add(diagnosisDoctorHos);
-        }
+        List<DiagnosisDoctorHos> resList = disgnose_infoService.get_dia_by_page(queryWrapper,page,limit);
         result.setCount(list.size());//数量应该是所有数据的大小
         result.setData(resList);
         result.setCode(200);
@@ -247,7 +183,7 @@ public class Diagnosis_infoController
      */
     @ResponseBody
     @GetMapping("/get_diagnosis_list_by_params_from_chart1")
-    public Result get_diagnosis_list_by_params_from_chart1(String disgnose_code,String patient_name,String patient_tall,String patient_weight,String diagnose_result,String create_time,String start_time,String end_time)
+    public Result get_diagnosis_list_by_params_from_chart1(@Nullable String page,@Nullable String limit,String disgnose_code,String patient_name,String patient_tall,String patient_weight,String diagnose_result,String create_time,String start_time,String end_time)
     {
         QueryWrapper<Disgnose_info> queryWrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(disgnose_code.trim())){
@@ -273,26 +209,10 @@ public class Diagnosis_infoController
             queryWrapper.le("create_time",end_time);//小于等于结束时间
         }
 
-
         List<Disgnose_info> list = disgnose_infoService.list(queryWrapper);
 
-        List<DiagnosisDoctorHos> resList = new ArrayList<DiagnosisDoctorHos>();
+        List<DiagnosisDoctorHos> resList = disgnose_infoService.get_dia_by_page(queryWrapper,page,limit);
 
-
-        for (int i = 0; i < list.size(); i++)
-        {
-            DiagnosisDoctorHos diagnosisDoctorHos = new DiagnosisDoctorHos();
-            Disgnose_info disgnose_info = list.get(i);
-
-            diagnosisDoctorHos.setDisgnose_info(disgnose_info);//绑定诊断信息
-            Doctor_info doctorInfo = doctor_infoService.getById(disgnose_info.getDoctor_id());
-            doctorInfo.setDoctor_pwd(null);
-            diagnosisDoctorHos.setDoctor_info(doctorInfo);//绑定医生
-            Long hos_id = doctor_infoService.getById(disgnose_info.getDoctor_id()).getHos_id();
-            diagnosisDoctorHos.setHos_info(hos_infoService.getById(hos_id));//绑定医院信息
-
-            resList.add(diagnosisDoctorHos);
-        }
         result.setCount(list.size());//数量应该是所有数据的大小
         result.setData(resList);
         result.setCode(200);

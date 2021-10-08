@@ -373,13 +373,30 @@
 
                 //渲染select
                 form.render('select');
+                //预加载
+                $.ajax({
+                    url: '/hos/doctor_info/get_doc_of_hos',
+                    dataType: 'json',
+                    type: 'get',
+                    data: {hos_id:1,type:"xz"},
+                    success: function (resData) {
+                        // 清空选项
+                        $('#select_doc').empty();
+                        $.each(resData.data, function (index, value) {
+                            // 这里的 value.bedNo
+                            // 前者是页面显示的值，后者是传递给后台的值。
+                            // 正常情况下，后者应该是 value.id
+                            $('#select_doc').append(new Option(value.doctor_name, value.doctor_account));// 下拉菜单里添加元素
+                        });
+                        //渲染select
+                        form.render('select');
+                    }
+                });
             }
         });
         // 第二步 监听父级，每当父级发生变化时，渲染子级的值
         form.on('select(select_hos)', function(data){
-
             var hos_id = data.value; // roomName 选中的科室名称
-
             $.ajax({
                 url: '/hos/doctor_info/get_doc_of_hos',
                 dataType: 'json',
@@ -392,7 +409,7 @@
                         // 这里的 value.bedNo
                         // 前者是页面显示的值，后者是传递给后台的值。
                         // 正常情况下，后者应该是 value.id
-                        $('#select_doc').append(new Option(value.doctor_account, value.doctor_account));// 下拉菜单里添加元素
+                        $('#select_doc').append(new Option(value.doctor_name, value.doctor_account));// 下拉菜单里添加元素
                     });
                     //渲染select
                     form.render('select');
@@ -487,7 +504,7 @@
                                 url: '/hos/doctor_with_disgnose/add_assist',
                                 dataType: 'json',
                                 type: 'post',
-                                data: {disgnose_id:d_id,doctor_account:$("#select_doc").find("option:selected").text()},
+                                data: {disgnose_id:d_id,doctor_account:$("#select_doc").find("option:selected").val()},
                                 success: function (resData2) {
                                     if(resData2.code == '201'){
                                         layer.msg(resData2.data.msg,{icon: 5});//失败的表情
