@@ -45,9 +45,9 @@
                     <br>
                     <sapn class="textarea">患者出生日期 : <span id="patient_birth"></span></sapn>
                     <br>
-                    <sapn class="textarea">患者身高 : <span id="patient_tall"></span></sapn>
+                    <sapn class="textarea">患者身高 : <span id="patient_tall"></span>cm</sapn>
                     <br>
-                    <sapn class="textarea">患者体重 : <span id="patient_weight"></span></sapn>
+                    <sapn class="textarea">患者体重 : <span id="patient_weight"></span>kg</sapn>
                     <br>
                     <sapn class="textarea">患者BMI : <span id="patient_bmi"></span></sapn>
                     <br>
@@ -107,11 +107,11 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-md4">
+        <div class="layui-col-md4" >
             <div style="background-color:#f8f8f8;padding-bottom: 300px">
                 <legend class="layui-card-header" style="font-size: 16px">操作处理</legend>
                 <div class="layui-card" style="background-color: #FFFFFF;padding-bottom: 50px">
-                    <div class="layui-card-body">
+                    <div class="layui-card-body" id="manger_manger">
                         <div class="layui-form" action="" lay-filter="component-form-group">
                             <div class="layui-form-item" pane="">
                                 <div class="">
@@ -127,27 +127,9 @@
                                     </div>
                                 </div>
                             </div>
-                           <!-- <input id="files" name="files" value="0" class="layui-input" type="hidden">
-                            <div class="layui-form-item layui-form-text">
-                                <label class="layui-form-label">诊断结果/退回原因</label>
-                                <div class="layui-input-block">
-                                    <textarea name="disno" id="disno" placeholder="请输入诊断结果或退回原因"
-                                              class="layui-textarea"></textarea>
-                                </div>
-                            </div>
-                            <div class="layui-form-item layui-layout-admin">
-                                <div class="layui-input-block">
-                                    <div class="layui-row" style="left: 0;">
-                                        <button class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
-                                        <button type="reset" class="layui-btn layui-btn-primary" id="btu_roll_back">
-                                            退回诊断申请
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>-->
                         </div>
                         <hr>
-                        <div class="layui-form">
+                        <div class="layui-form" >
                             <div class="layui-form-item" style="text-align: left">
                                 <input type="radio" name="isread" value="1" title="诊断结果返回" checked="">
                             </div>
@@ -164,6 +146,7 @@
         </div>
     </div>
 </div>
+
 
 <!--回退诊断申请弹框-->
 <from style="display:none;margin: 20px 60px 20px 20px" class="layui-form" name="backApplybu" id="backApplybu" action=""
@@ -194,6 +177,8 @@
             elem: '#date' //指定元素
         });
     });
+
+
 
     //退回操作
     layui.use('layer', function () {
@@ -230,6 +215,8 @@
             });
             return false;
         })
+
+
 
         //添加流程
         function add_process(transact_type2) {
@@ -526,6 +513,9 @@
 
                 let id = "#p_"+done_id
                 $(id).val(100);
+                $(id).replaceWith(function () {
+                    return $("<span>成功</span>");
+                });
 
                 console.log(res.data)
                 if(res.data ==null){ //没有成功
@@ -744,7 +734,12 @@
                         let date = new Date(datas[i].disgnose_info.create_time).Format("yyyy-MM-dd HH:mm:ss");
                         //出生日期
                         let birth = new Date(datas[i].disgnose_info.patient_birth).Format("yyyy-MM-dd");
-
+                        dia.stat = datas[i].disgnose_info.stat;
+                        if(dia.stat == 3||dia.stat==4){
+                            $("#manger_manger").removeAttr("style","display")
+                        }else{
+                            $("#manger_manger").attr("style","display:none;");
+                        }
                         dia.doctor_name = datas[i].doctor_info.doctor_name;
                         dia.patient_name = datas[i].disgnose_info.patient_name;
                         dia.patient_birth = birth;
@@ -757,7 +752,8 @@
                          dia.patient_BMI = datas[i].disgnose_info.patient_BMI;
                         dia.comment_text = datas[i].disgnose_info.comment_text;
                         dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
-                        dia.stat = datas[i].disgnose_info.stat;
+
+
 
                         $("#hos_nme").text(dia.hos_nme)
                         $("#patient_name").text(dia.patient_name)
@@ -769,16 +765,17 @@
                         $("#create_time").text(dia.create_time)
                         $("#disgnose_code").text(dia.disgnose_code)
                         $("#patient_bmi").text(dia.patient_BMI)
-
-
                     }
                 }
             },
         });
 
     });
+
+
 </script>
 <script>
+
     let processDataHeight = 0
 
     //获取处理过程信息

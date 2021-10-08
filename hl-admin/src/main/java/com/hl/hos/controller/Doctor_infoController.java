@@ -157,27 +157,36 @@ public class Doctor_infoController {
                     hos_info.setStat(1);
                     hos_infoService.saveOrUpdate(hos_info);
                 }
-
-                mailService.sendMineEmail(
-                        sendServiceMail
-                        ,byId.getEmail()
-                        ,sendServiceMail
-                        ,"国家结构性心脏病介入质控中心影像评估核心实验室审核通知"
-                        ,"您的注册申请已审核通过，您现在可以登录您的账号了!"+"<a href="+"http://150.223.27.2:81"+"/>点击前往登录<a/>"
-                );
-
-
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mailService.sendMineEmail(
+                                sendServiceMail
+                                ,byId.getEmail()
+                                ,sendServiceMail
+                                ,"国家结构性心脏病介入质控中心影像评估核心实验室审核通知"
+                                ,"您的注册申请已审核通过，您现在可以登录您的账号了!"+"<a href="+"http://150.223.27.2:81"+"/>点击前往登录<a/>"
+                        );
+                    }
+                }).start();
             }else { //未通过
-                try {
-                    mailService.sendSimpleMail(
-                            sendServiceMail
-                            ,byId.getEmail()
-                            ,sendServiceMail
-                            ,"国家结构性心脏病介入质控中心影像评估核心实验室审核通知"
-                            ,"您的注册申请未审核通过!!");
-                }catch (Exception exception){
+                //分出线程去发送邮箱
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            mailService.sendSimpleMail(
+                                    sendServiceMail
+                                    ,byId.getEmail()
+                                    ,sendServiceMail
+                                    ,"国家结构性心脏病介入质控中心影像评估核心实验室审核通知"
+                                    ,"您的注册申请未审核通过!!");
+                        }catch (Exception exception){
 
-                }
+                        }
+                    }
+                }).start();
+
 
             }
             result.setCount(1);

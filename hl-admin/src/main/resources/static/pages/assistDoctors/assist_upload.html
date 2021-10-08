@@ -239,7 +239,8 @@
         })
         //临时保存
         $("#saveTemp").on("click",function (){
-           let bz =  $("input[name='bz']").val()
+            layer.msg('保存中..');
+            let bz =  $("input[name='bz']").val()
            let patient_name =  $("input[name='patient_name']").val()
            let patient_birth =  $("input[name='patient_birth']").val()
            let patient_tall =   $("input[name='patient_tall']").val()
@@ -288,6 +289,7 @@
 
         //监听提交
         form.on('submit(add)', function(data){
+            layer.msg('提交中..');
             console.log(data.field.files);
             $.ajax({
                 url:"/saveDisgnose_info?id="+disId,
@@ -471,8 +473,14 @@
 
                 let id = "#p_"+done_id
                 $(id).val(100);
+                // $(id).attr("style","display:none")
+                $(id).replaceWith(function () {
+                    return $("<span>成功</span>");
+                });
+
 
                 console.log(res.data)
+
                 if(res.data ==null){ //没有成功
                     tr.remove();
                     layer.msg("无内容为空，选取失败..", {icon:1,time:1000},function(){
