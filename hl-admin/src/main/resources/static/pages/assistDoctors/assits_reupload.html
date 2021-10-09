@@ -361,8 +361,8 @@
                         // 获得frame索引
                         var index = parent.layer.getFrameIndex(window.name);
                         //关闭当前frame
+                        window.parent.$("#selectForm").click();
                         parent.layer.close(index);
-                        window.parent.location.reload(); //刷新父页面
                     }
                     if(obj["msg"]=="error"){
                         alert("保存失败");
@@ -387,13 +387,14 @@
                 success:function (obj) {
                     if(obj["msg"]=="success"){
                         alert("重新上传成功");
-                        // 获得frame索引
-                        var index = parent.layer.getFrameIndex(window.name);
-                        add_process("重新提交")
+                        add_process("申请提交")
                         update_diagnosis(1)
                         //关闭当前frame
+                        // 获得frame索引
+                        var index = parent.layer.getFrameIndex(window.name);
+                        //关闭当前frame
+                        window.parent.$("#selectForm").click();
                         parent.layer.close(index);
-                        window.close();
                     }
                     if(obj["msg"]=="error"){
                         alert("error");

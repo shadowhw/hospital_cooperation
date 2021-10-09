@@ -209,6 +209,7 @@ public class FileUploadController {
                     attached.setDisgnose_id(disgnose_info.getId());
                     attachedService.updateById(attached);
                 }
+                result.setData(disgnose_info);
                 result.setMsg("success");
             }catch (Exception e){
                 e.printStackTrace();

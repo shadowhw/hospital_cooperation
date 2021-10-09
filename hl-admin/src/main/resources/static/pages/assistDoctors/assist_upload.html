@@ -156,7 +156,7 @@
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label">备注</label>
                             <div class="layui-input-block">
-                                <textarea name="bz" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                <textarea name="bz" id="bz" placeholder="请输入内容" class="layui-textarea"></textarea>
                             </div>
                         </div>
 
@@ -208,35 +208,37 @@
             elem: '#date' //指定元素
         });
 
-        $.ajax({
-            url:"/getTempDisgnose_info",
-            type:"get",
-            async:true,
-            success:function(obj){
-                let dis = obj.data;
-                let br;
-                if(br !=null){
-                    br= dis.patient_birth.substr(0,10)
-                }
+        // $.ajax({
+        //     url:"/getTempDisgnose_info",
+        //     type:"get",
+        //     async:true,
+        //     success:function(obj){
+        //         let dis = obj.data;
+        //         let br;
+        //         if(br !=null){
+        //             br= dis.patient_birth.substr(0,10)
+        //         }
+        //
+        //         // br = br.replaceAll("-","/")
+        //         console.log(br)
+        //         disId = dis.id;
+        //         $("input[name='patient_name']").val(dis.patient_name)
+        //         laydate.render({
+        //             elem: '#date'
+        //             ,value: br //必须遵循format参数设定的格式
+        //         });
+        //         let tall = parseInt(dis.patient_tall);
+        //         let weight= parseInt(dis.patient_weight);
+        //         let bmi = parseInt(dis.patient_BMI);
+        //         $("input[name='patient_tall']").val(tall)
+        //         $("input[name='patient_weight']").val(weight)
+        //         $("input[name='department']").val(dis.department)
+        //         $("input[name='bz']").val(dis.comment_text)
+        //         $("input[name='patient_BMI']").val(bmi)
+        //     }
+        // })
 
-                // br = br.replaceAll("-","/")
-                console.log(br)
-                disId = dis.id;
-                $("input[name='patient_name']").val(dis.patient_name)
-                laydate.render({
-                    elem: '#date'
-                    ,value: br //必须遵循format参数设定的格式
-                });
-                let tall = parseInt(dis.patient_tall);
-                let weight= parseInt(dis.patient_weight);
-                let bmi = parseInt(dis.patient_BMI);
-                $("input[name='patient_tall']").val(tall)
-                $("input[name='patient_weight']").val(weight)
-                $("input[name='department']").val(dis.department)
-                $("input[name='bz']").val(dis.comment_text)
-                $("input[name='patient_BMI']").val(bmi)
-            }
-        })
+
         //临时保存
         $("#saveTemp").on("click",function (){
             layer.msg('保存中..');
@@ -290,23 +292,32 @@
         //监听提交
         form.on('submit(add)', function(data){
             layer.msg('提交中..');
-            console.log(data.field.files);
+
             $.ajax({
                 url:"/saveDisgnose_info?id="+disId,
                 type:"post",
                 async:true,//异步加载
                 data:data.field,
                 success:function (obj) {
+                    console.log(obj)
                     if(obj["msg"]=="success"){
                         layer.msg("提交成功。", {
                             offset: ['50%'],
                             time: 1000 //1秒关闭（如果不配置，默认是3秒）
                         }, function () {
+
                             // 获得frame索引
                             var index = parent.layer.getFrameIndex(window.name);
                             //关闭当前frame
                             window.parent.$("#selectForm").click();
+
+                            disId= obj.data.id;
+                            console.log(obj.data)
+                            add_process("申请提交")
+                            update_diagnosis(1)
+
                             parent.layer.close(index);
+
                         });
 
                     }
@@ -318,6 +329,61 @@
             return false;
         });
     });
+
+let comment_text =""
+
+    //添加流程
+    function add_process(transact_type2) {
+        fenfa = $("#text_doctor_name").text();
+        let  transactor = fenfa;
+        let transact_stat = 1;
+        let  transact_comment=$("#bz").val();
+        if(transact_comment!=null)
+         comment_text = transact_comment;
+        //添加流程
+        $.ajax({
+            url: '/hos/process/add_process',
+            dataType: 'json',
+            type: 'post',
+            data: {disgnose_id:disId,fenfa:fenfa,transactor:transactor,
+                transact_type:transact_type2,transact_comment:transact_comment,transact_stat:transact_stat},
+            success: function (resData) {
+                if(resData.code == '201'){
+                    layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                }else{
+                    layer.msg("成功", {
+                        icon: 6,//成功的表情
+                        time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+
+                    });
+                }
+            }
+        });
+    };
+    //更新诊断表转态
+    function update_diagnosis(stat2) {
+        $.ajax({
+            url: '/hos/diagnosis_info/update_diagnosis_info',
+            dataType: 'json',
+            type: 'post',
+            data: {id:disId,comment_text:comment_text,stat:stat2},
+            success: function (resData) {
+                if(resData.code == '201'){
+                    layer.msg(resData.data.msg,{icon: 5});//失败的表情
+                }else{
+                    layer.msg("成功", {
+                        icon: 6,//成功的表情
+                        time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+
+                    });
+                }
+            }
+        });
+    }
+
+
     var tempId = 1;
     var done_id = 0;
     var arr_p=[]; //
@@ -479,7 +545,7 @@
                 });
 
 
-                console.log(res.data)
+
 
                 if(res.data ==null){ //没有成功
                     tr.remove();
@@ -496,7 +562,7 @@
                 })
             }
             ,allDone: function(obj){ //多文件上传完毕后的状态回调
-                console.log(obj)
+
             }
             ,error: function(index, upload){ //错误回调
                 var that = this;
@@ -508,9 +574,9 @@
                 var percent = n + '%' //获取进度百分比
                 element.progress('demo', percent); //可配合 layui 进度条元素使用
 
-                console.log(elem); //得到当前触发的元素 DOM 对象。可通过该元素定义的属性值匹配到对应的进度条。
-                console.log(res); //得到 progress 响应信息
-                console.log(index); //得到当前上传文件的索引，多文件上传时的进度条控制，如：
+                // console.log(elem); //得到当前触发的元素 DOM 对象。可通过该元素定义的属性值匹配到对应的进度条。
+                // console.log(res); //得到 progress 响应信息
+                // console.log(index); //得到当前上传文件的索引，多文件上传时的进度条控制，如：
                 element.progress('demo-'+ index, n + '%'); //进度条
             }
         });
@@ -553,17 +619,17 @@
             type: 'GET'
         })
             .done(function (result) {
-                console.log(result)
+
                 $('#text_doctor_name').text(result.doctor_name)
                 $("#text_hos_name").text(result.doctor_account)
                 $("#text_doctor_tel").text(result.doctor_tel)
 
             })
             .fail(function () {
-                console.log("error");
+
             })
             .always(function () {
-                console.log("complete");
+
             });
 
     })
