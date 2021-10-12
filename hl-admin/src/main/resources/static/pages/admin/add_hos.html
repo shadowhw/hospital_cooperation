@@ -164,6 +164,10 @@
                 success:function(ResData){
                     if(ResData.code == '201'){
                         layer.msg(ResData.msg,{icon: 3,time: 3000});//失败的表情
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
+
                     }else{
                         layer.msg("添加成功", {
                             icon: 6,//成功的表情

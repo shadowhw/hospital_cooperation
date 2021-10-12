@@ -77,26 +77,14 @@ public class Doctor_infoController {
             queryWrapper.in("stat",2,4);
         }
 
-        List<DoctorHos> doctorLists = new ArrayList<DoctorHos>();
-
-        Page<Doctor_info> page1 = new Page<Doctor_info>(Integer.parseInt(page),Integer.parseInt(limit));
-        IPage<Doctor_info> iPage = doctor_infoService.page(page1,queryWrapper);
-
-        for (int i = 0; i < iPage.getRecords().size(); i++)
-        {
-            DoctorHos doctorHos = new DoctorHos();
-            Doctor_info doctorInfo = iPage.getRecords().get(i);
-            doctorInfo.setDoctor_pwd(null);
-            doctorHos.setDoctor_info(doctorInfo);
-            doctorHos.setHos_info(hos_infoService.getById(doctorInfo.getHos_id()));
-            doctorLists.add(doctorHos);
-        }
-        result.setCount(doctorLists.size());//数量应该是所有数据的大小
+        //查询医生总数
+        List<Doctor_info> tem_list = doctor_infoService.list(queryWrapper);
+        List<DoctorHos> doctorLists = doctor_infoService.get_hos_doc_page(queryWrapper,page,limit);
+        result.setCount(tem_list.size());//数量应该是所有数据的大小
         result.setData(doctorLists);
         result.setCode(200);
         return result;
     }
-
 
     @Value("${spring.mail.username}")
     private String sendServiceMail ;
@@ -320,18 +308,18 @@ public class Doctor_infoController {
      */
     @ResponseBody
     @GetMapping("/get_doctor_list_by_params")
-    public Result get_doctor_list_by_params(String doctor_name,String email,String doctor_tel,String doctor_account,String pass,int type)
+    public Result get_doctor_list_by_params(@Nullable String page,@Nullable String limit,String doctor_name,String email,String doctor_tel,String doctor_account,String pass,int type)
     {
         QueryWrapper<Doctor_info> queryWrapper = new QueryWrapper<>();
         //协助医师
         if(type==1)
         {
-            queryWrapper.in("stat",1,3,4);
+            queryWrapper.in("stat",1,3);
         }
         //普通医师
         if(type==2)
         {
-            queryWrapper.in("stat",2,5,6);
+            queryWrapper.in("stat",2,4);
         }
         //判断条件值是否为空,如果不为空,拼接条件
         if (!StringUtils.isEmpty(doctor_name.trim())){
@@ -351,17 +339,10 @@ public class Doctor_infoController {
         }
 
         List<Doctor_info> doc_list = doctor_infoService.list(queryWrapper);
-        List<DoctorHos> doctorLists = new ArrayList<DoctorHos>();
 
-        for (int i = 0; i < doc_list.size(); i++)
-        {
-            DoctorHos doctorHos = new DoctorHos();
-            Doctor_info doctorInfo = doc_list.get(i);
-            doctorInfo.setDoctor_pwd(null);
-            doctorHos.setDoctor_info(doctorInfo);
-            doctorHos.setHos_info(hos_infoService.getById(doctorInfo.getHos_id()));
-            doctorLists.add(doctorHos);
-        }
+        //分页查询数据
+        List<DoctorHos> doctorLists = doctor_infoService.get_hos_doc_page(queryWrapper,page,limit);
+
         result.setCount(doc_list.size());//数量应该是所有数据的大小
         result.setData(doctorLists);
         result.setCode(200);

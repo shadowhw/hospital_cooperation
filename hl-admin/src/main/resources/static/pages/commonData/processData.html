@@ -28,6 +28,9 @@
 </div>
 
 <div style="background-color:#fdfdfd;margin-top: 10px;padding-top: 20px;">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend style="color: crimson;font-weight: bold" id="cur"></legend>
+    </fieldset>
     <ul class="layui-timeline" id="timeline">
         <!--li拼接到这-->
     </ul>
@@ -44,6 +47,10 @@
 <script>
     $(document).ready(function(){
         var disgnose_id = GetQueryString("disgnose_id");
+
+        let s = localStorage.getItem("cur_stat");
+        $("#cur").text("当前处理流程结点："+s)//设置记录数
+
         //或者诊断表的流程
         $.ajax({
             url:'/hos/process/get_process_data_by_id',
@@ -57,7 +64,6 @@
                 }else{
                     $("#processCount").text(data.data.length)//设置记录数
                     var process = data.data;
-
                     for(let i=0;i<data.count;i++)
                     {
                         let date1 = new Date(process[i].fenfa_time).Format("yyyy-MM-dd HH:mm:ss");
@@ -79,6 +85,8 @@
             "        </li>\n" +
             "        <hr style='border: 1px dashed #4db0fd;height: 1px;margin: 0 15px 20px 10px'>";
 
+        let t_comm = transact_comment == null ? "" : transact_comment;
+
         var content = "<div><img style='width:40px;height: 40px;border-radius:70%;' src=\"/images/toux3.jpg\"></img>" +
             // "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"分&nbsp;发&nbsp;人&nbsp;：&nbsp;&nbsp;"+fenfa+"</span>"+"</h3></div>"+
             // "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"分发时间："+fenfa_time+"</span>"+"</h3>"+
@@ -86,11 +94,10 @@
             "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"处&nbsp;理&nbsp;人&nbsp;：&nbsp;&nbsp;"+transactor+"</span>"+"</h3>"+
             "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"处理时间："+transact_time+"</span>"+"</h3>"+
             "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"处理类型："+transact_type+"</span>"+"</h3>"+
-            "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"处理备注："+transact_comment+"</span>"+"</h3>";
+            "<h3 class=\"layui-timeline-title\"><span class='textstyle'>"+"处理备注："+t_comm+"</span>"+"</h3>";
             // "                <p>" +
             // "由"+userName+"分配给"+docUserName
             // +"                </p>"
-
         $("#timeline").append(top+content+botton);
         returnData();
     }
@@ -106,7 +113,6 @@
         var layedit = layui.layedit;
         var upload = layui.upload;
         var form = layui.form;
-
     });
 </script>
 
