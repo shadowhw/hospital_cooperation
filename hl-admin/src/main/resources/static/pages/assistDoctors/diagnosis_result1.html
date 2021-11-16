@@ -51,6 +51,30 @@
                     <br>
                     <sapn class="textarea">患者BMI : <span id="patient_bmi"></span></sapn>
                     <br>
+                    <sapn class="textarea">STS评分 : <span id="patient_STS"></span></sapn>
+                    <br>
+                    <sapn class="textarea">左室舒张末期内径 : <span id="patient_LVDd"></span>mm</sapn>
+                    <br>
+                    <sapn class="textarea">左室收缩末期内径 : <span id="patient_LVDs"></span>mm</sapn>
+                    <br>
+                    <sapn class="textarea">左室射血分数 : <span id="patient_LVEF"></span>%</sapn>
+                    <br>
+                    <sapn class="textarea">瓣口直径 : <span id="patient_VD"></span></sapn>
+                    <br>
+                    <sapn class="textarea">瓣口面积 : <span id="patient_VA"></span></sapn>
+                    <br>
+                    <sapn class="textarea">主动脉瓣峰值压力阶差 : <span id="patient_AVPPG"></span>mmhg</sapn>
+                    <br>
+                    <sapn class="textarea">主动脉瓣平均阶差 : <span id="patient_AVAPG"></span>mmhg</sapn>
+                    <br>
+                    <sapn class="textarea">主动脉瓣关闭不全 : <span id="patient_AVI"></span></sapn>
+                    <br>
+                    <sapn class="textarea">主动脉狭窄 : <span id="patient_AS"></span></sapn>
+                    <br>
+                    <sapn class="textarea">二尖瓣狭窄 : <span id="patient_MS"></span></sapn>
+                    <br>
+                    <sapn class="textarea">二尖瓣关闭不全 : <span id="patient_MI"></span></sapn>
+                    <br>
                 </div>
             </div>
             <div class="layui-card">
@@ -429,6 +453,7 @@
     var arr_pv=[];
     //文件上传
     var files=[];
+    var timers = [];
     //JavaScript代码区域
     layui.use(['element','upload'], function(){
         var $ = layui.jquery
@@ -449,54 +474,51 @@
             ,choose: function(obj){
                 var that = this;
                 var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
-                var progress = "<td><progress id='p_"+tempId+"' value= '0'  max= '100' ></progress></td>";
-                for(let y=0;y<obj.upload.length;y++)
-                {
-                    arr_p.push(tempId);
-                    arr_pv.push(0);
-                    tempId++;
-                }
+                layer.msg("由于服务器压力上传大文件请耐心等待...", {
+                    icon: 6,//成功的表情
+                    time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                }, function(){
 
-                let i = 1;
-                setInterval(function(){
-                    for(let x=0;x<arr_p.length;x++)
-                    {
-                        let v = arr_pv[x];
-                        if(v>=99)
-                            continue;
-                        let id = "#p_"+arr_p[x];
-                        arr_pv[x] += 5;
-                        $(id).val(v);
-                    }
-                    i++;
-                },1000);
+                });
 
                 //读取本地文件
-                obj.preview(function(index, file, result){
-                    var tr = $(['<tr id="upload-'+ index +'">'
-                        ,'<td>'+ file.name +'</td>'
-                        ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
-                        ,progress
-                        ,'<td>'
-                        ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
-                        ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
-                        ,'</td>'
-                        ,'</tr>'].join(''));
+                obj.preview(function(index, file, result) {
+                    var tr = $(['<tr id="upload-' + index + '">'
+                        , '<td>' + file.name + '</td>'
+                        , '<td>' + (file.size / 1014/1024).toFixed(1) +'MB</td>'
+                        , '<td><div class="layui-progress layui-progress-big" lay-showprecent = "true" lay-filter="progress'+index+'"><div class="layui-progress-bar" lay-precent="0%"></div></div></td>'
+                        , '<td>'
+                        , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        , '</td>'
+                        , '</tr>'].join(''));
 
                     //单个重传
-                    tr.find('.demo-reload').on('click', function(){
+                    tr.find('.demo-reload').on('click', function () {
                         obj.upload(index, file);
                     });
 
                     //删除
-                    tr.find('.demo-delete').on('click', function(){
+                    tr.find('.demo-delete').on('click', function () {
                         delete files[index]; //删除对应的文件
                         tr.remove();
                         uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
                     });
 
+                    var n = 0;
+
+                    var timer = setInterval(function(){
+                        n = n + Math.random()*10|0;
+                        if(n>75){
+                            n = 75;
+                            clearInterval(timer);
+                        }
+                        element.progress('progress'+index, n+'%');
+                    }, 300+Math.random()*24000);
+                    timers[index] = timer;
                     that.elemList.append(tr);
                     element.render('progress'); //渲染新加的进度条组件
+
                 });
 
 
@@ -506,18 +528,12 @@
                 //if(res.code == 0){ //上传成功
                 var tr = that.elemList.find('tr#upload-'+ index)
                     ,tds = tr.children();
+                clearInterval(timers[index])
+                element.progress('progress'+index, 100+'%');
                 tds.eq(3).html('<button  class="layui-btn layui-btn-xs layui-btn-danger demo-delete'+index+'">删除</button>'); //清空操作
 
-                arr_pv[done_id] = 100;
-                done_id++;
 
-                let id = "#p_"+done_id
-                $(id).val(100);
-                $(id).replaceWith(function () {
-                    return $("<span>成功</span>");
-                });
 
-                console.log(res.data)
                 if(res.data ==null){ //没有成功
                     tr.remove();
                     layer.msg("无内容为空，选取失败..", {icon:1,time:1000},function(){
@@ -752,7 +768,34 @@
                          dia.patient_BMI = datas[i].disgnose_info.patient_BMI;
                         dia.comment_text = datas[i].disgnose_info.comment_text;
                         dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
+                        dia.patient_STS = datas[i].disgnose_info.patient_STS
+                        dia.patient_LVDd = datas[i].disgnose_info.patient_LVDd
+                        dia.patient_LVDs = datas[i].disgnose_info.patient_LVDs
+                        dia.patient_LVEF = datas[i].disgnose_info.patient_LVEF
+                        dia.patient_VD = datas[i].disgnose_info.patient_VD
+                        dia.patient_VA = datas[i].disgnose_info.patient_VA
+                        dia.patient_AVPPG = datas[i].disgnose_info.patient_AVPPG
+                        dia.patient_AVAPG = datas[i].disgnose_info.patient_AVAPG
 
+                        dia.patient_AS = datas[i].disgnose_info.patient_AS
+                        if (dia.patient_AS == 1) dia.patient_AS == "轻度";
+                        else if (dia.patient_AS == 2) dia.patient_AS == "中度"
+                        else if (dia.patient_AS == 3) dia.patient_AS = "重度"
+
+                        dia.patient_AVI = datas[i].disgnose_info.patient_AVI
+                        if (dia.patient_AVI == 1) dia.patient_AVI = "轻度";
+                        else if (dia.patient_AVI == 2) dia.patient_AVI = "中度"
+                        else if (dia.patient_AVI == 3) dia.patient_AVI = "重度"
+
+                        dia.patient_MS = datas[i].disgnose_info.patient_MS
+                        if (dia.patient_MS == 1) dia.patient_MS = "轻度";
+                        else if (dia.patient_MS == 2) dia.patient_MS = "中度"
+                        else if (dia.patient_MS == 3) dia.patient_MS = "重度"
+
+                        dia.patient_MI = datas[i].disgnose_info.patient_MI
+                        if (dia.patient_MI == 1) dia.patient_MI = "轻度";
+                        else if (dia.patient_MI == 2) dia.patient_MI = "中度"
+                        else if (dia.patient_MI == 3) dia.patient_MI = "重度"
 
 
                         $("#hos_nme").text(dia.hos_nme)
@@ -765,6 +808,20 @@
                         $("#create_time").text(dia.create_time)
                         $("#disgnose_code").text(dia.disgnose_code)
                         $("#patient_bmi").text(dia.patient_BMI)
+                        //new Clome 2021:11.5
+                        $("#patient_STS").text(dia.patient_STS)
+                        $("#patient_LVDd").text(dia.patient_LVDd)
+                        $("#patient_LVDs").text(dia.patient_LVDs)
+                        $("#patient_LVEF").text(dia.patient_LVEF)
+                        $("#patient_VD").text(dia.patient_VD)
+                        $("#patient_VA").text(dia.patient_VA)
+                        $("#patient_AVPPG").text(dia.patient_AVPPG)
+                        $("#patient_AVAPG").text(dia.patient_AVAPG)
+
+                        $("#patient_AS").text(dia.patient_AS)
+                        $("#patient_AVI").text(dia.patient_AVI)
+                        $("#patient_MS").text(dia.patient_MS)
+                        $("#patient_MI").text(dia.patient_MI)
                     }
                 }
             },

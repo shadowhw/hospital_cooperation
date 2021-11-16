@@ -100,7 +100,7 @@
             <div class="layui-card">
                 <div class="layui-card-header">病人信息</div>
                 <div class="layui-card-body" style="padding: 15px;">
-                    <form class="layui-form" action="" lay-filter="component-form-group">
+                    <form class="layui-form" id="disg_form" action="" lay-filter="component-form-group">
                         <div class="layui-form-item">
                             <label class="layui-form-label">患者名称</label>
                             <div class="layui-input-block">
@@ -153,6 +153,94 @@
                                 <input type="text"  name="department" required lay-verify="required" placeholder="请输入所属科室" class="layui-input">
                             </div>
                         </div>
+
+                        <div class="layui-form-item">
+                                <label class="layui-form-label">STS评分</label>
+                                <div class="layui-input-inline">
+                                    <input type="text"  name="patient_STS" required lay-verify="required" placeholder="请输入STS分数" class="layui-input">
+                                </div>
+                            <label class="layui-form-label">左室舒张末期内径</label>
+                            <div class="layui-input-inline">
+                                <input type="number"  name="patient_LVDd" required lay-verify="required" placeholder="单位mm" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">左室收缩末期内径</label>
+                            <div class="layui-input-inline">
+                                <input type="number"  name="patient_LVDs" required lay-verify="required" placeholder="单位mm" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">左室射血分数</label>
+                            <div class="layui-input-inline">
+                                <input type="number"  name="patient_LVEF" required lay-verify="required" placeholder="单位%" class="layui-input">
+                            </div>
+
+                        </div>
+
+                        <div class="layui-form-item">
+
+                            <label class="layui-form-label">瓣口面积</label>
+                            <div class="layui-input-inline">
+                                <input type="number"  name="patient_VA" required lay-verify="required" placeholder="单位mm2" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">瓣口直径</label>
+                            <div class="layui-input-inline">
+                                <input type="number"  name="patient_VD" required lay-verify="required" placeholder="单位mm" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">主动脉瓣峰值压力阶差</label>
+                            <div class="layui-input-inline">
+                                <input type="number"  name="patient_AVPPG" required lay-verify="required" placeholder="单位mmHg" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">主动脉瓣平均阶差</label>
+                            <div class="layui-input-inline">
+                                <input type="number"  name="patient_AVAPG" required lay-verify="required" placeholder="单位mmHg" class="layui-input">
+                            </div>
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">主动脉瓣狭窄</label>
+                            <div class="layui-input-block">
+                                <!--                                <input type="text"  name="patient_AS" required lay-verify="required" placeholder="请输入所属科室" class="layui-input">-->
+                                <select name="patient_AS" class="layui-select">
+                                    <option value="1">轻度</option>
+                                    <option value="2">中度</option>
+                                    <option value="3">重度</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">主动脉瓣关闭不全</label>
+                            <div class="layui-input-block">
+<!--                                <input type="text"  name="patient_AVI" required lay-verify="required" placeholder="请输入所属科室" class="layui-input">-->
+                                <select name="patient_AVI" class="layui-select">
+                                    <option value="1">轻度</option>
+                                    <option value="2">中度</option>
+                                    <option value="3">重度</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">二尖瓣狭窄</label>
+                            <div class="layui-input-block">
+<!--                                <input type="text"  name="patient_MS" required lay-verify="required" placeholder="请输入所属科室" class="layui-input">-->
+                                <select name="patient_MS" class="layui-select">
+                                    <option value="1">轻度</option>
+                                    <option value="2">中度</option>
+                                    <option value="3">重度</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">二尖瓣关闭不全</label>
+                            <div class="layui-input-block">
+                                <select name="patient_MI" class="layui-select">
+                                    <option value="1">轻度</option>
+                                    <option value="2">中度</option>
+                                    <option value="3">重度</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label">备注</label>
                             <div class="layui-input-block">
@@ -163,7 +251,7 @@
                         <input id="files" name="files" value="0"  class="layui-input" type="hidden">
                         <div class="layui-upload">
                             <p>上传附件</p>
-                            <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+                            <button type="button" class="layui-btn layui-btn" id="testList">选择单个文件</button>
                             <div class="layui-upload-list">
                                 <table class="layui-table">
                                     <thead>
@@ -198,8 +286,6 @@
 <script src="../../lib/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
 <script>
-
-
     let disId = 0;
     layui.use('laydate', function(){
         var laydate = layui.laydate;
@@ -208,52 +294,41 @@
             elem: '#date' //指定元素
         });
 
-        // $.ajax({
-        //     url:"/getTempDisgnose_info",
-        //     type:"get",
-        //     async:true,
-        //     success:function(obj){
-        //         let dis = obj.data;
-        //         let br;
-        //         if(br !=null){
-        //             br= dis.patient_birth.substr(0,10)
-        //         }
-        //
-        //         // br = br.replaceAll("-","/")
-        //         console.log(br)
-        //         disId = dis.id;
-        //         $("input[name='patient_name']").val(dis.patient_name)
-        //         laydate.render({
-        //             elem: '#date'
-        //             ,value: br //必须遵循format参数设定的格式
-        //         });
-        //         let tall = parseInt(dis.patient_tall);
-        //         let weight= parseInt(dis.patient_weight);
-        //         let bmi = parseInt(dis.patient_BMI);
-        //         $("input[name='patient_tall']").val(tall)
-        //         $("input[name='patient_weight']").val(weight)
-        //         $("input[name='department']").val(dis.department)
-        //         $("input[name='bz']").val(dis.comment_text)
-        //         $("input[name='patient_BMI']").val(bmi)
-        //     }
-        // })
-
-
         //临时保存
         $("#saveTemp").on("click",function (){
             layer.msg('保存中..');
+
+            console.log($("#disg_form").serializeArray());
+
+           let datas =  $("#disg_form").serializeArray();
+
             let bz =  $("input[name='bz']").val()
-           let patient_name =  $("input[name='patient_name']").val()
-           let patient_birth =  $("input[name='patient_birth']").val()
-           let patient_tall =   $("input[name='patient_tall']").val()
-           let patient_weight =  $("input[name='patient_weight']").val()
-           let department =       $("input[name='department']").val()
-           let patient_BMI =       $("input[name='patient_BMI']").val()
+            let patient_name =  $("input[name='patient_name']").val()
+            let patient_birth =  $("input[name='patient_birth']").val()
+            let patient_tall =   $("input[name='patient_tall']").val()
+            let patient_weight =  $("input[name='patient_weight']").val()
+            let department =       $("input[name='department']").val()
+            let patient_BMI =      $("input[name='patient_BMI']").val()
+
+            let patient_STS   = $("input[name='patient_STS']").val();
+            let patient_LVDd  = $("input[name='patient_LVDd']").val();
+            let patient_LVDs  = $("input[name='patient_LVDs']").val();
+            let patient_LVEF  = $("input[name='patient_LVEF']").val();
+            let patient_VD    = $("input[name='patient_VD']").val();
+            let patient_VA    = $("input[name='patient_VA']").val();
+            let patient_AVPPG = $("input[name='patient_AVPPG']").val();
+            let patient_AVAPG = $("input[name='patient_AVAPG']").val();
+            let patient_AS    = $("select[name='patient_AS']").val();
+            let patient_AVI   = $("select[name='patient_AVI']").val();
+            let patient_MS   = $("select[name='patient_MS']").val();
+            let patient_MI    = $("select[name='patient_MI']").val();
+
+
            //临时保存
             $.ajax({
                 url:"/saveTempDisgnose_info?id="+disId,
                 type:"POST",
-                async:true,//异步加载
+                async:true,
                 data:{
                     bz,
                     patient_name,
@@ -261,7 +336,19 @@
                     patient_tall,
                     patient_weight,
                     department,
-                    patient_BMI
+                    patient_BMI,
+                    patient_STS  ,
+                    patient_LVDd ,
+                    patient_LVDs ,
+                    patient_LVEF ,
+                    patient_VD   ,
+                    patient_VA   ,
+                    patient_AVPPG,
+                    patient_AVAPG,
+                    patient_AS   ,
+                    patient_AVI  ,
+                    patient_MS   ,
+                    patient_MI
                 },
                 success:function (obj) {
                     if(obj["msg"]=="success"){
@@ -289,7 +376,6 @@
         $ = layui.jquery;
         var form = layui.form,layer = layui.layer;
 
-        //监听提交
         form.on('submit(add)', function(data){
             layer.msg('提交中..');
 
@@ -388,77 +474,15 @@ let comment_text =""
     var done_id = 0;
     var arr_p=[]; //
     var arr_pv=[];
+    var key = 0;
     //文件上传
     var files=[];
+    var timers = [];
     //JavaScript代码区域
     layui.use(['element','upload'], function(){
         var $ = layui.jquery
             ,upload = layui.upload;
 
-        //上传
-        //多文件列表示例
-        // var demoListView = $('#demoList')
-        //     ,uploadListIns = upload.render({
-        //     elem: '#testList'
-        //     ,url: '/fileUpload' //改成您自己的上传接口
-        //     ,accept: 'file'
-        //     // ,exts: 'txt|rar|zip|doc|docx|pdf|xls|xlsx' //允许上传的文件类型
-        //     ,multiple: true
-        //     ,auto: false
-        //     ,bindAction: '#testListAction'
-        //     ,choose: function(obj){
-        //         var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
-        //         //读取本地文件
-        //         obj.preview(function(index, file, result){
-        //             var tr = $(['<tr id="upload-'+ index +'">'
-        //                 ,'<td>'+ file.name +'</td>'
-        //                 ,'<td>'+ (file.size/1024).toFixed(1) +'kb</td>'
-        //                 ,'<td>等待上传</td>'
-        //                 ,'<td>'
-        //                 ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
-        //                 ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
-        //                 ,'</td>'
-        //                 ,'</tr>'].join(''));
-        //
-        //             //单个重传
-        //             tr.find('.demo-reload').on('click', function(){
-        //                 obj.upload(index, file);
-        //             });
-        //
-        //             //删除
-        //             tr.find('.demo-delete').on('click', function(){
-        //                 delete files[index]; //删除对应的文件
-        //                 tr.remove();
-        //                 uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
-        //             });
-        //
-        //             demoListView.append(tr);
-        //         });
-        //     }
-        //     ,done: function(res, index, upload){
-        //         if (res.code == 0){
-        //             files.push({"fileName":res.filename,"fileUrl":res.fileUrl,"fileSize":res.fileSize});//,"fileUrl":res.fileUrl
-        //             var json = JSON.stringify(files);
-        //             //将上传的文件信息加入到集合中并转换成json字符串
-        //             $("#fileJson").attr("value",json);
-        //
-        //             var fileUrl = res.fileUrl;
-        //             var tr = demoListView.find('tr#upload-'+ index)
-        //                 ,tds = tr.children();
-        //             tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
-        //             tds.eq(3).html('<span>'+fileUrl+'</span>');
-        //             tds.eq(4).html(''); //清空操作
-        //             return delete this.files[index]; //删除文件队列已经上传成功的文件
-        //         }
-        //         this.error(index, upload);
-        //     }
-        //     ,error: function(index, upload){
-        //         var tr = demoListView.find('tr#upload-'+ index)
-        //             ,tds = tr.children();
-        //         tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
-        //         tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
-        //     }
-        // });
         element = layui.element
         //演示多文件列表
 
@@ -471,60 +495,58 @@ let comment_text =""
             ,number: 100
             ,auto: true
             ,bindAction: '#testListAction'
-            ,choose: function(obj){
-                var that = this;
-                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
-                var progress = "<td><progress id='p_"+tempId+"' value= '0'  max= '100' ></progress></td>";
-                for(let y=0;y<obj.upload.length;y++)
-                {
-                    arr_p.push(tempId);
-                    arr_pv.push(0);
-                    tempId++;
-                }
+            ,choose: function(obj) {
+                    var that = this;
+                    var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
 
-                let i = 1;
-                setInterval(function(){
-                    for(let x=0;x<arr_p.length;x++)
-                    {
-                        let v = arr_pv[x];
-                        if(v>=99)
-                            continue;
-                        let id = "#p_"+arr_p[x];
-                        arr_pv[x] += 5;
-                        $(id).val(v);
-                    }
-                    i++;
-                },1000);
+                layer.msg("由于服务器压力上传大文件请耐心等待...", {
+                    icon: 6,//成功的表情
+                    time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                }, function(){
+
+                });
 
                 //读取本地文件
-                obj.preview(function(index, file, result){
-                    var tr = $(['<tr id="upload-'+ index +'">'
-                        ,'<td>'+ file.name +'</td>'
-                        ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
-                        ,progress
-                        ,'<td>'
-                        ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
-                        ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
-                        ,'</td>'
-                        ,'</tr>'].join(''));
+                obj.preview(function(index, file, result) {
+                    var tr = $(['<tr id="upload-' + index + '">'
+                        , '<td>' + file.name + '</td>'
+                        , '<td>' + (file.size / 1014/1024).toFixed(1) +'MB</td>'
+                        , '<td><div class="layui-progress layui-progress-big" lay-showprecent = "true" lay-filter="progress'+index+'"><div class="layui-progress-bar" lay-precent="0%"></div></div></td>'
+                        , '<td>'
+                        , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        , '</td>'
+                        , '</tr>'].join(''));
 
                     //单个重传
-                    tr.find('.demo-reload').on('click', function(){
+                    tr.find('.demo-reload').on('click', function () {
                         obj.upload(index, file);
                     });
 
                     //删除
-                    tr.find('.demo-delete').on('click', function(){
+                    tr.find('.demo-delete').on('click', function () {
                         delete files[index]; //删除对应的文件
                         tr.remove();
                         uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
                     });
 
+                    var n = 0;
+                    //
+                    var timer = setInterval(function(){
+                        n = n + Math.random()*10|0;
+                        if(n>75){
+                            n = 75;
+                            clearInterval(timer);
+                        }
+                        element.progress('progress'+index, n+'%');
+                    }, 300+Math.random()*24000);
+                    timers[index] = timer;
+
+
+
                     that.elemList.append(tr);
                     element.render('progress'); //渲染新加的进度条组件
-                });
-
-
+                })
             }
             ,done: function(res, index, upload){ //成功的回调
                 var that = this;
@@ -532,20 +554,20 @@ let comment_text =""
                 var tr = that.elemList.find('tr#upload-'+ index)
                     ,tds = tr.children();
 
+                clearInterval(timers[index])
+                element.progress('progress'+index, 100+'%');
+
                 tds.eq(3).html('<button  class="layui-btn layui-btn-xs layui-btn-danger demo-delete'+index+'">删除</button>'); //清空操作
 
                 arr_pv[done_id] = 100;
                 done_id++;
 
-                let id = "#p_"+done_id
-                $(id).val(100);
-                // $(id).attr("style","display:none")
-                $(id).replaceWith(function () {
-                    return $("<span>成功</span>");
-                });
-
-
-
+                // let id = "#p_"+done_id
+                // $(id).val(100);
+                // // $(id).attr("style","display:none")
+                // $(id).replaceWith(function () {
+                //     return $("<span>成功</span>");
+                // });
 
                 if(res.data ==null){ //没有成功
                     tr.remove();
@@ -570,14 +592,19 @@ let comment_text =""
                     ,tds = tr.children();
                 tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
             }
-            ,progress: function(n, elem, res, index){
-                var percent = n + '%' //获取进度百分比
-                element.progress('demo', percent); //可配合 layui 进度条元素使用
+            ,progress: function(n, elem, e, index){
+                layui.element.progress('progress'+index,90+"%")
 
-                // console.log(elem); //得到当前触发的元素 DOM 对象。可通过该元素定义的属性值匹配到对应的进度条。
-                // console.log(res); //得到 progress 响应信息
-                // console.log(index); //得到当前上传文件的索引，多文件上传时的进度条控制，如：
-                element.progress('demo-'+ index, n + '%'); //进度条
+                // var percent = n + '%' //获取进度百分比
+                // element.progress('demo', percent); //可配合 layui 进度条元素使用
+                //
+                // // console.log(elem); //得到当前触发的元素 DOM 对象。可通过该元素定义的属性值匹配到对应的进度条。
+                // // console.log(res); //得到 progress 响应信息
+                // // console.log(index); //得到当前上传文件的索引，多文件上传时的进度条控制，如：
+                // element.progress('demo-'+ index, n + '%'); //进度条
+
+
+
             }
         });
         var i  =  1;
