@@ -7,18 +7,17 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hl.hos.backPogo.DiagnosisDoctorHos;
 import com.hl.hos.mapper.Disgnose_infoMapper;
 import com.hl.hos.pojo.*;
-import com.hl.hos.service.Disgnose_infoService;
-import com.hl.hos.service.Doctor_infoService;
-import com.hl.hos.service.Doctor_with_disgnoseService;
-import com.hl.hos.service.Hos_infoService;
+import com.hl.hos.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.print.Doc;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ import java.util.List;
  *  前端控制器
  * </p>
  *
- * @author 何夜息
+ * @author 简一
  * @since 2021-07-02
  */
 @RestController
@@ -43,6 +42,8 @@ public class Disgnose_infoController {
     Hos_infoService hosInfoService; //医院
     @Autowired
     Doctor_with_disgnoseService doctorWithDisgnoseService ; //分配表
+    @Autowired
+    AttachedService attachedService;
 
 
     /**
@@ -281,6 +282,54 @@ public class Disgnose_infoController {
         return result;
     }
 
+    /**
+     * new 需求，删除临时表
+     * @param id
+     * @param session
+     * @return
+     */
+    @GetMapping("/deleteTempDisgnose")
+    public Result deleteTempDisgnose(String id,HttpSession session){
+        Result result = new Result();
+        Doctor_info doctor_info = (Doctor_info)session.getAttribute("doctor_info");
+        Disgnose_info disgnose_code = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("id", id));
+
+        //判断用户和的id和诊断表中id一一对应
+        if(disgnose_code !=null && doctor_info!=null&&doctor_info.getId().equals(disgnose_code.getDoctor_id())){
+            //是否临时表
+            if(disgnose_code.getStat() == 0) {
+                boolean b = false;
+                //删除文件
+                List<Attached> attacheds = attachedService.list(new QueryWrapper<Attached>().eq("disgnose_id", disgnose_code.getId()));
+                for (Attached attached:
+                     attacheds) {
+                   File file = new File(attached.getAttached_addr()+attached.getAttched_name());
+                   if(file.exists()){//如果存在删除
+                       file.delete();
+                   }
+                   attached.deleteById();//删除文件
+                }
+                //删除表
+                 b = disgnose_code.deleteById();
+                if(b){
+                    result.setCode(200);
+                    result.setMsg("删除成功");
+                }
+                else{
+                    result.setCode(500);
+                    result.setMsg("由于网络原因，删除失败");
+                }
+            }else{
+                result.setCode(200);
+                result.setMsg("非临时表，无法进行删除!");
+            }
+        }else{ //请先登录或者确认改临时表是否存在
+            result.setCode(500);
+            result.setMsg("请先去人该诊断是否存在，或者用户是否登录");
+        }
+
+        return result;
+    }
 
 
 }
