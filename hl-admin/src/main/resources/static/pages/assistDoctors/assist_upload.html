@@ -178,7 +178,7 @@
 
                             <label class="layui-form-label">瓣口面积</label>
                             <div class="layui-input-inline">
-                                <input type="number"  name="patient_VA" required lay-verify="required" placeholder="单位mm2" class="layui-input">
+                                <input type="number"  name="patient_VA" required lay-verify="required" placeholder="单位mm²" class="layui-input">
                             </div>
                             <label class="layui-form-label">瓣口直径</label>
                             <div class="layui-input-inline">
@@ -499,7 +499,7 @@ let comment_text =""
                     var that = this;
                     var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
 
-                layer.msg("由于服务器压力上传大文件请耐心等待...", {
+                layer.msg("上传大文件请耐心等待...", {
                     icon: 6,//成功的表情
                     time: 1000 //1秒关闭（如果不配置，默认是3秒）
                 }, function(){
@@ -531,11 +531,17 @@ let comment_text =""
                     });
 
                     var n = 0;
-                    //
                     var timer = setInterval(function(){
                         n = n + Math.random()*10|0;
                         if(n>75){
                             n = 75;
+                            //正在上传，请稍等
+                            layer.msg("上传大文件请耐心等待...", {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function(){
+
+                            });
                             clearInterval(timer);
                         }
                         element.progress('progress'+index, n+'%');

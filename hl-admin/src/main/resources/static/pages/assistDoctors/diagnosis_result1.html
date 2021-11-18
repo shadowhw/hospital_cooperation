@@ -49,8 +49,6 @@
                     <br>
                     <sapn class="textarea">患者体重 : <span id="patient_weight"></span>kg</sapn>
                     <br>
-                    <sapn class="textarea">患者BMI : <span id="patient_bmi"></span></sapn>
-                    <br>
                     <sapn class="textarea">STS评分 : <span id="patient_STS"></span></sapn>
                     <br>
                     <sapn class="textarea">左室舒张末期内径 : <span id="patient_LVDd"></span>mm</sapn>
@@ -59,13 +57,13 @@
                     <br>
                     <sapn class="textarea">左室射血分数 : <span id="patient_LVEF"></span>%</sapn>
                     <br>
-                    <sapn class="textarea">瓣口直径 : <span id="patient_VD"></span></sapn>
+                    <sapn class="textarea">瓣口直径 : <span id="patient_VD"></span>mm</sapn>
                     <br>
-                    <sapn class="textarea">瓣口面积 : <span id="patient_VA"></span></sapn>
+                    <sapn class="textarea">瓣口面积 : <span id="patient_VA"></span>mm²</sapn>
                     <br>
-                    <sapn class="textarea">主动脉瓣峰值压力阶差 : <span id="patient_AVPPG"></span>mmhg</sapn>
+                    <sapn class="textarea">主动脉瓣峰值压力阶差 : <span id="patient_AVPPG"></span>mmHg</sapn>
                     <br>
-                    <sapn class="textarea">主动脉瓣平均阶差 : <span id="patient_AVAPG"></span>mmhg</sapn>
+                    <sapn class="textarea">主动脉瓣平均阶差 : <span id="patient_AVAPG"></span>mmHg</sapn>
                     <br>
                     <sapn class="textarea">主动脉瓣关闭不全 : <span id="patient_AVI"></span></sapn>
                     <br>
@@ -74,7 +72,6 @@
                     <sapn class="textarea">二尖瓣狭窄 : <span id="patient_MS"></span></sapn>
                     <br>
                     <sapn class="textarea">二尖瓣关闭不全 : <span id="patient_MI"></span></sapn>
-                    <br>
                 </div>
             </div>
             <div class="layui-card">
@@ -511,6 +508,12 @@
                         n = n + Math.random()*10|0;
                         if(n>75){
                             n = 75;
+                            layer.msg("由于服务器压力上传大文件请耐心等待...", {
+                                icon: 6,//成功的表情
+                                time: 3000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function(){
+
+                            });
                             clearInterval(timer);
                         }
                         element.progress('progress'+index, n+'%');
@@ -778,8 +781,8 @@
                         dia.patient_AVAPG = datas[i].disgnose_info.patient_AVAPG
 
                         dia.patient_AS = datas[i].disgnose_info.patient_AS
-                        if (dia.patient_AS == 1) dia.patient_AS == "轻度";
-                        else if (dia.patient_AS == 2) dia.patient_AS == "中度"
+                        if (dia.patient_AS ==1) dia.patient_AS = "轻度";
+                        else if (dia.patient_AS == 2) dia.patient_AS = "中度"
                         else if (dia.patient_AS == 3) dia.patient_AS = "重度"
 
                         dia.patient_AVI = datas[i].disgnose_info.patient_AVI

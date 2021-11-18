@@ -54,4 +54,28 @@ public class Disgnose_info extends Model<Disgnose_info> implements Serializable 
     private String comment_text;
 
     private String disgnose_code;//诊断编号：年月日+三位数从1开始编
+
+    private String patient_STS; //评分
+
+    private String patient_LVDd; //左室舒张末期内径
+
+    private String patient_LVDs; //左室收缩末期内径
+
+    private String patient_LVEF; //左室射血分数；
+
+    private String patient_VD; //瓣口直径；
+
+    private String patient_VA; //瓣口面积
+
+    private String patient_AVPPG;//主动脉瓣峰值压力阶差
+
+    private String patient_AVAPG; //主动脉瓣平均压力阶差
+
+    private String patient_AS; //主动脉狭窄
+
+    private String patient_AVI ; //主动脉瓣关闭不全
+
+    private String patient_MS; //二尖瓣狭窄
+
+    private String patient_MI; //二尖瓣关闭不全
 }

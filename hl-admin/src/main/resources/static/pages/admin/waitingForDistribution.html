@@ -49,17 +49,38 @@
                 </div>
             </div>
             <div class="layui-card">
-                <div class="layui-card-header">患者信息</div>
-                <div class="layui-card-body">
-                    <sapn class="textarea">患者姓名：<span id="patient_name"></span></sapn>
-                    <br>
-                    <sapn class="textarea">患者出生日期：<span id="patient_birth"></span></sapn>
-                    <br>
-                    <sapn class="textarea">患者身高：<span id="patient_tall"></span></sapn>
-                    <br>
-                    <sapn class="textarea">患者体重：<span id="patient_weight"></span></sapn>
-                    <br>
-                </div>
+                <sapn class="textarea">患者姓名 : <span id="patient_name"></span></sapn>
+                <br>
+                <sapn class="textarea">患者出生日期 : <span id="patient_birth"></span></sapn>
+                <br>
+                <sapn class="textarea">患者身高 : <span id="patient_tall"></span>cm</sapn>
+                <br>
+                <sapn class="textarea">患者体重 : <span id="patient_weight"></span>kg</sapn>
+                <br>
+                <sapn class="textarea">STS评分 : <span id="patient_STS"></span></sapn>
+                <br>
+                <sapn class="textarea">左室舒张末期内径 : <span id="patient_LVDd"></span>mm</sapn>
+                <br>
+                <sapn class="textarea">左室收缩末期内径 : <span id="patient_LVDs"></span>mm</sapn>
+                <br>
+                <sapn class="textarea">左室射血分数 : <span id="patient_LVEF"></span>%</sapn>
+                <br>
+                <sapn class="textarea">瓣口直径 : <span id="patient_VD"></span>mm</sapn>
+                <br>
+                <sapn class="textarea">瓣口面积 : <span id="patient_VA"></span>mm²</sapn>
+                <br>
+                <sapn class="textarea">主动脉瓣峰值压力阶差 : <span id="patient_AVPPG"></span>mmHg</sapn>
+                <br>
+                <sapn class="textarea">主动脉瓣平均阶差 : <span id="patient_AVAPG"></span>mmHg</sapn>
+                <br>
+                <sapn class="textarea">主动脉瓣关闭不全 : <span id="patient_AVI"></span></sapn>
+                <br>
+                <sapn class="textarea">主动脉狭窄 : <span id="patient_AS"></span></sapn>
+                <br>
+                <sapn class="textarea">二尖瓣狭窄 : <span id="patient_MS"></span></sapn>
+                <br>
+                <sapn class="textarea">二尖瓣关闭不全 : <span id="patient_MI"></span></sapn>
+
             </div>
             <div class="layui-card">
                 <div class="layui-card-header">诊断附件</div>
@@ -545,11 +566,12 @@
             content: $("#rejectApplybu"),
             btn: ['确定', '取消'],
             yes: function(index, layero){
-                if($("#comm_task").val()=="")
-                {
-                    alert("备注不能为空");
-                    return;
-                }
+                //修改无法驳回问题，出现原因在这,2021.10.18
+                // if($("#comm_task").val()=="")
+                // {
+                //     alert("备注不能为空");
+                //     return;
+                // }
                 //do something
                 //alert("确定回退吗？");
                 if($("#comm_bohui").val()=="")
@@ -669,6 +691,39 @@
                         dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
                         dia.stat = datas[i].disgnose_info.stat;
 
+                        dia.patient_BMI = datas[i].disgnose_info.patient_BMI;
+                        dia.comment_text = datas[i].disgnose_info.comment_text;
+                        dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
+                        dia.patient_STS = datas[i].disgnose_info.patient_STS
+                        dia.patient_LVDd = datas[i].disgnose_info.patient_LVDd
+                        dia.patient_LVDs = datas[i].disgnose_info.patient_LVDs
+                        dia.patient_LVEF = datas[i].disgnose_info.patient_LVEF
+                        dia.patient_VD = datas[i].disgnose_info.patient_VD
+                        dia.patient_VA = datas[i].disgnose_info.patient_VA
+                        dia.patient_AVPPG = datas[i].disgnose_info.patient_AVPPG
+                        dia.patient_AVAPG = datas[i].disgnose_info.patient_AVAPG
+
+                        dia.patient_AS = datas[i].disgnose_info.patient_AS
+                        if (dia.patient_AS == 1) dia.patient_AS == "轻度";
+                        else if (dia.patient_AS == 2) dia.patient_AS == "中度"
+                        else if (dia.patient_AS == 3) dia.patient_AS = "重度"
+
+                        dia.patient_AVI = datas[i].disgnose_info.patient_AVI
+                        if (dia.patient_AVI == 1) dia.patient_AVI = "轻度";
+                        else if (dia.patient_AVI == 2) dia.patient_AVI = "中度"
+                        else if (dia.patient_AVI == 3) dia.patient_AVI = "重度"
+
+                        dia.patient_MS = datas[i].disgnose_info.patient_MS
+                        if (dia.patient_MS == 1) dia.patient_MS = "轻度";
+                        else if (dia.patient_MS == 2) dia.patient_MS = "中度"
+                        else if (dia.patient_MS == 3) dia.patient_MS = "重度"
+
+                        dia.patient_MI = datas[i].disgnose_info.patient_MI
+                        if (dia.patient_MI == 1) dia.patient_MI = "轻度";
+                        else if (dia.patient_MI == 2) dia.patient_MI = "中度"
+                        else if (dia.patient_MI == 3) dia.patient_MI = "重度"
+
+
                         //添加状态缓存
                         switch (dia.stat) {
                             case 1:
@@ -700,6 +755,21 @@
                         $("#doctor_name").text(dia.doctor_name)
                         $("#create_time").text(dia.create_time)
                         $("#disgnose_code").text(dia.disgnose_code)
+                        $("#patient_bmi").text(dia.patient_BMI)
+                        //new Clome 2021:11.5
+                        $("#patient_STS").text(dia.patient_STS)
+                        $("#patient_LVDd").text(dia.patient_LVDd)
+                        $("#patient_LVDs").text(dia.patient_LVDs)
+                        $("#patient_LVEF").text(dia.patient_LVEF)
+                        $("#patient_VD").text(dia.patient_VD)
+                        $("#patient_VA").text(dia.patient_VA)
+                        $("#patient_AVPPG").text(dia.patient_AVPPG)
+                        $("#patient_AVAPG").text(dia.patient_AVAPG)
+
+                        $("#patient_AS").text(dia.patient_AS)
+                        $("#patient_AVI").text(dia.patient_AVI)
+                        $("#patient_MS").text(dia.patient_MS)
+                        $("#patient_MI").text(dia.patient_MI)
                         //根据诊断状态显示不同的操作菜单
                         switch (dia.stat) {
                             case 1://创建状态不能驳回和反馈
