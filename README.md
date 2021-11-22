@@ -30,5 +30,4 @@
 nohup java -jar jar包路径 --diagnosis.filePath=文件上传的路径 >log.out &
 //例子
 nohup java -jar /home/hl_hos.jar --diagnosis.filePath=/var/hos_upload/ >log.out &
-
 ```
