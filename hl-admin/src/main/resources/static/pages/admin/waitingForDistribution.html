@@ -797,6 +797,9 @@
                                 $("#a1").hide();
                                 break;
                             case 4:
+                                $("#a1").hide();
+                                $("#a2").hide();
+                                break;
                             //诊断医师完成后显示驳回和反馈
                             case 6:
                                 $("#a1").hide();
@@ -822,7 +825,7 @@
 </script>
 
 <script>
-    let processDataHeight = 0
+    let processDataHeight = 0;
     //获取处理过程信息
     function getprocessData(processId) {
         $("#processData").on("load", function () {
@@ -832,14 +835,14 @@
     }
 
     layui.use(['element','form'], function () {
-        var form = layui.form
+        var form = layui.form;
         form.render('select');
     });
 
 
-    function caseReturnData(returnData) {
-
-    }
+    // function caseReturnData(returnData) {
+    //
+    // }
 
     function processReturnData(returnData) {
         $("#processData").height(returnData.height)
