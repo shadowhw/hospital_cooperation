@@ -25,9 +25,15 @@
 - 指定文件上传路径
 ![image](https://user-images.githubusercontent.com/54475097/127613709-b4cd075f-f3f6-4b4c-8189-2cacae92ab84.png)
 ## 关于jar包部署
-> centos环境内的jar包部署
+> centos环境内的jar包部署，数据库url账号密码服务器默认查看application.properties文件，如需更改，可以在配置文件修改，也可以命令行覆盖!
 ```java
-nohup java -jar jar包路径 --diagnosis.filePath=文件上传的路径 >log.out &
+nohup java -jar jar包路径 
+        --diagnosis.filePath=文件上传的路径 
+        --spring.datasource.url=数据库地址
+        --spring.datasource.username=用户名
+        --spring.datasource.password=密码
+        >log.out &
+        
 //例子
 nohup java -jar /home/hl_hos.jar --diagnosis.filePath=/var/hos_upload/ >log.out &
 ```
