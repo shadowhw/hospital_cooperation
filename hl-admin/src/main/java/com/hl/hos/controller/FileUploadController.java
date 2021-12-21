@@ -8,6 +8,7 @@ import com.hl.hos.service.Disgnose_infoService;
 import com.hl.hos.utils.FileNameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,9 +35,9 @@ public class FileUploadController {
     @Autowired
     private Attached_resultService attachedResultService;
 
-    //文件集合
+    //文件集合 BUG漏洞，会造成并发问题
     private List<Attached> fileslist = new ArrayList<>();
-    private Doctor_info doctor_info;
+
 
     //文件上传接口
     @PostMapping("/fileUpload")
@@ -47,15 +48,15 @@ public class FileUploadController {
         Result result = new Result();
 
         //防止重复文件上传
-        for (int i = 0; i < fileslist.size(); i++) {
-            String exitsName = fileslist.get(i).getAttched_name().substring(33);
-            if (exitsName.equals(file.getOriginalFilename())) {
-                result.setCode(0);
-                result.setMsg("成功");
-                result.setData(fileslist.get(i).getAttched_name());
-                return result;
-            }
-        }
+//        for (int i = 0; i < fileslist.size(); i++) {
+//            String exitsName = fileslist.get(i).getAttched_name().substring(33);
+//            if (exitsName.equals(file.getOriginalFilename())) {
+//                result.setCode(0);
+//                result.setMsg("成功");
+//                result.setData(fileslist.get(i).getAttched_name());
+//                return result;
+//            }
+//        }
 
         String fileName = "";
         if (file.isEmpty()) {
@@ -76,14 +77,18 @@ public class FileUploadController {
                 Attached attached = new Attached();
                 attached.setAttached_addr(savePath);
                 attached.setAttched_name(fileName);
+
                 //xianyi
 
                 attached.setDoctor_id( ((Doctor_info)session.getAttribute("doctor_info")).getId());
                 attached.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
                 attachedService.save(attached);
-                fileslist.add(attached);//加入进集合 便于绑定
+//                fileslist.add(attached);//加入进集合 便于绑定
+
                 //上传成功还需要返回文件名称
                 result.setData(attached.getAttched_name());
+                //返回数据id
+                result.setAttachedId(attached.getId()+"");
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -127,7 +132,11 @@ public class FileUploadController {
                                    String patient_AS,
                                    String patient_AVI,
                                    String patient_MS,
-                                   String patient_MI,HttpSession session) {
+                                   String patient_MI,HttpSession session,
+                                   String[] attchedIds) {
+        //摸索
+        System.out.println(attchedIds);
+
         Disgnose_info disgnose_info = new Disgnose_info();
         Result result = new Result();
         disgnose_info.setPatient_name(patient_name);
@@ -172,11 +181,14 @@ public class FileUploadController {
         System.out.println(disgnose_info);
         if (save) { //保存成功
             try {
-                //附件表更新，与诊断申请绑定
-                for (int i = 0; i < fileslist.size(); i++) {
-                    Attached attached = fileslist.get(i);
-                    attached.setDisgnose_id(disgnose_info.getId());
-                    attachedService.updateById(attached);
+                //附件绑定
+                for(int i = 0;i<attchedIds.length;i++) {
+                    Attached attached = new Attached();
+                    attached = attached.selectById((attchedIds[i]));
+                    if(attached.getAttched_name()!=null){
+                        attached.setDisgnose_id(disgnose_info.getId());//存放
+                        attached.updateById();//更新
+                    }
                 }
                 result.setMsg("success");
             } catch (Exception e) {
@@ -186,7 +198,6 @@ public class FileUploadController {
         } else {
             result.setMsg("error");
         }
-        fileslist.clear(); //清除
         return result;
     }
 
@@ -222,13 +233,17 @@ public class FileUploadController {
                            String patient_AS,
                            String patient_AVI,
                            String patient_MS,
-                           String patient_MI,HttpSession session) {
+                           String patient_MI,
+                           String[] attchedIds,
+                           HttpSession session) {
 
+        System.out.println(attchedIds);
         Disgnose_info disgnose_info = new Disgnose_info();
         Result result = new Result();
         disgnose_info.setPatient_name(patient_name);
-        disgnose_info.setPatient_tall(patient_tall);
-        disgnose_info.setPatient_birth(Timestamp.valueOf(patient_birth + " 00:00:00")); //兼容timestamp
+        disgnose_info.setPatient_tall(patient_tall); if (patient_birth != null && patient_birth != "") {
+            disgnose_info.setPatient_birth(Timestamp.valueOf(patient_birth + " 00:00:00")); //兼容timestamp
+        }
         disgnose_info.setPatient_weight(patient_weight);
         disgnose_info.setDepartment(department);
         disgnose_info.setPatient_BMI(patient_BMI);
@@ -263,10 +278,13 @@ public class FileUploadController {
         if (b) { //保存成功
             try {
                 //附件表更新，与诊断申请绑定
-                for (int i = 0; i < fileslist.size(); i++) {
-                    Attached attached = fileslist.get(i);
-                    attached.setDisgnose_id(disgnose_info.getId());
-                    attachedService.updateById(attached);
+                for (int i = 0; i < attchedIds.length; i++) {
+                   Attached attached = new Attached();
+                    attached = attached.selectById(Long.parseLong(attchedIds[i]));
+                   if(attached!=null){
+                       attached.setDisgnose_id(disgnose_info.getId());//绑定
+                       attached.updateById();
+                   }
                 }
                 result.setData(disgnose_info);
                 result.setMsg("success");
@@ -324,6 +342,7 @@ public class FileUploadController {
                                           String patient_AVI,
                                           String patient_MS,
                                           String patient_MI,
+                                          String[] attchedIds,
                                           HttpSession session) {
         //更新诊断信息
         Disgnose_info disgnoseInfoByCode = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("disgnose_code", disgnose_code));
@@ -364,6 +383,12 @@ public class FileUploadController {
                     attachedService.updateById(attached);
                 }
             }
+            for (int i = 0; i < attchedIds.length; i++) {
+                Attached attached = new Attached();
+                attached = attached.selectById(attchedIds[i]);
+                attached.setDisgnose_id(disgnoseInfoByCode.getId());
+            }
+
             result.setCode(200);
             result.setMsg("success");
             result.setData(disgnoseInfoByCode);
@@ -382,9 +407,10 @@ public class FileUploadController {
     @GetMapping("/getInfo")
     @ResponseBody
     public Doctor_info getInfo(HttpSession httpSession) {
-        doctor_info = (Doctor_info) httpSession.getAttribute("doctor_info");
+        Doctor_info  doctor_info = (Doctor_info) httpSession.getAttribute("doctor_info");
         return doctor_info;
     }
+
 
 
     @GetMapping("/downLoadFileByFileName")
@@ -448,5 +474,53 @@ public class FileUploadController {
         result.setMsg("下载出错了！");
         return result;
     }
+
+    @Value("${file.uploadFolder}")
+    private String headImage;
+
+
+//    @PostMapping("/uploadHeadImage")
+//    public Result getDoctorHeadIamge(MultipartFile file,
+//                                     HttpServletRequest request,
+//                                     HttpSession session){
+//        Doctor_info doctor_info = (Doctor_info)session.getAttribute("doctor_info");
+//        Result result = new Result();
+//
+//        String headImageName = "";
+//        if (file.isEmpty()) {
+//            result.setCode(500);
+//            result.setMsg("文件上传异常");
+//        } else {
+//            //如果上传的文件不为空不为空
+//            fileName = FileNameUtils.getFileName(file.getOriginalFilename());//获取文件名称
+//            System.out.println(savePath);
+//            File files = new File(savePath + fileName);
+//            if (!files.getParentFile().exists()) {
+//                files.mkdirs(); //如果父目录不存在创建
+//            }
+//            try {
+//                //上传成功
+//                file.transferTo(files);
+//                //将文件信息保存到附件表当中
+//                Attached attached = new Attached();
+//                attached.setAttached_addr(savePath);
+//                attached.setAttched_name(fileName);
+//                //xianyi
+//
+//                attached.setDoctor_id( ((Doctor_info)session.getAttribute("doctor_info")).getId());
+//                attached.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
+//                attachedService.save(attached);
+//                fileslist.add(attached);//加入进集合 便于绑定
+//                //上传成功还需要返回文件名称
+//                result.setData(attached.getAttched_name());
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            result.setCode(0);
+//            result.setMsg("成功");
+//        }
+//        return result;
+//    }
 }
 

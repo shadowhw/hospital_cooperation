@@ -288,6 +288,8 @@
 <script src="../../lib/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
 <script>
+    let attchedIds=[];
+    let attchedCunt=0;
 
     //计算BMI
     function bmi_led(){
@@ -312,7 +314,7 @@
          urlId= url.searchParams.get("disgnose_id");
 
     });
-    //
+
     //文件下载
     function downLoadFile(obj){
         var fileName = obj.name;
@@ -493,6 +495,7 @@
                 url:"/saveTempDisgnose_info?id="+disId,
                 type:"post",
                 async:true,//异步加载
+                traditional:true,
                 data:{
                     bz,
                     patient_name,
@@ -512,7 +515,8 @@
                     patient_AS   ,
                     patient_AVI  ,
                     patient_MS   ,
-                    patient_MI
+                    patient_MI ,
+                    attchedIds
                 },
                 success:function (obj) {
                     if(obj["msg"]=="success"){
@@ -534,18 +538,18 @@
     layui.use(['form','layer'], function(){
         $ = layui.jquery;
         var form = layui.form,layer = layui.layer;
-
         //监听提交
         form.on('submit(add)', function(data){
-
+            var fromD = data.field;
             $.ajax({
                 url:"/saveDisgnose_info?id="+disId,
                 type:"post",
                 async:true,//异步加载
-                data:data.field,
+                traditional:true,
+                data:{fromD,attchedIds},
                 success:function (obj) {
                     if(obj["msg"]=="success"){
-                        alert("重新上传成功");
+                        alert("提交成功");
                         add_process("申请提交")
                         update_diagnosis(1)
                         //关闭当前frame
@@ -628,8 +632,7 @@
             ,upload = layui.upload;
 
         element = layui.element
-        //演示多文件列表
-
+        //多文件上传
         var uploadListIns = upload.render({
             elem: '#testList'
             ,elemList: $('#demoList') //列表元素对象
@@ -675,7 +678,6 @@
                     });
 
                     var n = 0;
-
                     var timer = setInterval(function(){
                         n = n + Math.random()*10|0;
                         if(n>75){
@@ -711,6 +713,8 @@
 
                 tds.eq(3).html('<button  class="layui-btn layui-btn-xs layui-btn-danger demo-delete'+index+'">删除</button>'); //清空操作
 
+                attchedIds[attchedCunt++] = res.attachedId;
+
 
 
                 if(res.data ==null){ //没有成功
@@ -726,6 +730,8 @@
                     uploadListIns.config.elem.next()[0].value = '';
                     deleteThiFile(res.data)
                 })
+
+                delete this.files[index];
 
             }
             ,allDone: function(obj){ //多文件上传完毕后的状态回调

@@ -191,6 +191,10 @@
 <script src="../../js/application.js"></script>
 <script src="/js/hyx.js"></script>
 <script>
+
+    let attchedIds =[];
+    let attchedCunt = 0;
+
     layui.use('laydate', function () {
         var laydate = layui.laydate;
         //执行一个laydate实例
@@ -294,11 +298,9 @@
     });
 
 
-    //提交诊断申请
+    //提交诊断结果
     layui.use(['form', 'layer'], function () {
         $ = layui.jquery;
-
-
         var form = layui.form, layer = layui.layer;
         let disgnose_id, fenfa, transactor;
         //监听提交
@@ -313,7 +315,8 @@
                 async: true,//异步加载
                 data: {
                     disgnosResult,
-                    code
+                    code,
+                    attchedIds
                 },
                 success: function (obj) {
                     if (obj["msg"] == "success") {
@@ -535,6 +538,8 @@
                 element.progress('progress'+index, 100+'%');
                 tds.eq(3).html('<button  class="layui-btn layui-btn-xs layui-btn-danger demo-delete'+index+'">删除</button>'); //清空操作
 
+                //用于存入上传的文件id
+                attchedIds[attchedCunt++] = res.attachedId;
 
 
                 if(res.data ==null){ //没有成功
@@ -550,7 +555,7 @@
                     uploadListIns.config.elem.next()[0].value = '';
                     deleteThiFile2(res.data)
                 })
-
+                delete this.files[index]; //删除对应的文件
             }
             ,allDone: function(obj){ //多文件上传完毕后的状态回调
                 console.log(obj)

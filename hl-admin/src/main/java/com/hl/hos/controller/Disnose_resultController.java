@@ -45,29 +45,20 @@ public class Disnose_resultController {
     @Autowired
     AttachedService attachedService;
 
+    @Deprecated
     private Doctor_info doctor_info;
 
-    private List<Attached_result> attachedResultList = new ArrayList<>();
+
 
     @Value("${diagnosis.filePath}")
     private String savePath;
+
     /**
      * 诊断结果附件上传
      */
     @PostMapping("/fileResultUpload")
     public Result fileResultUpload(MultipartFile file , HttpSession session){
         Result result = new Result();
-
-        //判断是否为重复上传内容
-        for (int i = 0; i < attachedResultList.size(); i++) {
-            if(attachedResultList.get(i).getAttched_name().substring(33).equals(file.getOriginalFilename())){
-                result.setMsg("成功");
-                result.setCode(0);
-                result.setData(attachedResultList.get(i).getAttched_name());
-                return result;
-            }
-        }
-
 
         if(!file.isEmpty()){
             //获取文件名称
@@ -85,7 +76,7 @@ public class Disnose_resultController {
                 attachedResult.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
                 attachedResult.setDoctor_id(  ((Doctor_info) session.getAttribute("doctor_info")).getId());
                 attachedResultServices.save(attachedResult);
-                attachedResultList.add(attachedResult);
+                result.setAttachedId(attachedResult.getId()+"");//返回附件的ID
                 result.setData(attachedResult.getAttched_name());
             }catch (Exception e){
 
@@ -103,21 +94,24 @@ public class Disnose_resultController {
      * @return
      */
     @PostMapping("/disgnoseResuletBack")
-    public Result disgnoseResuletBack(String code,String disgnosResult,HttpSession session){
+    public Result disgnoseResuletBack(String code,String disgnosResult,
+                                      String[] attchedIds, HttpSession session){
         doctor_info = (Doctor_info) session.getAttribute("doctor_info");
         Result result = new Result();
         //根据诊断编号查出诊断信息
         Disgnose_info disgnose_info = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("disgnose_code", code));
         disgnose_info.setDiagnose_result(disgnosResult);
         disgnose_info.setStat(6);//诊断完成
+
         //讲结果附件绑定在申请表当中
-        for(int i = 0;i<attachedResultList.size();i++){
-            Attached_result attached_result = attachedResultList.get(i);
+        for(int i = 0;i<attchedIds.length;i++){
+            Attached_result attached_result = new Attached_result();
+            attached_result = attached_result.selectById(attchedIds[i]);
             attached_result.setDisnose_result_id(disgnose_info.getId());
-            attachedResultServices.updateById(attached_result);
+            attached_result.updateById();
+
         }
         disgnoseInfoService.updateById(disgnose_info);
-        attachedResultList.clear();
         result.setMsg("success");
         result.setCode(200);
         result.setData(disgnose_info);

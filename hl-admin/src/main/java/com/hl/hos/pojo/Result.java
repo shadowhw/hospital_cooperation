@@ -15,4 +15,5 @@ public class Result
     private Object data;
     private Integer count;
     private String userName;//当前用户名称
+    private String attachedId;//文件的id
 }
