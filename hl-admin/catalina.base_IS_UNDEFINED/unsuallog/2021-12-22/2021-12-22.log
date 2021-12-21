@@ -1,0 +1,9 @@
+2021-12-22 00:03:06 -Starting ApplicationTest on JaneOnlysMate with PID 13940 (started by JaneOnly in D:\Code\阜外医院项目\hospital_cooperation\hl-admin)
+2021-12-22 00:03:06 -No active profile set, falling back to default profiles: default
+2021-12-22 00:03:08 -Init DruidDataSource
+2021-12-22 00:03:13 -{dataSource-1} inited
+2021-12-22 00:03:15 -Initializing ExecutorService 'applicationTaskExecutor'
+2021-12-22 00:03:16 -Started ApplicationTest in 9.785 seconds (JVM running for 10.665)
+2021-12-22 00:03:19 -Shutting down ExecutorService 'applicationTaskExecutor'
+2021-12-22 00:03:19 -{dataSource-1} closing ...
+2021-12-22 00:03:19 -{dataSource-1} closed
