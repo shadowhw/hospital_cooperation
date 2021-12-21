@@ -25,4 +25,5 @@ public interface Disgnose_infoService extends IService<Disgnose_info> {
      * @return
      */
     List<DiagnosisDoctorHos> get_dia_by_page(QueryWrapper<Disgnose_info> queryWrapper,String page,String limit);
+
 }

@@ -76,7 +76,9 @@ public class FileUploadController {
                 Attached attached = new Attached();
                 attached.setAttached_addr(savePath);
                 attached.setAttched_name(fileName);
-                attached.setDoctor_id(doctor_info.getId());
+                //xianyi
+
+                attached.setDoctor_id( ((Doctor_info)session.getAttribute("doctor_info")).getId());
                 attached.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
                 attachedService.save(attached);
                 fileslist.add(attached);//加入进集合 便于绑定
@@ -125,7 +127,7 @@ public class FileUploadController {
                                    String patient_AS,
                                    String patient_AVI,
                                    String patient_MS,
-                                   String patient_MI) {
+                                   String patient_MI,HttpSession session) {
         Disgnose_info disgnose_info = new Disgnose_info();
         Result result = new Result();
         disgnose_info.setPatient_name(patient_name);
@@ -151,13 +153,17 @@ public class FileUploadController {
         disgnose_info.setPatient_MS(patient_MS);
         disgnose_info.setPatient_MI(patient_MI);
 
-        disgnose_info.setDoctor_id(doctor_info.getId());
+        disgnose_info.setDoctor_id(((Doctor_info)session.getAttribute("doctor_info")).getId());
         disgnose_info.setStat(0); //只是临时保存，不需要提交
 
         boolean save = false;
         if (id == null || "".equals(id) || "0".equals(id)) { //并没有该记录临时
-            save = disgnoseInfoService.save(disgnose_info);
+            //逻辑漏洞
+//            save = disgnoseInfoService.save(disgnose_info);
+             save = disgnose_info.insert();
+
         } else {
+            //设置id
             disgnose_info.setId(Long.valueOf(id));
             save = disgnoseInfoService.updateById(disgnose_info);
         }
@@ -216,7 +222,7 @@ public class FileUploadController {
                            String patient_AS,
                            String patient_AVI,
                            String patient_MS,
-                           String patient_MI) {
+                           String patient_MI,HttpSession session) {
 
         Disgnose_info disgnose_info = new Disgnose_info();
         Result result = new Result();
@@ -241,7 +247,7 @@ public class FileUploadController {
         disgnose_info.setPatient_MI(patient_MI);
 
 
-        disgnose_info.setDoctor_id(doctor_info.getId());
+        disgnose_info.setDoctor_id(((Doctor_info)session.getAttribute("doctor_info")).getId());
         disgnose_info.setStat(1); //查看是否有临时的
         disgnose_info.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
         disgnose_info.setDisgnose_code(new SimpleDateFormat("yyyyMMdd").format(new Date()) + UUID.randomUUID().toString().substring(5, 8));
@@ -362,6 +368,7 @@ public class FileUploadController {
             result.setMsg("success");
             result.setData(disgnoseInfoByCode);
         }
+        fileslist.clear(); //清除
         return result;
     }
 

@@ -29,18 +29,6 @@ public class LoginController {
                             @RequestParam("doctorPwd")String doctorPwd ,
                             HttpSession session ){
 
-//        //查询有误单位
-//        Hos_info hosInfo = hosService.getOne(new QueryWrapper<Hos_info>().eq("hos_name",hos_name));
-//        if(hosInfo == null){
-//            session.setAttribute("error","请检查您的单位名称");
-//            return "redirect:/login";
-//        }
-//        //根据hosId查询医生
-//        Doctor_info doctorInfo = doctorService.getOne(new QueryWrapper<Doctor_info>().eq("hos_id", hosInfo.getId()));
-//        if(doctorInfo == null){
-//            session.setAttribute("error","账号或者密码错误");
-//            return "redirect:/login";
-//        }
         //验证密码
         String md5Pwd = MD5Util.getMd5(doctorPwd);//验证
         Doctor_info doctorRes = doctorService.getOne(new QueryWrapper<Doctor_info>().eq("doctor_account", hos_name).eq("doctor_pwd", md5Pwd));

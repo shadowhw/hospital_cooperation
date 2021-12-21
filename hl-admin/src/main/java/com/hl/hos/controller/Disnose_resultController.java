@@ -68,7 +68,7 @@ public class Disnose_resultController {
             }
         }
 
-        doctor_info = (Doctor_info) session.getAttribute("doctor_info");
+
         if(!file.isEmpty()){
             //获取文件名称
             String originalFilename = file.getOriginalFilename();
@@ -83,7 +83,7 @@ public class Disnose_resultController {
                 attachedResult.setAttached_addr(savePath);
                 attachedResult.setAttched_name(fileName);
                 attachedResult.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
-                attachedResult.setDoctor_id(doctor_info.getId());
+                attachedResult.setDoctor_id(  ((Doctor_info) session.getAttribute("doctor_info")).getId());
                 attachedResultServices.save(attachedResult);
                 attachedResultList.add(attachedResult);
                 result.setData(attachedResult.getAttched_name());
@@ -121,7 +121,7 @@ public class Disnose_resultController {
         result.setMsg("success");
         result.setCode(200);
         result.setData(disgnose_info);
-        result.setUserName(doctor_info.getDoctor_name());
+        result.setUserName(((Doctor_info) session.getAttribute("doctor_info")).getDoctor_name());
         return result;
     }
 
@@ -135,7 +135,7 @@ public class Disnose_resultController {
     public Result disnosisRollBack(String comm_text,String code,HttpSession session){
         //根据诊断标号查询诊断申请，
         Doctor_info doctor_info = (Doctor_info)session.getAttribute("doctor_info");
-        String doctor_name = doctor_info.getDoctor_name();
+        String doctor_name = ((Doctor_info) session.getAttribute("doctor_info")).getDoctor_name();
         Disgnose_info disgnoseInfoByCode = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("disgnose_code", code));
         Result result = new Result();
         if(disgnoseInfoByCode == null){

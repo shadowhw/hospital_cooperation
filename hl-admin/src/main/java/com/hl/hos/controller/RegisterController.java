@@ -24,6 +24,7 @@ public class RegisterController
     @Autowired
     private Doctor_infoService doctor_infoService;
 
+
     @PostMapping("/register_doctor")
     @ResponseBody
     public Result register_doctor(Doctor_info doctor_info, Hos_info hos_info)
