@@ -4,18 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hl.hos.backPogo.DiagnosisDoctorHos;
-import com.hl.hos.pojo.Disgnose_info;
+import com.hl.hos.pojo.*;
 import com.hl.hos.mapper.Disgnose_infoMapper;
-import com.hl.hos.pojo.Doctor_info;
-import com.hl.hos.pojo.Doctor_with_disgnose;
-import com.hl.hos.pojo.Hos_info;
-import com.hl.hos.service.Disgnose_infoService;
+import com.hl.hos.service.*;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.hl.hos.service.Doctor_infoService;
-import com.hl.hos.service.Doctor_with_disgnoseService;
-import com.hl.hos.service.Hos_infoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +33,10 @@ public class Disgnose_infoServiceImpl extends ServiceImpl<Disgnose_infoMapper, D
     private Hos_infoService hos_infoService;
     @Autowired
     private Doctor_with_disgnoseService doctor_with_disgnoseService;
+    @Autowired
+    private AttachedService attachedService;
+    @Autowired
+    private Attached_resultService attached_resultService;
 
     @Override
     public List<DiagnosisDoctorHos> get_dia_by_page(QueryWrapper<Disgnose_info> queryWrapper, String page, String limit)
@@ -80,5 +79,28 @@ public class Disgnose_infoServiceImpl extends ServiceImpl<Disgnose_infoMapper, D
             resList.add(diagnosisDoctorHos);
         }
         return resList;
+    }
+
+    /**
+     * 删除诊断信息
+     * @param id
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)//开启事务
+    public int delDisnoseById(Long id)
+    {
+        //删除诊断表
+        disgnose_infoService.removeById(id);
+        //删除附件表
+        attachedService.remove(new QueryWrapper<Attached>()
+            .eq("disgnose_id",id)
+        );
+        //删除协作表
+        doctor_with_disgnoseService.remove(new QueryWrapper<Doctor_with_disgnose>()
+            .eq("disgnose_id",id)
+        );
+
+        return 1;
     }
 }

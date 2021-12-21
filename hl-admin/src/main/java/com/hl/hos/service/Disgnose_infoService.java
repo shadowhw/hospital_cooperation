@@ -26,4 +26,10 @@ public interface Disgnose_infoService extends IService<Disgnose_info> {
      */
     List<DiagnosisDoctorHos> get_dia_by_page(QueryWrapper<Disgnose_info> queryWrapper,String page,String limit);
 
+    /**
+     * 删除诊断信息
+     * @param id
+     * @return
+     */
+    int delDisnoseById(Long id);
 }

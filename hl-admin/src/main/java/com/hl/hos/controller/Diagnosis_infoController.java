@@ -130,6 +130,31 @@ public class Diagnosis_infoController
     }
 
     /**
+     * 删除诊断
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("/del_diagnosis_info")
+    public Result del_diagnosis_info(Long id)
+    {
+        if(disgnose_infoService.delDisnoseById(id)>0)
+        {
+            result.setCount(1);
+            result.setData(null);
+            result.setCode(200);
+            result.setMsg("删除成功!");
+        }else {
+            result.setCount(1);
+            result.setData(null);
+            result.setCode(201);
+            result.setMsg("删除失败!");
+        }
+        return result;
+    }
+
+
+
+    /**
      * 组合查询诊断信息
      * @return
      */
