@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.io.Serializable;
 
@@ -35,7 +36,7 @@ public class Disgnose_info extends Model<Disgnose_info> implements Serializable 
     private String patient_name;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Timestamp patient_birth;
+    private Date patient_birth;
 
     private String patient_tall;
 

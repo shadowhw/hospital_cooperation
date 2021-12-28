@@ -305,7 +305,7 @@
         let disgnose_id, fenfa, transactor;
         //监听提交
         form.on('submit(add)', function (data) {
-            console.log(data.field.files);
+            console.log(attchedIds)
             let disgnosResult = $("#comment_text").val();
             let code = $("#disgnose_code").text();
             let comment_text;
@@ -313,6 +313,7 @@
                 url: "/disgnoseResuletBack",
                 type: "post",
                 async: true,//异步加载
+                traditional:true,
                 data: {
                     disgnosResult,
                     code,
@@ -540,6 +541,7 @@
 
                 //用于存入上传的文件id
                 attchedIds[attchedCunt++] = res.attachedId;
+                console.log(attchedIds)
 
 
                 if(res.data ==null){ //没有成功

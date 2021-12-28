@@ -6,6 +6,7 @@ import com.hl.hos.service.AttachedService;
 import com.hl.hos.service.Attached_resultService;
 import com.hl.hos.service.Disgnose_infoService;
 import com.hl.hos.utils.FileNameUtils;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -133,16 +135,17 @@ public class FileUploadController {
                                    String patient_AVI,
                                    String patient_MS,
                                    String patient_MI,HttpSession session,
-                                   String[] attchedIds) {
+                                   String[] attchedIds) throws ParseException {
         //摸索
-        System.out.println(attchedIds);
+
 
         Disgnose_info disgnose_info = new Disgnose_info();
         Result result = new Result();
         disgnose_info.setPatient_name(patient_name);
         disgnose_info.setPatient_tall(patient_tall);
         if (patient_birth != null && patient_birth != "") {
-            disgnose_info.setPatient_birth(Timestamp.valueOf(patient_birth + " 00:00:00")); //兼容timestamp
+            Date parse = new SimpleDateFormat("yyyy-MM-dd").parse(patient_birth);
+            disgnose_info.setPatient_birth(new java.sql.Date(parse.getTime())); //兼容timestamp
         }
 
         disgnose_info.setPatient_weight(patient_weight);
@@ -178,10 +181,11 @@ public class FileUploadController {
         }
         //讲诊断信息保存到数据库
 
-        System.out.println(disgnose_info);
+
         if (save) { //保存成功
             try {
                 //附件绑定
+                if(attchedIds!=null)
                 for(int i = 0;i<attchedIds.length;i++) {
                     Attached attached = new Attached();
                     attached = attached.selectById((attchedIds[i]));
@@ -212,6 +216,7 @@ public class FileUploadController {
      * @param bz
      * @return
      */
+    @SneakyThrows
     @PostMapping("/saveDisgnose_info")
     @ResponseBody
     public Result saveDisa(String id,
@@ -242,7 +247,9 @@ public class FileUploadController {
         Result result = new Result();
         disgnose_info.setPatient_name(patient_name);
         disgnose_info.setPatient_tall(patient_tall); if (patient_birth != null && patient_birth != "") {
-            disgnose_info.setPatient_birth(Timestamp.valueOf(patient_birth + " 00:00:00")); //兼容timestamp
+//            disgnose_info.setPatient_birth(Timestamp.valueOf(patient_birth + " 00:00:00")); //兼容timestamp
+            Date parse = new SimpleDateFormat("yyyy-MM-dd").parse(patient_birth);
+            disgnose_info.setPatient_birth(new java.sql.Date(parse.getTime())); //兼容timestamp
         }
         disgnose_info.setPatient_weight(patient_weight);
         disgnose_info.setDepartment(department);
@@ -278,9 +285,10 @@ public class FileUploadController {
         if (b) { //保存成功
             try {
                 //附件表更新，与诊断申请绑定
+                if(attchedIds!=null)
                 for (int i = 0; i < attchedIds.length; i++) {
                    Attached attached = new Attached();
-                    attached = attached.selectById(Long.parseLong(attchedIds[i]));
+                    attached = attached.selectById(attchedIds[i]);
                    if(attached!=null){
                        attached.setDisgnose_id(disgnose_info.getId());//绑定
                        attached.updateById();
@@ -343,7 +351,7 @@ public class FileUploadController {
                                           String patient_MS,
                                           String patient_MI,
                                           String[] attchedIds,
-                                          HttpSession session) {
+                                          HttpSession session) throws ParseException {
         //更新诊断信息
         Disgnose_info disgnoseInfoByCode = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("disgnose_code", disgnose_code));
         Result result = new Result();
@@ -353,7 +361,11 @@ public class FileUploadController {
             result.setCode(500);
         } else {
             disgnoseInfoByCode.setPatient_name(patient_name);
-            disgnoseInfoByCode.setPatient_birth(Timestamp.valueOf(patient_birth + " 00:00:00"));
+            if(patient_birth!=null){
+                Date parse = new SimpleDateFormat("yyyy-MM-dd").parse(patient_birth);
+                disgnoseInfoByCode.setPatient_birth(new java.sql.Date(parse.getTime())); //兼容timestamp
+            }
+//            disgnoseInfoByCode.setPatient_birth(Timestamp.valueOf(patient_birth + " 00:00:00"));
             disgnoseInfoByCode.setPatient_tall(patient_tall);
             disgnoseInfoByCode.setPatient_weight(patient_weight);
             disgnoseInfoByCode.setDepartment(department);
@@ -376,13 +388,8 @@ public class FileUploadController {
 
             disgnoseInfoService.updateById(disgnoseInfoByCode); //更新表
 
-            if (!fileslist.isEmpty()) {
-                for (int i = 0; i < fileslist.size(); i++) {
-                    Attached attached = fileslist.get(i);
-                    attached.setDisgnose_id(disgnoseInfoByCode.getId()); //附件绑定
-                    attachedService.updateById(attached);
-                }
-            }
+
+           if(attchedIds!=null)
             for (int i = 0; i < attchedIds.length; i++) {
                 Attached attached = new Attached();
                 attached = attached.selectById(attchedIds[i]);
@@ -393,7 +400,7 @@ public class FileUploadController {
             result.setMsg("success");
             result.setData(disgnoseInfoByCode);
         }
-        fileslist.clear(); //清除
+
         return result;
     }
 

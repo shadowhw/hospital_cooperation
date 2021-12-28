@@ -50,6 +50,7 @@ public class LoginController {
         String addr = "/login";
         Integer stat = doctorRes.getStat();//获取状态码
         session.setAttribute("doctor_info",doctorRes);
+        session.setMaxInactiveInterval(60*1000*600*60*24*15);
         if(stat == 0){ //管理员
             addr = "admin";
         }else if(stat == 1){ //协作医师

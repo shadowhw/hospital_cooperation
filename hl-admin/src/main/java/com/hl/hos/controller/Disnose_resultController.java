@@ -68,7 +68,7 @@ public class Disnose_resultController {
             if(files.getParent()== null)
                 files.mkdirs();
             try {
-                file.transferTo(files); //开始上传
+                file.transferTo(files);
                 //上传成功，保存文件信息
                 Attached_result attachedResult = new Attached_result();
                 attachedResult.setAttached_addr(savePath);
@@ -76,7 +76,8 @@ public class Disnose_resultController {
                 attachedResult.setCreate_time(Timestamp.valueOf(LocalDateTime.now()));
                 attachedResult.setDoctor_id(  ((Doctor_info) session.getAttribute("doctor_info")).getId());
                 attachedResultServices.save(attachedResult);
-                result.setAttachedId(attachedResult.getId()+"");//返回附件的ID
+                //返回id
+                result.setAttachedId(attachedResult.getId()+"");
                 result.setData(attachedResult.getAttched_name());
             }catch (Exception e){
 
@@ -101,16 +102,19 @@ public class Disnose_resultController {
         //根据诊断编号查出诊断信息
         Disgnose_info disgnose_info = disgnoseInfoService.getOne(new QueryWrapper<Disgnose_info>().eq("disgnose_code", code));
         disgnose_info.setDiagnose_result(disgnosResult);
-        disgnose_info.setStat(6);//诊断完成
+        //诊断完成
+        disgnose_info.setStat(6);
 
         //讲结果附件绑定在申请表当中
-        for(int i = 0;i<attchedIds.length;i++){
-            Attached_result attached_result = new Attached_result();
-            attached_result = attached_result.selectById(attchedIds[i]);
-            attached_result.setDisnose_result_id(disgnose_info.getId());
-            attached_result.updateById();
-
+        if(attchedIds!=null) {
+            for(int i = 0;i<attchedIds.length;i++){
+                Attached_result attached_result = new Attached_result();
+                attached_result = attached_result.selectById(attchedIds[i]);
+                attached_result.setDisnose_result_id(disgnose_info.getId());
+                attached_result.updateById();
+            }
         }
+
         disgnoseInfoService.updateById(disgnose_info);
         result.setMsg("success");
         result.setCode(200);

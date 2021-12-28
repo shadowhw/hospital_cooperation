@@ -540,13 +540,54 @@
         var form = layui.form,layer = layui.layer;
         //监听提交
         form.on('submit(add)', function(data){
-            var fromD = data.field;
+            let bz =  $("input[name='bz']").val()
+            let patient_name =  $("input[name='patient_name']").val()
+            let patient_birth =  $("input[name='patient_birth']").val()
+            let patient_tall =   $("input[name='patient_tall']").val()
+            let patient_weight =  $("input[name='patient_weight']").val()
+            let department =       $("input[name='department']").val()
+            let patient_bmi = $("input[name='patient_BMI']").val();
+
+            let patient_STS   = $("input[name='patient_STS']").val();
+            let patient_LVDd  = $("input[name='patient_LVDd']").val();
+            let patient_LVDs  = $("input[name='patient_LVDs']").val();
+            let patient_LVEF  = $("input[name='patient_LVEF']").val();
+            let patient_VD    = $("input[name='patient_VD']").val();
+            let patient_VA    = $("input[name='patient_VA']").val();
+            let patient_AVPPG = $("input[name='patient_AVPPG']").val();
+            let patient_AVAPG = $("input[name='patient_AVAPG']").val();
+            let patient_AS    = $("select[name='patient_AS']").val();
+            let patient_AVI   = $("select[name='patient_AVI']").val();
+            let patient_MS   = $("select[name='patient_MS']").val();
+            let patient_MI    = $("select[name='patient_MI']").val();
+
+            var fromD = data.fields;
             $.ajax({
                 url:"/saveDisgnose_info?id="+disId,
                 type:"post",
                 async:true,//异步加载
                 traditional:true,
-                data:{fromD,attchedIds},
+                data:{ bz,
+                    patient_name,
+                    patient_birth,
+                    patient_tall,
+                    patient_weight,
+                    department,
+                    patient_bmi  ,
+                    patient_STS  ,
+                    patient_LVDd ,
+                    patient_LVDs ,
+                    patient_LVEF ,
+                    patient_VD   ,
+                    patient_VA   ,
+                    patient_AVPPG,
+                    patient_AVAPG,
+                    patient_AS   ,
+                    patient_AVI  ,
+                    patient_MS   ,
+                    patient_MI ,
+                    attchedIds
+                },
                 success:function (obj) {
                     if(obj["msg"]=="success"){
                         alert("提交成功");
