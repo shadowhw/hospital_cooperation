@@ -136,9 +136,7 @@ public class FileUploadController {
                                    String patient_MS,
                                    String patient_MI,HttpSession session,
                                    String[] attchedIds) throws ParseException {
-        //摸索
-
-
+        //reload
         Disgnose_info disgnose_info = new Disgnose_info();
         Result result = new Result();
         disgnose_info.setPatient_name(patient_name);

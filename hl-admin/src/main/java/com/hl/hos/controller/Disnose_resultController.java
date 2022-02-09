@@ -65,8 +65,9 @@ public class Disnose_resultController {
             String originalFilename = file.getOriginalFilename();
             String fileName = FileNameUtils.getFileName(originalFilename);
             File files = new File(savePath+fileName);
-            if(files.getParent()== null)
+            if(files.getParent()== null) {
                 files.mkdirs();
+            }
             try {
                 file.transferTo(files);
                 //上传成功，保存文件信息

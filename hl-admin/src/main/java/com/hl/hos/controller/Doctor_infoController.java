@@ -160,12 +160,12 @@ public class Doctor_infoController {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        mailService.sendMineEmail(
+                        mailService.sendSimpleMail(
                                 sendServiceMail
                                 ,byId.getEmail()
                                 ,sendServiceMail
                                 ,"国家结构性心脏病介入质控中心影像评估核心实验室审核通知"
-                                ,"您的注册申请已审核通过，您现在可以登录您的账号了!"+"<a href="+"http://150.223.27.2:81"+"/>点击前往登录<a/>"
+                                ,"您的注册申请已审核通过，您现在可以登录您的账号了，账号为:"+byId.getDoctor_account()+"默认密码:123456，为了您账号的安全，登陆之后修改密码"
                         );
                     }
                 }).start();
