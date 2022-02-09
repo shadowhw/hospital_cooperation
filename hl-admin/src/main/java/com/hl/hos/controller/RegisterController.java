@@ -7,6 +7,7 @@ import com.hl.hos.pojo.Result;
 import com.hl.hos.service.Doctor_infoService;
 import com.hl.hos.service.Hos_infoService;
 import com.hl.hos.utils.DateUtil;
+import com.hl.hos.utils.DoctorAccountNameGenrator;
 import com.hl.hos.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -63,11 +64,14 @@ public class RegisterController
         List<Doctor_info> hos_doctors = doctor_infoService.list(new QueryWrapper<Doctor_info>()
             .eq("hos_id",hos_id)
         );
+
+        int accountMaxNum = DoctorAccountNameGenrator.getMaxNum(hos_doctors);
+
         String accountName = "";
-        if(hos_doctors.size() <9){ //小于9添加0
-            accountName = hos_info.getHos_name()+"D"+"0"+(hos_doctors.size()+1);
+        if(accountMaxNum <9){ //小于9添加0
+            accountName = hos_info.getHos_name()+"D"+"0"+(accountMaxNum+1);
         }else{
-            accountName = hos_info.getHos_name()+"D"+(hos_doctors.size()+1);
+            accountName = hos_info.getHos_name()+"D"+(accountMaxNum+1);
         }
         doctor_info.setDoctor_account(accountName);
         doctor_infoService.save(doctor_info);

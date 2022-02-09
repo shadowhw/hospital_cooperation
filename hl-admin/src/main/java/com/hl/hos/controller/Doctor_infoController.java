@@ -17,6 +17,7 @@ import com.hl.hos.service.Doctor_with_disgnoseService;
 import com.hl.hos.service.Hos_infoService;
 import com.hl.hos.service.impl.MailServiceImpl;
 import com.hl.hos.utils.DateUtil;
+import com.hl.hos.utils.DoctorAccountNameGenrator;
 import com.hl.hos.utils.MD5Util;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -258,7 +259,9 @@ public class Doctor_infoController {
             List<Doctor_info> hos_doctors = doctor_infoService.list(new QueryWrapper<Doctor_info>()
                     .eq("hos_id",hos_info.getId())
             );
-            String accountName = hos_doctors.size() < 9 ? hos_info.getHos_name()+"E"+"0"+(hos_doctors.size()+1) : hos_info.getHos_name()+"E"+(hos_doctors.size()+1);
+            int accountMaxNum = DoctorAccountNameGenrator.getMaxNum(hos_doctors);
+
+            String accountName = hos_doctors.size() < 9 ? hos_info.getHos_name()+"E"+"0"+(accountMaxNum+1) : hos_info.getHos_name()+"E"+(accountMaxNum+1);
             doctorInfo.setDoctor_account(accountName);
             doctorInfo.setHos_id(hos_info.getId());
             doctorInfo.setDoctor_tel(jsonObject.getString("doctor_tel"));
