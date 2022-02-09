@@ -46,9 +46,11 @@
                     <br>
                     <sapn class="textarea">申请时间：<span id="create_time"></span></sapn>
                     <br>
+                    <sapn class="textarea">分配负责人医师：<span id="assist_doctor_name"></span></sapn>
+                    <br>
                 </div>
             </div>
-            <div class="layui-card">
+            <div class="layui-card" style="padding: 15px;">
                 <sapn class="textarea">患者姓名 : <span id="patient_name"></span></sapn>
                 <br>
                 <sapn class="textarea">患者出生日期 : <span id="patient_birth"></span></sapn>
@@ -686,6 +688,7 @@
                         dia.patient_weight = datas[i].disgnose_info.patient_weight;
                         dia.diagnose_result = datas[i].disgnose_info.diagnose_result;
                         dia.hos_nme = datas[i].hos_info.hos_name;
+                        dia.assist_doctor_name = datas[i].assist_doctor_name;
                         dia.create_time = date;
                         dia.comment_text = datas[i].disgnose_info.comment_text;
                         dia.disgnose_code = datas[i].disgnose_info.disgnose_code;
@@ -754,6 +757,8 @@
                         $("#diagnose_result").text(dia.diagnose_result)
                         $("#doctor_name").text(dia.doctor_name)
                         $("#create_time").text(dia.create_time)
+                        $("#assist_doctor_name").text(dia.assist_doctor_name)
+
                         $("#disgnose_code").text(dia.disgnose_code)
                         $("#patient_bmi").text(dia.patient_BMI)
                         //new Clome 2021:11.5
