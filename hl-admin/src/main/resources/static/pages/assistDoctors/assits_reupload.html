@@ -7,8 +7,23 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="../../css/oksub.css">
     <script src="../../lib/layui/layui.js"></script>
-    <title>上传诊断</title>
+    <title>重新上传</title>
+    <style>
+        #upload-container, #upload-list{width: 500px; margin: 0 auto; }
+        #upload-container{cursor: pointer; border-radius: 15px; background: #EEEFFF; height: 200px;}
+        #upload-list{height: 200px; border: 1px solid #EEE; border-radius: 5px; margin-top: 10px; padding: 10px 20px;}
+        #upload-container>span{widows: 100%; text-align: center; color: gray; display: block; padding-top: 15%;}
+        .upload-item{margin-top: 5px; padding-bottom: 5px; border-bottom: 1px dashed gray;}
+        .percentage{height: 5px; background: green;}
+        .btn-delete, .btn-retry{cursor: pointer; color: gray;}
+        .btn-delete:hover{color: orange;}
+        .btn-retry:hover{color: green;}
+    </style>
 </head>
+<!--引入CSS-->
+<link rel="stylesheet" type="text/css" href="webuploader.css">
+<script src="jquery-1.11.1.js"></script>
+<script src="webuploader.js"></script>
 <style>
     .list-con {
         padding: 0 10px 15px 10px;
@@ -249,24 +264,13 @@
                             </div>
                         </div>
 
-                        <input id="files" name="files" value="0"  class="layui-input" type="hidden">
-                        <div class="layui-upload">
-                            <p>上传附件</p>
-                            <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
-                            <div class="layui-upload-list">
-                                <table class="layui-table">
-                                    <thead>
-                                    <tr><th>文件名</th>
-                                        <th>大小</th>
-                                        <th>状态</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="demoList"></tbody>
-                                </table>
-                            </div>
-                            <button type="button" class="layui-btn" id="testListAction" style="display: none">开始上传</button>
+                        <div id="upload-container">
+                            <span>点击或将文件拖拽至此上传</span>
                         </div>
+                        <div id="upload-list">
+                        </div>
+                        <button id="picker" style="display: none;">点击上传文件</button>
+
 
                         <div class="layui-form-item layui-layout-admin">
                             <div class="layui-input-block">
@@ -659,141 +663,219 @@
         });
     }
 
+    //new FileUload
+    $('#upload-container').click(function(event) {
+        $("#picker").find('input').click();
+    });
+    var uploader = WebUploader.create({
+        auto: true,// 选完文件后，是否自动上传。
+        swf: 'Uploader.swf',// swf文件路径
+        server: '/file_request_upload',// 文件接收服务端。
+        dnd: '#upload-container',
+        pick: '#picker',// 内部根据当前运行是创建，可能是input元素，也可能是flash. 这里是div的id
+        multiple: true, // 选择多个
+        chunked: true,// 开启分片上传。
+        threads: 20, // 上传并发数。允许同时最大上传进程数。
+        method: 'POST', // 文件上传方式，POST或者GET。
+        fileSizeLimit: 1024*1024*1024*10, //验证文件总大小是否超出限制, 超出则不允许加入队列。
+        fileSingleSizeLimit: 1024*1024*1024, //验证单个文件大小是否超出限 制, 超出则不允许加入队列。
+        fileVal:'upload' // [默认值：'file'] 设置文件上传域的name。
+    });
+
+    uploader.on("beforeFileQueued", function(file) {
+        console.log(file); // 获取文件的后缀
+    });
+
+    uploader.on('fileQueued', function(file) {
+// 选中文件时要做的事情，比如在页面中显示选中的文件并添加到文件列表，获取文件的大小，文件类型等
+        console.log(file.ext); // 获取文件的后缀
+        console.log(file.size);// 获取文件的大小
+        console.log(file.name);
+        var html = '<div class="upload-item"><span>文件名：'+file.name+'<div class="percentage '+file.id+'" style="width: 0%;"></div></div>';
+        $('#upload-list').append(html);
+        uploader.md5File( file )//大文件秒传
+
+            // 及时显示进度
+            .progress(function(percentage) {
+                console.log('Percentage:', percentage);
+            })
+
+            // 完成
+            .then(function(val) {
+                console.log('md5 result:', val);
+            });
+    });
+
+    uploader.on('uploadProgress', function(file, percentage) {
+        console.log(percentage * 100 + '%');
+        var width = $('.upload-item').width();
+        $('.'+file.id).width(width*percentage);
+    });
+
+    uploader.on('uploadSuccess', function(file, result) {
+        console.log(file.id+"传输成功");
+        console.log(result.attachedId);
+        attchedIds[attchedCunt++] = result.attachedId;
+    });
+
+    uploader.on('uploadError', function(file) {
+        console.log(file);
+        console.log(file.id+'upload error')
+    });
+
+    $('#upload-list').on('click', '.upload-item .btn-delete', function() {
+// 从文件队列中删除某个文件id
+        file_id = $(this).data('file_id');
+        uploader.removeFile(file_id); // 标记文件状态为已取消
+        uploader.removeFile(file_id, true); // 从queue中删除
+        console.log(uploader.getFiles());
+    });
+
+    $('#upload-list').on('click', '.btn-retry', function() {
+        uploader.retry($(this).data('file_id'));
+    });
+
+    uploader.on('uploadComplete', function(file) {
+        console.log(uploader.getFiles());
+    });
+
+
+
 
     var tempId = 1;
     var done_id = 0;
     var arr_p=[]; //
     var arr_pv=[];
-    //文件上传
-    var files=[];
-    var timers = [];
-    //JavaScript代码区域
-    layui.use(['element','upload'], function(){
-        var $ = layui.jquery
-            ,upload = layui.upload;
-
-        element = layui.element
-        //多文件上传
-        var uploadListIns = upload.render({
-            elem: '#testList'
-            ,elemList: $('#demoList') //列表元素对象
-            ,url: '/fileUpload' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
-            ,accept: 'file'
-            ,multiple: false
-            ,number: 100
-            ,auto: true
-            ,bindAction: '#testListAction'
-            ,choose: function(obj){
-                var that = this;
-                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
-
-                layer.msg("由于服务器压力上传大文件请耐心等待...", {
-                    icon: 6,//成功的表情
-                    time: 3000 //1秒关闭（如果不配置，默认是3秒）
-                }, function(){
-
-                });
-
-                //读取本地文件
-                obj.preview(function(index, file, result) {
-                    var tr = $(['<tr id="upload-' + index + '">'
-                        , '<td>' + file.name + '</td>'
-                        , '<td>' + (file.size / 1014/1024).toFixed(1) +'MB</td>'
-                        , '<td><div class="layui-progress layui-progress-big" lay-showprecent = "true" lay-filter="progress'+index+'"><div class="layui-progress-bar" lay-precent="0%"></div></div></td>'
-                        , '<td>'
-                        , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
-                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
-                        , '</td>'
-                        , '</tr>'].join(''));
-
-                    //单个重传
-                    tr.find('.demo-reload').on('click', function () {
-                        obj.upload(index, file);
-                    });
-
-                    //删除
-                    tr.find('.demo-delete').on('click', function () {
-                        delete files[index]; //删除对应的文件
-                        tr.remove();
-                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
-                    });
-
-                    var n = 0;
-                    var timer = setInterval(function(){
-                        n = n + Math.random()*10|0;
-                        if(n>75){
-                            n = 75;
-                            layer.msg("由于服务器压力上传大文件请耐心等待...", {
-                                icon: 6,//成功的表情
-                                time: 3000 //1秒关闭（如果不配置，默认是3秒）
-                            }, function(){
-
-                            });
-                            clearInterval(timer);
-                        }
-                        element.progress('progress'+index, n+'%');
-                    }, 300+Math.random()*24000);
-                    timers[index] = timer;
-
-
-
-                    that.elemList.append(tr);
-                    element.render('progress'); //渲染新加的进度条组件
-                });
-
-
-            }
-            ,done: function(res, index, upload){ //成功的回调
-                var that = this;
-                //if(res.code == 0){ //上传成功
-                var tr = that.elemList.find('tr#upload-'+ index)
-                    ,tds = tr.children();
-
-                clearInterval(timers[index])
-                element.progress('progress'+index, 100+'%');
-
-                tds.eq(3).html('<button  class="layui-btn layui-btn-xs layui-btn-danger demo-delete'+index+'">删除</button>'); //清空操作
-
-                attchedIds[attchedCunt++] = res.attachedId;
-
-
-
-                if(res.data ==null){ //没有成功
-                    tr.remove();
-                    layer.msg("无内容为空，选取失败..", {icon:1,time:1000},function(){
-                        // setTimeout('window.location.reload()',1000);
-                    });
-                }
-                //删除文N
-                $(".demo-delete"+index).on("click",function(){
-                    delete files[index]; //删除对应的文件
-                    tr.remove();
-                    uploadListIns.config.elem.next()[0].value = '';
-                    deleteThiFile(res.data)
-                })
-
-                delete this.files[index];
-
-            }
-            ,allDone: function(obj){ //多文件上传完毕后的状态回调
-
-            }
-            ,error: function(index, upload){ //错误回调
-                var that = this;
-                var tr = that.elemList.find('tr#upload-'+ index)
-                    ,tds = tr.children();
-                tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
-            }
-            ,progress: function(n, elem, res, index){
-                var percent = n + '%' //获取进度百分比
-                element.progress('demo', percent); //可配合 layui 进度条元素使用
-
-
-                element.progress('demo-'+ index, n + '%'); //进度条
-            }
-        });
-        var i  =  1;
-    });
+    // //文件上传
+    // var files=[];
+    // var timers = [];
+    // //JavaScript代码区域
+    // layui.use(['element','upload'], function(){
+    //     var $ = layui.jquery
+    //         ,upload = layui.upload;
+    //
+    //     element = layui.element
+    //     //多文件上传
+    //     var uploadListIns = upload.render({
+    //         elem: '#testList'
+    //         ,elemList: $('#demoList') //列表元素对象
+    //         ,url: '/fileUpload' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+    //         ,accept: 'file'
+    //         ,multiple: false
+    //         ,number: 100
+    //         ,auto: true
+    //         ,bindAction: '#testListAction'
+    //         ,choose: function(obj){
+    //             var that = this;
+    //             var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+    //
+    //             layer.msg("由于服务器压力上传大文件请耐心等待...", {
+    //                 icon: 6,//成功的表情
+    //                 time: 3000 //1秒关闭（如果不配置，默认是3秒）
+    //             }, function(){
+    //
+    //             });
+    //
+    //             //读取本地文件
+    //             obj.preview(function(index, file, result) {
+    //                 var tr = $(['<tr id="upload-' + index + '">'
+    //                     , '<td>' + file.name + '</td>'
+    //                     , '<td>' + (file.size / 1014/1024).toFixed(1) +'MB</td>'
+    //                     , '<td><div class="layui-progress layui-progress-big" lay-showprecent = "true" lay-filter="progress'+index+'"><div class="layui-progress-bar" lay-precent="0%"></div></div></td>'
+    //                     , '<td>'
+    //                     , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+    //                     , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+    //                     , '</td>'
+    //                     , '</tr>'].join(''));
+    //
+    //                 //单个重传
+    //                 tr.find('.demo-reload').on('click', function () {
+    //                     obj.upload(index, file);
+    //                 });
+    //
+    //                 //删除
+    //                 tr.find('.demo-delete').on('click', function () {
+    //                     delete files[index]; //删除对应的文件
+    //                     tr.remove();
+    //                     uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+    //                 });
+    //
+    //                 var n = 0;
+    //                 var timer = setInterval(function(){
+    //                     n = n + Math.random()*10|0;
+    //                     if(n>75){
+    //                         n = 75;
+    //                         layer.msg("由于服务器压力上传大文件请耐心等待...", {
+    //                             icon: 6,//成功的表情
+    //                             time: 3000 //1秒关闭（如果不配置，默认是3秒）
+    //                         }, function(){
+    //
+    //                         });
+    //                         clearInterval(timer);
+    //                     }
+    //                     element.progress('progress'+index, n+'%');
+    //                 }, 300+Math.random()*24000);
+    //                 timers[index] = timer;
+    //
+    //
+    //
+    //                 that.elemList.append(tr);
+    //                 element.render('progress'); //渲染新加的进度条组件
+    //             });
+    //
+    //
+    //         }
+    //         ,done: function(res, index, upload){ //成功的回调
+    //             var that = this;
+    //             //if(res.code == 0){ //上传成功
+    //             var tr = that.elemList.find('tr#upload-'+ index)
+    //                 ,tds = tr.children();
+    //
+    //             clearInterval(timers[index])
+    //             element.progress('progress'+index, 100+'%');
+    //
+    //             tds.eq(3).html('<button  class="layui-btn layui-btn-xs layui-btn-danger demo-delete'+index+'">删除</button>'); //清空操作
+    //
+    //             attchedIds[attchedCunt++] = res.attachedId;
+    //
+    //
+    //
+    //             if(res.data ==null){ //没有成功
+    //                 tr.remove();
+    //                 layer.msg("无内容为空，选取失败..", {icon:1,time:1000},function(){
+    //                     // setTimeout('window.location.reload()',1000);
+    //                 });
+    //             }
+    //             //删除文N
+    //             $(".demo-delete"+index).on("click",function(){
+    //                 delete files[index]; //删除对应的文件
+    //                 tr.remove();
+    //                 uploadListIns.config.elem.next()[0].value = '';
+    //                 deleteThiFile(res.data)
+    //             })
+    //
+    //             delete this.files[index];
+    //
+    //         }
+    //         ,allDone: function(obj){ //多文件上传完毕后的状态回调
+    //
+    //         }
+    //         ,error: function(index, upload){ //错误回调
+    //             var that = this;
+    //             var tr = that.elemList.find('tr#upload-'+ index)
+    //                 ,tds = tr.children();
+    //             tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+    //         }
+    //         ,progress: function(n, elem, res, index){
+    //             var percent = n + '%' //获取进度百分比
+    //             element.progress('demo', percent); //可配合 layui 进度条元素使用
+    //
+    //
+    //             element.progress('demo-'+ index, n + '%'); //进度条
+    //         }
+    //     });
+    //     var i  =  1;
+    // });
 
 </script>
 

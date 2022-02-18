@@ -44,6 +44,7 @@ public class FileUploadController {
     //文件上传接口
     @PostMapping("/fileUpload")
     @ResponseBody
+    @Deprecated
     public Result fileUpload(MultipartFile file,
                              HttpServletRequest request,
                              HttpSession session) throws IOException {
